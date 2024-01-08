@@ -22,7 +22,7 @@
             "position": "before"
           },
           {
-            "pattern": "{@/components/**,@/layouts/**,@/lib/**,@/styles/**,@/hooks/**}",
+            "pattern": "{@/components/**,@/layouts/**,@/lib/**,@/styles/**,@/hooks/**, @/validation/**}}",
             "group": "internal",
             "position": "after"
           }

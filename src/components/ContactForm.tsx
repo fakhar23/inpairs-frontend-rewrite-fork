@@ -1,9 +1,11 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { contactUsSchema } from "@/validation/index";
-import Button from "@/components/Button";
 import Link from "next/link";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
+import Button from "@/components/Button";
+import { contactUsSchema } from "@/validation/index";
 
 interface FormValues {
   email: string;

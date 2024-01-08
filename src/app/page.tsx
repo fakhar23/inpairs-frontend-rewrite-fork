@@ -22,7 +22,6 @@ import pears from "../../public/pears.svg";
 import thumpsUp from "../../public/thumbsUp.svg";
 import web from "../../public/web.png";
 
-
 interface IModalProps {
   shown: boolean;
   onClose: () => void;
@@ -96,7 +95,6 @@ function FeatureModal({
   return (
     <>
       {shown ? (
-        // <>
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"

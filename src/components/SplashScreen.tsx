@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+
 import logo from "../../public/pears-inline.png";
 
 export const SplashScreen = () => {
