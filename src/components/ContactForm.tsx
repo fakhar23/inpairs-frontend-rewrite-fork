@@ -1,7 +1,9 @@
+"use client";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { contactUsSchema } from "@/validation/index";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 interface FormValues {
   email: string;
@@ -48,14 +50,17 @@ export function ContactForm() {
               us an email!
             </p>
 
-            <a href={process.env.FEEDBACK_FORM_URL} target="_blank">
+            <Link
+              href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL || ""}
+              target="_blank"
+            >
               <button
                 type="submit"
                 className="py-3 px-5 text-sm  font-bryantProMedium text-center text-white rounded-3xl bg-red-500 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300"
               >
                 User Feedback/User Reporting Form
               </button>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="py-8 px-4 mx-auto w-1/2 md:w-full">
