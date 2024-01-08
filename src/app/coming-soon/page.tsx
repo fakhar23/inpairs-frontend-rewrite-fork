@@ -3,6 +3,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { randomId, useTimeout } from "@mantine/hooks";
 import { useState } from "react";
 import Gate from "./components/Gate";
+import { PublicNavbar } from "@/components/PublicNav";
 
 const ComingSoonPage = () => {
   const [temp, setTemp] = useState("");
@@ -19,9 +20,12 @@ const ComingSoonPage = () => {
   }
 
   return (
-    <div className="w-[100%] mb-5 md:h-screen flex justify-center relative">
-      <Gate />
-    </div>
+    <>
+      <PublicNavbar />
+      <div className="w-[100%] mb-5 md:h-screen flex justify-center relative">
+        <Gate />
+      </div>
+    </>
   );
 };
 
