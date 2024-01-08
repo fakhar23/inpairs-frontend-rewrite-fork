@@ -1,23 +1,27 @@
 "use client";
-import Button from "@/components/Button";
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import medal from "../../public/medal.svg";
-import thumpsUp from "../../public/thumbsUp.svg";
-import web from "../../public/web.png";
-import headerBG from "../../public/header.svg";
+
+import Button from "@/components/Button";
+import { Footer } from "@/components/Footer";
+import { PublicNavbar } from "@/components/PublicNav";
+
+import background from "../../public/flowers.png";
 import circlesBG from "../../public/Group-5.svg";
+import headerBG from "../../public/header.svg";
 import heartsBG from "../../public/hearts.png";
 import heartsBG2 from "../../public/hearts2.png";
-import pears from "../../public/pears.svg";
-import background from "../../public/flowers.png";
 import instagramFirstPost from "../../public/instagram-post-1.jpg";
 import instagramSecondPost from "../../public/instagram-post-2.jpg";
 import instagramThirdPost from "../../public/instagram-post-3.jpg";
 import instagramFourthPost from "../../public/instagram-post-4.jpg";
-import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import medal from "../../public/medal.svg";
+import pears from "../../public/pears.svg";
+import thumpsUp from "../../public/thumbsUp.svg";
+import web from "../../public/web.png";
+
 
 interface IModalProps {
   shown: boolean;
@@ -92,6 +96,7 @@ function FeatureModal({
   return (
     <>
       {shown ? (
+        // <>
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
@@ -244,7 +249,7 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-purple"></i>
                   </button>
                 </div>
-              )
+              ),
             )}
           </div>
         </div>
