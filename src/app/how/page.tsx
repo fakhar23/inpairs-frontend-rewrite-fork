@@ -1,13 +1,16 @@
 "use client";
-import { PublicNavbar } from "@/components/PublicNav";
-import { Footer } from "@/components/Footer";
+import { useState } from "react";
+
 import Image from "next/image";
+
+import { Footer } from "@/components/Footer";
+import { PublicNavbar } from "@/components/PublicNav";
+
 import fillForm from "../../../public/fillForm.svg";
-import waitMatching from "../../../public/waitMatching.svg";
-import pairing from "../../../public/pairing.svg";
 import theMatch from "../../../public/fillForm.svg";
 import getToKnowEachOther from "../../../public/getToKnowEachOther.svg";
-import { useState } from "react";
+import pairing from "../../../public/pairing.svg";
+import waitMatching from "../../../public/waitMatching.svg";
 
 interface IHowStepCardProps {
   id: number;
