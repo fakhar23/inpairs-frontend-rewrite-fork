@@ -1,9 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/Button";
-import logo from "../../public/pears-inline.png";
 import { usePathname } from "next/navigation";
+
+import Button from "@/components/Button";
+
+import logo from "../../public/pears-inline.png";
 
 export function PublicNavbar({
   canViewTheirProfile = false,

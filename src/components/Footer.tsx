@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import footerBG from "../../public/footerBG.svg";
 
 export function Footer() {
