@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Button from "@/components/Button";
+import { Button } from "@/components";
 
 import logo from "../../public/pears-inline.png";
 

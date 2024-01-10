@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Button from "@/components/Button";
+import { Button } from "@/components";
 import { Footer } from "@/components/Footer";
 import { PublicNavbar } from "@/components/PublicNav";
 
@@ -247,7 +247,7 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-purple"></i>
                   </button>
                 </div>
-              ),
+              )
             )}
           </div>
         </div>
