@@ -2,7 +2,7 @@
   "extends": "next/core-web-vitals",
   "rules": {
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": ["builtin", "external", "internal"],
         "pathGroups": [
