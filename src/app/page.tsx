@@ -4,23 +4,22 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Button from "@/components/Button";
+import background from "@/assets/flowers.png";
+import circlesBG from "@/assets/Group-5.svg";
+import headerBG from "@/assets/header.svg";
+import heartsBG from "@/assets/hearts.png";
+import heartsBG2 from "@/assets/hearts2.png";
+import instagramFirstPost from "@/assets/instagram-post-1.jpg";
+import instagramSecondPost from "@/assets/instagram-post-2.jpg";
+import instagramThirdPost from "@/assets/instagram-post-3.jpg";
+import instagramFourthPost from "@/assets/instagram-post-4.jpg";
+import medal from "@/assets/medal.svg";
+import pears from "@/assets/pears.svg";
+import thumpsUp from "@/assets/thumbsUp.svg";
+import web from "@/assets/web.png";
+import { Button } from "@/components";
 import { Footer } from "@/components/Footer";
 import { PublicNavbar } from "@/components/PublicNav";
-
-import background from "../../public/flowers.png";
-import circlesBG from "../../public/Group-5.svg";
-import headerBG from "../../public/header.svg";
-import heartsBG from "../../public/hearts.png";
-import heartsBG2 from "../../public/hearts2.png";
-import instagramFirstPost from "../../public/instagram-post-1.jpg";
-import instagramSecondPost from "../../public/instagram-post-2.jpg";
-import instagramThirdPost from "../../public/instagram-post-3.jpg";
-import instagramFourthPost from "../../public/instagram-post-4.jpg";
-import medal from "../../public/medal.svg";
-import pears from "../../public/pears.svg";
-import thumpsUp from "../../public/thumbsUp.svg";
-import web from "../../public/web.png";
 
 interface IModalProps {
   shown: boolean;
@@ -247,7 +246,7 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-purple"></i>
                   </button>
                 </div>
-              ),
+              )
             )}
           </div>
         </div>
