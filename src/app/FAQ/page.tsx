@@ -52,7 +52,7 @@ const FAQ = () => {
           </section>
         </div>
       </div>
-      <Footer />
+      <Footer className="fixed bottom-0 w-screen" />
     </>
   );
 };
