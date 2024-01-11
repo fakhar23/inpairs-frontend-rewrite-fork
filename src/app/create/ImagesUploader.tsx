@@ -3,10 +3,11 @@ import { useState } from "react";
 
 import Image from "next/image";
 
+import { toast } from "react-toastify";
+
 import { Button } from "@/components";
 
-// import { toast } from "react-toastify";
-// import { transformFileToBlobUrl } from "./utils";
+import { transformFileToBlobUrl } from "./utils";
 
 function ImagesUploader() {
   // TODO: Backend
@@ -51,35 +52,35 @@ function ImagesUploader() {
   // }, [setLoading, images, userImages, dispatch, setShowModal, uploadImage]);
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    // try {
-    //   // setLoading(true);
-    //   if (event.target.files) {
-    //     const sizes = Array.from(event.target.files).map(
-    //       (file) => file.size / 1024 / 1024
-    //     );
-    //     if (sizes.some((size) => size > 3)) {
-    //       toast.error("File size must be less than 3 MB");
-    //       return;
-    //     }
-    //     const filesUploaded = Array.from(event.target.files);
-    //     const limit = 3 - images.length;
-    //     if (limit > 0 && limit < 4) {
-    //       const newData = await Promise.all(
-    //         [...filesUploaded].slice(0, limit).map(async (v) => ({
-    //           type: "file",
-    //           item: v,
-    //           url: await transformFileToBlobUrl(v),
-    //         }))
-    //       );
-    //       const newImages = images.concat(newData);
-    //       setImages(newImages);
-    //     }
-    //   }
-    // } catch (error) {
-    //   // setLoading(false);
-    // } finally {
-    //   // setLoading(false);
-    // }
+    try {
+      // setLoading(true);
+      if (event.target.files) {
+        const sizes = Array.from(event.target.files).map(
+          (file) => file.size / 1024 / 1024
+        );
+        if (sizes.some((size) => size > 3)) {
+          toast.error("File size must be less than 3 MB");
+          return;
+        }
+        const filesUploaded = Array.from(event.target.files);
+        const limit = 3 - images.length;
+        if (limit > 0 && limit < 4) {
+          const newData = await Promise.all(
+            [...filesUploaded].slice(0, limit).map(async (v) => ({
+              type: "file",
+              item: v,
+              url: await transformFileToBlobUrl(v),
+            }))
+          );
+          const newImages = images.concat(newData.map((data) => data.url));
+          setImages(newImages);
+        }
+      }
+    } catch (error) {
+      // setLoading(false);
+    } finally {
+      // setLoading(false);
+    }
   };
 
   // const isProcessing = uploading || loading;
