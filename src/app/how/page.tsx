@@ -3,14 +3,14 @@ import { useState } from "react";
 
 import Image from "next/image";
 
+
+import fillForm from "@/assets/fillForm.svg";
+import theMatch from "@/assets/fillForm.svg";
+import getToKnowEachOther from "@/assets/getToKnowEachOther.svg";
+import pairing from "@/assets/pairing.svg";
+import waitMatching from "@/assets/waitMatching.svg";
 import { Footer } from "@/components/Footer";
 import { PublicNavbar } from "@/components/PublicNav";
-
-import fillForm from "../../../public/fillForm.svg";
-import theMatch from "../../../public/fillForm.svg";
-import getToKnowEachOther from "../../../public/getToKnowEachOther.svg";
-import pairing from "../../../public/pairing.svg";
-import waitMatching from "../../../public/waitMatching.svg";
 
 interface IHowStepCardProps {
   id: number;

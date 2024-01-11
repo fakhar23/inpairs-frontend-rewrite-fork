@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { twMerge } from "tailwind-merge";
 
-import footerBG from "../../public/footerBG.svg";
+import footerBG from "@/assets/footerBG.svg";
 
 interface IFooter {
   className?: string;

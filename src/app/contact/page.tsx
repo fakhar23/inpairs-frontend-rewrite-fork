@@ -1,7 +1,7 @@
 "use client";
-import { ContactForm } from "@/components/ContactForm";
-import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import { ContactForm } from "@/components";
+import { Footer } from "@/components";
+import { PublicNavbar } from "@/components";
 
 export default function ContactPage() {
   return (
