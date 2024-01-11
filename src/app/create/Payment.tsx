@@ -1,7 +1,7 @@
 "use client";
+import paymentInfo from "@/assets/PaymentInfo.svg";
 import { Card } from "@/components";
 
-import paymentInfo from "../../../public/PaymentInfo.svg";
 
 const Payment = () => {
   const handleCheckout = () => {

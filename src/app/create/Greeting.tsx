@@ -3,7 +3,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import greet from "../../../public/greet2.jpg";
+import greet from "@/assets/greet2.jpg";
 
 const Greeting = () => {
   return (

@@ -1,7 +1,5 @@
 "use client";
-import ClipLoader from "react-spinners/ClipLoader";
-import { randomId, useTimeout } from "@mantine/hooks";
-import { useState } from "react";
+
 import { PublicNavbar } from "@/components/PublicNav";
 
 const Gate = () => {

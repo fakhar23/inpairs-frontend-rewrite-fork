@@ -1,6 +1,0 @@
-export { default as Stepper, type IStepper, type IStep } from './Stepper'
-export { default as Greeting } from './Greeting'
-export { default as PersonalDetails } from './PersonalDetails'
-export { default as Complete } from './Complete'
-export { default as Payment } from './Payment'
-export { default as ReferralInstructions } from './ReferralInstructions'

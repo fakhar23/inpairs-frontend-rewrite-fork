@@ -3,12 +3,13 @@ import { useState } from "react";
 
 import { PopupButton } from "@typeform/embed-react";
 
+
+import about from "@/assets/About Yourself.svg";
+import demographics from "@/assets/Demographics.svg";
+import personal from "@/assets/Personal Test.svg";
 import { Card, Modal } from "@/components";
 
 import ImagesUploader from "./ImagesUploader";
-import about from "../../../public/About Yourself.svg";
-import demographics from "../../../public/Demographics.svg";
-import personal from "../../../public/Personal Test.svg";
 
 const PersonalDetails = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

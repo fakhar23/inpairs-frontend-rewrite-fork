@@ -3,15 +3,12 @@ import { useState } from "react";
 
 import { PublicNavbar } from "@/components";
 
-import {
-  Complete,
-  Greeting,
-  Stepper,
-  PersonalDetails,
-  ReferralInstructions,
-  Payment,
-  IStep,
-} from ".";
+import Complete from "./Complete";
+import Greeting from "./Greeting";
+import Payment from "./Payment";
+import PersonalDetails from "./PersonalDetails";
+import ReferralInstructions from "./ReferralInstructions";
+import Stepper, { IStep } from "./Stepper";
 
 const Create = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
