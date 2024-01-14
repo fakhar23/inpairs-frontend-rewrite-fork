@@ -18,9 +18,8 @@ const poppins = Poppins({
   weight: "400",
 });
 
-interface SignUpBody {
+export interface SignUpBody {
   email: string;
-  // username: string
   password: string;
   firstName: string;
   lastName: string;
@@ -29,9 +28,8 @@ interface SignUpBody {
   country: string;
   phoneNumber: string;
   howDidYouHearAboutUs: string;
+  confirmPassword: string;
 }
-
-export type FormFields = SignUpBody & { confirmPassword: string };
 
 const Register = () => {
   const [load, setLoad] = useState(false);
@@ -46,9 +44,9 @@ const Register = () => {
     watch,
     control,
     formState: { errors },
-  } = useForm<FormFields>();
+  } = useForm<SignUpBody>();
 
-  const onSubmit = async (data: FormFields) => {
+  const onSubmit = async (data: SignUpBody) => {
     // try {
     //   setLoad(true);
     //   const { confirmPassword, ...formData } = data;

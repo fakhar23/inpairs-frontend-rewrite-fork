@@ -6,18 +6,18 @@ import Image from "next/image";
 
 import {
   RegisterOptions,
-  UseFormReturn,
   type UseFormRegister,
+  FieldValues,
+  Path,
 } from "react-hook-form";
 
-import { FormFields } from "@/app/register/page";
 import hidePasswordIcon from "@/assets/hidePassword.svg";
 import passwordIcon from "@/assets/showPassword.svg";
 
-export interface InputProps {
+export interface InputProps<T extends FieldValues> {
   className?: string;
-  register: UseFormRegister<FormFields>;
-  id: keyof FormFields;
+  register: UseFormRegister<T>;
+  id: Path<T>;
   type: string;
   placeholder: string;
   errors: any;
@@ -28,7 +28,7 @@ export interface InputProps {
   defaultValue?: any;
 }
 
-export const Input = ({
+export function Input<T extends FieldValues>({
   className,
   id,
   type,
@@ -40,7 +40,7 @@ export const Input = ({
   register,
   validate,
   defaultValue,
-}: InputProps) => {
+}: InputProps<T>) {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
@@ -83,4 +83,4 @@ export const Input = ({
       )}
     </div>
   );
-};
+}

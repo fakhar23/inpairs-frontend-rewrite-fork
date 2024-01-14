@@ -8,7 +8,7 @@ import axios from "axios";
 import { Control, Controller } from "react-hook-form";
 import Select, { OptionProps, components } from "react-select";
 
-import { type FormFields } from "@/app/register/page";
+import { type SignUpBody } from "@/app/register/page";
 
 type CountryOption = {
   value: string;
@@ -54,7 +54,7 @@ const FlagOption: React.FC<OptionProps<CountryOption, false>> = (props) => (
 export const CountrySelect = ({
   control,
 }: {
-  control: Control<FormFields, any>;
+  control: Control<SignUpBody>;
 }) => {
   const [countryOptions, setCountryOptions] = useState<Array<CountryOption>>(
     []
