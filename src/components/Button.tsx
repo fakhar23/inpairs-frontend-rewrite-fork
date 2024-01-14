@@ -32,7 +32,7 @@ function Loading() {
   );
 }
 
-export default function LinkButton({
+export function LinkButton({
   content,
   path,
   onClick,
