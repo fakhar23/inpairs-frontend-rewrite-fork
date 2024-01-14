@@ -24,8 +24,6 @@
     "countries-list": "^3.0.6",
     "eslint-plugin-import": "^2.29.1",
     "heic-convert": "^2.1.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
     "lodash": "^4.17.21",
     "next": "14.0.4",
     "nprogress": "^0.2.0",
