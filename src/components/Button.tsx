@@ -51,6 +51,7 @@ interface IClickButtonProps {
   disabled?: boolean;
   loading?: boolean;
 }
+
 export function ClickButton({
   classes,
   type,

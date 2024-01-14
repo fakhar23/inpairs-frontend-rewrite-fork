@@ -7,7 +7,7 @@ import ReactPaginate from "react-paginate";
 import Select from "react-select";
 
 import { ClickButton } from "@/components/Button";
-import Loading from "@/components/Loading";
+import { Loading } from "@/components/Loading";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 
 import "./style.css";

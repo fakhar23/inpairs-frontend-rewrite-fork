@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Button from "@/components/Button";
-
-import logo from "../../public/pears-inline.png";
+import logo from "@/assets/pears-inline.png";
+import { Button } from "@/components";
 
 export function PublicNavbar({
   canViewTheirProfile = false,
