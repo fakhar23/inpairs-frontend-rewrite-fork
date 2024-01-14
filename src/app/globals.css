@@ -109,3 +109,8 @@
 ::-webkit-scrollbar-track:horizontal {
   @apply !bg-transparent;
 }
+
+.PhoneInputInput {
+  outline: none;
+  height: "100%";
+}

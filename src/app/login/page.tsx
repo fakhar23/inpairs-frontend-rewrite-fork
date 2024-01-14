@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 import HidePassword from "@/assets/hidePassword.svg";
 import ShowPassword from "@/assets/showPassword.svg";
-import Input from "@/components/Input";
+import { Input } from "@/components/Input";
 import { PublicNavbar } from "@/components/PublicNav";
 import FormsLayout from "@/layouts/FormsLayout";
 
@@ -105,16 +105,10 @@ const LogInForm = () => {
           errors={errors}
         />
         <div className="w-full relative">
-          <Image
-            className="absolute right-3 top-3 w-6 md:top-6"
-            src={isVisible ? HidePassword : ShowPassword}
-            alt="show password"
-            onClick={() => setIsVisible(!isVisible)}
-          />
           <Input
             register={register}
             id="password"
-            type={isVisible ? "text" : "password"}
+            type="password"
             placeholder="Password"
             errorMessage="password is required"
             errors={errors}
