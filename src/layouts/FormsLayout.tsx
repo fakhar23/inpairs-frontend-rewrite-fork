@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 
 import Image from "next/image";
 
-import bg from "../../public/circles-bg.svg";
-import couple from "../../public/couple.svg";
+import bg from "@/assets/circles-bg.svg";
+import couple from "@/assets/couple.svg";
 
 interface IFromsLayoutProps {
   children: ReactNode;

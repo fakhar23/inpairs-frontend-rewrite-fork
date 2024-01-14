@@ -8,13 +8,13 @@ import Link from "next/link";
 
 import { useForm } from "react-hook-form";
 
+import HidePassword from "@/assets/hidePassword.svg";
+import ShowPassword from "@/assets/showPassword.svg";
 import Input from "@/components/Input";
 import { PublicNavbar } from "@/components/PublicNav";
 import FormsLayout from "@/layouts/FormsLayout";
 
-import HidePassword from "../../../public/hidePassword.svg";
-import LoadingButton from "../../../public/loadinbBtnSvg.svg";
-import ShowPassword from "../../../public/showPassword.svg";
+import LoadingButton from "@/assets/loadinbBtnSvg.svg";
 
 const poppins = Poppins({
   subsets: ["latin"],
