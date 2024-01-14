@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import Image from "next/image";
 
-
 import fillForm from "@/assets/fillForm.svg";
 import theMatch from "@/assets/fillForm.svg";
 import getToKnowEachOther from "@/assets/getToKnowEachOther.svg";
