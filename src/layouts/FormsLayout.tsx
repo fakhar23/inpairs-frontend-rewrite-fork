@@ -4,10 +4,14 @@ import { ReactNode } from "react";
 
 import Image from "next/image";
 
-import bg from "../assets/circles-bg.svg";
-import couple from "../assets/couple.svg";
+import bg from "@/assets/circles-bg.svg";
+import couple from "@/assets/couple.svg";
 
-const FormsLayout = ({ children }: { children: ReactNode }) => {
+interface IFromsLayoutProps {
+  children: ReactNode;
+}
+
+const FormsLayout = ({ children }: IFromsLayoutProps) => {
   return (
     <div className="flex w-[80%] my-[5%] bg-white md:flex-col md:flex-reverse-col md:items-center md:rounded-xl md:w-[90%] md:h-fit md:mt-[2rem] md:shadow md:justify-center md:pt-[3rem] md:pb-[3rem]">
       <Image
