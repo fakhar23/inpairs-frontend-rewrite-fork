@@ -140,7 +140,7 @@ export default function Home() {
       <div className="relative">
         <div className="relative p-[4rem] flex items-center justify-between mb-[7rem] md:flex-col-reverse md:justify-center md:p-0 md:m-0 md:mb-[4rem]">
           <div className="w-[55%] flex flex-col	items-start gap-[2rem] pl-[4rem] md:w-screen md:p-0 md:m-0 md:justify-center md:items-center md:p-auto md:mt-[6rem] md:gap-[3rem] md:text-center md:px-7">
-            <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-purple font-normal font-semibold capitalize">
+            <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-purple font-normal capitalize">
               Take the guesswork out of the most important decision you can make
             </h1>
             <p className="font-bryantProMedium text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
@@ -246,7 +246,7 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-purple"></i>
                   </button>
                 </div>
-              ),
+              )
             )}
           </div>
         </div>
@@ -268,6 +268,8 @@ export default function Home() {
                 >
                   <Link href={url} target="_blank">
                     <Image
+                      width={350}
+                      height={320}
                       src={img}
                       alt={alt}
                       className="object-cover h-full w-full rounded-xl backdrop-brightness-1 hover:scale-105 filter brightness-75"
