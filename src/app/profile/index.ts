@@ -1,0 +1,5 @@
+export { Basics } from './Basics'
+export { GeneralInfo } from './GeneralInfo'
+export { Scales } from './Scales'
+export { UserInfo } from './UserInfo'
+export { ProfileQuestions } from './Questions'
