@@ -246,7 +246,7 @@ export default function Home() {
                     <i className="fa-solid fa-arrow-right text-purple"></i>
                   </button>
                 </div>
-              )
+              ),
             )}
           </div>
         </div>

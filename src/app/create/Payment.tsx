@@ -2,7 +2,6 @@
 import paymentInfo from "@/assets/PaymentInfo.svg";
 import { Card } from "@/components";
 
-
 const Payment = () => {
   const handleCheckout = () => {
     // Redirect to payment page

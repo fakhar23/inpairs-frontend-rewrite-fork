@@ -13,7 +13,7 @@ export function Footer({ className }: IFooter) {
     <footer
       className={twMerge(
         "px-[5rem] py-[2rem] h-[15rem] relative bg-gradient-to-r from-red-500/90 to-purple-900/90 flex gap-[2rem] justify-between items-center text-white md:flex-col md:m-0 ",
-        className
+        className,
       )}
     >
       <Image

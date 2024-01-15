@@ -56,7 +56,7 @@ function ImagesUploader() {
       // setLoading(true);
       if (event.target.files) {
         const sizes = Array.from(event.target.files).map(
-          (file) => file.size / 1024 / 1024
+          (file) => file.size / 1024 / 1024,
         );
         if (sizes.some((size) => size > 3)) {
           toast.error("File size must be less than 3 MB");
@@ -70,7 +70,7 @@ function ImagesUploader() {
               type: "file",
               item: v,
               url: await transformFileToBlobUrl(v),
-            }))
+            })),
           );
           const newImages = images.concat(newData.map((data) => data.url));
           setImages(newImages);

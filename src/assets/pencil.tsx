@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export function Pencil(props: any) {
   return (
@@ -35,5 +35,5 @@ export function Pencil(props: any) {
         />
       </g>
     </svg>
-  )
+  );
 }

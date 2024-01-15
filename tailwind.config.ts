@@ -28,6 +28,13 @@ const config: Config = {
           gunmetal: "#3D3C3C",
         },
       },
+      backgroundColor: {
+        purple: "#622466",
+        "theme-red": "#Ef3E37",
+        "light-black": "#3D3C3C",
+        charcoal: "#5B5B5B",
+        gunmetal: "#3D3C3C",
+      },
       keyframes: {
         spin: {
           from: {

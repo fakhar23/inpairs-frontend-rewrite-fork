@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { PopupButton } from "@typeform/embed-react";
 
-
 import about from "@/assets/About Yourself.svg";
 import demographics from "@/assets/Demographics.svg";
 import personal from "@/assets/Personal Test.svg";
