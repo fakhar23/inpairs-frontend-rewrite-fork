@@ -9,9 +9,9 @@ import { usePathname } from "next/navigation";
 import { useClickOutside } from "@mantine/hooks";
 import { animated, useTransition } from "react-spring";
 
-import pearsInline from "../../public/pears-white.svg";
-import profileImg from "../../public/prof-pic.png";
-import bgArt from "../../public/usernavArt.svg";
+import pearsInline from "@/assets/pears-white.svg";
+import profileImg from "@/assets/prof-pic.png";
+import bgArt from "@/assets/usernavArt.svg";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -167,7 +167,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                       </Link>
                       <Link
                         onClick={() => setOpenNav(false)}
-                        href={"/profile/me/settings"}
+                        href={"/settings"}
                       >
                         <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
                           Settings
