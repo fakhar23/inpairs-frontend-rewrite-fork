@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -199,7 +199,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         log out
                       </li>
                     </animated.ul>
-                  ) : null,
+                  ) : null
                 )}
               </>
             </div>

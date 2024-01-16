@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 import HidePassword from "@/assets/hidePassword.svg";
 import ShowPassword from "@/assets/showPassword.svg";
-import { Input } from "@/components/Input";
+import { InputField } from "@/components/InputFeild";
 import { PublicNavbar } from "@/components/PublicNav";
 import FormsLayout from "@/layouts/FormsLayout";
 
@@ -96,7 +96,7 @@ const LogInForm = () => {
     >
       <div className="flex flex-col items-start gap-[1rem] w-[80%] md:w-full">
         <p className="= text-lg md:text-regular">Sign In</p>
-        <Input
+        <InputField
           register={register}
           id="email"
           type="email"
@@ -105,7 +105,7 @@ const LogInForm = () => {
           errors={errors}
         />
         <div className="w-full relative">
-          <Input
+          <InputField
             register={register}
             id="password"
             type="password"
