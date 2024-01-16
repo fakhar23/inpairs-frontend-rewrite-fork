@@ -67,7 +67,7 @@ export function UserInfo({
         {!hideEdit ? (
           <button
             className="font-bryantProMedium bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-[#f87171] hidden md:inline md:ml-auto"
-            onClick={() => router.push("/profile/me/settings")}
+            onClick={() => router.push("/settings")}
           >
             Edit profile
           </button>
@@ -101,7 +101,7 @@ export function UserInfo({
           ) : !hideEdit ? (
             <button
               className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-[#f87171] md:hidden"
-              onClick={() => router.push("/profile/me/settings")}
+              onClick={() => router.push("/settings")}
             >
               Edit Profile
             </button>
