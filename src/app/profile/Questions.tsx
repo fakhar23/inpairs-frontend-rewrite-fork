@@ -11,7 +11,7 @@ export function ProfileQuestions() {
   };
 
   return (
-    <>
+    <div>
       <Input
         id="search"
         className="w-full my-5"
@@ -87,6 +87,6 @@ export function ProfileQuestions() {
           );
         })} */}
       </Accordion.Root>
-    </>
+    </div>
   );
 }

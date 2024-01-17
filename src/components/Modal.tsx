@@ -3,6 +3,7 @@ import { Modal as BaseModal } from "@mui/base/Modal";
 import { IoClose } from "react-icons/io5";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
+import { styled } from "@mui/system";
 
 interface IModal {
   className?: string;
@@ -12,6 +13,14 @@ interface IModal {
   title?: string;
   children: React.ReactNode;
 }
+
+const StyledBackdrop = styled(Backdrop)`
+  z-index: -1;
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
+  -webkit-tap-highlight-color: transparent;
+`;
 
 export function Modal({
   className,
@@ -26,28 +35,25 @@ export function Modal({
       open={isOpen}
       onClose={onClose}
       closeAfterTransition
-      slots={{ backdrop: Backdrop }}
+      slots={{ backdrop: StyledBackdrop }}
+      className="fixed z-1300 inset-0 flex items-center justify-center"
     >
       <Fade in={isOpen}>
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-full p-4 text-center">
-            <div
-              className={`rounded-2xl p-6 align-middle shadow-xl transition-all bg-white ${className} `}
-            >
-              <div
-                className={`text-lg font-bryantProMedium leading-6 text-neutral-900 relative ${titleClassName}`}
-              >
-                <div className="mr-7">{title}</div>
+        <div
+          className={`rounded-2xl p-6 align-middle shadow-xl transition-all bg-white ${className} `}
+        >
+          <div
+            className={`text-lg font-bryantProMedium leading-6 text-neutral-900 relative ${titleClassName}`}
+          >
+            <div className="mr-7">{title}</div>
 
-                <IoClose
-                  className="text-2xl absolute top-0 right-0 hover:text-blue-600 cursor-pointer"
-                  onClick={onClose}
-                />
-              </div>
-
-              {children}
-            </div>
+            <IoClose
+              className="text-2xl absolute top-0 right-0 hover:text-blue-600 cursor-pointer"
+              onClick={onClose}
+            />
           </div>
+
+          {children}
         </div>
       </Fade>
     </BaseModal>
