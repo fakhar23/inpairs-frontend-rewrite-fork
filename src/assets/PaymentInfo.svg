@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ce1919; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#450874; stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="20" height="14" x="2" y="5" rx="2" stroke="url(#gradient)"/>
+    <rect width="20" height="1" x="2" y="10" rx="1" stroke="url(#gradient)"/>
+</svg>

@@ -1,11 +1,9 @@
 "use client";
-import ClipLoader from "react-spinners/ClipLoader";
-import { randomId, useTimeout } from "@mantine/hooks";
-import { useState } from "react";
+
 import { PublicNavbar } from "@/components/PublicNav";
 
 const Gate = () => {
-  const loading = false;
+  const loading = true;
   const user = {
     firstName: "john",
   };
@@ -17,9 +15,15 @@ const Gate = () => {
           Inpairs
         </p>
         <p className="md:text-[15px] text-center">
-          Hi {!loading && user.firstName}, Thank you for your interest in
-          inpairs! Right now, we only operate in the US and Canada. We’re doing
-          our best to get to your country soon.
+          Hi{" "}
+          {loading ? (
+            <span className="animate-pulse h-4 inline-block bg-slate-200 rounded w-24 mb-[-3px]"></span>
+          ) : (
+            user.firstName
+          )}
+          , Thank you for your interest in inpairs! Right now, we only operate
+          in the US and Canada. We’re doing our best to get to your country
+          soon.
         </p>
       </div>
     </div>
@@ -28,11 +32,11 @@ const Gate = () => {
 
 export default function ComingSoonPage() {
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <PublicNavbar />
-      <div className="w-[100%] mb-5 md:h-screen flex justify-center relative">
+      <div className="w-[100%] mb-5 grow flex justify-center items-center">
         <Gate />
       </div>
-    </>
+    </div>
   );
 }

@@ -6,8 +6,7 @@ import Link from "next/link";
 import ReactPaginate from "react-paginate";
 import Select from "react-select";
 
-import { ClickButton } from "@/components/Button";
-import Loading from "@/components/Loading";
+import { Button } from "@/components/Button";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 
 import "./style.css";
@@ -116,7 +115,7 @@ const RankingTable = () => {
           Total: {rankingTableData.totalItems}
         </div>
         <Link href="/matchmaking/history">
-          <ClickButton content="History" />
+          <Button content="History" />
         </Link>
       </div>
       <table className="w-full text-lg text-left text-neutral-500">

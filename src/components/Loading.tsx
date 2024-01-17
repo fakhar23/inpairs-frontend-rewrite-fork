@@ -1,6 +1,6 @@
-import LoaderIcon from "../../public/loaderIcon.svg";
+import { LoaderIcon } from "../Icons";
 
-const Loading = () => {
+export const Loading = () => {
   return (
     <div role="status" className="flex justify-center items-center p-10 h-100">
       <LoaderIcon />
@@ -8,5 +8,3 @@ const Loading = () => {
     </div>
   );
 };
-
-export default Loading;

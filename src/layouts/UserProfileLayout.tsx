@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -9,9 +9,9 @@ import { usePathname } from "next/navigation";
 import { useClickOutside } from "@mantine/hooks";
 import { animated, useTransition } from "react-spring";
 
-import pearsInline from "../../public/pears-white.svg";
-import profileImg from "../../public/prof-pic.png";
-import bgArt from "../../public/usernavArt.svg";
+import pearsInline from "@/assets/pears-white.svg";
+import profileImg from "@/assets/prof-pic.png";
+import bgArt from "@/assets/usernavArt.svg";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,7 +20,7 @@ const poppins = Poppins({
 const NavigationPaths = {
   matchmaking: "/matchmaking",
   profileMe: "/profile/me",
-  profileMeMatch: "/profile/me/match",
+  profileMeMatch: "/my-match",
   users: "/users",
   profileMeContact: "/profile/me/contact",
 } as const;
@@ -96,7 +96,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                   <li>My profile</li>
                 </Link>
                 <Link
-                  href={"/profile/me/match"}
+                  href={"/my-match"}
                   className={
                     "py-2 " +
                     (pathName === NavigationPaths.profileMeMatch
@@ -167,7 +167,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                       </Link>
                       <Link
                         onClick={() => setOpenNav(false)}
-                        href={"/profile/me/settings"}
+                        href={"/settings"}
                       >
                         <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
                           Settings
@@ -175,7 +175,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                       </Link>
                       <Link
                         onClick={() => setOpenNav(false)}
-                        href={"/profile/me/match"}
+                        href={"/my-match"}
                       >
                         <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
                           My Match
@@ -199,7 +199,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         log out
                       </li>
                     </animated.ul>
-                  ) : null,
+                  ) : null
                 )}
               </>
             </div>

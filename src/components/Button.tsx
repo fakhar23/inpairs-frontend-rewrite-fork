@@ -1,12 +1,6 @@
 import Link from "next/link";
 
-/**
- * ! Both LinkButton and ClickButton components have the same classes(same styles) and similar props.
- * *: The main difference is that LinkButton has a 'path' Prop and is wrapped in a 'Link' component for client-side navigation.
- * * ClickButton, on the other hand, does not have a 'path' Prop and is not wrapped in a 'Link' component.
- */
-
-interface ILinkButtonProps {
+interface IButtonProps {
   content: string;
   type?: "button" | "submit" | "reset";
   path?: string;
@@ -16,7 +10,7 @@ interface ILinkButtonProps {
   loading?: boolean;
 }
 
-export default function LinkButton({
+export function Button({
   content,
   path,
   onClick,
@@ -24,56 +18,39 @@ export default function LinkButton({
   disable,
   loading = false,
   type = "button",
-}: ILinkButtonProps) {
+}: IButtonProps) {
   return (
-    <Link href={path ? path : ""} className={className}>
-      <button
-        type={type}
-        className={
-          "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300 " +
-            className || ""
-        }
-        onClick={(e) => onClick?.(e)}
-        disabled={disable || loading || false}
-      >
-        {loading && <Loading />}
-        {content}
-      </button>
-    </Link>
-  );
-}
-
-interface IClickButtonProps {
-  content: string;
-  classes?: string;
-  type?: "button" | "submit" | "reset";
-  click?: () => void;
-  disabled?: boolean;
-  loading?: boolean;
-}
-export function ClickButton({
-  classes,
-  type,
-  click,
-  disabled,
-  loading,
-  content,
-}: IClickButtonProps) {
-  return (
-    <div className={classes}>
-      <button
-        type={type}
-        className={
-          "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300 " +
-            classes || ""
-        }
-        {...(click ? { onClick: click } : {})}
-        disabled={disabled || loading || false}
-      >
-        {loading && <Loading />}
-        {content}
-      </button>
-    </div>
+    <>
+      {path ? (
+        <Link href={path ? path : ""} className={className}>
+          <button
+            type={type}
+            className={
+              "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300 " +
+                className || ""
+            }
+            onClick={(e) => onClick?.(e)}
+            disabled={disable || loading || false}
+          >
+            {loading && <Loading />}
+            {content}
+          </button>
+        </Link>
+      ) : (
+        <button
+          type={type}
+          className={
+            "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300 " +
+              className || ""
+          }
+          onClick={(e) => onClick?.(e)}
+          disabled={disable || loading || false}
+        >
+          {loading && <Loading />}
+          {content}
+        </button>
+      )}
+    </>
   );
 }
 
