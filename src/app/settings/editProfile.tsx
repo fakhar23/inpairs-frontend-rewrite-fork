@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 import { Button, Loading, Modal } from "@/components";
-import { Select } from "@/components";
-import Images from "../../components/RegularImages";
-import Input from "../../components/RegularInput";
+import { Input, Select, RegularImages as Images } from "@/components";
 import { formStructure } from "./formStructure";
 import BlockingPhoneNoModal from "../../components/BlockingPhoneNoModal";
 import RegularTextArea from "../../components/RegularTextArea";
@@ -59,18 +57,30 @@ function RenderQuestion({
         type = question.type;
       }
 
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange({
+          newAnswer: e.target.value,
+          question_key: question.question_key,
+        });
+
+        console.log(e.target.value);
+      };
+
       return (
         <Input
-          error={errors[question.question_key]}
+          variation="secondary"
+          label={question.title}
+          errors={errors[question.question_key]}
           id={question.question_key}
           placeholder={question.title}
           type={type}
           name={question.question_key}
-          onChange={onChange}
+          onChange={handleChange}
           value={question.answer || ""}
           readOnly={readOnly}
           min={validation?.min_value}
           max={validation?.max_value}
+          className="w-[50%]"
         />
       );
     }
@@ -273,7 +283,7 @@ const EditProfile = (props: Props) => {
             .map((question) => {
               return (
                 <div
-                  className="flex items-start gap-4 mt-5"
+                  className="flex items-start gap-4 mt-5 "
                   key={question[0].question_key}
                 >
                   {question[0] && (

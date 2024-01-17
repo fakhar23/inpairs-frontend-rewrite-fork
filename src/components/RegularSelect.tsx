@@ -1,4 +1,4 @@
-import Select, { ActionMeta, MultiValue, SingleValue } from "react-select";
+import Select, { MultiValue, SingleValue } from "react-select";
 import { twMerge } from "tailwind-merge";
 import { safeParse } from "./utils";
 
