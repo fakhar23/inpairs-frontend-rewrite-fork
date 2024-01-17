@@ -347,7 +347,7 @@ export const RankingList = () => {
   const isScoring = true;
 
   return (
-    <div className="first-child:hidden">
+    <div>
       {isScoring && (
         <Modal isOpen={showModal} onClose={handleClose}>
           <MatchMakingModal
