@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 
-import { InputField, CountrySelect, LoadingButton } from "@/components";
+import { Input, CountrySelect, LoadingButton } from "@/components";
 import { FormsLayout, NavbarLayout } from "@/layouts";
 
 import { HOW_DID_YOU_HEAR_ABOUT_US } from "./constants";
@@ -84,7 +84,7 @@ const Register = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-start  px-[2rem] gap-[1rem]"
           >
-            <InputField
+            <Input
               register={register}
               id="email"
               type="email"
@@ -93,7 +93,7 @@ const Register = () => {
               errors={errors}
             />
             <div className="w-full mb-2 relative">
-              <InputField
+              <Input
                 register={register}
                 errorMessage="Password is required"
                 errors={errors}
@@ -110,7 +110,7 @@ const Register = () => {
             </div>
 
             <div className="w-full mb-2 relative">
-              <InputField
+              <Input
                 register={register}
                 validate={(value) =>
                   value === watch("password") || "Passwords do not match"
@@ -124,7 +124,7 @@ const Register = () => {
             </div>
 
             <div className="flex gap-2 w-full md:w-full">
-              <InputField
+              <Input
                 register={register}
                 id="firstName"
                 type="text"
@@ -133,7 +133,7 @@ const Register = () => {
                 errors={errors}
               />
 
-              <InputField
+              <Input
                 register={register}
                 id="lastName"
                 type="text"
@@ -183,7 +183,7 @@ const Register = () => {
                 Date of birth
               </label>
 
-              <InputField
+              <Input
                 register={register}
                 errors={errors}
                 errorMessage="Date of birth is required"
@@ -281,7 +281,7 @@ const Register = () => {
             {whereDidYouHearAboutUs === "Other" && (
               <div className="flex w-full mb-2 md:mt-[1rem] text-neutral-500 gap-1">
                 <div className="flex flex-col w-full">
-                  <InputField
+                  <Input
                     register={register}
                     id="howDidYouHearAboutUs"
                     type="text"

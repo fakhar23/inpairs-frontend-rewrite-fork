@@ -14,9 +14,11 @@ export function ProfileQuestions() {
     <div>
       <Input
         id="search"
+        type="search"
         className="w-full my-5"
         onChange={onSearch}
         label="Search"
+        value={search}
       />
       <Accordion.Root
         className="w-full space-y-4"
