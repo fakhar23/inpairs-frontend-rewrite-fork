@@ -58,19 +58,19 @@ const RankingTable = () => {
 
   const [pageNumber, setPageNumber] = useState(0);
   const itemsPerPage = 10;
-  const pagesVisited = pageNumber * itemsPerPage;
-
-  const currentPageScore = scores
-    .slice(pagesVisited, pagesVisited + itemsPerPage)
-    .map((item) => item);
   const pageCount = Math.ceil(scores.length / itemsPerPage);
+  const itemsVisited = pageNumber * itemsPerPage;
 
-  const changePage = ({ selected }: any) => {
+  const currentPageScores = scores
+    .slice(itemsVisited, itemsVisited + itemsPerPage)
+    .map((item) => item);
+
+  const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
   };
 
   const getTableRows = () =>
-    currentPageScore.map((score: any) => (
+    currentPageScores.map((score: any) => (
       <tr key={score.auth_id} className="bg-white border-b">
         <th
           scope="row"

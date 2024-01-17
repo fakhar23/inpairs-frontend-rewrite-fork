@@ -1,23 +1,41 @@
 import React from "react";
 
 import {
-  createColumnHelper,
+  SortingState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
+  TableOptions,
+  Updater,
 } from "@tanstack/react-table";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 
-export default function Table({ columns, data, sorting, setSorting }: any) {
-  const options: any = {
+interface TableProps<D extends object> {
+  columns: {
+    header: string | (() => string);
+    accessorKey: string;
+    cell?: (cell: any) => any;
+  }[];
+  data: D[];
+  sorting?: SortingState;
+  setSorting?: (updater: Updater<SortingState>) => void;
+}
+
+export default function Table<D extends object>({
+  columns,
+  data,
+  sorting,
+  setSorting,
+}: TableProps<D>) {
+  const options: TableOptions<D> = {
     data,
     columns,
     state: {},
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   };
-  if (sorting) {
+  if (sorting && options.state) {
     options.state.sorting = sorting;
   }
   if (setSorting) {

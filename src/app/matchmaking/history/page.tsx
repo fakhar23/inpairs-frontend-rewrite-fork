@@ -1,20 +1,22 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { ChangeEvent, useMemo, useState } from "react";
 
-import Link from "next/link";
-
+import { SortingState } from "@tanstack/react-table";
 import debounce from "lodash/debounce";
 import { IoChatbox } from "react-icons/io5";
 
+import CustomInput from "@/components/CustomInput";
 import ExpandableText from "@/components/ExpandableText";
-import CustomInput from "@/components/Input2";
 import Table from "@/components/Table";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 
 import CalculationTable from "./CalculationTable";
 import { matchesData } from "./matchesData";
 import { Pencil } from "./pencil";
-
+import CustomModal from "@/components/CustomModal";
+import RejectionReasonsModal from "./RejectionReasonsModal";
+import UserLink from "./UserLink";
+import Note from "./Note";
 
 const getMatchStatus = (status: string, reason: string) => {
   if (status == "ACCEPTED") {
@@ -34,8 +36,11 @@ const getMatchStatus = (status: string, reason: string) => {
 const MatchmakingHistory = () => {
   const [showReasons, setshowReasons] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [sorting, setSorting] = useState([]);
   const [matchToEdit, setMatchToEdit] = useState<any>(null);
+
+  //ColumnSort type contains sorting info about 1 column {columnId, desc}, SortingState is ColumnSort[] containt sorting table of entire table.
+  //We aren't changing them explicity here but if you need more info go to docs or Sorting.d.ts file.
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const { data: matches, meta } = matchesData || {};
 
@@ -141,11 +146,14 @@ const MatchmakingHistory = () => {
         </button>
       </div>
       <CustomInput
-        id="search"
+        id="search ID"
         inputClassName="bg-neutral-100 w-full"
         className="w-full my-5"
-        onChange={debounce((e: any) => setSearchText(e?.target.value), 1000)}
-        label="Search"
+        onChange={debounce(
+          (e: ChangeEvent<HTMLInputElement>) => setSearchText(e?.target.value),
+          1000,
+        )}
+        label="Search label"
       />
       <Table
         columns={columns}
@@ -153,22 +161,20 @@ const MatchmakingHistory = () => {
         sorting={sorting}
         setSorting={setSorting}
       />
+      <CustomModal
+        title="List of Rejection Reasons"
+        titleClassName="!text-2xl text-purple-900"
+        className=""
+        show={showReasons}
+        onClose={() => setshowReasons(false)}
+      >
+        <RejectionReasonsModal />
+      </CustomModal>
+      <CustomModal show={!!matchToEdit} onClose={() => setMatchToEdit(null)}>
+        <Note matchToEdit={matchToEdit} setMatchToEdit={setMatchToEdit} />
+      </CustomModal>
     </UserProfileLayout>
   );
 };
 
 export default MatchmakingHistory;
-
-const UserLink = ({ user }: any) => {
-  const href = `/profile/${user?.sharable_id}`;
-
-  return user ? (
-    <Link
-      href={href}
-      target="blank"
-      className="text-blue-500 underline underline-offset-2"
-    >{`${user?.first_name} ${user?.last_name}`}</Link>
-  ) : (
-    <></>
-  );
-};

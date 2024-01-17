@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const ExpandableText = ({ text, maxChar = 100 }: any) => {
+interface IExpandableTextProps {
+  text: string;
+  maxChar?: number;
+}
+
+const ExpandableText = ({ text, maxChar = 100 }: IExpandableTextProps) => {
   const [showFullText, setShowFullText] = useState(false);
 
   const toggleText = () => {
