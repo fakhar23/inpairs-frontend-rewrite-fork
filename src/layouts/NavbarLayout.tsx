@@ -20,17 +20,12 @@ const NavbarLayout = ({
   return (
     <div
       className={twMerge(
-        "relative flex flex-col justify-around",
+        "relative flex flex-col justify-around min-h-[100vh]",
         containerClassName
       )}
     >
       <PublicNavbar />
-      <div
-        className={twMerge(
-          "flex justify-center items-center",
-          contentClassName
-        )}
-      >
+      <div className={twMerge("flex items-stretch grow", contentClassName)}>
         {children}
       </div>
       {footer ? <Footer /> : <div></div>}

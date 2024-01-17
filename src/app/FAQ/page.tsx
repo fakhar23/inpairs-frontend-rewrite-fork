@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import Image from "next/image";
@@ -7,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { PublicNavbar } from "@/components/PublicNav";
 
 import questionSvg from "./Questions-bro.svg";
+import { NavbarLayout } from "@/layouts";
 
 const questions = [
   {
@@ -30,29 +33,31 @@ const questions = [
 const FAQ = () => {
   return (
     <>
-      <PublicNavbar />
-      <div className="flex flex-col items-center gap-y-5">
-        <div className="flex items-start p-[3rem] justify-around">
-          <section className="w-[30%] flex items-center justify-center md:hidden shrink-0">
+      <NavbarLayout footer>
+        <div className="w-full flex items-center justify-center pr-20 py-20 md:p-10">
+          <section className="w-[50%] h-full [&>*]:w-[60%] [&>*]:mx-auto  md:hidden">
             <Image src={questionSvg} alt="question image" />
           </section>
 
-          <section className="w-[50%] md:w-[80%] md:mx-auto">
-            <h2 className="font-bryantProBold text-[2rem] font-semibold mb-[3rem] text-purple capitalize">
-              Frequently asked <span className="text-red">questions</span>
-            </h2>
+          <section className="w-[50%] md:w-full min-h-full ">
+            <div className="">
+              <h2 className="mb-5 font-bryantProBold text-[2rem] font-semibold  text-purple capitalize">
+                Frequently asked <span className="text-red">questions</span>
+              </h2>
+            </div>
 
-            {questions.map((e) => (
-              <Accordion
-                question={e.question}
-                answer={e.answer}
-                key={e.question}
-              />
-            ))}
+            <div className="flex flex-col justify-start gap-4 lg:pt-5">
+              {questions.map((e) => (
+                <Accordion
+                  question={e.question}
+                  answer={e.answer}
+                  key={e.question}
+                />
+              ))}
+            </div>
           </section>
         </div>
-      </div>
-      <Footer className="fixed bottom-0 w-screen" />
+      </NavbarLayout>
     </>
   );
 };

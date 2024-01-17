@@ -36,10 +36,7 @@ export default function Verify() {
   // }
 
   return (
-    <NavbarLayout
-      containerClassName="h-[100vh] justify-start"
-      contentClassName="h-screen"
-    >
+    <NavbarLayout>
       <MessageLayout>
         <div className="w-full flex justify-center flex-col items-center text-center">
           {email ? (
