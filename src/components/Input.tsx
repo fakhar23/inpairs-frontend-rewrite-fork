@@ -9,7 +9,7 @@ import {
   type UseFormRegister,
   FieldValues,
   Path,
-  ErrorOption,
+  FieldErrors,
 } from "react-hook-form";
 
 import hidePasswordIcon from "@/assets/hidePassword.svg";
@@ -27,14 +27,14 @@ export interface InputFieldProps<T extends FieldValues> {
   id: Path<T>;
   type: HTMLInputTypeAttribute;
   placeholder?: string;
-  errors?: any;
+  errors?: FieldErrors<T>;
   errorMessage?: string;
   readOnly?: boolean;
   defaultValue?: any;
   formConfig?: FormHookConfig<T>;
   max?: number;
   min?: number;
-  name?: string;
+  name?: Path<T>;
   label?: React.ReactNode;
   value?: HTMLInputElement["value"];
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -60,7 +60,6 @@ export function Input<T extends FieldValues>({
   onChange,
 }: InputFieldProps<T>) {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-
   return (
     <div className={twMerge("w-full mb-2 relative", className)}>
       {label && (
@@ -70,13 +69,6 @@ export function Input<T extends FieldValues>({
       )}
 
       <input
-        {...(formConfig
-          ? formConfig.register(id, {
-              required: errorMessage,
-              pattern: formConfig.pattern,
-              validate: formConfig.validate,
-            })
-          : {})}
         className={twMerge(
           variation === "primary" &&
             "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
@@ -92,12 +84,22 @@ export function Input<T extends FieldValues>({
         defaultValue={defaultValue}
         max={max}
         min={min}
-        name={name}
         value={value}
-        onChange={onChange}
+        {...(formConfig
+          ? formConfig.register(id, {
+              required: errorMessage,
+              pattern: formConfig.pattern,
+              validate: formConfig.validate,
+            })
+          : {
+              name,
+              onChange,
+            })}
       />
-      {errors && errors[id] && (
-        <p className="text-red text-[0.8rem]">{errors[id].message}</p>
+      {errors && errors[id]?.message && (
+        <p className="text-red text-[0.8rem]">
+          {JSON.stringify(errors[id]?.message)}
+        </p>
       )}
 
       {type === "password" && (
