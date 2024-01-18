@@ -29,7 +29,7 @@ const Register = () => {
       return await signUp(data);
     },
     onSuccess(response, formData) {
-      toast(response.data.message);
+      toast.success(response.data.message);
       if (response.status === 201) {
         router.push(`verify?email=${formData.email}`);
       }

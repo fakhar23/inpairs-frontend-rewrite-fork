@@ -8,7 +8,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
       onError(error) {
-        toast(
+        toast.error(
           (error instanceof AxiosError && error.response?.data?.message) ||
             error.message
         );

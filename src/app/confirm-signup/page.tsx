@@ -1,18 +1,20 @@
 "use client";
+import { requestNewEmailVerification } from "@/api";
+import { EmailVerificationBody } from "@/api/interfaces";
+import { TextSkeleton } from "@/components/TextSkeleton";
 import { NavbarLayout, MessageLayout } from "@/layouts";
+import { useMutation } from "@tanstack/react-query";
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
+import { toast } from "react-toastify";
+import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import GreenCheck from "@/assets/GreenCheck.png";
-import { useSearchParams } from "next/navigation";
-import { toast } from "react-toastify";
-import Link from "next/link";
-import { useMutation } from "@tanstack/react-query";
-import { EmailVerificationBody } from "@/api/interfaces";
-import { requestNewEmailVerification } from "@/api";
-import { TextSkeleton } from "@/components/TextSkeleton";
-import { twMerge } from "tailwind-merge";
 
-export default function Verify() {
-  const email = useSearchParams().get("email");
+export default function ConfirmSignUp() {
+  const error = "";
+
+  console.log({ x: useParams() });
   const emailVerificationMutation = useMutation({
     mutationFn: async (data: EmailVerificationBody) => {
       return await requestNewEmailVerification(data);
@@ -26,14 +28,10 @@ export default function Verify() {
     <NavbarLayout>
       <MessageLayout>
         <div className="w-full flex justify-center flex-col items-center text-center">
-          {email ? (
+          {error ? (
             <>
               <div className="mb-4">
-                <h1>
-                  Verification email has been sent to{" "}
-                  <span className="bold">{email}</span>. <br />
-                  Please check your email.
-                </h1>
+                <h1>{error}</h1>
               </div>
               <div className="h-24 w-24 mb-4">
                 <Image src={GreenCheck} alt="green check" />
@@ -45,12 +43,13 @@ export default function Verify() {
                     "text-blue-500 hover:underline",
                     emailVerificationMutation.isPending ? "" : "cursor-pointer"
                   )}
-                  onClick={() => emailVerificationMutation.mutate({ email })}
-                  disabled={emailVerificationMutation.isPending}
+                  //   onClick={() => emailVerificationMutation.mutate({ email })}
+                  //   disabled={emailVerificationMutation.isPending}
                 >
                   <TextSkeleton
                     as="span"
-                    showText={!emailVerificationMutation.isPending}
+                    showText
+                    // showText={!emailVerificationMutation.isPending}
                   >
                     Request a new Verification email
                   </TextSkeleton>
