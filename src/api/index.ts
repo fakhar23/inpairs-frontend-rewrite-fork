@@ -15,4 +15,8 @@ export async function requestNewEmailVerification(
   return axiosInstance.post("/auth/request-new-verification-email", payload);
 }
 
+export async function verifyToken(payload: { jwt: string }) {
+  return axiosInstance.post<{ email: string }>("/auth/verify-token", payload);
+}
+
 export { axiosInstance as axios };
