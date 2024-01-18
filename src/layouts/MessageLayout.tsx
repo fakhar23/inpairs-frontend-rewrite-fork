@@ -15,14 +15,14 @@ export function MessageLayout({
   return (
     <div
       className={twMerge(
-        "flex justify-center items-center  w-[80vw] my-0 mx-[auto] bg-white md:flex-col-reverse md:items-center md:w-[60%] rounded-lg sm:w-[80%] shadow-lg",
+        "flex justify-center items-center  w-[80vw] my-0 m-auto bg-white md:flex-col-reverse md:items-center md:w-[60%] rounded-lg sm:w-[80%] shadow-lg",
         className
       )}
     >
       <Image
         src={bg}
         alt="circles background"
-        className="absolute top-0 left-0 z-[-1] w-[100%] h-[100vh] object-cover object-top"
+        className="absolute blur-xl top-0 left-0 z-[-1] w-[100%] h-[100vh] object-cover object-top"
       />
       <div className="w-[50%] p-[3rem] md:w-full">
         <h2

@@ -13,7 +13,7 @@ const Accordion = ({
 
   return (
     <div
-      className="my-2 sm:my-4 md:my-6 shadow-md cursor-pointer bg-white rounded-xl"
+      className="w-full my-2 sm:my-4 md:my-6 shadow-md cursor-pointer bg-white rounded-xl"
       onClick={toggleExpanded}
     >
       <div className="px-6 text-left items-center h-20 flex justify-between text-[1.5rem] gap-[2rem]">
