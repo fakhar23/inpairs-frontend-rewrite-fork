@@ -28,12 +28,6 @@ const Register = () => {
     mutationFn: async (data: SignUpBody) => {
       return await signUp(data);
     },
-    onError(error) {
-      toast(
-        (error instanceof AxiosError && error.response?.data?.message) ||
-          error.message
-      );
-    },
     onSuccess(response, formData) {
       toast(response.data.message);
       if (response.status === 201) {
