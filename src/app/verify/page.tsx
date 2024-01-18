@@ -9,6 +9,8 @@ import { useMutation } from "@tanstack/react-query";
 import { EmailVerificationBody } from "@/api/interfaces";
 import { requestNewEmailVerification } from "@/api";
 import { AxiosError } from "axios";
+import { TextSkeleton } from "@/components/TextSkeleton";
+import { twMerge } from "tailwind-merge";
 
 export default function Verify() {
   const email = useSearchParams().get("email");
@@ -26,14 +28,6 @@ export default function Verify() {
       toast(response.data.message);
     },
   });
-  // async function handleRequestNewVerificationEmail() {
-  //   try {
-  //     //   await APIHelper.requestVerificationEmail({ email })
-  //     toast.success("Verification email sent successfully");
-  //   } catch (error) {
-  //     toast.error("Could not send verification email");
-  //   }
-  // }
 
   return (
     <NavbarLayout>
@@ -54,10 +48,19 @@ export default function Verify() {
               <div>
                 Haven&apos;t received it?{" "}
                 <button
-                  className="text-blue-500 cursor-pointer hover:underline"
+                  className={twMerge(
+                    "text-blue-500 hover:underline",
+                    emailVerificationMutation.isPending ? "" : "cursor-pointer"
+                  )}
                   onClick={() => emailVerificationMutation.mutate({ email })}
+                  disabled={emailVerificationMutation.isPending}
                 >
-                  Request a new Verification email
+                  <TextSkeleton
+                    as="span"
+                    showText={!emailVerificationMutation.isPending}
+                  >
+                    Request a new Verification email
+                  </TextSkeleton>
                 </button>
               </div>
             </>
