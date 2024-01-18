@@ -12,32 +12,39 @@ import { Input, CountrySelect, LoadingButton } from "@/components";
 import { FormsLayout, NavbarLayout } from "@/layouts";
 
 import { HOW_DID_YOU_HEAR_ABOUT_US } from "./constants";
+import { SignUpBody } from "@/api/interfaces";
+import { useMutation } from "@tanstack/react-query";
+import { signUp } from "@/api";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
 });
 
-export interface SignUpBody {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  gender: "MALE" | "FEMALE" | "OTHER";
-  dob: string;
-  country: string;
-  phoneNumber: string;
-  howDidYouHearAboutUs: string;
-  confirmPassword: string;
-}
-
 const Register = () => {
-  const [load, setLoad] = useState(false);
+  const signUpMutation = useMutation({
+    mutationFn: async (data: SignUpBody) => {
+      return await signUp(data);
+    },
+    onError(error) {
+      toast(
+        (error instanceof AxiosError && error.response?.data?.message) ||
+          error.message
+      );
+    },
+    onSuccess(response, formData) {
+      toast(response.data.message);
+      if (response.status === 201) {
+        router.push(`verify?email=${formData.email}`);
+      }
+    },
+  });
   const router = useRouter();
   const [whereDidYouHearAboutUs, setWhereDidYouHearAboutUs] =
     useState<string>();
 
-  //ToDO: validate data
   const {
     register,
     handleSubmit,
@@ -45,32 +52,6 @@ const Register = () => {
     control,
     formState: { errors },
   } = useForm<SignUpBody>();
-
-  const onSubmit = async (data: SignUpBody) => {
-    // try {
-    //   setLoad(true);
-    //   const { confirmPassword, ...formData } = data;
-    //   const result = await APIHelper.signUp({
-    //     ...formData,
-    //     email: formData.email.toLowerCase(),
-    //   });
-    //   if (result.status === 201) {
-    //     router.push(`verify?email=${formData.email}`);
-    //   }
-    // } catch (error: unknown) {
-    //   Sentry.captureException(error);
-    //   if (error instanceof AxiosError) {
-    //     if (error.code === "ERR_NETWORK") {
-    //       toast.error("Something went wrong.");
-    //       return;
-    //     }
-    //     const errorMessage = error?.response?.data.message;
-    //     toast.error(errorMessage);
-    //   }
-    // } finally {
-    //   setLoad(false);
-    // }
-  };
 
   return (
     <NavbarLayout>
@@ -81,11 +62,11 @@ const Register = () => {
           </div>
 
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit((data) => signUpMutation.mutate(data))}
             className="flex flex-col items-start  px-[2rem] gap-[1rem]"
           >
             <Input
-              register={register}
+              formConfig={{ register }}
               id="email"
               type="email"
               placeholder="Email"
@@ -94,15 +75,17 @@ const Register = () => {
             />
             <div className="w-full mb-2 relative">
               <Input
-                register={register}
+                formConfig={{
+                  register,
+                  pattern: {
+                    value:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    message:
+                      "password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+                  },
+                }}
                 errorMessage="Password is required"
                 errors={errors}
-                pattern={{
-                  value:
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                  message:
-                    "password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
-                }}
                 id="password"
                 type="password"
                 placeholder="Password"
@@ -111,10 +94,11 @@ const Register = () => {
 
             <div className="w-full mb-2 relative">
               <Input
-                register={register}
-                validate={(value) =>
-                  value === watch("password") || "Passwords do not match"
-                }
+                formConfig={{
+                  register,
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                }}
                 id="confirmPassword"
                 type="password"
                 placeholder="Confirm Password"
@@ -125,7 +109,7 @@ const Register = () => {
 
             <div className="flex gap-2 w-full md:w-full">
               <Input
-                register={register}
+                formConfig={{ register }}
                 id="firstName"
                 type="text"
                 placeholder="First Name"
@@ -134,7 +118,7 @@ const Register = () => {
               />
 
               <Input
-                register={register}
+                formConfig={{ register }}
                 id="lastName"
                 type="text"
                 placeholder="Last Name"
@@ -184,22 +168,24 @@ const Register = () => {
               </label>
 
               <Input
-                register={register}
+                formConfig={{
+                  register,
+                  validate: (value) => {
+                    const today = new Date();
+                    const birthDate = new Date(value);
+                    const age = today.getFullYear() - birthDate.getFullYear();
+                    const month = today.getMonth() - birthDate.getMonth();
+                    if (
+                      month < 0 ||
+                      (month === 0 && today.getDate() < birthDate.getDate())
+                    ) {
+                      return age - 1 > 18 || "You must be 18 years and above";
+                    }
+                    return age > 18 || "You must be 18 years and above";
+                  },
+                }}
                 errors={errors}
                 errorMessage="Date of birth is required"
-                validate={(value) => {
-                  const today = new Date();
-                  const birthDate = new Date(value);
-                  const age = today.getFullYear() - birthDate.getFullYear();
-                  const month = today.getMonth() - birthDate.getMonth();
-                  if (
-                    month < 0 ||
-                    (month === 0 && today.getDate() < birthDate.getDate())
-                  ) {
-                    return age - 1 > 18 || "You must be 18 years and above";
-                  }
-                  return age > 18 || "You must be 18 years and above";
-                }}
                 id="dob"
                 type="date"
                 defaultValue={new Date().toISOString().slice(0, 10)}
@@ -282,7 +268,7 @@ const Register = () => {
               <div className="flex w-full mb-2 md:mt-[1rem] text-neutral-500 gap-1">
                 <div className="flex flex-col w-full">
                   <Input
-                    register={register}
+                    formConfig={{ register }}
                     id="howDidYouHearAboutUs"
                     type="text"
                     placeholder="Please specify"
@@ -297,9 +283,9 @@ const Register = () => {
               <button
                 className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:w-full md:mt-[2rem] md:text-regular"
                 type="submit"
-                disabled={load}
+                disabled={signUpMutation.isPending}
               >
-                {load && <LoadingButton />}
+                {signUpMutation.isPending && <LoadingButton />}
                 Sign up
               </button>
             </div>
