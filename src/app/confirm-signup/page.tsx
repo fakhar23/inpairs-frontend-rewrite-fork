@@ -1,10 +1,8 @@
 "use client";
-import { requestNewEmailVerification, verifyToken } from "@/api";
-import { EmailVerificationBody } from "@/api/types";
+import { verifyToken } from "@/api";
 import { NavbarLayout, MessageLayout } from "@/layouts";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import Image from "next/image";
 import GreenCheck from "@/assets/GreenCheck.png";
 import { SplashScreen } from "@/components";
@@ -25,16 +23,6 @@ export default function ConfirmSignUp() {
           "access_token" in hashParams ? hashParams.access_token : "";
         return (await verifyToken({ jwt: accessToken })).data;
       }
-    },
-    retry: false,
-  });
-
-  const emailVerificationMutation = useMutation({
-    mutationFn: async (data: EmailVerificationBody) => {
-      return await requestNewEmailVerification(data);
-    },
-    onSuccess(response) {
-      toast.success(response.data.message);
     },
   });
 
