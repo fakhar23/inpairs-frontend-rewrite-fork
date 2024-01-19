@@ -20,10 +20,6 @@ export type InputFieldProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> & {
     id: Path<T>;
     errors?: FieldErrors<T>;
-    errorMessage?: string;
-    register?: UseFormRegister<T>;
-    pattern?: RegisterOptions["pattern"];
-    validate?: RegisterOptions["validate"];
     name?: Path<T>;
     label?: React.ReactNode;
     variation?: "primary" | "secondary";
@@ -32,20 +28,10 @@ export type InputFieldProps<T extends FieldValues> =
 export function Input<T extends FieldValues>({
   className,
   errors,
-  errorMessage,
   label,
   variation = "primary",
-  register,
-  validate,
   ...rest
 }: InputFieldProps<T>) {
-  const registeredProps = register
-    ? register(rest.id, {
-        required: errorMessage,
-        pattern: rest.pattern,
-        validate,
-      })
-    : {};
   const [showPassword, setShowPassword] = useState<boolean>(false);
   return (
     <div className={twMerge("w-full mb-2 relative", className)}>
@@ -66,11 +52,10 @@ export function Input<T extends FieldValues>({
         )}
         type={showPassword ? "text" : rest.type}
         {...rest}
-        {...registeredProps}
       />
       {errors && errors[rest.id]?.message && (
         <p className="text-red text-[0.8rem]">
-          {JSON.stringify(errors[rest.id]?.message)}
+          {JSON.stringify(errors[rest.id]?.message).replaceAll('"', "")}
         </p>
       )}
 
