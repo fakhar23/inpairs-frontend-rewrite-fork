@@ -92,9 +92,9 @@ const LogInForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-start px-[2.5rem] pt-[0.5rem] pb-[1.5rem] gap-[1rem] md:[&>*]:w-full md:w-[90%]"
+      className="flex flex-col items-center px-[2.5rem] pt-[0.5rem] pb-[1.5rem] gap-[1rem] md:[&>*]:w-full md:w-[90%]"
     >
-      <div className="flex flex-col items-start gap-[1rem] w-[80%] md:w-full">
+      <div className="flex flex-col items-center gap-[1rem] w-[80%] md:w-full">
         <p className="= text-lg md:text-regular">Sign In</p>
         <Input
           register={register}
