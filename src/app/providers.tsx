@@ -7,12 +7,16 @@ import { toast } from "react-toastify";
 const queryClient = new QueryClient({
   defaultOptions: {
     mutations: {
+      retry: false,
       onError(error) {
         toast.error(
           (error instanceof AxiosError && error.response?.data?.message) ||
             error.message
         );
       },
+    },
+    queries: {
+      retry: false,
     },
   },
 });
