@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 
 import { Poppins } from "next/font/google";
 import Link from "next/link";
@@ -16,14 +15,13 @@ import { SignUpBody } from "@/api/types";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api";
 import { toast } from "react-toastify";
-import { AxiosError } from "axios";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
 });
 
-const Register = () => {
+export default function Register() {
   const signUpMutation = useMutation({
     mutationFn: async (data: SignUpBody) => {
       return await signUp(data);
@@ -36,14 +34,13 @@ const Register = () => {
     },
   });
   const router = useRouter();
-  const [whereDidYouHearAboutUs, setWhereDidYouHearAboutUs] =
-    useState<string>();
 
   const {
     register,
     handleSubmit,
     watch,
     control,
+    getValues,
     formState: { errors },
   } = useForm<SignUpBody>();
 
@@ -57,67 +54,68 @@ const Register = () => {
 
           <form
             onSubmit={handleSubmit((data) => signUpMutation.mutate(data))}
-            className="flex flex-col items-start  px-[2rem] gap-[1rem]"
+            className="flex flex-col items-start px-[2rem] gap-[1rem]"
           >
             <Input
-              formConfig={{ register }}
               id="email"
               type="email"
               placeholder="Email"
-              errorMessage="Email is required"
               errors={errors}
+              {...register("email", {
+                required: "Email is required",
+              })}
             />
             <div className="w-full mb-2 relative">
               <Input
-                formConfig={{
-                  register,
+                errors={errors}
+                id="password"
+                type="password"
+                placeholder="Password"
+                {...register("password", {
+                  required: "Password is required",
                   pattern: {
                     value:
                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                     message:
                       "password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
                   },
-                }}
-                errorMessage="Password is required"
-                errors={errors}
-                id="password"
-                type="password"
-                placeholder="Password"
+                })}
               />
             </div>
 
             <div className="w-full mb-2 relative">
               <Input
-                formConfig={{
-                  register,
-                  validate: (value) =>
-                    value === watch("password") || "Passwords do not match",
-                }}
                 id="confirmPassword"
                 type="password"
                 placeholder="Confirm Password"
-                errorMessage="Confirm Password is required"
                 errors={errors}
+                {...register("confirmPassword", {
+                  required: "Confirm Password is required",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                })}
               />
             </div>
 
             <div className="flex gap-2 w-full md:w-full">
               <Input
-                formConfig={{ register }}
                 id="firstName"
                 type="text"
                 placeholder="First Name"
-                errorMessage="First Name is required"
                 errors={errors}
+                {...register("firstName", {
+                  required: "First Name is required",
+                })}
               />
 
               <Input
-                formConfig={{ register }}
                 id="lastName"
                 type="text"
                 placeholder="Last Name"
-                errorMessage="Last Name is required"
                 errors={errors}
+                {...register("lastName", {
+                  required: "Last Name is required",
+                })}
               />
             </div>
 
@@ -150,9 +148,7 @@ const Register = () => {
               />
 
               {errors?.phoneNumber && (
-                <p className="text-red text-[0.8rem]">
-                  &quot;Invalid Phone Number&quot;
-                </p>
+                <p className="text-red text-[0.8rem]">Invalid Phone Number</p>
               )}
             </div>
 
@@ -162,8 +158,13 @@ const Register = () => {
               </label>
 
               <Input
-                formConfig={{
-                  register,
+                errors={errors}
+                id="dob"
+                type="date"
+                defaultValue={new Date().toISOString().slice(0, 10)}
+                placeholder="Date of Birth"
+                {...register("dob", {
+                  required: "Date of birth is required",
                   validate: (value) => {
                     const today = new Date();
                     const birthDate = new Date(value);
@@ -177,13 +178,7 @@ const Register = () => {
                     }
                     return age > 18 || "You must be 18 years and above";
                   },
-                }}
-                errors={errors}
-                errorMessage="Date of birth is required"
-                id="dob"
-                type="date"
-                defaultValue={new Date().toISOString().slice(0, 10)}
-                placeholder="Date of Birth"
+                })}
               />
             </div>
 
@@ -232,12 +227,11 @@ const Register = () => {
             <div className="flex w-full mb-2 md:mt-[1rem] text-neutral-500 gap-1">
               <div className="flex flex-col w-full">
                 <select
+                  className={`w-full h-10 border-b focus:outline-none border-neutral-100 text-gray-gunmetal md:text-[12px] bg-white`}
+                  id="howDidYouHearAboutUs"
                   {...register("howDidYouHearAboutUs", {
                     required: "How did you hear about us is required",
                   })}
-                  className={`w-full h-10 border-b focus:outline-none border-neutral-100 text-gray-gunmetal md:text-[12px] bg-white`}
-                  id="howDidYouHearAboutUs"
-                  onChange={(e) => setWhereDidYouHearAboutUs(e.target.value)}
                 >
                   <option value="">Where did you hear about us?</option>
                   {HOW_DID_YOU_HEAR_ABOUT_US.map((item) => {
@@ -249,7 +243,7 @@ const Register = () => {
                   })}
                 </select>
 
-                {whereDidYouHearAboutUs !== "Other" &&
+                {getValues("howDidYouHearAboutUs") !== "Other" &&
                   errors.howDidYouHearAboutUs && (
                     <p className="text-red text-[0.8rem]">
                       {errors?.howDidYouHearAboutUs?.message}
@@ -258,16 +252,17 @@ const Register = () => {
               </div>
             </div>
 
-            {whereDidYouHearAboutUs === "Other" && (
+            {getValues("howDidYouHearAboutUs") === "Other" && (
               <div className="flex w-full mb-2 md:mt-[1rem] text-neutral-500 gap-1">
                 <div className="flex flex-col w-full">
                   <Input
-                    formConfig={{ register }}
                     id="howDidYouHearAboutUs"
                     type="text"
                     placeholder="Please specify"
-                    errorMessage="more details is required"
                     errors={errors}
+                    {...register("howDidYouHearAboutUs", {
+                      required: "more details is required",
+                    })}
                   />
                 </div>
               </div>
@@ -295,6 +290,4 @@ const Register = () => {
       </FormsLayout>
     </NavbarLayout>
   );
-};
-
-export default Register;
+}
