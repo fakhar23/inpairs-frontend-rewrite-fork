@@ -1,6 +1,6 @@
 "use client";
 import { requestNewEmailVerification, verifyToken } from "@/api";
-import { EmailVerificationBody } from "@/api/interfaces";
+import { EmailVerificationBody } from "@/api/types";
 import { NavbarLayout, MessageLayout } from "@/layouts";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";

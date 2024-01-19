@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
-import { EmailVerificationBody } from "@/api/interfaces";
+import { EmailVerificationBody } from "@/api/types";
 import { requestNewEmailVerification } from "@/api";
 import { TextSkeleton } from "@/components/TextSkeleton";
 import { twMerge } from "tailwind-merge";

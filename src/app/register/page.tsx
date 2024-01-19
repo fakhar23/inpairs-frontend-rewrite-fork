@@ -12,7 +12,7 @@ import { Input, CountrySelect, LoadingButton } from "@/components";
 import { FormsLayout, NavbarLayout } from "@/layouts";
 
 import { HOW_DID_YOU_HEAR_ABOUT_US } from "./constants";
-import { SignUpBody } from "@/api/interfaces";
+import { SignUpBody } from "@/api/types";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api";
 import { toast } from "react-toastify";

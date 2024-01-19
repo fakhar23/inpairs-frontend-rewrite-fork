@@ -1,5 +1,5 @@
 import axios from "axios";
-import { EmailVerificationBody, SignUpBody } from "./interfaces";
+import { EmailVerificationBody, LoginBody, SignUpBody } from "./types";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_END_POINT,
@@ -17,6 +17,15 @@ export async function requestNewEmailVerification(
 
 export async function verifyToken(payload: { jwt: string }) {
   return axiosInstance.post<{ email: string }>("/auth/verify-token", payload);
+}
+
+export async function login(payload: LoginBody) {
+  const result = await axiosInstance.post("/auth/login", payload);
+  if (result.data.jwt) {
+    const { jwt, expiresAt, expiresIn, uid } = result.data;
+    localStorage.setItem("jwt", jwt);
+  }
+  return result;
 }
 
 export { axiosInstance as axios };
