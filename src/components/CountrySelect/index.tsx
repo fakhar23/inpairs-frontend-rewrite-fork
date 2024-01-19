@@ -1,14 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
-
 import Image from "next/image";
-
-import * as Sentry from "@sentry/nextjs";
-import axios from "axios";
 import { Control, Controller } from "react-hook-form";
 import Select, { OptionProps, components } from "react-select";
-
-import { type SignUpBody } from "@/app/register/page";
+import { SignUpBody } from "@/api/types";
+import { countries } from "./countries";
 
 type CountryOption = {
   value: string;
@@ -16,24 +11,6 @@ type CountryOption = {
   flagUrl: string;
 };
 
-const getCountriesData = async () => {
-  try {
-    const response = await axios.get<any[]>(
-      "https://restcountries.com/v3.1/all"
-    );
-    const data = response.data;
-
-    return data.map((country) => ({
-      value: country.name.common,
-      label: country.name.common,
-      flagUrl: `https://flagcdn.com/w320/${country.cca2.toLowerCase()}.png`,
-    }));
-  } catch (error) {
-    Sentry.captureException(error);
-    console.error("Error fetching countries data:", error);
-    return [];
-  }
-};
 const FlagOption: React.FC<OptionProps<CountryOption, false>> = (props) => (
   <components.Option {...props}>
     <div style={{ display: "flex", alignItems: "center" }}>
@@ -51,25 +28,11 @@ const FlagOption: React.FC<OptionProps<CountryOption, false>> = (props) => (
   </components.Option>
 );
 
-export const CountrySelect = ({
-  control,
-}: {
-  control: Control<SignUpBody>;
-}) => {
-  const [countryOptions, setCountryOptions] = useState<Array<CountryOption>>(
-    []
-  );
-
-  useEffect(() => {
-    getCountriesData().then((data) => {
-      setCountryOptions(data.sort((a, b) => a.label.localeCompare(b.label)));
-    });
-  }, []);
-
-  const countriesOption = countryOptions.map((country) => ({
-    label: country.label,
-    value: country.label,
-    flagUrl: country.flagUrl,
+export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
+  const countryOptions = countries.map(([country, flagUrl]) => ({
+    label: country,
+    value: country,
+    flagUrl: flagUrl,
   }));
 
   return (
@@ -80,9 +43,9 @@ export const CountrySelect = ({
         rules={{ required: "Country is required" }}
         render={({ field: { onChange, value, ...rest } }) => (
           <Select
-            options={countriesOption}
+            options={countryOptions}
             getOptionLabel={(option) => option.label}
-            value={countriesOption.find((c) => c.value === value)}
+            value={countryOptions.find((c) => c.value === value)}
             components={{ Option: FlagOption }}
             placeholder="Which country do you live"
             className="select md:placeholder:text-[12px] md:text-[12px] text-red leading-tight"
@@ -152,4 +115,4 @@ export const CountrySelect = ({
       />
     </div>
   );
-};
+}

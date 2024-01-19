@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import { countries } from "@/components/CountriesSelect/countries";
+import { countries } from "@/components/CountrySelect/countries";
 import { FixedSizeList as List } from "react-window";
 import InfiniteLoader from "react-window-infinite-loader";
 import AutoSizer from "react-virtualized-auto-sizer";
