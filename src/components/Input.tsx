@@ -1,20 +1,15 @@
 "use client";
 
-import { InputHTMLAttributes, useState } from "react";
+import { InputHTMLAttributes, Ref, useState } from "react";
 
 import Image from "next/image";
 
-import {
-  RegisterOptions,
-  type UseFormRegister,
-  FieldValues,
-  Path,
-  FieldErrors,
-} from "react-hook-form";
+import { FieldValues, Path, FieldErrors } from "react-hook-form";
 
 import hidePasswordIcon from "@/assets/hidePassword.svg";
 import passwordIcon from "@/assets/showPassword.svg";
 import { twMerge } from "tailwind-merge";
+import React from "react";
 
 export type InputFieldProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> & {
@@ -25,13 +20,18 @@ export type InputFieldProps<T extends FieldValues> =
     variation?: "primary" | "secondary";
   };
 
-export function Input<T extends FieldValues>({
-  className,
-  errors,
-  label,
-  variation = "primary",
-  ...rest
-}: InputFieldProps<T>) {
+export const Input = React.forwardRef(function WrappedInput<
+  T extends FieldValues,
+>(
+  {
+    className,
+    errors,
+    label,
+    variation = "primary",
+    ...rest
+  }: InputFieldProps<T>,
+  ref: unknown
+) {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   return (
     <div className={twMerge("w-full mb-2 relative", className)}>
@@ -42,6 +42,7 @@ export function Input<T extends FieldValues>({
       )}
 
       <input
+        ref={ref as Ref<HTMLInputElement>}
         className={twMerge(
           variation === "primary" &&
             "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
@@ -50,8 +51,8 @@ export function Input<T extends FieldValues>({
           rest.readOnly &&
             "bg-[#EFEFEF96] text-[#7b7b7b] cursor-not-allowed focus:outline-[#7b7b7b] focus:outline"
         )}
-        type={showPassword ? "text" : rest.type}
         {...rest}
+        type={showPassword ? "text" : rest.type}
       />
       {errors && errors[rest.id]?.message && (
         <p className="text-red text-[0.8rem]">
@@ -84,4 +85,4 @@ export function Input<T extends FieldValues>({
       )}
     </div>
   );
-}
+});
