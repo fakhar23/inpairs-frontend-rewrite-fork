@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: "Bryant Pro Regular";
   src: url("../../public/fonts/BryantPro-Regular.otf");
