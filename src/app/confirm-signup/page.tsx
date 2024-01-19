@@ -1,20 +1,34 @@
 "use client";
-import { requestNewEmailVerification } from "@/api";
+import { requestNewEmailVerification, verifyToken } from "@/api";
 import { EmailVerificationBody } from "@/api/interfaces";
-import { TextSkeleton } from "@/components/TextSkeleton";
 import { NavbarLayout, MessageLayout } from "@/layouts";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
-import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import GreenCheck from "@/assets/GreenCheck.png";
+import { SplashScreen } from "@/components";
 
 export default function ConfirmSignUp() {
-  const error = "";
+  // http://localhost:3001/confirm-signup#access_token=eyJhbGci&expires_at=1705613682&expires_in=21600&refresh_token=Bjg2nI&token_type=bearer&type=signup
+  // http://localhost:3001/confirm-signup#error=unauthorized_client&error_code=401&error_description=Email+link+is+invalid+or+has+expired
+  const confirmation = useQuery({
+    queryKey: ["get-window-hash"],
+    queryFn: async () => {
+      const hashParams = Object.fromEntries(
+        new URLSearchParams(window.location.hash.slice(1)).entries()
+      );
+      if ("error_description" in hashParams) {
+        return { error: hashParams.error_description };
+      } else {
+        const accessToken =
+          "access_token" in hashParams ? hashParams.access_token : "";
+        return (await verifyToken({ jwt: accessToken })).data;
+      }
+    },
+    retry: false,
+  });
 
-  console.log({ x: useParams() });
   const emailVerificationMutation = useMutation({
     mutationFn: async (data: EmailVerificationBody) => {
       return await requestNewEmailVerification(data);
@@ -24,45 +38,52 @@ export default function ConfirmSignUp() {
     },
   });
 
-  return (
+  return confirmation.isFetching ? (
+    <SplashScreen />
+  ) : (
     <NavbarLayout>
       <MessageLayout>
         <div className="w-full flex justify-center flex-col items-center text-center">
-          {error ? (
+          {confirmation.isError ||
+          (confirmation.data && "error" in confirmation.data) ? (
+            <div className="mb-4">
+              <h1>
+                {(confirmation.data &&
+                  "error" in confirmation.data &&
+                  confirmation.data.error) ||
+                  confirmation.error?.message}
+                . Please{" "}
+                <Link
+                  href="/request-verification-email"
+                  className="text-blue-500 hover:underline"
+                >
+                  request a new verification email
+                </Link>
+                .
+              </h1>
+            </div>
+          ) : (
             <>
               <div className="mb-4">
-                <h1>{error}</h1>
+                <h1>
+                  Congratulations{" "}
+                  <span className="text-blue-500">
+                    {confirmation.data?.email}
+                  </span>
+                  ! Your email has been successfully confirmed.
+                </h1>
               </div>
               <div className="h-24 w-24 mb-4">
                 <Image src={GreenCheck} alt="green check" />
               </div>
               <div>
-                Haven&apos;t received it?{" "}
-                <button
-                  className={twMerge(
-                    "text-blue-500 hover:underline",
-                    emailVerificationMutation.isPending ? "" : "cursor-pointer"
-                  )}
-                  //   onClick={() => emailVerificationMutation.mutate({ email })}
-                  //   disabled={emailVerificationMutation.isPending}
-                >
-                  <TextSkeleton
-                    as="span"
-                    showText
-                    // showText={!emailVerificationMutation.isPending}
-                  >
-                    Request a new Verification email
-                  </TextSkeleton>
-                </button>
+                Please proceed to the{" "}
+                <Link href="/login" className="text-blue-500 hover:underline">
+                  login
+                </Link>{" "}
+                page to begin using our service
               </div>
             </>
-          ) : (
-            <div className="mb-4">
-              <h1 className="bold">You're not authorized to view this page</h1>
-              <Link href="/" className="text-red">
-                Visit Home
-              </Link>
-            </div>
           )}
         </div>
       </MessageLayout>
