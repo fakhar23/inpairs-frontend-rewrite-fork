@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-phone-number-input/style.css";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,12 +36,14 @@ export default function RootLayout({
          `}
       </Script>
       <body className={inter.className}>
-        {children}
-        <ToastContainer
-          className="md:text-xsmall"
-          hideProgressBar={true}
-          closeButton={false}
-        />
+        <Providers>
+          {children}
+          <ToastContainer
+            className="md:text-xsmall"
+            hideProgressBar={true}
+            closeButton={false}
+          />
+        </Providers>
       </body>
     </html>
   );

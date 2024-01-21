@@ -13,7 +13,7 @@ interface IFromsLayoutProps {
 
 const FormsLayout = ({ children }: IFromsLayoutProps) => {
   return (
-    <div className="flex w-[80%] my-[5%] bg-white md:flex-col md:flex-reverse-col md:items-center md:rounded-xl md:w-[90%] md:h-fit md:mt-[2rem] md:shadow md:justify-center md:pt-[3rem] md:pb-[3rem]">
+    <div className="flex w-[80%] m-auto my-[5%] bg-white md:flex-col md:flex-reverse-col md:items-center md:rounded-xl md:w-[90%] md:h-fit md:mt-[2rem] md:shadow md:justify-center md:pt-[3rem] md:pb-[3rem]">
       <Image
         src={bg}
         alt="circles background"

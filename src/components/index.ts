@@ -7,7 +7,7 @@ export { SplashScreen } from "./SplashScreen";
 export { Card } from "./Card";
 export { Modal } from "./Modal";
 export { LoadingButton } from "./LoadingButton";
-export { CountrySelect } from "./CountiresSelect";
+export { CountrySelect } from "./CountrySelect";
 export { Input, type InputFieldProps } from "./Input";
 export { CloudinaryImage } from "./CloudinaryImage";
 export { default as TextArea } from "./RegularTextArea";
