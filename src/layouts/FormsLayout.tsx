@@ -25,7 +25,7 @@ const FormsLayout = ({ children }: IFromsLayoutProps) => {
         </h2>
         <div className="relative md:w-full">{children}</div>
       </div>
-      <div className="bg-[#F8F8F8] w-[50%] md:w-full md:rounded-xl md:hidden">
+      <div className="bg-paleGray w-[50%] md:w-full md:rounded-xl md:hidden">
         <Image src={couple} alt="couple image" className="w-[100%]" />
       </div>
     </div>

@@ -161,7 +161,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/profile/me"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primaryRed text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
                           Profile
                         </li>
                       </Link>
@@ -169,7 +169,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/settings"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primaryRed text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
                           Settings
                         </li>
                       </Link>
@@ -177,7 +177,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/my-match"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primaryRed text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
                           My Match
                         </li>
                       </Link>
@@ -185,12 +185,12 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/profile/me/contact"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm  hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primaryRed text-gray block px-4 py-2 text-sm  hover:bg-orange hover:bg-opacity-50">
                           Contact
                         </li>
                       </Link>
                       <li
-                        className="hover:bg-[#ef3e37] hover:bg-opacity-50 text-gray block px-4 py-2 text-sm  hover:bg-orange  cursor-pointer"
+                        className="hover:bg-primaryRed hover:bg-opacity-50 text-gray block px-4 py-2 text-sm  hover:bg-orange  cursor-pointer"
                         onClick={() => {
                           setOpenNav(false);
                           handleLogout();

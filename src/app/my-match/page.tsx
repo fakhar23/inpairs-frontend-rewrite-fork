@@ -5,6 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { UserProfileLayout } from "@/layouts";
 import { UserInfo } from "../profile";
 import MatchCard from "./MatchCard";
+import { COLORS } from "../../../tailwind.config";
 
 export type UserMatch =
   | {
@@ -71,7 +72,11 @@ const Match = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        <ClipLoader color="#EF3E37" size={75} aria-label="Loading..." />
+        <ClipLoader
+          color={COLORS.primaryRed}
+          size={75}
+          aria-label="Loading..."
+        />
       </div>
     );
   }
@@ -89,7 +94,7 @@ const Match = () => {
               Best Matches For You
             </h2>
 
-            <div className="w-full  my-5 h-[11px] bg-[#F9F9F9] mr-[-8rem] " />
+            <div className="w-full  my-5 h-[11px] bg-offWhite mr-[-8rem] " />
 
             <div className="flex flex-wrap justify-between w-full  ">
               <Fragment key={currentMatch?.match.currentUser}>
@@ -98,7 +103,7 @@ const Match = () => {
                   needToRefetch={needToRefetch}
                   setNeedToRefetch={setNeedToRefetch}
                 />
-                <div className="w-full my-5 h-[11px] bg-[#F9F9F9]" />
+                <div className="w-full my-5 h-[11px] bg-offWhite" />
               </Fragment>
             </div>
           </section>

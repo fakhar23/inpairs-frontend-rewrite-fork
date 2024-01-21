@@ -1,5 +1,21 @@
 import type { Config } from "tailwindcss";
 
+export const COLORS = {
+  primaryPurple: "#622466",
+  lightRed: "#f87171",
+  primaryRed: "#Ef3E37",
+  lightBlack: "#3D3C3C",
+  charcoal: "#5B5B5B",
+  gunmetal: "#3D3C3C",
+  semiTransparentLightGray: "#EFEFEF96",
+  offWhite: "#F9F9F9",
+  lightGray: "#F5F5F5",
+  veryLightGray: "#F2F2F2",
+  mediumGray: "#7b7b7b",
+  lightBlueGray: "#e5e7eb",
+  paleGray: "#F8F8F8",
+} as const;
+
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
@@ -17,23 +33,35 @@ const config: Config = {
       },
     },
     extend: {
+      colors: {
+        primaryRed: COLORS.primaryRed,
+        primaryPurple: COLORS.primaryPurple,
+        semiTransparentLightGray: COLORS.semiTransparentLightGray,
+        offWhite: COLORS.offWhite,
+        lightGray: COLORS.lightGray,
+        lightRed: COLORS.lightRed,
+        veryLightGray: COLORS.veryLightGray,
+        mediumGray: COLORS.mediumGray,
+        lightBlueGray: COLORS.lightBlueGray,
+        paleGray: COLORS.paleGray,
+      },
       textColor: {
-        purple: "#622466",
-        red: "#Ef3E37",
+        purple: COLORS.primaryPurple,
+        red: COLORS.primaryRed,
         light: {
-          black: "#3D3C3C",
+          black: COLORS.lightBlack,
         },
         gray: {
-          charcoal: "#5B5B5B",
-          gunmetal: "#3D3C3C",
+          charcoal: COLORS.charcoal,
+          gunmetal: COLORS.gunmetal,
         },
       },
       backgroundColor: {
-        purple: "#622466",
-        "theme-red": "#Ef3E37",
-        "light-black": "#3D3C3C",
-        charcoal: "#5B5B5B",
-        gunmetal: "#3D3C3C",
+        purple: COLORS.primaryPurple,
+        "theme-red": COLORS.primaryRed,
+        "light-black": COLORS.lightBlack,
+        charcoal: COLORS.charcoal,
+        gunmetal: COLORS.gunmetal,
       },
       keyframes: {
         spin: {

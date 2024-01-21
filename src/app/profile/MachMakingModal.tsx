@@ -72,6 +72,11 @@ export function MatchMakingModal(props: Props, ref: any) {
     }
   };
 
+  const COLOR_PALLET = {
+    pink: "#fee2e2",
+    yellow: "#fef9c3",
+  };
+
   const getTableRows = () => {
     return props.scoring?.topPotentials?.map((potential: any) => {
       return (
@@ -80,9 +85,9 @@ export function MatchMakingModal(props: Props, ref: any) {
           className="bg-white border-b"
           style={{
             backgroundColor: !potential.images.length
-              ? "#fee2e2"
+              ? COLOR_PALLET.pink
               : potential.less_fortunate
-                ? "#fef9c3"
+                ? COLOR_PALLET.yellow
                 : undefined,
           }}
         >

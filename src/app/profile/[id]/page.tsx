@@ -77,7 +77,7 @@ const Profile = ({ data }: any) => {
   // if (!user?.questionsAnswers || !router.isReady || loading) {
   //   return (
   //     <div className="flex justify-center items-center h-[70vh]">
-  //       <ClipLoader color="#EF3E37" size={75} aria-label="Loading..." />
+  // <ClipLoader color={COLORS.primaryRed} size={75} aria-label="Loading..." />
   //     </div>
   //   );
   // }

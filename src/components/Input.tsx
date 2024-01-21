@@ -36,7 +36,7 @@ export const Input = React.forwardRef(function WrappedInput<
   return (
     <div className={twMerge("w-full mb-2 relative", className)}>
       {label && (
-        <label htmlFor={rest.id} className=" text-[#3D3C3C]">
+        <label htmlFor={rest.id} className=" text-gray-gunmetal">
           {label}
         </label>
       )}
@@ -47,9 +47,9 @@ export const Input = React.forwardRef(function WrappedInput<
           variation === "primary" &&
             "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
           variation === "secondary" &&
-            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-[#5B5B5B] outline-none focus:outline-[#EF3E37]",
+            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-gray-charcoal outline-none focus:outline-primaryRed",
           rest.readOnly &&
-            "bg-[#EFEFEF96] text-[#7b7b7b] cursor-not-allowed focus:outline-[#7b7b7b] focus:outline"
+            "bg-[#EFEFEF96] text-mediumGray cursor-not-allowed focus:outline-mediumGray focus:outline"
         )}
         {...rest}
         type={showPassword ? "text" : rest.type}

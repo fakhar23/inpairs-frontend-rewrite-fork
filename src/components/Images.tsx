@@ -26,7 +26,7 @@ const Images = ({
       render={({ field: { onChange, value: images } }) => (
         <div>
           <div className="flex flex-row gap-4">
-            <div className="w-[170px] h-[170px] bg-[#F2F2F2] rounded-[10px]">
+            <div className="w-[170px] h-[170px] bg-veryLightGray rounded-[10px]">
               {loading ? (
                 <Loading />
               ) : (
@@ -36,7 +36,7 @@ const Images = ({
                     className="cursor-pointer h-full"
                   >
                     <div className="flex flex-col items-center justify-center w-full h-full my-auto">
-                      <div className="flex flex-col items-center justify-center p-3 rounded-[50%] bg-[#622466]">
+                      <div className="flex flex-col items-center justify-center p-3 rounded-[50%] bg-purple">
                         <Image src={uploadIcon} alt="upload Icon" />
                       </div>
 
@@ -93,7 +93,7 @@ const Images = ({
                   <Image
                     src={image}
                     alt="profile image"
-                    className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-[#EF3E37]"
+                    className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-primaryRed"
                     width={150}
                     height={150}
                   />

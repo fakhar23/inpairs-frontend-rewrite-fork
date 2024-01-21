@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import EditIcon from "@/assets/Iconly-Bulk-Edit.svg";
+import { COLORS } from "../../../tailwind.config";
 
 export interface IGeneral {
   title: string;
@@ -86,7 +87,11 @@ export const GeneralInfo = ({
         </div>
       ) : (
         <div className="absolute right-4 md:w-[1.5rem] hover:scale-110 cursor-pointer">
-          <ClipLoader color="#EF3E37" size={15} aria-label="Loading..." />
+          <ClipLoader
+            color={COLORS.primaryRed}
+            size={15}
+            aria-label="Loading..."
+          />
         </div>
       )}
       <div className="flex justify-between items-center">

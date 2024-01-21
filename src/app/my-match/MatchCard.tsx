@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ClipLoader } from "react-spinners";
 import { BsFillTelephoneInboundFill, BsInstagram } from "react-icons/bs";
 import { CloudinaryImage, Modal, Pooling } from "@/components";
+import { COLORS } from "../../../tailwind.config";
 
 enum MatchStatus {
   PENDING = "PENDEING",
@@ -197,7 +198,11 @@ const MatchCard = ({ user }: any) => {
                bg-green-500 `}
             >
               {isLoading && (
-                <ClipLoader color="#EF3E37" size={20} aria-label="Loading..." />
+                <ClipLoader
+                  color={COLORS.primaryRed}
+                  size={20}
+                  aria-label="Loading..."
+                />
               )}
               Accept
             </button>
@@ -241,7 +246,8 @@ const MatchCard = ({ user }: any) => {
 
                 <input
                   name="reason"
-                  className="w-full bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 leading-tight h-[3rem]   text-[#5B5B5B] focus:outline-[#EF3E37]"
+                  className="w-full bg-semiTransparentLightGray
+                   rounded-[10px] px-3 border-slate-400 leading-tight h-[3rem]   text-gray-charcoal focus:outline-primaryRed"
                   placeholder=""
                   onChange={onSurveyChange}
                 />
@@ -264,7 +270,11 @@ const MatchCard = ({ user }: any) => {
               ${isDisabled ? "bg-neutral-500" : "bg-red-500"} `}
             >
               {isLoading && (
-                <ClipLoader color="#EF3E37" size={20} aria-label="Loading..." />
+                <ClipLoader
+                  color={COLORS.primaryRed}
+                  size={20}
+                  aria-label="Loading..."
+                />
               )}{" "}
               Reject
             </button>

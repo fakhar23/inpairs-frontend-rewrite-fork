@@ -34,7 +34,7 @@ export function ProfileQuestions() {
             <Accordion.Item
               key={key}
               value={key}
-              className="data-[state=open]:bg-[#F5F5F5] data-[state=open]:mb-5 rounded-xl"
+              className="data-[state=open]:bg-lightGray data-[state=open]:mb-5 rounded-xl"
             >
               <Accordion.Header className="bg-neutral-100 rounded p-4">
                 <Accordion.Trigger className="data-[state=open]:hidden w-full text-start flex justify-between items-center">
@@ -62,7 +62,7 @@ export function ProfileQuestions() {
                       <Accordion.Item
                         key={i}
                         value={`item` + i}
-                        className="data-[state=open]:bg-[#F5F5F5] data-[state=open]:mb-5 rounded-xl py-2 px-3"
+                        className="data-[state=open]:bg-lightGray data-[state=open]:mb-5 rounded-xl py-2 px-3"
                       >
                         <Accordion.Header>
                           <Accordion.Trigger className="data-[state=open]:font-bold data-[state=open]:hidden w-full text-start flex justify-between items-center">

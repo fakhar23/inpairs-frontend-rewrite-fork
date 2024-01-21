@@ -1,6 +1,7 @@
 import Select, { MultiValue, SingleValue } from "react-select";
 import { twMerge } from "tailwind-merge";
 import { safeParse } from "./utils";
+import { COLORS } from "../../tailwind.config";
 
 type Props = {
   id: string;
@@ -55,7 +56,7 @@ const RegularDropdown = ({
 
   return (
     <div className={twMerge("w-[50%] mb-2", readOnly && "cursor-not-allowed")}>
-      <label className="text-md mb-5 text-[#3D3C3C]">
+      <label className="text-md mb-5 text-light-black">
         {label.replaceAll("*", "")}
       </label>
       <Select
@@ -72,7 +73,9 @@ const RegularDropdown = ({
             return {
               ...baseStyles,
               borderColor: "transparent !important",
-              boxShadow: state.isFocused ? "0 0 0 1px #EF3E37" : "none",
+              boxShadow: state.isFocused
+                ? `0 0 0 1px ${COLORS.primaryRed}`
+                : "none",
               border: "none",
               borderRadius: "10px",
               backgroundColor: "#EFEFEF96",
@@ -84,7 +87,7 @@ const RegularDropdown = ({
           dropdownIndicator(base) {
             return {
               ...base,
-              color: "#622466 !important",
+              color: `${COLORS.primaryPurple} !important`,
             };
           },
           indicatorSeparator(base) {
@@ -102,7 +105,7 @@ const RegularDropdown = ({
           singleValue(base) {
             return {
               ...base,
-              color: "#5B5B5B !important",
+              color: `${COLORS.charcoal} !important`,
             };
           },
           clearIndicator: (base) => ({
@@ -112,11 +115,12 @@ const RegularDropdown = ({
           option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isSelected
-              ? "#EF3E37" // Darker orange when selected (change as needed)
+              ? COLORS.primaryRed // Darker orange when selected (change as needed)
               : state.isFocused
-                ? "#EF3E37" // Slightly darker orange when hovered (change as needed)
+                ? COLORS.primaryRed // Slightly darker orange when hovered (change as needed)
                 : "lightorange", // Lighter orange by default (change as needed)
-            color: state.isSelected || state.isFocused ? "white" : "#EF3E37",
+            color:
+              state.isSelected || state.isFocused ? "white" : COLORS.primaryRed,
             cursor: "pointer",
             margin: "0.25rem 0.5rem",
             borderRadius: "4px",

@@ -4,6 +4,7 @@ import { Control, Controller } from "react-hook-form";
 import Select, { OptionProps, components } from "react-select";
 import { SignUpBody } from "@/api/types";
 import { countries } from "./countries";
+import { COLORS } from "../../../tailwind.config";
 
 type CountryOption = {
   value: string;
@@ -63,7 +64,7 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
               dropdownIndicator(base) {
                 return {
                   ...base,
-                  color: "#622466 !important",
+                  color: `${COLORS.primaryPurple}!important`,
                 };
               },
               indicatorSeparator(base) {
@@ -81,24 +82,26 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
               singleValue(base) {
                 return {
                   ...base,
-                  color: "#5B5B5B !important",
+                  color: `${COLORS.charcoal} !important`,
                 };
               },
               placeholder(base) {
                 return {
                   ...base,
-                  color: "#5B5B5B !important",
+                  color: `${COLORS.charcoal} !important`,
                 };
               },
               option: (provided, state) => ({
                 ...provided,
                 backgroundColor: state.isSelected
-                  ? "#EF3E37"
+                  ? COLORS.primaryRed
                   : state.isFocused
-                    ? "#EF3E37"
+                    ? COLORS.primaryRed
                     : "lightorange",
                 color:
-                  state.isSelected || state.isFocused ? "white" : "#EF3E37",
+                  state.isSelected || state.isFocused
+                    ? "white"
+                    : COLORS.primaryRed,
                 cursor: "pointer",
                 margin: "0.25rem 0.5rem",
                 borderRadius: "4px",
