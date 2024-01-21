@@ -6,10 +6,10 @@ import Link from "next/link";
 import ReactPaginate from "react-paginate";
 import Select from "react-select";
 
-import { Button } from "@/components/Button";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 
 import "./style.css";
+import { ClickButton } from "@/components/Button";
 
 const MatchMakingPage = () => {
   return (
@@ -42,6 +42,7 @@ const rankingTableData = {
       return {
         ...item,
         id: index + 1,
+        auth_id: item.auth_id + index,
       };
     }),
 };
@@ -115,7 +116,7 @@ const RankingTable = () => {
           Total: {rankingTableData.totalItems}
         </div>
         <Link href="/matchmaking/history">
-          <Button content="History" />
+          <ClickButton content="History" />
         </Link>
       </div>
       <table className="w-full text-lg text-left text-neutral-500">
