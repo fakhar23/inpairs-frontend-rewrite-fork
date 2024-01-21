@@ -4,7 +4,7 @@ import { InputHTMLAttributes, Ref, useState } from "react";
 
 import Image from "next/image";
 
-import { FieldValues, Path, FieldErrors } from "react-hook-form";
+import { FieldValues, Path, FieldError } from "react-hook-form";
 
 import hidePasswordIcon from "@/assets/hidePassword.svg";
 import passwordIcon from "@/assets/showPassword.svg";
@@ -14,7 +14,7 @@ import React from "react";
 export type InputFieldProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> & {
     id: Path<T>;
-    errors?: FieldErrors<T>;
+    error: FieldError | undefined;
     name?: Path<T>;
     label?: React.ReactNode;
     variation?: "primary" | "secondary";
@@ -25,7 +25,7 @@ export const Input = React.forwardRef(function WrappedInput<
 >(
   {
     className,
-    errors,
+    error,
     label,
     variation = "primary",
     ...rest
@@ -54,11 +54,7 @@ export const Input = React.forwardRef(function WrappedInput<
         {...rest}
         type={showPassword ? "text" : rest.type}
       />
-      {errors && errors[rest.id]?.message && (
-        <p className="text-red text-[0.8rem]">
-          {JSON.stringify(errors[rest.id]?.message).replaceAll('"', "")}
-        </p>
-      )}
+      {error && <p className="text-red text-[0.8rem]">{error.message}</p>}
 
       {rest.type === "password" && (
         <div className="absolute right-2 top-[18px] bottom-2">
