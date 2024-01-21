@@ -69,7 +69,7 @@ export default function ConfirmSignUp() {
                 <Link href="/login" className="text-blue-500 hover:underline">
                   login
                 </Link>{" "}
-                page to begin using our service
+                page to start using our service
               </div>
             </>
           )}
