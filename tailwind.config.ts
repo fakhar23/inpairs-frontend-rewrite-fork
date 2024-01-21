@@ -1,19 +1,21 @@
 import type { Config } from "tailwindcss";
 
 export const COLORS = {
-  primaryPurple: "#622466",
-  lightRed: "#f87171",
   primaryRed: "#Ef3E37",
+  lightRed: "#f87171",
+  primaryPurple: "#622466",
   lightBlack: "#3D3C3C",
   charcoal: "#5B5B5B",
   gunmetal: "#3D3C3C",
-  semiTransparentLightGray: "#EFEFEF96",
+  semiTransparentLightGray: "#EFEFEF96", //colors from hardcoded JSX classNames
+  mediumGray: "#7b7b7b",
+  veryLightGray: "#F2F2F2",
   offWhite: "#F9F9F9",
   lightGray: "#F5F5F5",
-  veryLightGray: "#F2F2F2",
-  mediumGray: "#7b7b7b",
   lightBlueGray: "#e5e7eb",
   paleGray: "#F8F8F8",
+  grayish: "#999",
+  lightGrayish: "#C8C3C3",
 } as const;
 
 const config: Config = {
