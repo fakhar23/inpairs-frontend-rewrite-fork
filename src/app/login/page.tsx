@@ -1,75 +1,74 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 
 import { Poppins } from "next/font/google";
 import Link from "next/link";
 
 import { useForm } from "react-hook-form";
 
-import { Input } from "@/components/Input";
+import { Input, LoadingButton } from "@/components";
 import { PublicNavbar } from "@/components/PublicNav";
 import FormsLayout from "@/layouts/FormsLayout";
 
-import LoadingButton from "@/assets/loadinbBtnSvg.svg";
+import { LoginBody } from "@/api/types";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "@/api";
+import { handleSuccessfulLoginRoute } from "@/api/routeUser";
+import { useRouter } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
 });
 
-interface FormValues {
-  email: string;
-  password: string;
-}
-
 function LoginForm() {
-  // TODO: Add state logic for showing this error on 401
-  const [invalidCredentials, setInvalidCredentials] = useState(false);
-  const [load, setLoad] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
+  const loginMutation = useMutation({
+    mutationFn: async (payload: LoginBody) => {
+      return await login(payload);
+    },
+    onSuccess(data) {
+      const redirectState = handleSuccessfulLoginRoute(data);
+      if (redirectState.shouldRedirect) {
+        router.push(redirectState.newRoute);
+      }
+    },
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
-
-  //   TODO: Add logic for handling login
-  const onSubmit = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {};
+  } = useForm<LoginBody>();
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit((payload) => loginMutation.mutate(payload))}
       className="flex flex-col items-center px-[2.5rem] pt-[0.5rem] pb-[1.5rem] gap-[1rem] md:[&>*]:w-full md:w-[90%]"
     >
       <div className="flex flex-col items-center gap-[1rem] w-[80%] md:w-full">
         <p className="= text-lg md:text-regular">Sign In</p>
         <Input
-          register={register}
           id="email"
           type="email"
           placeholder="Email"
-          errorMessage="email is required"
-          errors={errors}
+          error={errors.email}
+          {...register("email", {
+            required: "email is required",
+          })}
         />
         <div className="w-full relative">
           <Input
-            register={register}
             id="password"
             type="password"
             placeholder="Password"
-            errorMessage="password is required"
-            errors={errors}
+            error={errors.password}
+            {...register("password", {
+              required: "password is required",
+            })}
           />
-          {invalidCredentials && (
-            <p className="text-red">Invalid credentials.</p>
+          {loginMutation.isError && (
+            <p className="text-red">Invalid login credentials</p>
           )}
         </div>
       </div>
@@ -78,9 +77,9 @@ function LoginForm() {
         <button
           className=" bg-red-500 text-white px-[2.5rem] py-[0.3rem] rounded-3xl shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:px-[3.5rem] md:py-[0.6rem] md:mt-[3rem]"
           type="submit"
-          disabled={load}
+          disabled={loginMutation.isPending}
         >
-          {load && <LoadingButton />}
+          {loginMutation.isPending && <LoadingButton />}
           Sign In
         </button>
       </div>
@@ -106,13 +105,13 @@ export default function Login() {
                 </Link>
               </p>
               <p className="text-center text-xsmall">
-                Didn&apos;t receive verification email?{" "}
+                Didn't receive verification email?{" "}
                 <Link href="/request-verification-email">
                   <span className=" text-red">Request new email </span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
-                Don&apos;t have an account?{" "}
+                Don't have an account?{" "}
                 <Link href="/register">
                   <span className=" text-red md:text-[12px]">
                     Create an account
