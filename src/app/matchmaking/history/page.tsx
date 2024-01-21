@@ -60,7 +60,7 @@ const MatchmakingHistory = () => {
         cell: ({ row }: any) => {
           return getMatchStatus(
             row?.original?.user_one_match?.user_one_response,
-            row?.original?.user_one_match?.user_one_response_message,
+            row?.original?.user_one_match?.user_one_response_message
           );
         },
       },
@@ -78,7 +78,7 @@ const MatchmakingHistory = () => {
         cell: ({ row }: any) => {
           return getMatchStatus(
             row?.original?.user_one_match?.user_two_response,
-            row?.original?.user_one_match?.user_two_response_message,
+            row?.original?.user_one_match?.user_two_response_message
           );
         },
       },
@@ -114,7 +114,7 @@ const MatchmakingHistory = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   const data = matches?.length
@@ -133,46 +133,49 @@ const MatchmakingHistory = () => {
 
   return (
     <UserProfileLayout>
-      <CalculationTable />
-      <div className="flex justify-between items-center">
-        <h1 className="my-10 text-2xl font-medium text-purple-900">
-          Matchmaking History
-        </h1>
-        <button
-          onClick={() => setshowReasons(true)}
-          className="bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300"
+      <div className="max-w-7xl mx-auto">
+        <CalculationTable />
+        <div className="flex justify-between items-center">
+          <h1 className="my-10 text-2xl font-medium text-purple-900">
+            Matchmaking History
+          </h1>
+          <button
+            onClick={() => setshowReasons(true)}
+            className="bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300"
+          >
+            Rejection Reasons
+          </button>
+        </div>
+        <CustomInput
+          id="search ID"
+          inputClassName="bg-neutral-100 w-full"
+          className="w-full my-5"
+          onChange={debounce(
+            (e: ChangeEvent<HTMLInputElement>) =>
+              setSearchText(e?.target.value),
+            1000
+          )}
+          label="Search label"
+        />
+        <Table
+          columns={columns}
+          data={data}
+          sorting={sorting}
+          setSorting={setSorting}
+        />
+        <CustomModal
+          title="List of Rejection Reasons"
+          titleClassName="!text-2xl text-purple-900"
+          className=""
+          show={showReasons}
+          onClose={() => setshowReasons(false)}
         >
-          Rejection Reasons
-        </button>
+          <RejectionReasonsModal />
+        </CustomModal>
+        <CustomModal show={!!matchToEdit} onClose={() => setMatchToEdit(null)}>
+          <Note matchToEdit={matchToEdit} setMatchToEdit={setMatchToEdit} />
+        </CustomModal>
       </div>
-      <CustomInput
-        id="search ID"
-        inputClassName="bg-neutral-100 w-full"
-        className="w-full my-5"
-        onChange={debounce(
-          (e: ChangeEvent<HTMLInputElement>) => setSearchText(e?.target.value),
-          1000,
-        )}
-        label="Search label"
-      />
-      <Table
-        columns={columns}
-        data={data}
-        sorting={sorting}
-        setSorting={setSorting}
-      />
-      <CustomModal
-        title="List of Rejection Reasons"
-        titleClassName="!text-2xl text-purple-900"
-        className=""
-        show={showReasons}
-        onClose={() => setshowReasons(false)}
-      >
-        <RejectionReasonsModal />
-      </CustomModal>
-      <CustomModal show={!!matchToEdit} onClose={() => setMatchToEdit(null)}>
-        <Note matchToEdit={matchToEdit} setMatchToEdit={setMatchToEdit} />
-      </CustomModal>
     </UserProfileLayout>
   );
 };
