@@ -60,14 +60,14 @@ export default function Register() {
               id="email"
               type="email"
               placeholder="Email"
-              errors={errors}
+              error={errors.email}
               {...register("email", {
                 required: "Email is required",
               })}
             />
             <div className="w-full mb-2 relative">
               <Input
-                errors={errors}
+                error={errors.password}
                 id="password"
                 type="password"
                 placeholder="Password"
@@ -88,7 +88,7 @@ export default function Register() {
                 id="confirmPassword"
                 type="password"
                 placeholder="Confirm Password"
-                errors={errors}
+                error={errors.confirmPassword}
                 {...register("confirmPassword", {
                   required: "Confirm Password is required",
                   validate: (value) =>
@@ -102,7 +102,7 @@ export default function Register() {
                 id="firstName"
                 type="text"
                 placeholder="First Name"
-                errors={errors}
+                error={errors.firstName}
                 {...register("firstName", {
                   required: "First Name is required",
                 })}
@@ -112,7 +112,7 @@ export default function Register() {
                 id="lastName"
                 type="text"
                 placeholder="Last Name"
-                errors={errors}
+                error={errors.lastName}
                 {...register("lastName", {
                   required: "Last Name is required",
                 })}
@@ -158,7 +158,7 @@ export default function Register() {
               </label>
 
               <Input
-                errors={errors}
+                error={errors.dob}
                 id="dob"
                 type="date"
                 defaultValue={new Date().toISOString().slice(0, 10)}
@@ -259,7 +259,7 @@ export default function Register() {
                     id="howDidYouHearAboutUs"
                     type="text"
                     placeholder="Please specify"
-                    errors={errors}
+                    error={errors.howDidYouHearAboutUs}
                     {...register("howDidYouHearAboutUs", {
                       required: "more details is required",
                     })}
