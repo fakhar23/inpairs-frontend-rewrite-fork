@@ -14,7 +14,7 @@ import React from "react";
 export type InputFieldProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> & {
     id: Path<T>;
-    error: FieldError | undefined;
+    error?: FieldError | undefined;
     name?: Path<T>;
     label?: React.ReactNode;
     variation?: "primary" | "secondary";

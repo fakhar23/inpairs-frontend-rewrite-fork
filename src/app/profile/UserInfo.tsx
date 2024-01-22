@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { RankingList } from "./RankingList";
+import { UserOptions } from "./UserOptions";
 import { CloudinaryImage } from "@/components";
 import Pin from "@/assets/pin.svg";
 
@@ -97,7 +97,7 @@ export function UserInfo({
 
         <div className="flex justify-center items-center gap-[0.7rem] flex-col">
           {ranking ? (
-            <RankingList />
+            <UserOptions />
           ) : !hideEdit ? (
             <button
               className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-[#f87171] md:hidden"
