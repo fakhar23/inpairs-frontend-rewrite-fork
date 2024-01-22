@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
-import { CloudinaryImage, Input, Modal } from "@/components";
+import { MdDragIndicator } from "react-icons/md";
+import { Button, CloudinaryImage, Input, Modal } from "@/components";
 import { Score } from "@/types/scorings";
 import { MatchPairPopper } from "../profile/MatchPairPopper";
 import DraggableList from "@/components/DraggableList/DraggableList";
@@ -238,43 +239,49 @@ export function RankingTable(props: Props, ref: any) {
               )}
             </div>
           </div>
+
+          <div className="flex justify-center items-center w-[100px] px-1 py-1 hover:text-rose-500 active:text-rose-700">
+            <MdDragIndicator />
+          </div>
         </DraggableListItem>
       );
     });
   };
 
   return (
-    <div className="flex flex-col items-start gap-10 ">
+    <div className="flex flex-col items-start gap-10 bg-white rounded-xl shadow-md p-5">
       <section className="max-h-[90%] overflow-y-scroll w-full">
         <div className=" text-lg text-left  div-auto">
-          <div className="flex flex-col border b-10 bg-white">
-            <div className="w-full flex flex-col gap-3 p-5 pb-0">
-              <ul className=" mb-3 mr-6 self-end">
-                <li className="flex gap-2">
-                  <div className="w-5 h-5 mt-[3px] bg-yellow-100"></div>
-                  <div className="md:text-wrap text-nowrap">
-                    Users without a match for more than two months.
-                  </div>
-                </li>
+          {/* <div className="flex flex-col border b-10 bg-white"> */}
+          <div className="w-full flex flex-col gap-3 p-5 pb-0">
+            <ul className=" mb-3 ">
+              <li className="flex gap-2">
+                <div className="w-5 h-5 mt-[3px] bg-yellow-100"></div>
+                <div className="md:text-wrap text-nowrap">
+                  Users without a match for more than two months.
+                </div>
+              </li>
 
-                <li className="flex gap-2">
-                  <div className="w-5 h-5 mt-[3px] bg-red-100"></div>
-                  <div className="md:text-wrap text-nowrap">
-                    Users who haven&apos;t uploaded any pictures of themselves.
-                  </div>
-                </li>
-              </ul>
-            </div>
+              <li className="flex gap-2">
+                <div className="w-5 h-5 mt-[3px] bg-red-100"></div>
+                <div className="md:text-wrap text-nowrap">
+                  Users who haven&apos;t uploaded any pictures of themselves.
+                </div>
+              </li>
+            </ul>
           </div>
+          {/* </div> */}
 
-          <header className="flex text-md text-neutral-700 uppercase bg-neutral-50 border border-x-10 border-y-0">
-            <div className="w-[200px] px-1 py-3">Ranking</div>
+          <header className="flex text-md text-neutral-700 uppercase bg-neutral-50 border border-x-10 ">
+            <div className="w-[200px] px-1 py-3 pl-3">Ranking</div>
 
             <div className="w-[300px] px-1 py-3">Name</div>
 
             <div className="w-[300px] px-1 py-3">GPT Score</div>
 
             <div className="w-[300px] px-1 py-3">Current Ranks</div>
+
+            <div className="w-[100px] px-1 py-3 pr-3">Actions</div>
           </header>
 
           <section className="bg-white text-neutral-500 border b-10 ">
@@ -290,6 +297,10 @@ export function RankingTable(props: Props, ref: any) {
           </section>
         </div>
       </section>
+
+      <div className="flex justify-end w-full">
+        <Button className="" content="Save" onClick={() => undefined} />
+      </div>
     </div>
   );
 }

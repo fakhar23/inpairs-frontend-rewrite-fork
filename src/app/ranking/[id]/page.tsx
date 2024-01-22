@@ -402,7 +402,7 @@ const Profile = ({ data }: any) => {
                 className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
               />
             </div>
-            <div>
+            <div className="w-[50%] m-auto">
               <UserOptions />
             </div>
           </div>
@@ -439,7 +439,7 @@ const Profile = ({ data }: any) => {
             />
           </div>
 
-          <div className=" flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
+          <div className="flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
             <Basics />
             <Scales />
           </div>

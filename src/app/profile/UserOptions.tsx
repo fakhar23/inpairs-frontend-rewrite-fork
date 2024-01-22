@@ -32,7 +32,7 @@ export const UserOptions = () => {
         />
         <Button
           className="w-full"
-          content="Download Data"
+          content="Download"
           loading={downloadProfileLoading}
           onClick={() => downloadUserData()}
         />
