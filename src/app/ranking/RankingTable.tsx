@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
 import { CloudinaryImage, Input, Modal } from "@/components";
 import { Score } from "@/types/scorings";
-import { MatchPairPopper } from "./MatchPairPopper";
+import { MatchPairPopper } from "../profile/MatchPairPopper";
 import DraggableList from "@/components/DraggableList/DraggableList";
 import DraggableListItem from "@/components/DraggableList/DraggableListItem";
 import { useListState } from "@mantine/hooks";
@@ -244,34 +244,12 @@ export function RankingTable(props: Props, ref: any) {
   };
 
   return (
-    <div className="flex flex-col items-start gap-10 p-16 pt-0">
-      <h1 className="text-2xl font-bold pt-3 text-center">Ranking</h1>
-
+    <div className="flex flex-col items-start gap-10 ">
       <section className="max-h-[90%] overflow-y-scroll w-full">
         <div className=" text-lg text-left  div-auto">
           <div className="flex flex-col border b-10 bg-white">
-            {props.isRanked && (
-              <div
-                className="[&>svg]:text-red [&>svg]:w-[20px] [&>svg]:h-[20px] flex gap-2 items-center m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded  "
-                role="alert"
-              >
-                <IoIosWarning />
-                <strong className="font-bold">Note: </strong>
-
-                <span className="inline">
-                  Someone else has already ranked this profile!
-                </span>
-              </div>
-            )}
-
-            <div className="w-full flex items-end justify-between">
-              <p className="ml-6 mb-3 font-bold" style={{ maxWidth: "60ch" }}>
-                Reminder: Check if a female user was ranked 1st for another
-                user; if so, ensure she is not ranked 1st for the current user.
-                The same applies to 2nd and 3rd rankings.
-              </p>
-
-              <ul className=" mb-3 mr-6">
+            <div className="w-full flex flex-col gap-3 p-5 pb-0">
+              <ul className=" mb-3 mr-6 self-end">
                 <li className="flex gap-2">
                   <div className="w-5 h-5 mt-[3px] bg-yellow-100"></div>
                   <div className="md:text-wrap text-nowrap">

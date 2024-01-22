@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { Button, Modal } from "@/components";
 import { ProfileQuestions } from ".";
+import { useRouter } from "next/navigation";
 
 export const UserOptions = () => {
   const [downloadProfileLoading, setDownloadProfileLoading] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const router = useRouter();
 
   const downloadUserData = () => undefined;
 
