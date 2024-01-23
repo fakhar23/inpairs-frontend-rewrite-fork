@@ -237,7 +237,7 @@ const EditProfile = (props: Props) => {
       className={`container px-[20%] transition-all-children-0_3 ${poppins.className}`}
     >
       {processing && (
-        <div className="absolute -top-16 bottom-0 right-0 left-0 bg-black/10 pt-5 flex items-start  justify-center">
+        <div className="absolute -top-16 bottom-0 right-0 left-0 bg-black900/10 pt-5 flex items-start  justify-center">
           <Loading />
         </div>
       )}
@@ -250,10 +250,10 @@ const EditProfile = (props: Props) => {
           <BlockingPhoneNoModal setIsBlockingModal={setIsBlockingModal} />
         </Modal>
 
-        <h1 className="text-2xl font-bold text-slate-800">Edit Profile</h1>
+        <h1 className="text-2xl font-bold text-slate800">Edit Profile</h1>
 
         <button
-          className="bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-lightRed disabled:cursor-not-allowed disabled:bg-slate-300 "
+          className="bg-red500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-primaryColorLight disabled:cursor-not-allowed disabled:bg-slate300 "
           onClick={() => setIsBlockingModal(true)}
         >
           Blocked Users
@@ -320,7 +320,7 @@ const EditProfile = (props: Props) => {
           <Link
             href="/profile/me"
             type="button"
-            className="bg-while text-black px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="bg-while text-black900  px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate300"
           >
             Cancel
           </Link>

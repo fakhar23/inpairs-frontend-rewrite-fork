@@ -45,8 +45,8 @@ export default function Table<D extends object>({
 
   return (
     <div className="relative overflow-x-auto">
-      <table className="w-full text-left rtl:text-right text-neutral-500 ">
-        <thead className="text-neutral-700 uppercase bg-neutral-100 ">
+      <table className="w-full text-left rtl:text-right text-neutral500 ">
+        <thead className="text-neutral700 uppercase bg-neutral100 ">
           {table.getHeaderGroups().map((headerGroup) => {
             return (
               <tr key={headerGroup.id}>
@@ -64,7 +64,7 @@ export default function Table<D extends object>({
                         >
                           {flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                           {{
                             asc: <IoChevronUp />,
@@ -87,11 +87,11 @@ export default function Table<D extends object>({
                   return (
                     <td
                       key={cell.id}
-                      className="px-6 py-4 text-neutral-900  dark:text-white"
+                      className="px-6 py-4 text-neutral900  dark:text-white"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </td>
                   );
@@ -109,7 +109,7 @@ export default function Table<D extends object>({
                     ? null
                     : flexRender(
                         header.column.columnDef.footer,
-                        header.getContext(),
+                        header.getContext()
                       )}
                 </th>
               ))}

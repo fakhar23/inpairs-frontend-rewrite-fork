@@ -36,7 +36,7 @@ export function ProfileQuestions() {
               value={key}
               className="data-[state=open]:bg-lightGray data-[state=open]:mb-5 rounded-xl"
             >
-              <Accordion.Header className="bg-neutral-100 rounded p-4">
+              <Accordion.Header className="bg-neutral100 rounded p-4">
                 <Accordion.Trigger className="data-[state=open]:hidden w-full text-start flex justify-between items-center">
                   <p className="max-w-[90%] lg:max-w-full !text-purple text-lg text-center">
                     {title}

@@ -10,7 +10,7 @@ export const MatchPairPopper = ({ popper }: { popper: React.ReactNode }) => {
     <>
       <button
         type="button"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline ml-2 text-sm"
+        className="bg-blue500 hover:bg-blue700 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline ml-2 text-sm"
         onClick={(e) => {
           e.preventDefault();
           setShown((shown) => !shown);
@@ -45,7 +45,7 @@ export const MatchPairPopper = ({ popper }: { popper: React.ReactNode }) => {
               {popper}
             </div>
             <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-2"
+              className="bg-red500 hover:bg-red700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-2"
               onClick={(e) => {
                 e.stopPropagation();
                 setShown(false);

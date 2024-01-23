@@ -71,7 +71,7 @@ export const GeneralInfo = ({
   };
 
   return (
-    <div className="mb-8 relative border border-red-500 h-content min-h-fit flex flex-col flex-grow-1 h-content">
+    <div className="mb-8 relative border border-red500 h-content min-h-fit flex flex-col flex-grow-1 h-content">
       {!loading ? (
         <div
           className="absolute right-4 md:w-[1.5rem] hover:scale-110 cursor-pointer"
@@ -88,7 +88,7 @@ export const GeneralInfo = ({
       ) : (
         <div className="absolute right-4 md:w-[1.5rem] hover:scale-110 cursor-pointer">
           <ClipLoader
-            color={COLORS.primaryRed}
+            color={COLORS.primaryColor}
             size={15}
             aria-label="Loading..."
           />
@@ -109,7 +109,7 @@ export const GeneralInfo = ({
         />
       </div>
       {error && (
-        <p className="text-blue-400" style={{ color: "red" }}>
+        <p className="text-blue400" style={{ color: "red" }}>
           {error}
         </p>
       )}

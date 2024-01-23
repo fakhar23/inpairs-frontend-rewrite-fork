@@ -84,7 +84,7 @@ const RegularImages = ({
                 <button
                   type="button"
                   dangerouslySetInnerHTML={{ __html: "&times;" }}
-                  className="flex flex-col items-center justify-center bg-white text-red-500 hover:bg-red-500 hover:text-white"
+                  className="flex flex-col items-center justify-center bg-white text-red500 hover:bg-red500 hover:text-white"
                   style={{
                     position: "absolute",
                     top: "3px",
@@ -105,7 +105,7 @@ const RegularImages = ({
               <Image
                 src={v.url}
                 alt="profile image"
-                className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-primaryRed"
+                className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-primaryColor"
                 width={150}
                 height={150}
               />

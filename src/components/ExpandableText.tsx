@@ -17,7 +17,7 @@ const ExpandableText = ({ text, maxChar = 100 }: IExpandableTextProps) => {
       {showFullText ? text : text.slice(0, maxChar)}{" "}
       {text.length > maxChar && (
         <span
-          className="whitespace-normal text-blue-500 hover:underline focus:outline-none"
+          className="whitespace-normal text-blue500 hover:underline focus:outline-none"
           onClick={toggleText}
         >
           {showFullText ? "...less" : "...more"}

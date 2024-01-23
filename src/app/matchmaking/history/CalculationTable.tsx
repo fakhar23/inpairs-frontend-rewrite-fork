@@ -88,7 +88,7 @@ export default function CalculationTable() {
 
   return (
     <div className="mb-2">
-      <h1 className="text-center text-purple-900 text-2xl font-bold mb-3 mt-5">
+      <h1 className="text-center text-purple900 text-2xl font-bold mb-3 mt-5">
         {user?.username} # of Months
       </h1>
       <Table columns={getColumn(user)} data={tempData.calculations} />

@@ -1,9 +1,10 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 export const COLORS = {
-  primaryRed: "#Ef3E37",
-  lightRed: "#f87171",
-  primaryPurple: "#622466",
+  primaryColor: "#Ef3E37",
+  primaryColorLight: "#f87171",
+  secondaryColor: "#622466",
   lightBlack: "#3D3C3C",
   charcoal: "#5B5B5B",
   gunmetal: "#3D3C3C",
@@ -36,20 +37,74 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primaryRed: COLORS.primaryRed,
-        primaryPurple: COLORS.primaryPurple,
+        primaryColor: COLORS.primaryColor,
+        primaryColorLight: COLORS.primaryColorLight,
+        secondaryColor: COLORS.secondaryColor,
         semiTransparentLightGray: COLORS.semiTransparentLightGray,
         offWhite: COLORS.offWhite,
         lightGray: COLORS.lightGray,
-        lightRed: COLORS.lightRed,
         veryLightGray: COLORS.veryLightGray,
         mediumGray: COLORS.mediumGray,
         lightBlueGray: COLORS.lightBlueGray,
         paleGray: COLORS.paleGray,
+
+        blue400: colors.blue[400],
+        blue500: colors.blue[500],
+        blue600: colors.blue[600],
+        blue700: colors.blue[700],
+
+        gray200: colors.gray[200],
+        gray300: colors.gray[300],
+        gray500: colors.gray[500],
+        gray600: colors.gray[600],
+        gray700: colors.gray[700],
+        gray800: colors.gray[800],
+
+        neutral100: colors.neutral[100],
+        neutral200: colors.neutral[200],
+        neutral300: colors.neutral[300],
+        neutral400: colors.neutral[400],
+        neutral500: colors.neutral[500],
+        neutral600: colors.neutral[600],
+        neutral700: colors.neutral[700],
+        neutral800: colors.neutral[800],
+        neutral900: colors.neutral[900],
+
+        green300: colors.green[900],
+        green500: colors.green[900],
+
+        purple500: colors.purple[500],
+        purple900: colors.purple[900],
+
+        red100: colors.red[100],
+        red200: colors.red[200],
+        red300: colors.red[300],
+        red400: colors.red[400],
+        red500: colors.red[500],
+        red600: colors.red[600],
+        red700: colors.red[700],
+
+        rose200: colors.rose[200],
+        rose500: colors.rose[500],
+
+        slate200: colors.slate[200],
+        slate300: colors.slate[300],
+        slate400: colors.slate[400],
+        slate500: colors.slate[500],
+        slate600: colors.slate[600],
+        slate700: colors.slate[700],
+        slate800: colors.slate[800],
+
+        yellow100: colors.yellow[100],
+
+        zinc100: colors.zinc[100],
+        zinc200: colors.zinc[200],
+
+        black900: colors.black,
       },
       textColor: {
-        purple: COLORS.primaryPurple,
-        red: COLORS.primaryRed,
+        purple: COLORS.secondaryColor,
+        red: COLORS.primaryColor,
         light: {
           black: COLORS.lightBlack,
         },
@@ -59,8 +114,8 @@ const config: Config = {
         },
       },
       backgroundColor: {
-        purple: COLORS.primaryPurple,
-        "theme-red": COLORS.primaryRed,
+        purple: COLORS.secondaryColor,
+        "theme-red": COLORS.primaryColor,
         "light-black": COLORS.lightBlack,
         charcoal: COLORS.charcoal,
         gunmetal: COLORS.gunmetal,

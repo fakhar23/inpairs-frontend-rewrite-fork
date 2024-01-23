@@ -99,7 +99,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  @apply bg-gradient-to-b from-purple-900 to-red-500 rounded-full;
+  @apply bg-gradient-to-b from-purple900 to-red500 rounded-full;
 }
 
 ::-webkit-scrollbar-track:vertical {
@@ -107,7 +107,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-  @apply bg-gradient-to-l from-purple-900 to-red-500 rounded-full;
+  @apply bg-gradient-to-l from-purple900 to-red500 rounded-full;
 }
 
 ::-webkit-scrollbar-track:horizontal {

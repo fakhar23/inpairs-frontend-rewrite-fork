@@ -93,7 +93,7 @@ export function MatchMakingModal(props: Props, ref: any) {
         >
           <th scope="row" className="px-6 py-4 font-normal whitespace-nowrap">
             <a
-              className="text-blue-500 underline underline-offset-2"
+              className="text-blue500 underline underline-offset-2"
               href={`/profile/${potential.UserMatch.auth_id}`}
               target="_blank"
             >
@@ -151,15 +151,13 @@ export function MatchMakingModal(props: Props, ref: any) {
             <div className="text-sm flex items-center">
               <div>
                 Matched{" "}
-                <span className="text-blue-500">
+                <span className="text-blue500">
                   {potential?.match_total || 0}
                 </span>
               </div>
               <div>
                 &nbsp;time{potential?.match_total > 1 ? "s" : ""}&nbsp;in{" "}
-                <span className="text-blue-500">
-                  {potential?.member_months}
-                </span>{" "}
+                <span className="text-blue500">{potential?.member_months}</span>{" "}
                 months
               </div>
             </div>
@@ -174,7 +172,7 @@ export function MatchMakingModal(props: Props, ref: any) {
               <p>{potential.rank}</p>
               <div className="ml-5 flex flex-col space-y-2">
                 <button
-                  className="border-2 border-slate-200 rounded-sm p-1 hover:bg-neutral-400"
+                  className="border-2 border-slate200 rounded-sm p-1 hover:bg-neutral400"
                   onClick={() => handleRankUp(potential.rank)}
                 >
                   <svg
@@ -207,10 +205,10 @@ export function MatchMakingModal(props: Props, ref: any) {
                       e.target.value = "";
                     }
                   }}
-                  className="border-red-300 border-solid border-2"
+                  className="border-red300 border-solid border-2"
                 />
                 <button
-                  className="border-2 border-slate-200 rounded-sm p-1 hover:bg-neutral-400"
+                  className="border-2 border-slate200 rounded-sm p-1 hover:bg-neutral400"
                   onClick={() => handleRankDown(potential.rank)}
                 >
                   <svg
@@ -242,7 +240,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                 }) => (
                   <a
                     key={u.email}
-                    className="text-blue-500 underline underline-offset-2 mr-2"
+                    className="text-blue500 underline underline-offset-2 mr-2"
                     href={`/profile/${u.sharable_id}`}
                     target="_blank"
                   >
@@ -262,7 +260,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                 }) => (
                   <a
                     key={u.email}
-                    className="text-blue-500 underline underline-offset-2 mr-2"
+                    className="text-blue500 underline underline-offset-2 mr-2"
                     href={`/profile/${u.sharable_id}`}
                     target="_blank"
                   >
@@ -282,7 +280,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                 }) => (
                   <a
                     key={u.email}
-                    className="text-blue-500 underline underline-offset-2 mr-2"
+                    className="text-blue500 underline underline-offset-2 mr-2"
                     href={`/profile/${u.sharable_id}`}
                     target="_blank"
                   >
@@ -298,7 +296,7 @@ export function MatchMakingModal(props: Props, ref: any) {
   };
 
   return (
-    <div className="fixed bg-white shadow-sm rounded-sm z-10 w-[90vw] h-[80vh] flex flex-col justify-center items-center border border-red-500 modal left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="fixed bg-white shadow-sm rounded-sm z-10 w-[90vw] h-[80vh] flex flex-col justify-center items-center border border-red500 modal left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
       <header className="w-full">
         <h1 className="text-2xl font-bold pt-3 text-center">Ranking</h1>
 
@@ -310,24 +308,24 @@ export function MatchMakingModal(props: Props, ref: any) {
 
         <ul className="ml-6">
           <li className="flex gap-2 items-center">
-            <div className="w-5 h-5 bg-yellow-100"></div> Users without a match
+            <div className="w-5 h-5 bg-yellow100"></div> Users without a match
             for more than two months.
           </li>
 
           <li className="flex gap-2 items-center">
-            <div className="w-5 h-5 bg-red-100"></div> Users who haven&apos;t
+            <div className="w-5 h-5 bg-red100"></div> Users who haven&apos;t
             uploaded any pictures of themselves.
           </li>
         </ul>
       </header>
 
-      <hr className="h-px my-4 bg-neutral-200 border-0 dark:bg-neutral-700"></hr>
+      <hr className="h-px my-4 bg-neutral200 border-0 dark:bg-neutral700"></hr>
 
       {props.isRanked && (
         <section className="w-full">
           <div className="container mx-auto mb-5">
             <div
-              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-10"
+              className="bg-red100 border border-red400 text-red700 px-4 py-3 rounded relative mt-10"
               role="alert"
             >
               <strong className="font-bold">Note: </strong>
@@ -340,8 +338,8 @@ export function MatchMakingModal(props: Props, ref: any) {
         </section>
       )}
       <section className="max-h-[90%] overflow-y-scroll w-full">
-        <table className="w-full text-lg text-left text-neutral-500 table-auto">
-          <thead className="text-md text-neutral-700 uppercase bg-neutral-50">
+        <table className="w-full text-lg text-left text-neutral500 table-auto">
+          <thead className="text-md text-neutral700 uppercase bg-neutral50">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Name
@@ -366,7 +364,7 @@ export function MatchMakingModal(props: Props, ref: any) {
 
       <footer className="flex justify-center my-5 space-x-3">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blue500 hover:bg-blue700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           onClick={() => props.handleSave()}
           disabled={props.submitLoading}
         >
@@ -374,7 +372,7 @@ export function MatchMakingModal(props: Props, ref: any) {
         </button>
 
         <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-red500 hover:bg-red700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           onClick={props.onClose}
         >
           Cancel

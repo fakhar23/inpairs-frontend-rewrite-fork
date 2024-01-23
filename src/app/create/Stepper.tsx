@@ -27,12 +27,12 @@ export const Stepper = ({ activeStep, steps }: IStepper) => {
             >
               <div
                 className={`relative flex flex-col items-center ${
-                  i + 1 === activeStep ? "text-slate-800" : "text-slate-400"
+                  i + 1 === activeStep ? "text-slate800" : "text-slate400"
                 }`}
               >
                 <div
-                  className={`rounded-full transition duration-500 ease-in-out border-2 border-slate-300 h-11 w-11 flex items-center justify-center py-3 ${
-                    i + 1 <= activeStep ? "text-white bg-red-500" : ""
+                  className={`rounded-full transition duration-500 ease-in-out border-2 border-slate300 h-11 w-11 flex items-center justify-center py-3 ${
+                    i + 1 <= activeStep ? "text-white bg-red500" : ""
                   }`}
                 >
                   {i + 1 < activeStep ? (
@@ -47,7 +47,7 @@ export const Stepper = ({ activeStep, steps }: IStepper) => {
               </div>
               <div
                 className={`flex-auto border-t-2 transition duration-500 ease-in-out ${
-                  i + 1 < activeStep ? "border-rose-500" : "border-slate-300"
+                  i + 1 < activeStep ? "border-rose500" : "border-slate300"
                 }`}
               ></div>
             </div>

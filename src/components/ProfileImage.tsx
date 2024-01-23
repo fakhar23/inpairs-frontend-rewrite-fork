@@ -14,7 +14,7 @@ const ProfileImage = ({ url, images, setImages }: IImageUpload) => {
   };
 
   return (
-    <div className="w-full my-5 h-[12rem] border-red-500 border-[1px] rounded-xl">
+    <div className="w-full my-5 h-[12rem] border-red500 border-[1px] rounded-xl">
       <div className="relative h-full w-full">
         <button
           className="absolute z-1 flex items-center justify-center cursor-pointer right-1 top-1"

@@ -45,9 +45,9 @@ export const Input = React.forwardRef(function WrappedInput<
         ref={ref as Ref<HTMLInputElement>}
         className={twMerge(
           variation === "primary" &&
-            "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
+            "appearance-none border-b border-slate400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-red500 bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
           variation === "secondary" &&
-            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-gray-charcoal outline-none focus:outline-primaryRed",
+            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate400 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-gray-charcoal outline-none focus:outline-primaryColor",
           rest.readOnly &&
             "bg-[#EFEFEF96] text-mediumGray cursor-not-allowed focus:outline-mediumGray focus:outline"
         )}

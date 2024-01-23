@@ -76,9 +76,9 @@ const User = () => {
       accessorKey: "disabled",
       cell: ({ row }: any) => {
         const icon = !row?.original?.disabled ? (
-          <IoCheckmark className="text-green-500 text-xl" />
+          <IoCheckmark className="text-green500 text-xl" />
         ) : (
-          <IoClose className="text-red-500 text-xl" />
+          <IoClose className="text-red500 text-xl" />
         );
         return <div className="pl-4">{icon}</div>;
       },
@@ -92,7 +92,7 @@ const User = () => {
             onClick={(e: any) => handleAction(e, row?.original)}
             content={row?.original?.disabled ? "Activate" : "Deactivate"}
             className={`!rounded-md ${
-              row?.original?.disabled ? "!bg-green-500" : ""
+              row?.original?.disabled ? "!bg-green500" : ""
             }`}
           />
         );
@@ -105,13 +105,13 @@ const User = () => {
       <div className="max-w-7xl mx-auto">
         <div>
           <div className="flex justify-between items-center">
-            <h1 className="my-10 text-2xl font-medium text-purple-900">
+            <h1 className="my-10 text-2xl font-medium text-purple900">
               User Page
             </h1>
           </div>
           <CustomInput
             id="search"
-            inputClassName="bg-neutral-100 w-full"
+            inputClassName="bg-neutral100 w-full"
             className="w-full my-5"
             onChange={debounce(
               (e: React.ChangeEvent<HTMLInputElement>) =>

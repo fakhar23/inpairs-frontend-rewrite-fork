@@ -73,7 +73,7 @@ const Match = () => {
     return (
       <div className="flex justify-center items-center h-[70vh]">
         <ClipLoader
-          color={COLORS.primaryRed}
+          color={COLORS.primaryColor}
           size={75}
           aria-label="Loading..."
         />

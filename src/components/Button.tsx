@@ -27,7 +27,7 @@ export function Button({
           <button
             type={type}
             className={
-              "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-lightRed disabled:cursor-not-allowed disabled:bg-slate-300 " +
+              "bg-red500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-primaryColorLight disabled:cursor-not-allowed disabled:bg-slate300 " +
                 className || ""
             }
             onClick={(e) => onClick?.(e)}
@@ -41,7 +41,7 @@ export function Button({
         <button
           type={type}
           className={
-            "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-lightRed disabled:cursor-not-allowed disabled:bg-slate-300 " +
+            "bg-red500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-primaryColorLight disabled:cursor-not-allowed disabled:bg-slate300 " +
               className || ""
           }
           onClick={(e) => onClick?.(e)}

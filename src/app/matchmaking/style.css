@@ -10,10 +10,10 @@
   }
 
   .page-link {
-    @apply rounded-md px-4 py-2 cursor-pointer bg-purple text-white hover:bg-primaryRed;
+    @apply rounded-md px-4 py-2 cursor-pointer bg-purple text-white hover:bg-primaryColor;
   }
 
   .active .page-link {
-    @apply bg-primaryRed pointer-events-none;
+    @apply bg-primaryColor pointer-events-none;
   }
 }

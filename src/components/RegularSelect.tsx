@@ -74,7 +74,7 @@ const RegularDropdown = ({
               ...baseStyles,
               borderColor: "transparent !important",
               boxShadow: state.isFocused
-                ? `0 0 0 1px ${COLORS.primaryRed}`
+                ? `0 0 0 1px ${COLORS.primaryColor}`
                 : "none",
               border: "none",
               borderRadius: "10px",
@@ -87,7 +87,7 @@ const RegularDropdown = ({
           dropdownIndicator(base) {
             return {
               ...base,
-              color: `${COLORS.primaryPurple} !important`,
+              color: `${COLORS.secondaryColor} !important`,
             };
           },
           indicatorSeparator(base) {
@@ -115,12 +115,14 @@ const RegularDropdown = ({
           option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isSelected
-              ? COLORS.primaryRed // Darker orange when selected (change as needed)
+              ? COLORS.primaryColor // Darker orange when selected (change as needed)
               : state.isFocused
-                ? COLORS.primaryRed // Slightly darker orange when hovered (change as needed)
+                ? COLORS.primaryColor // Slightly darker orange when hovered (change as needed)
                 : "lightorange", // Lighter orange by default (change as needed)
             color:
-              state.isSelected || state.isFocused ? "white" : COLORS.primaryRed,
+              state.isSelected || state.isFocused
+                ? "white"
+                : COLORS.primaryColor,
             cursor: "pointer",
             margin: "0.25rem 0.5rem",
             borderRadius: "4px",

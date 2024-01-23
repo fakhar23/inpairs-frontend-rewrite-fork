@@ -1,6 +1,5 @@
 import React from "react";
 import ExpandableText from "@/components/ExpandableText";
-import Loading from "@/components/Loading";
 import { rejectionReasons } from "./rejectionData";
 
 export default function RejectionReasonsModal() {
@@ -25,7 +24,7 @@ export default function RejectionReasonsModal() {
           </p>
         ))
       ) : (
-        <p className="text-gray-600 text-center">Empty</p>
+        <p className="text-gray600 text-center">Empty</p>
       )}
     </div>
   );

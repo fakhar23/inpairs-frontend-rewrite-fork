@@ -18,12 +18,12 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div>
-      <ul className="flex justify-center px-[20%] gap-[3rem] text-[1.2rem] text-slate-600 w-[100%] border-b border-slate-300">
+      <ul className="flex justify-center px-[20%] gap-[3rem] text-[1.2rem] text-slate600 w-[100%] border-b border-slate300">
         <Link
           href={"/settings"}
           className={
             "py-2 " +
-            (tab === 1 ? "text-red font-bold border-b border-red-500" : "")
+            (tab === 1 ? "text-red font-bold border-b border-red500" : "")
           }
           onClick={() => setTab(1)}
         >
@@ -34,7 +34,7 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
           href={"/settings/billing"}
           className={
             "py-2 " +
-            (tab === 3 ? "text-red font-bold border-b border-red-500" : "")
+            (tab === 3 ? "text-red font-bold border-b border-red500" : "")
           }
           onClick={() => setTab(3)}
         >

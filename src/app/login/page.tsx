@@ -75,7 +75,7 @@ function LoginForm() {
 
       <div className="flex w-full justify-center mt-3">
         <button
-          className=" bg-red-500 text-white px-[2.5rem] py-[0.3rem] rounded-3xl shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:px-[3.5rem] md:py-[0.6rem] md:mt-[3rem]"
+          className=" bg-red500 text-white px-[2.5rem] py-[0.3rem] rounded-3xl shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:px-[3.5rem] md:py-[0.6rem] md:mt-[3rem]"
           type="submit"
           disabled={loginMutation.isPending}
         >

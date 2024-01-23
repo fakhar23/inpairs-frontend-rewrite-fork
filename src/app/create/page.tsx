@@ -26,7 +26,7 @@ const Create = () => {
       content: (
         <>
           {formerPayingUser && (
-            <h3 className="text-slate-600 font-bold text-[1.1rem] md:text-regular text-center pb-5">
+            <h3 className="text-slate600 font-bold text-[1.1rem] md:text-regular text-center pb-5">
               Welcome back! To continue enjoying our service, kindly consider
               re-subscribing.
             </h3>
@@ -62,7 +62,7 @@ const Create = () => {
 
           <section className="flex w-[100%]">
             <button
-              className="bg-white text-slate-800 uppercase py-2 px-4 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out disabled:cursor-not-allowed disabled:bg-slate-300 disabled:pointer-events-none disabled:text-white bottom-20  md:text-regular"
+              className="bg-white text-slate800 uppercase py-2 px-4 rounded-xl font-semibold cursor-pointer border-2 border-slate300 hover:bg-slate700 hover:text-white transition duration-200 ease-in-out disabled:cursor-not-allowed disabled:bg-slate300 disabled:pointer-events-none disabled:text-white bottom-20  md:text-regular"
               onClick={() => {
                 if (activeStep > 1) setActiveStep((step) => --step);
               }}
@@ -73,7 +73,7 @@ const Create = () => {
 
             <div className="grow"></div>
             <button
-              className="bg-red-500 text-white uppercase py-2 px-4 rounded-xl font-semibold cursor-pointer hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out disabled:cursor-not-allowed disabled:bg-slate-300 disabled:pointer-events-none md:text-regular"
+              className="bg-red500 text-white uppercase py-2 px-4 rounded-xl font-semibold cursor-pointer hover:bg-slate700 hover:text-white transition duration-200 ease-in-out disabled:cursor-not-allowed disabled:bg-slate300 disabled:pointer-events-none md:text-regular"
               onClick={() => {
                 if (activeStep < steps.length) setActiveStep((step) => ++step);
               }}

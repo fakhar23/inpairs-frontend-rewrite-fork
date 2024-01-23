@@ -4,7 +4,7 @@ const Bars = () => {
   return (
     <svg
       aria-hidden="true"
-      fill={COLORS.primaryRed}
+      fill={COLORS.primaryColor}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
       width="3rem"

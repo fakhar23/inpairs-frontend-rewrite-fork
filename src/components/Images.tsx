@@ -93,7 +93,7 @@ const Images = ({
                   <Image
                     src={image}
                     alt="profile image"
-                    className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-primaryRed"
+                    className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-primaryColor"
                     width={150}
                     height={150}
                   />

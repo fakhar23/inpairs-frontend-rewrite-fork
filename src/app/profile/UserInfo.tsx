@@ -25,7 +25,7 @@ export function UserInfo({
 
   return (
     <section className="absolute left-[5rem] top-[-3rem] bg-white p-[2rem] w-[22%] rounded-xl shadow-md md:static flex flex-col md:flex-row md:w-full flex-wrap md:gap-[2rem]">
-      <div className="md:w-full md:flex md:gap-[2rem] md:items-center md:border-b md:border-slate-300 space-y-4 mb-4">
+      <div className="md:w-full md:flex md:gap-[2rem] md:items-center md:border-b md:border-slate300 space-y-4 mb-4">
         <CloudinaryImage
           alt=""
           url={""}
@@ -40,7 +40,7 @@ export function UserInfo({
           <h2 className="font-bryantProBold text-xl text-center mb-2.5 leading-tight">
             firstName lastName if user role is user
             {true && (
-              <div className="text-sm text-neutral-500">
+              <div className="text-sm text-neutral500">
                 Matched totalMatch time in number months
               </div>
             )}
@@ -48,7 +48,7 @@ export function UserInfo({
 
           <div className="font-bryantProMedium flex item-center gap-2">
             <p>1 Years</p>
-            <div className="grow border-r-1 border-solid border-primaryPurple" />{" "}
+            <div className="grow border-r-1 border-solid border-secondaryColor" />{" "}
             <div className="grow flex gap-1 items-center justify-between">
               <Image
                 src={Pin}
@@ -66,7 +66,7 @@ export function UserInfo({
         </div>
         {!hideEdit ? (
           <button
-            className="font-bryantProMedium bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-lightRed hidden md:inline md:ml-auto"
+            className="font-bryantProMedium bg-red500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-primaryColorLight hidden md:inline md:ml-auto"
             onClick={() => router.push("/settings")}
           >
             Edit profile
@@ -100,7 +100,7 @@ export function UserInfo({
             <RankingList />
           ) : !hideEdit ? (
             <button
-              className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-lightRed md:hidden"
+              className="bg-red500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-primaryColorLight md:hidden"
               onClick={() => router.push("/settings")}
             >
               Edit Profile

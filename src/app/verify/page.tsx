@@ -42,7 +42,7 @@ export default function Verify() {
                 Haven&apos;t received it?{" "}
                 <button
                   className={twMerge(
-                    "text-blue-500 hover:underline",
+                    "text-blue500 hover:underline",
                     emailVerificationMutation.isPending ? "" : "cursor-pointer"
                   )}
                   onClick={() => emailVerificationMutation.mutate({ email })}

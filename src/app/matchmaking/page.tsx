@@ -73,13 +73,13 @@ const RankingTable = () => {
       <tr key={score.auth_id} className="bg-white border-b">
         <th
           scope="row"
-          className="px-6 py-4 font-bryantProMedium text-neutral-900 whitespace-nowrap font-medium"
+          className="px-6 py-4 font-bryantProMedium text-neutral900 whitespace-nowrap font-medium"
         >
           <p>{score.id}</p>
         </th>
         <th
           scope="row"
-          className="px-6 py-4 font-bryantProMedium text-neutral-900 whitespace-nowrap font-medium"
+          className="px-6 py-4 font-bryantProMedium text-neutral900 whitespace-nowrap font-medium"
         >
           <Link
             href={{
@@ -95,7 +95,7 @@ const RankingTable = () => {
               pathname: `/profile/${score.id}`,
             }}
           >
-            <button className="bg-red-500 hover:bg-red-700 ml-3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <button className="bg-red500 hover:bg-red700 ml-3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Rank
             </button>
           </Link>
@@ -118,8 +118,8 @@ const RankingTable = () => {
           <Button content="History" />
         </Link>
       </div>
-      <table className="w-full text-lg text-left text-neutral-500">
-        <thead className="text-md text-neutral-700 uppercase bg-neutral-50">
+      <table className="w-full text-lg text-left text-neutral500">
+        <thead className="text-md text-neutral700 uppercase bg-neutral50">
           <tr>
             <th scope="col" className="px-6 py-3 font-normal">
               ID

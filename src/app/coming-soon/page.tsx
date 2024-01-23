@@ -17,7 +17,7 @@ const Gate = () => {
         <p className="md:text-[15px] text-center">
           Hi{" "}
           {loading ? (
-            <span className="animate-pulse h-4 inline-block bg-slate-200 rounded w-24 mb-[-3px]"></span>
+            <span className="animate-pulse h-4 inline-block bg-slate200 rounded w-24 mb-[-3px]"></span>
           ) : (
             user.firstName
           )}

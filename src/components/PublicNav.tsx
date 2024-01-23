@@ -59,36 +59,36 @@ const Menu = ({
 
       <ul className="text-[1.5rem] text-left []">
         <Link href="/">
-          <li className="hover:bg-primaryRed py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
+          <li className="hover:bg-primaryColor py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
             <span onClick={() => setDisplay(false)}>Home</span>
           </li>
         </Link>
 
         <Link href="how">
-          <li className="hover:bg-primaryRed py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
+          <li className="hover:bg-primaryColor py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
             <span onClick={() => setDisplay(false)}>How does it work?</span>
           </li>
         </Link>
 
         <Link href="about">
-          <li className="hover:bg-primaryRed py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
+          <li className="hover:bg-primaryColor py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
             <span onClick={() => setDisplay(false)}>About us</span>
           </li>
         </Link>
 
         <Link href="contact">
-          <li className="hover:bg-primaryRed py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
+          <li className="hover:bg-primaryColor py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
             <span onClick={() => setDisplay(false)}>Contact us</span>
           </li>
         </Link>
 
         <Link href="FAQ">
-          <li className="hover:bg-primaryRed py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
+          <li className="hover:bg-primaryColor py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
             <span onClick={() => setDisplay(false)}>FAQ</span>
           </li>
         </Link>
 
-        <li className=" ml-auto md:ml-0 md:border-none hover:bg-primaryRed py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
+        <li className=" ml-auto md:ml-0 md:border-none hover:bg-primaryColor py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md">
           {canViewTheirProfile ? (
             <Link href={`/profile/me`}>
               <span onClick={() => setDisplay(false)}> Profile </span>
@@ -125,7 +125,7 @@ export function PublicNavbar({
       <button
         type="button"
         title="menu"
-        className="items-center p-2 text-neutral-500 rounded-lg hidden md:inline-flex hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:ring-gray-600"
+        className="items-center p-2 text-neutral500 rounded-lg hidden md:inline-flex hover:bg-neutral100 focus:outline-none focus:ring-2 focus:ring-gray200 dark:text-neutral400 dark:hover:bg-neutral700 dark:focus:ring-gray600"
         onClick={() => {
           setDisplay(!display);
         }}

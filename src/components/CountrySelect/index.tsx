@@ -64,7 +64,7 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
               dropdownIndicator(base) {
                 return {
                   ...base,
-                  color: `${COLORS.primaryPurple}!important`,
+                  color: `${COLORS.secondaryColor}!important`,
                 };
               },
               indicatorSeparator(base) {
@@ -94,14 +94,14 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
               option: (provided, state) => ({
                 ...provided,
                 backgroundColor: state.isSelected
-                  ? COLORS.primaryRed
+                  ? COLORS.primaryColor
                   : state.isFocused
-                    ? COLORS.primaryRed
+                    ? COLORS.primaryColor
                     : "lightorange",
                 color:
                   state.isSelected || state.isFocused
                     ? "white"
-                    : COLORS.primaryRed,
+                    : COLORS.primaryColor,
                 cursor: "pointer",
                 margin: "0.25rem 0.5rem",
                 borderRadius: "4px",

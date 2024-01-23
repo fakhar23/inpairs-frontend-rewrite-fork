@@ -92,19 +92,19 @@ function ImagesUploader() {
           <Loading />
         </div>
       )} */}
-      <div className="relative p-1 flex items-center justify-center w-[70%] md:w-[90%] border-2	 border-dashed border-red-500">
+      <div className="relative p-1 flex items-center justify-center w-[70%] md:w-[90%] border-2	 border-dashed border-red500">
         <label
           htmlFor="dropzone-file"
           className={`group flex flex-col items-center ${
             images.length ? "justify-end py-5" : "justify-center"
           } ${
             images.length < 3 ? "cursor-pointer" : "cursor-pointer"
-          } w-full h-72  rounded-lg  bg-neutral-50 dark:hover:bg-bray-800  hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500`}
+          } w-full h-72  rounded-lg  bg-neutral50 dark:hover:bg-bray-800  hover:bg-neutral100 dark:border-neutral600 dark:hover:border-neutral500`}
         >
           <div>
             {!images.length && (
               <svg
-                className="w-8 h-8 mb-4 mx-auto group-hover:text-red-500 dark:text-neutral-400 "
+                className="w-8 h-8 mb-4 mx-auto group-hover:text-red500 dark:text-neutral400 "
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -123,7 +123,7 @@ function ImagesUploader() {
             {images.length < 3 ? (
               <>
                 {images.length < 3 ? (
-                  <div className="flex flex-col items-center text-neutral-500 group-hover:text-purple-900 dark:text-neutral-400">
+                  <div className="flex flex-col items-center text-neutral500 group-hover:text-purple900 dark:text-neutral400">
                     <p className="mb-2 text-sm ">
                       <span className="font-semibold">
                         Click to upload images
@@ -153,7 +153,7 @@ function ImagesUploader() {
                   <button
                     type="button"
                     dangerouslySetInnerHTML={{ __html: "&times;" }}
-                    className="absolute z-10 -top-[11px] left-0 flex flex-col items-center justify-center bg-white hover:bg-red-500 text-red-500 hover:text-white"
+                    className="absolute z-10 -top-[11px] left-0 flex flex-col items-center justify-center bg-white hover:bg-red500 text-red500 hover:text-white"
                     style={{
                       fontSize: "1.25rem",
                       borderRadius: "50%",
