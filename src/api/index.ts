@@ -34,6 +34,7 @@ axiosInstance.interceptors.request.use((config) => {
     // check all are set
     if (jwt && expires_at && uid) {
       // check  if jwt has expired
+      // TODO: use jsonwebtoken instead
       if (Number(new Date()) > JSON.parse(expires_at)) {
         ["jwt", "expires_at", "uid"].forEach(localStorage.removeItem);
         window.location.href = "/login";
