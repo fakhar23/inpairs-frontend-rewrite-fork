@@ -3,12 +3,14 @@ import React, { useEffect, useRef } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import EditIcon from "@/assets/Iconly-Bulk-Edit.svg";
+import { twMerge } from "tailwind-merge";
 
 export interface IGeneral {
   title: string;
   content: { answer: string; key: string; answer_id: number };
   question_key: string;
   canEdit: boolean;
+  className?: string;
 }
 
 export const GeneralInfo = ({
@@ -16,6 +18,7 @@ export const GeneralInfo = ({
   content,
   question_key,
   canEdit,
+  className = "",
 }: IGeneral) => {
   const [disabled, setDisabled] = React.useState(true);
   const [answer, setAnswer] = React.useState<string>(
@@ -70,7 +73,12 @@ export const GeneralInfo = ({
   };
 
   return (
-    <div className="mb-8 relative border border-red-500 h-content min-h-fit flex flex-col flex-grow-1 h-content">
+    <div
+      className={twMerge(
+        className,
+        "min-h-[10rem] w-full relative border border-red-500 h-content flex flex-col flex-grow-1 h-content"
+      )}
+    >
       {!loading ? (
         <div
           className="absolute right-4 md:w-[1.5rem] hover:scale-110 cursor-pointer"
@@ -96,7 +104,7 @@ export const GeneralInfo = ({
       </div>
       <div className="flex-1">
         <textarea
-          className="min-h-[10rem] w-full resize-y focus:outline-none bg-white"
+          className="min-h-[100%] w-full resize-y focus:outline-none bg-white"
           disabled={disabled}
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
