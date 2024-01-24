@@ -44,6 +44,8 @@ export interface LoginResponse {
   completedTheirProfile: boolean;
 }
 
+export type AuthContextResponse = Omit<LoginResponse, "token">;
+
 export interface EmailVerificationBody {
   email: string;
 }

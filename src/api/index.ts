@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  AuthContextResponse,
   EmailVerificationBody,
   LoginBody,
   LoginResponse,
@@ -11,6 +12,7 @@ export const ENDPOINTS = {
   signup: "/auth/signup",
   emailVerification: "/auth/request-new-verification-email",
   tokenVerification: "/auth/verify-token",
+  authContext: "/auth/user-auth-context",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -28,9 +30,10 @@ axiosInstance.interceptors.request.use((config) => {
   if (PUBLIC_ENDPOINTS.includes(config.url || "")) {
     return config;
   } else {
-    const [jwt, expires_at, uid] = ["jwt", "expires_at", "uid"].map(
-      localStorage.getItem
-    );
+    const jwt = localStorage.getItem("jwt");
+    const expires_at = localStorage.getItem("expires_at");
+    const uid = localStorage.getItem("uid");
+
     // check all are set
     if (jwt && expires_at && uid) {
       // check  if jwt has expired
@@ -79,6 +82,13 @@ export async function login(payload: LoginBody) {
     );
     localStorage.setItem("uid", result.data.uid);
   }
+  return result.data;
+}
+
+export async function getUserAuthContext() {
+  const result = await axiosInstance.get<AuthContextResponse>(
+    ENDPOINTS.authContext
+  );
   return result.data;
 }
 
