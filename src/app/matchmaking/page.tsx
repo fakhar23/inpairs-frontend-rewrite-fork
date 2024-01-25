@@ -9,7 +9,7 @@ import Select from "react-select";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 
 import "./style.css";
-import { ClickButton } from "@/components";
+import { Button } from "@/components";
 
 const MatchMakingPage = () => {
   return (
@@ -116,7 +116,7 @@ const RankingTable = () => {
           Total: {rankingTableData.totalItems}
         </div>
         <Link href="/matchmaking/history">
-          <ClickButton content="History" />
+          <Button content="History" />
         </Link>
       </div>
       <table className="w-full text-lg text-left text-neutral-500">

@@ -1,5 +1,5 @@
-export { default as Button } from "./LinkButton";
-export { ClickButton } from "./ClickButton";
+export { default as LinkButton } from "./LinkButton";
+export { default as Button } from "./Button";
 export { Loading } from "./Loading";
 export { PublicNavbar } from "./PublicNav";
 export { Footer } from "./Footer";
