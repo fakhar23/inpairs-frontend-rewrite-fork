@@ -82,8 +82,8 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
         <Button
           content="Save changes"
           onClick={handleSaveChanges}
-          disable={isSaveDisabled}
-          loading={isLoading}
+          isDisabled={isSaveDisabled}
+          isLoading={isLoading}
         />
 
         <button

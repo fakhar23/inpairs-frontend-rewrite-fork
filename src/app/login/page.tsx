@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { useForm } from "react-hook-form";
 
-import { Input, LoadingButton } from "@/components";
+import { Input, LoadingCircle } from "@/components";
 import { PublicNavbar } from "@/components/PublicNav";
 import FormsLayout from "@/layouts/FormsLayout";
 
@@ -79,7 +79,7 @@ function LoginForm() {
           type="submit"
           disabled={loginMutation.isPending}
         >
-          {loginMutation.isPending && <LoadingButton />}
+          {loginMutation.isPending && <LoadingCircle />}
           Sign In
         </button>
       </div>

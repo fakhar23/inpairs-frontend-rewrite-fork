@@ -181,7 +181,7 @@ function ImagesUploader() {
       </div>
       {images.length > 0 ? (
         <Button
-          // loading={isProcessing}
+          // isLoading={isProcessing}
           // click={save}
           content="Save"
           className="mt-3"
