@@ -1,4 +1,4 @@
-export { default as Button } from "./Button";
+export { default as Button } from "./LinkButton";
 export { ClickButton } from "./ClickButton";
 export { Loading } from "./Loading";
 export { PublicNavbar } from "./PublicNav";
