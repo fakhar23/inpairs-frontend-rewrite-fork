@@ -12,7 +12,7 @@ export function Scales() {
   const isClosenessToFamily = false;
 
   return (
-    <section className="my-8">
+    <section className="my-5">
       <div className="flex items-center !justify-start font-bryantProBold text-purple text-[1.25rem]">
         Scales
       </div>

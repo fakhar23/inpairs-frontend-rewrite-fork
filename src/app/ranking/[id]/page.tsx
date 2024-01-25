@@ -1,10 +1,14 @@
 "use client";
 
-import { MatchMakingModal } from "./MachMakingModal";
-import { useParams } from "next/navigation";
 import { useState } from "react";
-import { Button, Modal } from "@/components";
-import { ProfileQuestions } from ".";
+import { useParams } from "next/navigation";
+import Image from "next/image";
+import UserProfileLayout from "@/layouts/UserProfileLayout";
+import { Basics, GeneralInfo, Scales, UserInfo } from "../../profile";
+import profileBg from "@/assets/profileBgC.png";
+import { RankingTable } from "../RankingTable";
+import { CloudinaryImage, Toast } from "@/components";
+import { UserOptions } from "@/app/profile/UserOptions";
 
 // TODO: Static data to show the UI, needs backend integration
 const potential = {
@@ -19,7 +23,7 @@ const potential = {
       gptScore: 90,
       gptReason:
         "Aruna and Bilal both prioritize Islam in their lives and are looking for a partner who shares the same values. They both have a strong interest in history and traveling, which can provide them with common ground for shared experiences. They are both family-oriented and career-driven, which aligns with each other's values and goals. Their shared passion for philanthropy and dedication to their faith can create a strong foundation for a meaningful and compatible relationship.",
-      images: [],
+      images: [""],
       match_total: 0,
       member_months: 5,
       potentional_match: 16,
@@ -71,7 +75,7 @@ const potential = {
       gptScore: 90,
       gptReason:
         "Bilal and Alaa seem to have a strong compatibility in terms of their dedication to Islam and their desire to grow spiritually. They both prioritize their prayers, Quranic study, and involvement in their Muslim community. Additionally, they both have a passion for healthcare and giving back to their community, which shows a shared sense of responsibility and empathy. Their shared interests in history, running, and involvement in social activities also provide a strong foundation for a potential relationship. The only potential point of contention could be Alaa's desire for her partner to be involved in med/dental school or already in training, which may not align with Bilal's current status as a first year medical student.",
-      images: [],
+      images: [""],
       match_total: 6,
       member_months: 4,
       potentional_match: 8,
@@ -123,7 +127,7 @@ const potential = {
       gptScore: 90,
       gptReason:
         "Bilal and Kanzah both have a strong commitment to their Islamic faith and are looking for a partner who shares the same values. They both come from families that have instilled a deep connection to Islam in their upbringing. Additionally, they both have a passion for learning and personal growth, as well as a strong sense of community and family. Their shared interests in history, mental health, and artistic hobbies provide a strong foundation for a deep and meaningful connection.",
-      images: [],
+      images: [""],
       match_total: 0,
       member_months: 3,
       potentional_match: 5,
@@ -227,7 +231,7 @@ const potential = {
       gptScore: 70,
       gptReason:
         "Bilal and Zanaib both have a strong emphasis on Islam in their lives and value family. They both enjoy spending time with family and have a passion for helping others. However, there may be some differences in their interests and hobbies, as Bilal enjoys sports and history while Zanaib is more focused on cooking, reading, and volunteering. Overall, their shared values and goals make them a good match with potential for a serious relationship.",
-      images: [],
+      images: [""],
       match_total: 3,
       member_months: 5,
       potentional_match: 16,
@@ -279,7 +283,7 @@ const potential = {
       gptScore: 70,
       gptReason:
         "Bilal and Zainab both have a strong commitment to their faith and family, which is a solid foundation for a potential relationship. They both have a passion for helping others, with Bilal's interest in medicine and Zainab's desire to help vulnerable individuals. They also share common interests in history, reading, and baking. However, they may need to work on communication and understanding each other's introverted nature, as well as Zainab's desire for her partner to be good with kids and have a good sense of humor.",
-      images: [],
+      images: [""],
       match_total: 0,
       member_months: 2,
       potentional_match: 8,
@@ -324,76 +328,126 @@ const potential = {
   ],
 };
 
-export const RankingList = () => {
-  const params = useParams();
-  const user_id: any = params.id || "";
-  const [scoring, setScoring] = useState<any>(potential);
-  const [submitLoading, setSubmitLoading] = useState(false);
-  const [downloadProfileLoading, setDownloadProfileLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [showQuestion, setShowQuestion] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
+const FALLBACK_IMAGE_URL =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
 
-  const handleClose = () => {
-    setShowModal(false);
-  };
+const Profile = ({ data }: any) => {
+  const params = useParams<{ id: string }>();
+  const user_id = params["id"] || "";
+  const content = { answer: "", key: "", answer_id: 1 };
 
-  const handleSave = () => undefined;
-
-  const downloadUserData = () => undefined;
-
-  const isLoading = false;
-  const isRanked = true;
-  const isScoring = true;
+  const [ranking, setRanking] = useState<boolean>(true);
+  const [canEdit, setCanEdit] = useState<boolean>(false);
 
   return (
-    <div>
-      {isScoring && (
-        <Modal isOpen={showModal} onClose={handleClose}>
-          <MatchMakingModal
-            scoring={scoring}
-            setScoring={setScoring}
-            userId={user_id}
-            handleSave={handleSave}
-            submitLoading={submitLoading}
-            isRanked={isRanked}
-            userInfo={userInfo}
-            onClose={handleClose}
+    <UserProfileLayout>
+      <Image
+        src={profileBg}
+        alt="profile background"
+        className="absolute left-0 w-full h-full blur-3xl -z-10 top-[-7rem]"
+      />
+      <main className="flex flex-col p-10 gap-5">
+        {true && (
+          <Toast
+            type="error"
+            title="Note"
+            message="Someone else has already ranked this profile!"
           />
-        </Modal>
-      )}
+        )}
 
-      <Modal
-        title="Questions"
-        isOpen={showQuestion}
-        onClose={() => setShowQuestion(false)}
-        titleClassName="!text-[2rem] text-purple"
-        className="w-5/6 px-4"
-      >
-        <ProfileQuestions />
-      </Modal>
+        {true && (
+          <Toast
+            type="warn"
+            title="Reminder"
+            message="Check if a female user was ranked 1st for another
+            user; if so, ensure she is not ranked 1st for the current user.
+            The same applies to 2nd and 3rd rankings."
+          />
+        )}
 
-      <div className="overflow-x-auto w-100 flex flex-col gap-4 items-center relative">
-        <Button
-          className="w-full"
-          content="Ranking"
-          isLoading={isLoading}
-          onClick={() => {
-            setShowModal(true);
-          }}
-        />
-        <Button
-          className="w-full"
-          content="Questions"
-          onClick={() => setShowQuestion(!showQuestion)}
-        />
-        <Button
-          className="w-full"
-          content="Download Data"
-          isLoading={downloadProfileLoading}
-          onClick={() => downloadUserData()}
-        />
-      </div>
-    </div>
+        <div className="flex  bg-white rounded-xl py-8 px-5  shadow-md  gap-[1.5rem] border-b border-rose-200 ">
+          <div className="flex flex-col gap-4 w-fit">
+            <h2 className="font-bryantProBold text-xl text-center mb-2.5 leading-tight">
+              Mahdi abdulkareem user
+              {true && (
+                <div className="text-sm text-neutral-500">
+                  Matched 3 time in 2 months
+                </div>
+              )}
+            </h2>
+
+            <div className="flex">
+              <CloudinaryImage
+                alt=""
+                url={""}
+                width={112}
+                height={112}
+                fallback={FALLBACK_IMAGE_URL}
+                className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
+              />
+              <CloudinaryImage
+                alt=""
+                url={""}
+                width={112}
+                height={112}
+                fallback={FALLBACK_IMAGE_URL}
+                className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
+              />
+              <CloudinaryImage
+                alt=""
+                url={""}
+                width={112}
+                height={112}
+                fallback={FALLBACK_IMAGE_URL}
+                className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
+              />
+            </div>
+            <div className="w-[50%] m-auto">
+              <UserOptions />
+            </div>
+          </div>
+
+          <div className="flex grow gap-4 justify-around   [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
+            <GeneralInfo
+              title="About me"
+              content={content}
+              question_key="about_yourself"
+              canEdit={canEdit}
+            />
+            <GeneralInfo
+              title="Passions"
+              content={content}
+              question_key="passionate"
+              canEdit={canEdit}
+            />
+            <GeneralInfo
+              title="Interests"
+              content={content}
+              question_key="interests"
+              canEdit={canEdit}
+            />
+          </div>
+        </div>
+
+        <div className="flex gap-5">
+          <div className="max-w-[70%] ">
+            <RankingTable
+              scoring={potential}
+              userId={user_id}
+              isRanked={true}
+              userInfo={{}}
+            />
+          </div>
+
+          <div className="flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
+            <Basics />
+            <Scales />
+          </div>
+        </div>
+      </main>
+      <section className=""></section>
+    </UserProfileLayout>
   );
 };
+
+export default Profile;

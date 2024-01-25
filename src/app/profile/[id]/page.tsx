@@ -14,73 +14,6 @@ const Profile = ({ data }: any) => {
 
   const [ranking, setRanking] = useState<boolean>(true);
   const [canEdit, setCanEdit] = useState<boolean>(false);
-  // const [loading, setLoading] = useState<boolean>(false);
-  // const [showQuestion, setShowQuestion] = useState(false);
-
-  // useEffect(() => {
-  //   ;(async () => {
-  //     try {
-  //       setLoading(true)
-
-  //       if (!user_id) {
-  //         return
-  //       }
-
-  //       if (user?.sharableId !== user_id) {
-  //         setCanEdit(false)
-  //       } else {
-  //         setCanEdit(true)
-  //       }
-
-  //       const result = await APIHelper.getProfileData(user_id as string, true)
-  //       dispatch({
-  //         type: 'ADD_QUESTIONS_ANSWERS_TO_USER',
-  //         payload: {
-  //           questions_answers: transformAnswers(
-  //             result.data.data.questions_answers
-  //           ),
-  //           stats: result.data.data.stats
-  //         }
-  //       })
-  //       dispatch({
-  //         type: 'ADD_MATCH_IMAGES_PICTURE',
-  //         payload: {
-  //           images: result.data.data.images as string[]
-  //         }
-  //       })
-  //     } catch (error) {
-  //       Sentry.captureException(error)
-  //       if (error instanceof AxiosError) {
-  //         if (error.status === 401) {
-  //           router.push('/login')
-  //           return
-  //         }
-  //         toast.error('Something went wrong')
-  //       }
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   })()
-  // }, [router, dispatch, user?.sharableId])
-
-  // const isAdministrationRole =
-  //   user && ['ADMIN', 'MATCHMAKER'].includes(user?.role)
-
-  const isAdministrationRole = true;
-
-  // useEffect(() => {
-  //   if (isAdministrationRole) {
-  //     setRanking(true);
-  //   }
-  // }, [isAdministrationRole]);
-
-  // if (!user?.questionsAnswers || !router.isReady || loading) {
-  //   return (
-  //     <div className="flex justify-center items-center h-[70vh]">
-  //       <ClipLoader color="#EF3E37" size={75} aria-label="Loading..." />
-  //     </div>
-  //   );
-  // }
 
   return (
     <UserProfileLayout>
@@ -88,7 +21,7 @@ const Profile = ({ data }: any) => {
         <Image
           src={profileBg}
           alt="profile background"
-          className="absolute top-0 left-0 w-full h-full blur-3xl -z-10 top-[-7rem]"
+          className="absolute left-0 w-full h-full blur-3xl -z-10 top-[-7rem]"
         />
         <UserInfo
           ranking={ranking}
@@ -99,7 +32,7 @@ const Profile = ({ data }: any) => {
 
         <section className="flex flex-wrap h-auto resize-y justify-center w-[75%] px-[1rem] py-[3rem] md:w-full md:px-0 relative">
           {/* left column */}
-          <div className="mr-[2rem] w-[45%] [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
+          <div className="flex flex-col gap-8 mr-[2rem] w-[45%] [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
             <GeneralInfo
               title="About me"
               content={content}

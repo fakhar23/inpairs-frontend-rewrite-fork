@@ -42,7 +42,13 @@ export interface LoginResponse {
   canViewOtherUsersProfiles: boolean;
   canViewUserXProfile: boolean;
   completedTheirProfile: boolean;
+  email: string;
+  images: string[];
+  dateOfBirth: string;
+  phone: string;
 }
+
+export type AuthContextResponse = Omit<LoginResponse, "token">;
 
 export interface EmailVerificationBody {
   email: string;

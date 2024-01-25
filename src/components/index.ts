@@ -17,3 +17,4 @@ export { default as RegularImages } from "./RegularImages";
 export { default as Select } from "./RegularSelect";
 export { default as Pooling } from "./Pooling";
 export { default as Images } from "./Images";
+export { Toast } from "./Toast";

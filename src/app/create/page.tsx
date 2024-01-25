@@ -9,12 +9,14 @@ import Payment from "./Payment";
 import PersonalDetails from "./PersonalDetails";
 import ReferralInstructions from "./ReferralInstructions";
 import Stepper, { IStep } from "./Stepper";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
-const Create = () => {
+export default function Create() {
+  const user = useAuthContext();
   const [activeStep, setActiveStep] = useState<number>(1);
 
-  // TODO: backend
-  const formerPayingUser = true;
+  const formerPayingUser =
+    !user.data?.isPayingUser && user.data?.completedTheirProfile;
 
   const steps: Array<IStep> = [
     {
@@ -86,6 +88,4 @@ const Create = () => {
       </div>
     </div>
   );
-};
-
-export default Create;
+}
