@@ -14,8 +14,9 @@ import { useAuthContext } from "@/hooks/useAuthContext";
 export default function Create() {
   const user = useAuthContext();
   const [activeStep, setActiveStep] = useState<number>(1);
-  // TODO: backend
-  const formerPayingUser = true;
+
+  const formerPayingUser =
+    !user.data?.isPayingUser && user.data?.completedTheirProfile;
 
   const steps: Array<IStep> = [
     {

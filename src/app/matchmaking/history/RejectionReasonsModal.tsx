@@ -1,6 +1,5 @@
 import React from "react";
 import ExpandableText from "@/components/ExpandableText";
-import Loading from "@/components/Loading";
 import { rejectionReasons } from "./rejectionData";
 
 export default function RejectionReasonsModal() {

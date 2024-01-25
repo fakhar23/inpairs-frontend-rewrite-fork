@@ -6,6 +6,7 @@ import {
   LoginResponse,
   SignUpBody,
 } from "./types";
+import { toast } from "react-toastify";
 
 export const ENDPOINTS = {
   login: "/auth/login",
@@ -13,6 +14,7 @@ export const ENDPOINTS = {
   emailVerification: "/auth/request-new-verification-email",
   tokenVerification: "/auth/verify-token",
   authContext: "/auth/user-auth-context",
+  paymentSession: "/payment/checkout-session",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -26,7 +28,7 @@ const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_END_POINT,
 });
 
-axiosInstance.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use(function onFulfilled(config) {
   if (PUBLIC_ENDPOINTS.includes(config.url || "")) {
     return config;
   } else {
@@ -39,15 +41,27 @@ axiosInstance.interceptors.request.use((config) => {
       // check  if jwt has expired
       // TODO: use jsonwebtoken instead
       if (Number(new Date()) > JSON.parse(expires_at)) {
-        ["jwt", "expires_at", "uid"].forEach(localStorage.removeItem);
-        window.location.href = "/login";
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("expires_at");
+        localStorage.removeItem("uid");
+        toast.error(
+          "Your session has expired: Please log in again to continue"
+        );
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 2000);
       } else {
         config.headers.Authorization = jwt;
         config.headers["uid"] = uid;
       }
     } else {
-      ["jwt", "expires_at", "uid"].forEach(localStorage.removeItem);
-      window.location.href = "/login";
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("expires_at");
+      localStorage.removeItem("uid");
+      toast.error("Your session has expired: Please log in again to continue");
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 2000);
     }
     return config;
   }
@@ -88,6 +102,13 @@ export async function login(payload: LoginBody) {
 export async function getUserAuthContext() {
   const result = await axiosInstance.get<AuthContextResponse>(
     ENDPOINTS.authContext
+  );
+  return result.data;
+}
+
+export async function createCheckoutSession() {
+  const result = await axiosInstance.post<{ checkoutSession: string }>(
+    ENDPOINTS.paymentSession
   );
   return result.data;
 }
