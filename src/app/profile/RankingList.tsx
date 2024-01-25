@@ -377,7 +377,7 @@ export const RankingList = () => {
         <Button
           className="w-full"
           content="Ranking"
-          loading={isLoading}
+          isLoading={isLoading}
           onClick={() => {
             setShowModal(true);
           }}
@@ -390,7 +390,7 @@ export const RankingList = () => {
         <Button
           className="w-full"
           content="Download Data"
-          loading={downloadProfileLoading}
+          isLoading={downloadProfileLoading}
           onClick={() => downloadUserData()}
         />
       </div>

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 
-import { Input, CountrySelect, LoadingButton } from "@/components";
+import { Input, CountrySelect, LoadingCircle } from "@/components";
 import { FormsLayout, NavbarLayout } from "@/layouts";
 
 import { HOW_DID_YOU_HEAR_ABOUT_US } from "./constants";
@@ -274,7 +274,7 @@ export default function Register() {
                 type="submit"
                 disabled={signUpMutation.isPending}
               >
-                {signUpMutation.isPending && <LoadingButton />}
+                {signUpMutation.isPending && <LoadingCircle />}
                 Sign up
               </button>
             </div>

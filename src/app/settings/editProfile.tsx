@@ -313,7 +313,7 @@ const EditProfile = (props: Props) => {
             type="button"
             path="#"
             content="Save changes"
-            loading={loading}
+            isLoading={loading}
             onClick={SAVE}
           />
 

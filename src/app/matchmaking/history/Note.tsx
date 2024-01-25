@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import UserLink from "./UserLink";
-import { ClickButton } from "@/components/Button";
+import { ClickButton } from "@/components";
 
 const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -35,7 +35,7 @@ const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
           click={() => setMatchToEdit(null)}
           content="Cancel"
         />
-        <ClickButton loading={updating} type="submit" content="Save" />
+        <ClickButton isLoading={updating} type="submit" content="Save" />
       </div>
     </form>
   );

@@ -9,7 +9,7 @@ import Select from "react-select";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 
 import "./style.css";
-import { ClickButton } from "@/components/Button";
+import { ClickButton } from "@/components";
 
 const MatchMakingPage = () => {
   return (
