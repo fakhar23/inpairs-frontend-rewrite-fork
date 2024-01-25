@@ -1,32 +1,32 @@
 import { twMerge } from "tailwind-merge";
 import { LoadingCircle } from ".";
 
-interface IClickButtonProps {
+interface IButtonProps {
   content: string;
-  classes?: string;
+  className?: string;
   type?: "button" | "submit" | "reset";
-  click?: () => void;
+  onClick?: (e?: any) => void;
   isDisabled?: boolean;
   isLoading?: boolean;
 }
 
-export function ClickButton({
-  classes,
+export default function Button({
+  className,
   type,
-  click,
+  onClick,
   isDisabled,
   isLoading,
   content,
-}: IClickButtonProps) {
+}: IButtonProps) {
   return (
-    <div className={classes}>
+    <div>
       <button
         type={type}
         className={twMerge(
           "bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300",
-          classes
+          className
         )}
-        onClick={click}
+        onClick={onClick}
         disabled={isDisabled || isLoading || false}
       >
         {isLoading && <LoadingCircle />}

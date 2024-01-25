@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { useClickOutside } from "@mantine/hooks";
 import { useSpring, animated } from "react-spring";
 
-import { Button } from "@/components";
+import { LinkButton } from "@/components";
 
 import logo from "../assets/pears-inline.png";
 import { CloseIcon } from "../Icons";
@@ -163,9 +163,13 @@ export function PublicNavbar({
       </ul>
 
       {canViewTheirProfile ? (
-        <Button content="My profile" path="/profile/me" className="md:hidden" />
+        <LinkButton
+          content="My profile"
+          path="/profile/me"
+          className="md:hidden"
+        />
       ) : (
-        <Button
+        <LinkButton
           content="Start your journey"
           path="/login"
           className="md:hidden"

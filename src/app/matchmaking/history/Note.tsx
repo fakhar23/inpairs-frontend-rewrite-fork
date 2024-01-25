@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import UserLink from "./UserLink";
-import { ClickButton } from "@/components";
+import { Button } from "@/components";
 
 const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -30,12 +30,12 @@ const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
         className=" p-2 resize w-[50vw] md:w-full mt-5 border-[0.3px] border-red-500 focus:outline-none rounded-xl "
       />
       <div className="flex justify-end items-center gap-3 mt-3">
-        <ClickButton
+        <Button
           type="button"
-          click={() => setMatchToEdit(null)}
+          onClick={() => setMatchToEdit(null)}
           content="Cancel"
         />
-        <ClickButton isLoading={updating} type="submit" content="Save" />
+        <Button isLoading={updating} type="submit" content="Save" />
       </div>
     </form>
   );

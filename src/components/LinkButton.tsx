@@ -4,9 +4,9 @@ import { LoadingCircle } from ".";
 import loadingBtnSvg from "@/assets/loading-btn.svg";
 
 /**
- * ! Both LinkButton and ClickButton components have the same classes(same styles) and similar props.
+ * ! Both LinkButton and Button components have the same classes(same styles) and similar props.
  * *: The main difference is that LinkButton has a 'path' Prop and is wrapped in a 'Link' component for client-side navigation.
- * * ClickButton, on the other hand, does not have a 'path' Prop and is not wrapped in a 'Link' component.
+ * * Button, on the other hand, does not have a 'path' Prop and is not wrapped in a 'Link' component.
  */
 
 interface ILinkButtonProps {
