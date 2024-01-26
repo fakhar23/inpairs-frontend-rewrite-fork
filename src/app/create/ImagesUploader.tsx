@@ -1,100 +1,47 @@
 "use client";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
-
 import { toast } from "react-toastify";
+import { Button, Loading } from "@/components";
+import { CldUploadWidget, CldUploadWidgetInfo } from "next-cloudinary";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import { twMerge } from "tailwind-merge";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ENDPOINTS, uploadImages } from "@/api";
 
-import { Button } from "@/components";
+function ImagesUploader({ onClose }: { onClose: () => void }) {
+  const [images, setImages] = useState<string[]>([]);
+  const user = useAuthContext();
+  const queryClient = useQueryClient();
 
-// import { transformFileToBlobUrl } from "@/components/utils";
+  const uploadImagesMutation = useMutation({
+    mutationFn: async (images: string[]) => {
+      return await uploadImages({ images });
+    },
+    onSuccess(data) {
+      toast.success(data.message);
+    },
+  });
 
-function ImagesUploader() {
-  // TODO: Backend
-  const userImages: string[] = [];
+  useEffect(() => {
+    if (!user.isLoading && user.data?.images) {
+      setImages(user.data.images);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.isLoading]);
 
-  const [images, setImages] = useState<string[]>(userImages);
-
-  // const { mutateAsync: uploadImage, isLoading: uploading } = useUploadImage();
   // const [loading, setLoading] = useState<boolean>(false);
-
-  // const save = useCallback(async () => {
-  //   setLoading(() => true);
-  //   try {
-  //     if (images.length > 0) {
-  //       const UploadedImages = [];
-  //       for (let i = 0; i < images.length; i++) {
-  //         const v = images[i];
-  //         if (v.type === "file") {
-  //           const res = await uploadImage(v.item);
-  //           UploadedImages.push(res.data.data.image);
-  //         }
-  //         if (v.type === "link") {
-  //           UploadedImages.push(v.item);
-  //         }
-  //       }
-  //       await ApiHelper.saveImages(UploadedImages);
-  //       dispatch({
-  //         type: "UPDATE_USER_IMAGES_PICTURE",
-  //         payload: { images: UploadedImages },
-  //       });
-  //       toast.success("Image uploaded successfully");
-  //       setShowModal(false);
-  //     }
-  //   } catch (error) {
-  //     Sentry.captureException(error);
-  //     setImages(userImages);
-  //     toast.error("Something went wrong while uploading images");
-  //   } finally {
-  //     setLoading(() => false);
-  //   }
-  //   return new Promise(() => true)
-  // }, [setLoading, images, userImages, dispatch, setShowModal, uploadImage]);
-
-  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    // try {
-    //   // setLoading(true);
-    //   if (event.target.files) {
-    //     const sizes = Array.from(event.target.files).map(
-    //       (file) => file.size / 1024 / 1024
-    //     );
-    //     if (sizes.some((size) => size > 3)) {
-    //       toast.error("File size must be less than 3 MB");
-    //       return;
-    //     }
-    //     const filesUploaded = Array.from(event.target.files);
-    //     const limit = 3 - images.length;
-    //     if (limit > 0 && limit < 4) {
-    //       const newData = await Promise.all(
-    //         [...filesUploaded].slice(0, limit).map(async (v) => ({
-    //           type: "file",
-    //           item: v,
-    //           url: await transformFileToBlobUrl(v),
-    //         }))
-    //       );
-    //       const newImages = images.concat(newData.map((data) => data.url));
-    //       setImages(newImages);
-    //     }
-    //   }
-    // } catch (error) {
-    //   // setLoading(false);
-    // } finally {
-    //   // setLoading(false);
-    // }
-  };
-
   // const isProcessing = uploading || loading;
 
   return (
     <div className="w-[90vw] h-[80vh] bg-white shadow-sm rounded-sm  flex flex-col justify-center items-center">
-      {/* {isProcessing && (
+      {user.isLoading && (
         <div className="absolute z-20 top-0 bottom-0 right-0 left-0 flex items-center justify-center bg-black/10">
           <Loading />
         </div>
-      )} */}
+      )}
       <div className="relative p-1 flex items-center justify-center w-[70%] md:w-[90%] border-2	 border-dashed border-red-500">
         <label
-          htmlFor="dropzone-file"
           className={`group flex flex-col items-center ${
             images.length ? "justify-end py-5" : "justify-center"
           } ${
@@ -102,57 +49,75 @@ function ImagesUploader() {
           } w-full h-72  rounded-lg  bg-neutral-50 dark:hover:bg-bray-800  hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500`}
         >
           <div>
-            {!images.length && (
-              <svg
-                className="w-8 h-8 mb-4 mx-auto group-hover:text-red-500 dark:text-neutral-400 "
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 16"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                />
-              </svg>
-            )}
-
             {images.length < 3 ? (
-              <>
-                {images.length < 3 ? (
-                  <div className="flex flex-col items-center text-neutral-500 group-hover:text-purple-900 dark:text-neutral-400">
-                    <p className="mb-2 text-sm ">
-                      <span className="font-semibold">
-                        Click to upload images
-                      </span>
-                    </p>
-                    <p className="mb-2 text-xs ">HEIC, PNG or JPG</p>
-                    <p className="text-xs font-bold ">3 Pictures Max</p>
-                    <input
-                      id="dropzone-file"
-                      type="file"
-                      multiple
-                      className="hidden"
-                      onChange={handleChange}
-                      accept="image/png, image/jpeg, image/jpg, image/heic"
-                    />
-                  </div>
-                ) : null}
-              </>
+              <CldUploadWidget
+                uploadPreset={
+                  process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME as string
+                }
+                options={{
+                  clientAllowedFormats: ["jpg", "jpeg", "png", "heif", "heic"],
+                  multiple: true,
+                  sources: ["local", "camera"],
+                  showPoweredBy: false,
+                }}
+                onSuccess={(results) => {
+                  if (
+                    results.info &&
+                    "secure_url" in (results.info as CldUploadWidgetInfo)
+                  ) {
+                    const { secure_url } = results.info as CldUploadWidgetInfo;
+                    setImages((prev) => [...prev, secure_url]);
+                  }
+                }}
+              >
+                {({ open }) => {
+                  return (
+                    <div onClick={() => open()}>
+                      {!images.length && (
+                        <svg
+                          className="w-8 h-8 mb-4 mx-auto group-hover:text-red-500 dark:text-neutral-400 "
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 16"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                          />
+                        </svg>
+                      )}
+                      <div className="flex flex-col items-center text-neutral-500 group-hover:text-purple-900 dark:text-neutral-400">
+                        <p className="mb-2 text-sm ">
+                          <span className="font-semibold">
+                            Click to upload images
+                          </span>
+                        </p>
+                        <p className="mb-2 text-xs ">HEIC, PNG or JPG</p>
+                        <p className="text-xs font-bold ">3 Pictures Max</p>
+                      </div>
+                    </div>
+                  );
+                }}
+              </CldUploadWidget>
             ) : null}
           </div>
         </label>
         {!!images.length && (
-          <div className="absolute top-0 flex items-center justify-center w-auto mx-auto">
+          <div
+            className={twMerge(
+              "absolute top-0 flex items-center justify-center w-auto mx-auto",
+              images.length >= 3 ? "h-full" : ""
+            )}
+          >
             <div className="flex flex-row items-center justify-center pt-5 pb-6 gap-6">
-              {images.map((imageURL) => (
-                <div className="relative " key={imageURL}>
+              {images.map((currentImage) => (
+                <div className="relative " key={currentImage}>
                   <button
                     type="button"
-                    dangerouslySetInnerHTML={{ __html: "&times;" }}
                     className="absolute z-10 -top-[11px] left-0 flex flex-col items-center justify-center bg-white hover:bg-red-500 text-red-500 hover:text-white"
                     style={{
                       fontSize: "1.25rem",
@@ -161,14 +126,17 @@ function ImagesUploader() {
                       height: "25px",
                       cursor: "pointer",
                     }}
-                    onClick={async () => {
-                      // await removeImages([file])
-                      setImages((prev) => prev.filter((_) => _ !== imageURL));
-                    }}
-                  />
+                    onClick={() =>
+                      setImages((prev) =>
+                        prev.filter((image) => image !== currentImage)
+                      )
+                    }
+                  >
+                    &times;
+                  </button>
                   <Image
                     className="w-[10rem] h-[10rem] object-cover"
-                    src={imageURL}
+                    src={currentImage}
                     alt={"image"}
                     width={160}
                     height={160}
@@ -179,14 +147,21 @@ function ImagesUploader() {
           </div>
         )}
       </div>
-      {images.length > 0 ? (
+      {
         <Button
-          // isLoading={isProcessing}
-          // click={save}
-          content="Save"
+          content="Save Images"
           className="mt-3"
+          onClick={async () => {
+            await uploadImagesMutation.mutateAsync(images);
+            await user.refetch();
+            onClose();
+          }}
+          isLoading={uploadImagesMutation.isPending}
+          isDisabled={
+            !images.length || user.isFetching || uploadImagesMutation.isPending
+          }
         />
-      ) : null}
+      }
     </div>
   );
 }

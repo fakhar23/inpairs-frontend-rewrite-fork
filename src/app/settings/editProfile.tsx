@@ -70,7 +70,7 @@ function RenderQuestion({
         <Input
           variation="secondary"
           label={question.title}
-          errors={errors[question.question_key]}
+          // errors={errors[question.question_key]}
           id={question.question_key}
           placeholder={question.title}
           type={type}

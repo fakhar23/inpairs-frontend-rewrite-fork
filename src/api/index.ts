@@ -15,6 +15,7 @@ export const ENDPOINTS = {
   tokenVerification: "/auth/verify-token",
   authContext: "/auth/user-auth-context",
   paymentSession: "/payment/checkout-session",
+  uploadImages: "/images",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -109,6 +110,14 @@ export async function getUserAuthContext() {
 export async function createCheckoutSession() {
   const result = await axiosInstance.post<{ checkoutSession: string }>(
     ENDPOINTS.paymentSession
+  );
+  return result.data;
+}
+
+export async function uploadImages(payload: { images: string[] }) {
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.uploadImages,
+    payload
   );
   return result.data;
 }

@@ -11,18 +11,54 @@ import ReferralInstructions from "./ReferralInstructions";
 import Stepper, { IStep } from "./Stepper";
 import { useAuthContext } from "@/hooks/useAuthContext";
 
+function useProfileStepper(activeStep: number) {
+  const user = useAuthContext();
+  switch (activeStep) {
+    case 1: {
+      return {
+        isNextStepDisabled: false,
+      };
+    }
+    case 2: {
+      return {
+        isNextStepDisabled: !user.data?.isPayingUser,
+      };
+    }
+    case 3: {
+      return {
+        isNextStepDisabled: false,
+      };
+    }
+    case 4: {
+      return {
+        isNextStepDisabled: !user.data?.completedTheirProfile,
+      };
+    }
+    case 5: {
+      return {
+        isNextStepDisabled: true,
+      };
+    }
+  }
+  return {
+    isNextStepDisabled: false,
+  };
+}
+
 export default function Create() {
   const user = useAuthContext();
   const [activeStep, setActiveStep] = useState<number>(1);
-
+  const { isNextStepDisabled } = useProfileStepper(activeStep);
   const formerPayingUser =
     !user.data?.isPayingUser && user.data?.completedTheirProfile;
 
   const steps: Array<IStep> = [
+    // 1
     {
       label: "Greeting",
       content: <Greeting />,
     },
+    // 2
     {
       label: "Next Steps",
       content: (
@@ -37,22 +73,22 @@ export default function Create() {
         </>
       ),
     },
+    // 3
     {
       label: "Referral Instruction",
       content: <ReferralInstructions />,
     },
+    // 4
     {
       label: "Personal Details",
       content: <PersonalDetails />,
     },
+    // 5
     {
       label: "Complete",
       content: <Complete />,
     },
   ];
-
-  // TODO: Backend
-  const isDisabled = activeStep === steps.length;
 
   return (
     <div className="flex flex-col	h-[100vh]">
@@ -79,7 +115,7 @@ export default function Create() {
               onClick={() => {
                 if (activeStep < steps.length) setActiveStep((step) => ++step);
               }}
-              disabled={isDisabled}
+              disabled={isNextStepDisabled}
             >
               Next
             </button>
