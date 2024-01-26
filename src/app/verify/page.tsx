@@ -5,14 +5,20 @@ import GreenCheck from "@/assets/GreenCheck.png";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { EmailVerificationBody } from "@/api/types";
 import { requestNewEmailVerification } from "@/api";
 import { TextSkeleton } from "@/components/TextSkeleton";
 import { twMerge } from "tailwind-merge";
 
 export default function Verify() {
-  const email = useSearchParams().get("email");
+  const emailSearchParam = useQuery({
+    queryKey: ["getEmailSearchParam"],
+    queryFn: () => {
+      return Object.fromEntries(new URLSearchParams(document.location.search))
+        .email;
+    },
+  });
   const emailVerificationMutation = useMutation({
     mutationFn: async (data: EmailVerificationBody) => {
       return await requestNewEmailVerification(data);
@@ -26,12 +32,12 @@ export default function Verify() {
     <NavbarLayout>
       <MessageLayout>
         <div className="w-full flex justify-center flex-col items-center text-center">
-          {email ? (
+          {emailSearchParam.data ? (
             <>
               <div className="mb-4">
                 <h1>
                   Verification email has been sent to{" "}
-                  <span className="bold">{email}</span>. <br />
+                  <span className="bold">{emailSearchParam.data}</span>. <br />
                   Please check your email.
                 </h1>
               </div>
@@ -45,7 +51,11 @@ export default function Verify() {
                     "text-blue-500 hover:underline",
                     emailVerificationMutation.isPending ? "" : "cursor-pointer"
                   )}
-                  onClick={() => emailVerificationMutation.mutate({ email })}
+                  onClick={() =>
+                    emailVerificationMutation.mutate({
+                      email: emailSearchParam.data,
+                    })
+                  }
                   disabled={emailVerificationMutation.isPending}
                 >
                   <TextSkeleton
