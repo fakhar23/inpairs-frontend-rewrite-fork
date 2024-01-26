@@ -132,8 +132,8 @@ export function ContactForm() {
             type="button"
             className="mt-4"
             onClick={handleSubmit(onSubmit)}
-            disable={isSubmitting}
-            loading={isSubmitting}
+            isDisabled={isSubmitting}
+            isLoading={isSubmitting}
             content="Send Message"
           />
         </div>

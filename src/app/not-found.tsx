@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components";
+import { LinkButton } from "@/components";
 
 export default function NotFound() {
   return (
@@ -9,7 +9,7 @@ export default function NotFound() {
           <p className={`text-large font-funky md:text-[30px]`}>
             Page is not found 404
           </p>
-          <Button content={"Home"} path="/" />{" "}
+          <LinkButton content={"Home"} path="/" />{" "}
         </div>
       </div>
     </div>

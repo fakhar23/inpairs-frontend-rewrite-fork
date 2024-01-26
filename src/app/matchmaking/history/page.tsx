@@ -133,7 +133,7 @@ const MatchmakingHistory = () => {
 
   return (
     <UserProfileLayout>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <CalculationTable />
         <div className="flex justify-between items-center">
           <h1 className="my-10 text-2xl font-medium text-purple-900">

@@ -1,5 +1,5 @@
 "use client";
-export function LoadingButton() {
+export function LoadingCircle() {
   return (
     <svg
       aria-hidden="true"

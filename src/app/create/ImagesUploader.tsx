@@ -156,8 +156,8 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
             await user.refetch();
             onClose();
           }}
-          loading={uploadImagesMutation.isPending}
-          disable={
+          isLoading={uploadImagesMutation.isPending}
+          isDisabled={
             !images.length || user.isFetching || uploadImagesMutation.isPending
           }
         />

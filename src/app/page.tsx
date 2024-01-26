@@ -17,7 +17,7 @@ import medal from "@/assets/medal.svg";
 import pears from "@/assets/pears.svg";
 import thumpsUp from "@/assets/thumbsUp.svg";
 import web from "@/assets/web.png";
-import { Button } from "@/components";
+import { LinkButton } from "@/components";
 import { Footer } from "@/components/Footer";
 import { PublicNavbar } from "@/components/PublicNav";
 
@@ -151,7 +151,7 @@ export default function Home() {
               makes you, you.
             </p>
             <div className="">
-              <Button content="Get Started" path="/login" />
+              <LinkButton content="Get Started" path="/login" />
             </div>
           </div>
           <div className="w-[35%] md:w-[70%]">

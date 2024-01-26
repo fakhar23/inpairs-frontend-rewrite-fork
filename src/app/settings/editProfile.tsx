@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import { Button, Loading, Modal } from "@/components";
+import { LinkButton, Loading, Modal } from "@/components";
 import { Input, Select, RegularImages as Images } from "@/components";
 import { formStructure } from "./formStructure";
 import BlockingPhoneNoModal from "../../components/BlockingPhoneNoModal";
@@ -309,11 +309,11 @@ const EditProfile = (props: Props) => {
         </div>
 
         <div className="flex justify-center gap-4 my-8">
-          <Button
+          <LinkButton
             type="button"
             path="#"
             content="Save changes"
-            loading={loading}
+            isLoading={loading}
             onClick={SAVE}
           />
 
