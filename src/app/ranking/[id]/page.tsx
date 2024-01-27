@@ -402,7 +402,7 @@ const Profile = ({ data }: any) => {
                 className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
               />
             </div>
-            <div className="w-[50%] m-auto">
+            <div className="ml-auto">
               <UserOptions />
             </div>
           </div>
