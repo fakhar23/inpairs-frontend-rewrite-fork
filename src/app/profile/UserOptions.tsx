@@ -24,7 +24,7 @@ export const UserOptions = () => {
         <ProfileQuestions />
       </Modal>
 
-      <div className="overflow-x-auto w-100 flex flex-col gap-4 items-center relative">
+      <div className="flex gap-4 items-center">
         <Button
           className="w-full"
           content="Questions"
