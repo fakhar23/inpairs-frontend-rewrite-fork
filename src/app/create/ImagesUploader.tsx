@@ -7,12 +7,11 @@ import { CldUploadWidget, CldUploadWidgetInfo } from "next-cloudinary";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { twMerge } from "tailwind-merge";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ENDPOINTS, uploadImages } from "@/api";
+import { uploadImages } from "@/api";
 
 function ImagesUploader({ onClose }: { onClose: () => void }) {
   const [images, setImages] = useState<string[]>([]);
   const user = useAuthContext();
-  const queryClient = useQueryClient();
 
   const uploadImagesMutation = useMutation({
     mutationFn: async (images: string[]) => {
@@ -29,9 +28,6 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.isLoading]);
-
-  // const [loading, setLoading] = useState<boolean>(false);
-  // const isProcessing = uploading || loading;
 
   return (
     <div className="w-[90vw] h-[80vh] bg-white shadow-sm rounded-sm  flex flex-col justify-center items-center">
@@ -66,7 +62,7 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
                     "secure_url" in (results.info as CldUploadWidgetInfo)
                   ) {
                     const { secure_url } = results.info as CldUploadWidgetInfo;
-                    setImages((prev) => [...prev, secure_url]);
+                    setImages((prev) => [...prev, secure_url].slice(0, 3));
                   }
                 }}
               >
