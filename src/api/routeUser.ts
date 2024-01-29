@@ -7,15 +7,6 @@ export function handleSuccessfulLoginRoute(userContext: LoginResponse) {
   if (userContext.shouldBeOnlyWaitlisted) {
     return { shouldRedirect: true, newRoute: "/coming-soon" } as const;
   }
-  if (
-    !userContext.completedTheirProfile &&
-    !userContext.shouldBeOnlyWaitlisted
-  ) {
-    return { shouldRedirect: true, newRoute: "/create" } as const;
-  }
-  if (userContext.isDisabled) {
-    return { shouldRedirect: true, newRoute: "/create?step=payment" } as const;
-  }
   if (userContext.isPayingUser && !userContext.completedTheirProfile) {
     return {
       shouldRedirect: true,
@@ -25,5 +16,15 @@ export function handleSuccessfulLoginRoute(userContext: LoginResponse) {
   if (userContext.isPayingUser && userContext.completedTheirProfile) {
     return { shouldRedirect: true, newRoute: "/profile/me" } as const;
   }
+  if (
+    !userContext.completedTheirProfile &&
+    !userContext.shouldBeOnlyWaitlisted
+  ) {
+    return { shouldRedirect: true, newRoute: "/create" } as const;
+  }
+  if (userContext.isDisabled) {
+    return { shouldRedirect: true, newRoute: "/create?step=payment" } as const;
+  }
+
   return { shouldRedirect: false } as const;
 }
