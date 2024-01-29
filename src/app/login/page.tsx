@@ -2,7 +2,7 @@
 import React from "react";
 
 import { Poppins } from "next/font/google";
-import Link from "next/link";
+import { Link } from "@/components";
 
 import { useForm } from "react-hook-form";
 
@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "@/api";
 import { handleSuccessfulLoginRoute } from "@/api/routeUser";
 import { useRouter } from "next/navigation";
+import { isAxiosError } from "axios";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -68,7 +69,11 @@ function LoginForm() {
             })}
           />
           {loginMutation.isError && (
-            <p className="text-red">Invalid login credentials</p>
+            <p className="text-red">
+              {isAxiosError(loginMutation.error)
+                ? loginMutation.error.response?.data.message
+                : loginMutation.error.message}
+            </p>
           )}
         </div>
       </div>
