@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { Link } from "@/components";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { useClickOutside } from "@mantine/hooks";
 import { animated, useTransition } from "react-spring";
@@ -17,6 +17,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
 });
+
 const NavigationPaths = {
   matchmaking: "/matchmaking",
   profileMe: "/profile/me",
@@ -29,6 +30,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
   const [openNav, setOpenNav] = useState<boolean>(false);
   const pathName = usePathname();
   const profileMenuRef = useClickOutside(() => setOpenNav(false)); //if any click in done outside this ref, then setOpenNav will become false
+  const router = useRouter();
 
   const user = {
     role: "MATCHMAKER",
@@ -36,7 +38,13 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
     lastName: "Fakhar",
   };
 
-  async function handleLogout() {}
+  function handleLogout() {
+    // clear local storage
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("expires_at");
+    localStorage.removeItem("uid");
+    router.push("/login");
+  }
 
   const isAdministrationRole =
     user && ["ADMIN", "MATCHMAKER"].includes(user?.role);
