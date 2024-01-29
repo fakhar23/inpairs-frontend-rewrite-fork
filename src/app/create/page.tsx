@@ -10,6 +10,7 @@ import PersonalDetails from "./PersonalDetails";
 import ReferralInstructions from "./ReferralInstructions";
 import Stepper, { IStep } from "./Stepper";
 import { useAuthContext } from "@/hooks/useAuthContext";
+import { useQuery } from "@tanstack/react-query";
 
 function useProfileStepper(activeStep: number) {
   const user = useAuthContext();
@@ -47,7 +48,25 @@ function useProfileStepper(activeStep: number) {
 
 export default function Create() {
   const user = useAuthContext();
+  const step = useQuery({
+    queryKey: ["get-active-step"],
+    queryFn: async () => {
+      const queryParams = Object.fromEntries(
+        new URLSearchParams(document.location.search)
+      );
+
+      if ("step" in queryParams && queryParams.step === "payment") {
+        return 2;
+      }
+
+      return null;
+    },
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    refetchOnMount: false,
+  });
   const [activeStep, setActiveStep] = useState<number>(1);
+
   const { isNextStepDisabled } = useProfileStepper(activeStep);
   const formerPayingUser =
     !user.data?.isPayingUser && user.data?.completedTheirProfile;
@@ -96,7 +115,7 @@ export default function Create() {
 
       <div className="w-[100%] grow mb-5 md:h-screen flex justify-center items-center relative">
         <div className="space-y-[1rem]  sm:h-[100%] min-h-[645px] flex flex-col justify-between md:flex md:flex-col  md:mt-[1rem] md:h-[90vh] md:justify-between w-[72rem] md:w-[40rem] px-[3rem] py-[1rem] md:m-0 bg-white shadow-lg relative md:p-[1rem]">
-          <Stepper activeStep={activeStep} steps={steps} />
+          <Stepper activeStep={step.data || activeStep} steps={steps} />
 
           <section className="flex w-[100%]">
             <button
