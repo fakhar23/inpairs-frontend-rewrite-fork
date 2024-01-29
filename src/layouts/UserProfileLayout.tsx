@@ -11,6 +11,7 @@ import { animated, useTransition } from "react-spring";
 import pearsInline from "@/assets/pears-white.svg";
 import profileImg from "@/assets/prof-pic.png";
 import bgArt from "@/assets/usernavArt.svg";
+import { twMerge } from "tailwind-merge";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -75,55 +76,53 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                 {isAdministrationRole ? (
                   <Link
                     href="/matchmaking"
-                    className={
-                      "py-2 " +
-                      (pathName === NavigationPaths.matchmaking
-                        ? "border-b"
-                        : "")
-                    }
+                    className={twMerge(
+                      "py-2 ",
+                      pathName === NavigationPaths.matchmaking ? "border-b" : ""
+                    )}
                   >
                     <li>Matchmaking</li>
                   </Link>
                 ) : null}
                 <Link
                   href="/profile/me"
-                  className={
-                    "py-2 " +
-                    (pathName === NavigationPaths.profileMe ? "border-b" : "")
-                  }
+                  className={twMerge(
+                    "py-2 ",
+                    pathName === NavigationPaths.profileMe ? "border-b" : ""
+                  )}
                 >
                   <li>My profile</li>
                 </Link>
                 <Link
                   href={"/my-match"}
-                  className={
-                    "py-2 " +
-                    (pathName === NavigationPaths.profileMeMatch
+                  className={twMerge(
+                    "py-2 ",
+                    pathName === NavigationPaths.profileMeMatch
                       ? "border-b"
-                      : "")
-                  }
+                      : ""
+                  )}
                 >
                   <li>My match</li>
                 </Link>
                 {isAdminOnly ? (
                   <Link
                     href="/users"
-                    className={
-                      "py-2 " +
-                      (pathName === NavigationPaths.users ? "border-b" : "")
-                    }
+                    className={twMerge(
+                      "py-2 ",
+                      pathName === NavigationPaths.users ? "border-b" : ""
+                    )}
                   >
                     <li>Users</li>
                   </Link>
                 ) : null}
                 <Link
                   href={"/profile/me/contact"}
-                  className={
-                    "py-2 " +
-                    (pathName === NavigationPaths.profileMeMatch
+                  className={twMerge(
+                    "py-2 ",
+                    pathName === NavigationPaths.profileMeContact
                       ? "border-b"
-                      : "")
-                  }
+                      : ""
+                  )}
                 >
                   <li>Contact</li>
                 </Link>
