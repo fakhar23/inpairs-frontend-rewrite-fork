@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/components";
 
 import background from "@/assets/flowers.png";
 import circlesBG from "@/assets/Group-5.svg";

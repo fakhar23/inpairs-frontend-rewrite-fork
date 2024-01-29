@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import Link from "next/link";
+import { Link } from "@/components";
 
 import ReactPaginate from "react-paginate";
 import Select from "react-select";

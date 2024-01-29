@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components";
 
 const UserLink = ({ user }: any) => {
   const href = `/profile/${user?.sharable_id}`;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components";
 
 import { LinkButton, Loading, Modal } from "@/components";
 import { Input, Select, RegularImages as Images } from "@/components";

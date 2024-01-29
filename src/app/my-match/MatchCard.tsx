@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components";
 import { ClipLoader } from "react-spinners";
 import { BsFillTelephoneInboundFill, BsInstagram } from "react-icons/bs";
 import { CloudinaryImage, Modal, Pooling } from "@/components";

@@ -2,7 +2,7 @@
 import { verifyToken } from "@/api";
 import { NavbarLayout, MessageLayout } from "@/layouts";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
+import { Link } from "@/components";
 import Image from "next/image";
 import GreenCheck from "@/assets/GreenCheck.png";
 import { SplashScreen } from "@/components";

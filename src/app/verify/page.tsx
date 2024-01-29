@@ -4,7 +4,7 @@ import Image from "next/image";
 import GreenCheck from "@/assets/GreenCheck.png";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import Link from "next/link";
+import { Link } from "@/components";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { EmailVerificationBody } from "@/api/types";
 import { requestNewEmailVerification } from "@/api";

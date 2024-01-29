@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/components";
 import { usePathname } from "next/navigation";
 
 const SettingsLayout = ({ children }: { children: ReactNode }) => {

@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@/components";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components";
 import { twMerge } from "tailwind-merge";
 import { LoadingCircle } from ".";
 import loadingBtnSvg from "@/assets/loading-btn.svg";

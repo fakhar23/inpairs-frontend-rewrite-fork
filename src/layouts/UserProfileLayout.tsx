@@ -1,9 +1,8 @@
 "use client";
 import { ReactNode, useState } from "react";
-
 import { Poppins } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/components";
 import { usePathname } from "next/navigation";
 
 import { useClickOutside } from "@mantine/hooks";

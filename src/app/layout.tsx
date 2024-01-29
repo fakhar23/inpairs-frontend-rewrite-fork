@@ -8,6 +8,7 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-phone-number-input/style.css";
 import { Providers } from "./providers";
+import { Next13NProgress } from "nextjs13-progress";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +45,7 @@ export default function RootLayout({
             closeButton={false}
           />
         </Providers>
+        <Next13NProgress />
       </body>
     </html>
   );

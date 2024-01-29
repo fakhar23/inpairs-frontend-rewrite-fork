@@ -1,7 +1,7 @@
 "use client";
 
 import { Poppins } from "next/font/google";
-import Link from "next/link";
+import { Link } from "@/components";
 import { useRouter } from "next/navigation";
 
 import { useForm, Controller } from "react-hook-form";
