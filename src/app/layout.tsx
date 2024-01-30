@@ -7,8 +7,9 @@ import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-phone-number-input/style.css";
-import { Providers } from "./providers";
+import { QueryController } from "../contexts/QueryController";
 import { Next13NProgress } from "nextjs13-progress";
+import { AuthController } from "@/contexts/AuthController";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,14 +38,16 @@ export default function RootLayout({
          `}
       </Script>
       <body className={inter.className}>
-        <Providers>
-          {children}
-          <ToastContainer
-            className="md:text-xsmall"
-            hideProgressBar={true}
-            closeButton={false}
-          />
-        </Providers>
+        <QueryController>
+          <AuthController>
+            {children}
+            <ToastContainer
+              className="md:text-xsmall"
+              hideProgressBar={true}
+              closeButton={false}
+            />
+          </AuthController>
+        </QueryController>
         <Next13NProgress />
       </body>
     </html>

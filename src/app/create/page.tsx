@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { PublicNavbar } from "@/components";
 
@@ -11,9 +11,11 @@ import ReferralInstructions from "./ReferralInstructions";
 import Stepper, { IStep } from "./Stepper";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "@/contexts/authContext";
 
 function useProfileStepper(activeStep: number) {
-  const user = useAuthContext();
+  const user = useContext(AuthContext);
+
   switch (activeStep) {
     case 1: {
       return {
