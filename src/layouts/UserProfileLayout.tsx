@@ -23,7 +23,7 @@ const NavigationPaths = {
   profileMe: "/profile/me",
   profileMeMatch: "/my-match",
   users: "/users",
-  profileMeContact: "/profile/me/contact",
+  profileMeContact: "/profile/contact",
 } as const;
 
 function UserProfileLayout({ children }: { children: ReactNode }) {
@@ -124,7 +124,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                   </Link>
                 ) : null}
                 <Link
-                  href={"/profile/me/contact"}
+                  href={"/profile/contact"}
                   className={twMerge(
                     "py-2 ",
                     pathName === NavigationPaths.profileMeContact
@@ -189,7 +189,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                       </Link>
                       <Link
                         onClick={() => setOpenNav(false)}
-                        href={"/profile/me/contact"}
+                        href={"/profile/contact"}
                       >
                         <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm  hover:bg-orange hover:bg-opacity-50">
                           Contact
