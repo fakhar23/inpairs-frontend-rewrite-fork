@@ -19,6 +19,7 @@ export const ENDPOINTS = {
   uploadImages: "/images",
   resetPassword: "/auth/reset-password",
   setPassword: "/auth/set-password",
+  profileData: "/profile",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -146,6 +147,13 @@ export async function setPassword(payload: SetPassword) {
     {
       headers: { Authorization: payload.token },
     }
+  );
+  return result.data;
+}
+
+export async function getProfileData(userId: string) {
+  const result = await axiosInstance.get<{ message: string }>(
+    ENDPOINTS.profileData + "/" + userId
   );
   return result.data;
 }
