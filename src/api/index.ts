@@ -4,6 +4,7 @@ import {
   EmailVerificationBody,
   LoginBody,
   LoginResponse,
+  SetPassword,
   SignUpBody,
 } from "./types";
 import { toast } from "react-toastify";
@@ -16,6 +17,8 @@ export const ENDPOINTS = {
   authContext: "/auth/user-auth-context",
   paymentSession: "/payment/checkout-session",
   uploadImages: "/images",
+  resetPassword: "/auth/reset-password",
+  setPassword: "/auth/set-password",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -23,6 +26,8 @@ const PUBLIC_ENDPOINTS = [
   ENDPOINTS.signup,
   ENDPOINTS.emailVerification,
   ENDPOINTS.tokenVerification,
+  ENDPOINTS.resetPassword,
+  ENDPOINTS.setPassword,
 ];
 
 const axiosInstance = axios.create({
@@ -118,6 +123,25 @@ export async function uploadImages(payload: { images: string[] }) {
   const result = await axiosInstance.post<{ message: string }>(
     ENDPOINTS.uploadImages,
     payload
+  );
+  return result.data;
+}
+
+export async function resetPassword(payload: { email: string }) {
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.resetPassword,
+    payload
+  );
+  return result.data;
+}
+
+export async function setPassword(payload: SetPassword) {
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.setPassword,
+    { password: payload.password },
+    {
+      headers: { Authorization: payload.token },
+    }
   );
   return result.data;
 }

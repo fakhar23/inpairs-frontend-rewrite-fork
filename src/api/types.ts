@@ -53,3 +53,10 @@ export type AuthContextResponse = Omit<LoginResponse, "token">;
 export interface EmailVerificationBody {
   email: string;
 }
+
+export interface SetPassword {
+  token: string;
+  password: string;
+}
+
+export type ResetPassword = EmailVerificationBody;
