@@ -64,7 +64,7 @@ const SetNewPassword = () => {
                 password: payload.password,
               });
           })}
-          className="flex flex-col items-start p-[2rem] gap-[1rem] md:[&>*]:w-full md:p-[1rem]"
+          className="flex flex-col items-start gap-[1rem] md:[&>*]:w-full md:p-[1rem]"
         >
           <p className="font-bold mb-4">Enter your new password</p>
           <div className="w-full mb-2 relative">
@@ -107,7 +107,7 @@ const SetNewPassword = () => {
           </div>
         </form>
 
-        <p className="text-start m-2">
+        <p className="text-start mt-4">
           You don&quot;t have an account?{" "}
           <Link href="/register">
             <span className="text-red">Create an account</span>

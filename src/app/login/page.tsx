@@ -45,9 +45,9 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit((payload) => loginMutation.mutate(payload))}
-      className="flex flex-col items-center px-[2.5rem] pt-[0.5rem] pb-[1.5rem] gap-[1rem] md:[&>*]:w-full md:w-[90%]"
+      className="flex flex-col items-center pt-[0.5rem] pb-[1.5rem] gap-[1rem] md:[&>*]:w-full md:w-[90%]"
     >
-      <div className="flex flex-col items-center gap-[1rem] w-[80%] md:w-full">
+      <div className="flex flex-col items-center gap-[1rem] w-full">
         <p className="= text-lg md:text-regular">Sign In</p>
         <Input
           id="email"
@@ -102,16 +102,16 @@ export default function Login() {
             className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full ${poppins.className}`}
           >
             <LoginForm />
-            <div className="flex flex-col justify-start">
+            <div className="flex flex-col justify-start text-nowrap">
               <p className="text-center text-xsmall">
                 Forgot your password?{" "}
-                <Link href="/reset-password">
+                <Link href="/account-management/reset-password">
                   <span className=" text-red">Reset password</span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Didn't receive verification email?{" "}
-                <Link href="/request-verification-email">
+                <Link href="/account-management/request-verification-email">
                   <span className=" text-red">Request new email </span>
                 </Link>
               </p>
