@@ -6,11 +6,19 @@ import Image from "next/image";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 import { Basics, GeneralInfo, Scales, UserInfo } from "..";
 import profileBg from "@/assets/profileBgC.png";
+import { ENDPOINTS, getProfileData } from "@/api";
+import { useQuery } from "@tanstack/react-query";
 
 const Profile = ({ data }: any) => {
   const params = useParams<{ id: string }>();
   const user_id = params["id"] || "";
   const content = { answer: "", key: "", answer_id: 1 };
+  const profileData = useQuery({
+    queryKey: [ENDPOINTS.profileData, user_id],
+    queryFn: async () => {
+      return await getProfileData(user_id);
+    },
+  });
 
   const [ranking, setRanking] = useState<boolean>(true);
   const [canEdit, setCanEdit] = useState<boolean>(false);
