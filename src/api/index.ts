@@ -80,7 +80,11 @@ export async function signUp({ confirmPassword, ...restPayload }: SignUpBody) {
 export async function requestNewEmailVerification(
   payload: EmailVerificationBody
 ) {
-  return axiosInstance.post(ENDPOINTS.emailVerification, payload);
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.emailVerification,
+    payload
+  );
+  return result.data;
 }
 
 export async function verifyToken({ jwt }: { jwt: string }) {
