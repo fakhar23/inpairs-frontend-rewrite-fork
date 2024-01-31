@@ -47,7 +47,7 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
                 type="text"
                 value={number}
                 onChange={handleInputChange(index)}
-                className={`outline-none flex-1 px-3 py-2 mt-1 w-full rounded-md border-inputGrayMedium border focus:ring-red600 ${
+                className={`outline-none flex-1 px-3 py-2 mt-1 w-full rounded-md border-mediumGrayInput border focus:ring-red600 ${
                   number && number == error ? "border-red500 shake" : ""
                 }`}
                 placeholder="Enter phone number"

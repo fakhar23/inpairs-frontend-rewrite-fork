@@ -48,17 +48,18 @@ const config: Config = {
         lightBlueGray: COLORS.lightBlueGray,
         paleGray: COLORS.paleGray,
 
-        blueButton: colors.blue[500],
-        darkBlueButton: colors.blue[600],
         blueText: colors.blue[500],
         darkBlueText: colors.blue[600],
+        blueButton: colors.blue[500],
+        darkBlueButton: colors.blue[600],
         blueLink: colors.blue[500],
 
         grayMedium: colors.gray[500],
+        // mediumGray: colors.gray[500],
         darkGray: colors.gray[700],
-        inputGrayMedium: colors.gray[500],
-        buttonGraylight: colors.gray[300],
-        buttonGrayMedium: colors.gray[500],
+        mediumGrayInput: colors.gray[500],
+        lightGrayButton: colors.gray[300],
+        mediumGrayButton: colors.gray[500],
 
         neutralLight: colors.neutral[100],
         neutralMedium: colors.neutral[500],
