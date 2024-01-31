@@ -23,7 +23,7 @@ export function TextSkeleton({
       ),
     },
     createElement(
-      as,
+      "span",
       {
         className: showText ? "" : "invisible",
       },
