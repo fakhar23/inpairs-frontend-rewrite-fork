@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
@@ -7,14 +6,15 @@ import { Basics, GeneralInfo, Scales, UserInfo } from "..";
 import profileBg from "@/assets/profileBgC.png";
 import { ENDPOINTS, getProfileData } from "@/api";
 import { useQuery } from "@tanstack/react-query";
+import { SplashScreen } from "@/components";
 
 export default function Profile() {
   const params = useParams<{ id: string }>();
-  const user_id = params["id"] || "";
+  const userId = params["id"] || "";
   const profileData = useQuery({
-    queryKey: [ENDPOINTS.profileData, user_id],
+    queryKey: [ENDPOINTS.profileData, userId],
     queryFn: async () => {
-      return await getProfileData(user_id);
+      return await getProfileData(userId);
     },
   });
   const stateOrCountry =
@@ -24,8 +24,8 @@ export default function Profile() {
       : profileData.data?.MainState;
 
   const currentLocation = `${profileData.data?.MainCity}, ${stateOrCountry}`;
-  const [editable, setCanEdit] = useState<boolean>(user_id === "me");
 
+  if (profileData.isLoading) return <SplashScreen />;
   return (
     <UserProfileLayout>
       <section className="relative flex justify-end mx-auto px-[4rem] bg-profile bg-no-repeat	bg-cover [&_h2]:mb-[1rem] [&_h2]:text-purple [&_h2]:text-[2rem] [&_p]:text-gray-gunmetal md:flex-col sm:px-[1rem]">
@@ -37,7 +37,7 @@ export default function Profile() {
         <UserInfo
           {...profileData.data}
           currentLocation={currentLocation}
-          viewingTheirOwnProfile={user_id === "me"}
+          viewingTheirOwnProfile={userId === "me"}
         />
 
         <section className="flex flex-wrap h-auto resize-y justify-center w-[75%] px-[1rem] py-[3rem] md:w-full md:px-0 relative">
@@ -49,7 +49,6 @@ export default function Profile() {
                 descriptor: "AboutYourself",
                 answer: profileData.data?.AboutYourself || "",
               }}
-              editable={editable}
             />
             <GeneralInfo
               title="Interests"
@@ -57,7 +56,6 @@ export default function Profile() {
                 descriptor: "Interests",
                 answer: profileData.data?.Interests || "",
               }}
-              editable={editable}
             />
             <GeneralInfo
               title="Passions"
@@ -65,7 +63,6 @@ export default function Profile() {
                 descriptor: "Passion",
                 answer: profileData.data?.Passion || "",
               }}
-              editable={editable}
             />
             <GeneralInfo
               title="Role of islam"
@@ -73,7 +70,6 @@ export default function Profile() {
                 descriptor: "IslamRole",
                 answer: profileData.data?.IslamRole || "",
               }}
-              editable={editable}
             />
             <GeneralInfo
               title="Five year plan"
@@ -81,7 +77,6 @@ export default function Profile() {
                 descriptor: "FiveYearPlan",
                 answer: profileData.data?.FiveYearPlan || "",
               }}
-              editable={editable}
             />
           </div>
 
