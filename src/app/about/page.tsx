@@ -54,7 +54,7 @@ const About = () => {
               <h3 className="font-bryantProBold mb-1 text-2xl font-bold tracking-tight text-gray">
                 Zachariah Elkordy
               </h3>
-              <p className="font-bryantProMedium text-slate600 ">Founder</p>
+              <p className="font-bryantProMedium text-mediumSlate">Founder</p>
               <p className="text-gray">
                 Zachariah is a third-year medical student at Georgetown
                 University. Recognizing a lack of adequate solutions to Muslim

@@ -73,13 +73,13 @@ const RankingTable = () => {
       <tr key={score.auth_id} className="bg-white border-b">
         <th
           scope="row"
-          className="px-6 py-4 font-bryantProMedium text-neutral900 whitespace-nowrap font-medium"
+          className="px-6 py-4 font-bryantProMedium text-tableNeutralDark whitespace-nowrap font-medium"
         >
           <p>{score.id}</p>
         </th>
         <th
           scope="row"
-          className="px-6 py-4 font-bryantProMedium text-neutral900 whitespace-nowrap font-medium"
+          className="px-6 py-4 font-bryantProMedium text-tableNeutralDark whitespace-nowrap font-medium"
         >
           <Link
             href={{
@@ -118,8 +118,8 @@ const RankingTable = () => {
           <Button content="History" />
         </Link>
       </div>
-      <table className="w-full text-lg text-left text-neutral500">
-        <thead className="text-md text-neutral700 uppercase bg-neutral50">
+      <table className="w-full text-lg text-left text-tableNeutralMedium">
+        <thead className="text-md text-tableNeutralDark uppercase bg-tableNeutralLight">
           <tr>
             <th scope="col" className="px-6 py-3 font-normal">
               ID

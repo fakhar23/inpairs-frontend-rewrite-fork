@@ -101,9 +101,9 @@ function FeatureModal({
           >
             <div className="relative w-auto my-6 mx-auto max-w-2xl">
               {/*content*/}
-              <div className="border-2 border-lightRoseBorder rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-[1rem]">
+              <div className="border-2 border-lightRose rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-[1rem]">
                 <div className="flex justify-center items-center">
-                  <div className="w-[5rem] h-[5rem] bg-lightRoseBackground rounded-full flex justify-center items-center">
+                  <div className="w-[5rem] h-[5rem] bg-lightRose rounded-full flex justify-center items-center">
                     <Image width="53" height="53" src={icon} alt="pears icon" />
                   </div>
                 </div>
@@ -121,7 +121,7 @@ function FeatureModal({
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-darkBlackBackground"></div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-darkBlack"></div>
         </>
       ) : null}
     </>
@@ -223,7 +223,7 @@ export default function Home() {
             drop-shadow-[0_3px_3px_rgba(0,0,0,0.25)]
             w-full'
                 >
-                  <div className="w-[5rem] h-[5rem] bg-lightRoseBackground rounded-full flex justify-center items-center">
+                  <div className="w-[5rem] h-[5rem] bg-lightRose rounded-full flex justify-center items-center">
                     <Image
                       src={icon}
                       alt="pears icon"
@@ -250,7 +250,7 @@ export default function Home() {
             )}
           </div>
         </div>
-        <div className="relative p-[4rem] bg-gradient-to-r from-darkPurpleBg/50 to-red500/50 md:p-[2rem] md:m-0 md:justify-center md:items-center md:flex">
+        <div className="relative p-[4rem] bg-gradient-to-r from-secondaryColor/50 to-red500/50 md:p-[2rem] md:m-0 md:justify-center md:items-center md:flex">
           <Image
             src={background}
             alt="guy with flowers"
@@ -263,7 +263,7 @@ export default function Home() {
             <div className="grid grid-cols-4 gap-[3rem] lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full">
               {INSTAGRAM_POSTS.map(({ url, img, alt }) => (
                 <div
-                  className="bg-slate200 h-[20rem] rounded-xl md:h-[30rem]"
+                  className="bg-lightSlate h-[20rem] rounded-xl md:h-[30rem]"
                   key={url}
                 >
                   <Link href={url} target="_blank">

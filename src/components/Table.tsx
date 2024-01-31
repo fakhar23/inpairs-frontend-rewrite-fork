@@ -45,8 +45,8 @@ export default function Table<D extends object>({
 
   return (
     <div className="relative overflow-x-auto">
-      <table className="w-full text-left rtl:text-right text-neutral500 ">
-        <thead className="text-neutral700 uppercase bg-neutral100 ">
+      <table className="w-full text-left rtl:text-right text-tableNeutralMedium ">
+        <thead className="text-tableNeutralDark uppercase bg-tableNeutralLight ">
           {table.getHeaderGroups().map((headerGroup) => {
             return (
               <tr key={headerGroup.id}>
@@ -87,7 +87,7 @@ export default function Table<D extends object>({
                   return (
                     <td
                       key={cell.id}
-                      className="px-6 py-4 text-neutral900  dark:text-white"
+                      className="px-6 py-4 text-tableNeutralDark  dark:text-white"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

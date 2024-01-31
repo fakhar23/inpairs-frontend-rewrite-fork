@@ -33,7 +33,7 @@ export default function CustomModal({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-darkBlackBackground bg-opacity-25" />
+          <div className="fixed inset-0 bg-darkBlack bg-opacity-25" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -51,7 +51,7 @@ export default function CustomModal({
                 className={`rounded-2xl p-6 align-middle shadow-xl transition-all bg-white ${className} `}
               >
                 <Dialog.Title
-                  className={`text-lg font-bryantProMedium leading-6 text-neutral900 relative ${titleClassName}`}
+                  className={`text-lg font-bryantProMedium leading-6 text-neutralDark relative ${titleClassName}`}
                 >
                   <div className="mr-7">{title}</div>
                   <IoClose

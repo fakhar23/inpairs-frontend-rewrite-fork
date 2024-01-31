@@ -174,7 +174,7 @@ export function MatchMakingModal(props: Props, ref: any) {
               <p>{potential.rank}</p>
               <div className="ml-5 flex flex-col space-y-2">
                 <button
-                  className="border-2 border-slate200 rounded-sm p-1 hover:bg-neutral400"
+                  className="border-2 border-buttonLightSlate rounded-sm p-1 hover:bg-buttonNeutralMedium"
                   onClick={() => handleRankUp(potential.rank)}
                 >
                   <svg
@@ -210,7 +210,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                   className="border-red300 border-solid border-2"
                 />
                 <button
-                  className="border-2 border-slate200 rounded-sm p-1 hover:bg-neutral400"
+                  className="border-2 border-buttonLightSlate rounded-sm p-1 hover:bg-buttonNeutralMedium"
                   onClick={() => handleRankDown(potential.rank)}
                 >
                   <svg
@@ -310,8 +310,8 @@ export function MatchMakingModal(props: Props, ref: any) {
 
         <ul className="ml-6">
           <li className="flex gap-2 items-center">
-            <div className="w-5 h-5 bg-lightYellowBackground"></div> Users
-            without a match for more than two months.
+            <div className="w-5 h-5 bg-lightYellow"></div> Users without a match
+            for more than two months.
           </li>
 
           <li className="flex gap-2 items-center">
@@ -321,7 +321,7 @@ export function MatchMakingModal(props: Props, ref: any) {
         </ul>
       </header>
 
-      <hr className="h-px my-4 bg-neutral200 border-0 dark:bg-neutral700"></hr>
+      <hr className="h-px my-4 bg-tableNeutralLight border-0 dark:bg-tableNeutralDark"></hr>
 
       {props.isRanked && (
         <section className="w-full">
@@ -340,8 +340,8 @@ export function MatchMakingModal(props: Props, ref: any) {
         </section>
       )}
       <section className="max-h-[90%] overflow-y-scroll w-full">
-        <table className="w-full text-lg text-left text-neutral500 table-auto">
-          <thead className="text-md text-neutral700 uppercase bg-neutral50">
+        <table className="w-full text-lg text-left text-tableNeutralMedium table-auto">
+          <thead className="text-md text-tableNeutralDark uppercase bg-tableNeutralLight">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Name

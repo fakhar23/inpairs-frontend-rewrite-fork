@@ -16,7 +16,7 @@ const Complete = () => {
         Your profile has been created
       </p>
       <button
-        className="bg-white text-gray-gunmetal py-2 px-4 rounded-xl font-semibold cursor-pointer border-2 border-lightRoseBorder hover:bg-slate500 hover:text-white transition duration-200 ease-in-out"
+        className="bg-white text-gray-gunmetal py-2 px-4 rounded-xl font-semibold cursor-pointer border-2 border-buttonLightRose hover:bg-buttonMediumSlate hover:text-white transition duration-200 ease-in-out"
         onClick={() => router.push(`/profile/me`)}
       >
         Go to your profile

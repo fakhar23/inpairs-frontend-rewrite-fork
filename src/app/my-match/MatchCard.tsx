@@ -36,15 +36,15 @@ const StatusComponent = ({ user, onAction }: any) => {
 
   if (status === "matched") {
     return (
-      <div className="gap-4 items-center text-darkBlackText">
+      <div className="gap-4 items-center text-darkBlack">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           Congrats! Your match is here
         </h3>
-        <div className="flex items-center gap-4  text-darkBlackText">
+        <div className="flex items-center gap-4  text-darkBlack">
           <div className="flex items-center gap-1">
             <BsFillTelephoneInboundFill /> {user?.phone_number}
           </div>
-          <div className="border-[0.4px] border-darkPurpleBorder h-[1.25rem] inline" />
+          <div className="border-[0.4px] border-darkPurple h-[1.25rem] inline" />
 
           <div className="flex items-center gap-1">
             <BsInstagram />
@@ -55,7 +55,7 @@ const StatusComponent = ({ user, onAction }: any) => {
     );
   } else if (status == "waiting") {
     return (
-      <div className="flex  gap-4 items-center text-darkBlackText">
+      <div className="flex  gap-4 items-center text-darkBlack">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           Waiting for match decision
         </h3>
@@ -63,7 +63,7 @@ const StatusComponent = ({ user, onAction }: any) => {
     );
   } else if (status == "rejected") {
     return (
-      <div className="flex  gap-4 items-center text-darkBlackText">
+      <div className="flex  gap-4 items-center text-darkBlack">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           You have been rejected :(
         </h3>
@@ -71,7 +71,7 @@ const StatusComponent = ({ user, onAction }: any) => {
     );
   } else if (status == "rejecting") {
     return (
-      <div className="flex  gap-4 items-center text-darkBlackText">
+      <div className="flex  gap-4 items-center text-darkBlack">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           You have already rejected this match
         </h3>
@@ -82,7 +82,7 @@ const StatusComponent = ({ user, onAction }: any) => {
       <div className="flex  gap-10 w-full">
         <span
           onClick={() => onAction("accept")}
-          className="text-greenText cursor-pointer hover:text-lightGreenText transition-all ease-out duration-300"
+          className="text-mediumGreen cursor-pointer hover:text-lightGreen transition-all ease-out duration-300"
         >
           Accept
         </span>
@@ -147,16 +147,16 @@ const MatchCard = ({ user }: any) => {
                   {user?.firstName}
                 </h3>
 
-                <div className="flex gap-4 items-center text-darkBlackText">
+                <div className="flex gap-4 items-center text-darkBlack">
                   <span>{user?.age} years</span>
-                  <div className="border-[0.4px] border-darkPurpleBorder h-[1.25rem] inline" />
+                  <div className="border-[0.4px] border-darkPurple h-[1.25rem] inline" />
                 </div>
               </div>
 
               <Link
                 onClick={() => handleUpdateMatchHistory("profile")}
                 href="/profile/"
-                className="flex items-center whitespace-nowrap bg-darkPurpleBg text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-purpleBg transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
+                className="flex items-center whitespace-nowrap bg-linkDarkPurple text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-linkMediumPurple transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
               >
                 View Profile
               </Link>
@@ -181,7 +181,8 @@ const MatchCard = ({ user }: any) => {
         <div className="flex flex-col items-center justify-center w-[30rem]">
           <h2 className="text-center text-secondary text-2xl font-bryantProMedium mt-7">
             Are you sure you want to accept
-            <span className="text-purple"> {user?.name}</span> as your match?
+            <span className="text-mediumPurple"> {user?.name}</span> as your
+            match?
           </h2>
 
           <div className="flex justify-center w-full mt-8">
@@ -195,7 +196,7 @@ const MatchCard = ({ user }: any) => {
             <button
               onClick={handleConfirm}
               className={`capitalize text-white font-semibold w-5/12 py-2 rounded-lg flex items-center justify-center gap-5
-               bg-greenText `}
+               bg-buttonMediumGreen `}
             >
               {isLoading && (
                 <ClipLoader
@@ -220,7 +221,8 @@ const MatchCard = ({ user }: any) => {
         <div className="flex flex-col items-center justify-center w-[30rem]">
           <h2 className="text-center text-secondary text-2xl font-bryantProMedium mt-7">
             Are you sure you want to reject
-            <span className="text-purple"> {user?.name}</span> as your match?
+            <span className="text-mediumPurple"> {user?.name}</span> as your
+            match?
           </h2>
 
           <div className="mt-10 w-full text-left space-y-5">
@@ -247,7 +249,7 @@ const MatchCard = ({ user }: any) => {
                 <input
                   name="reason"
                   className="w-full bg-semiTransparentLightGray
-                   rounded-[10px] px-3 border-slate400 leading-tight h-[3rem]   text-gray-charcoal focus:outline-primaryColor"
+                   rounded-[10px] px-3 border-inputMediumSlate leading-tight h-[3rem]   text-gray-charcoal focus:outline-primaryColor"
                   placeholder=""
                   onChange={onSurveyChange}
                 />
@@ -267,7 +269,7 @@ const MatchCard = ({ user }: any) => {
               disabled={isDisabled}
               onClick={handleConfirm}
               className={`capitalize text-white font-semibold w-5/12 py-2 rounded-lg flex items-center justify-center gap-5
-              ${isDisabled ? "bg-neutral500" : "bg-red500"} `}
+              ${isDisabled ? "bg-buttonNeutralMedium" : "bg-red500"} `}
             >
               {isLoading && (
                 <ClipLoader

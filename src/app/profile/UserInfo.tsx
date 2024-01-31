@@ -25,7 +25,7 @@ export function UserInfo({
 
   return (
     <section className="absolute left-[5rem] top-[-3rem] bg-white p-[2rem] w-[22%] rounded-xl shadow-md md:static flex flex-col md:flex-row md:w-full flex-wrap md:gap-[2rem]">
-      <div className="md:w-full md:flex md:gap-[2rem] md:items-center md:border-b md:border-slate300 space-y-4 mb-4">
+      <div className="md:w-full md:flex md:gap-[2rem] md:items-center md:border-b md:border-mediumSlate space-y-4 mb-4">
         <CloudinaryImage
           alt=""
           url={""}
@@ -40,7 +40,7 @@ export function UserInfo({
           <h2 className="font-bryantProBold text-xl text-center mb-2.5 leading-tight">
             firstName lastName if user role is user
             {true && (
-              <div className="text-sm text-neutral500">
+              <div className="text-sm text-neutralMedium">
                 Matched totalMatch time in number months
               </div>
             )}

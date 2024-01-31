@@ -122,7 +122,7 @@ export default function Register() {
             <div className="w-full mb-2 md:mt-[1rem] text-gray gap-1">
               <CountrySelect control={control} />
 
-              <div className="border-b border-slate400  w-full" />
+              <div className="border-b border-mediumSlate  w-full" />
               {errors.country && (
                 <p className="text-red text-[0.8rem]">
                   {errors.country.message}
@@ -137,7 +137,7 @@ export default function Register() {
                 rules={{ required: "Phone number is required", minLength: 11 }}
                 render={({ field: { onChange, value } }) => (
                   <PhoneInput
-                    className="appearance-none border-b  border-slate400 text-gray-gunmetal leading-tight fne h-[3rem] w-full focus:placeholder-transparent focus:outline-none focus:border-red500 bg-transparent md:h-[4rem] md:text-[12px]"
+                    className="appearance-none border-b  border-inputMediumSlate text-gray-gunmetal leading-tight fne h-[3rem] w-full focus:placeholder-transparent focus:outline-none focus:border-red500 bg-transparent md:h-[4rem] md:text-[12px]"
                     placeholder="Phone Number"
                     value={value}
                     onChange={onChange}
@@ -182,7 +182,7 @@ export default function Register() {
               />
             </div>
 
-            <div className="border-b border-slate400 text-gray-gunmetal leading-tight focus:outline-none py-[0.7rem] px-[0.5rem] w-full focus:placeholder-transparent focus:border-red500">
+            <div className="border-b border-mediumSlate text-gray-gunmetal leading-tight focus:outline-none py-[0.7rem] px-[0.5rem] w-full focus:placeholder-transparent focus:border-red500">
               <p className="mb-3 md:text-[12px] md:mb-[1rem]">Gender</p>
               <div className="flex gap-5">
                 <div className="flex items-center">
@@ -190,12 +190,12 @@ export default function Register() {
                     id="female"
                     type="radio"
                     value="FEMALE"
-                    className="w-4 h-4 text-red bg-neutral100 border-neutral500 focus:ring-red500 focus:outline-none"
+                    className="w-4 h-4 text-red bg-inputNeutralLight border-inputNeutralMedium focus:ring-red500 focus:outline-none"
                     {...register("gender", { required: "Gender is required" })}
                   />
                   <label
                     htmlFor="female"
-                    className="ml-2 text-sm font-bryantProMedium text-neutral900 md:text-[12px]"
+                    className="ml-2 text-sm font-bryantProMedium text-inputNeutralDark md:text-[12px]"
                   >
                     Female
                   </label>
@@ -206,13 +206,13 @@ export default function Register() {
                     id="male"
                     type="radio"
                     value="MALE"
-                    className="w-4 h-4 text-red bg-neutral100 border-neutral500 focus:ring-red500 focus:outline-none"
+                    className="w-4 h-4 text-red bg-inputNeutralLight border-inputNeutralMedium focus:ring-red500 focus:outline-none"
                     {...register("gender", { required: "Gender is required" })}
                   />
 
                   <label
                     htmlFor="male"
-                    className="ml-2 text-sm font-bryantProMedium text-neutral900 md:text-[12px]"
+                    className="ml-2 text-sm font-bryantProMedium text-inputNeutralDark md:text-[12px]"
                   >
                     Male
                   </label>
@@ -224,10 +224,10 @@ export default function Register() {
               <p className="text-red text-[0.8rem]">Select a gender</p>
             )}
 
-            <div className="flex w-full mb-2 md:mt-[1rem] text-neutral500 gap-1">
+            <div className="flex w-full mb-2 md:mt-[1rem] text-neutralMedium gap-1">
               <div className="flex flex-col w-full">
                 <select
-                  className={`w-full h-10 border-b focus:outline-none border-neutral100 text-gray-gunmetal md:text-[12px] bg-white`}
+                  className={`w-full h-10 border-b focus:outline-none border-inputNeutralLight text-gray-gunmetal md:text-[12px] bg-white`}
                   id="howDidYouHearAboutUs"
                   {...register("howDidYouHearAboutUs", {
                     required: "How did you hear about us is required",
@@ -253,7 +253,7 @@ export default function Register() {
             </div>
 
             {getValues("howDidYouHearAboutUs") === "Other" && (
-              <div className="flex w-full mb-2 md:mt-[1rem] text-neutral500 gap-1">
+              <div className="flex w-full mb-2 md:mt-[1rem] text-neutralMedium gap-1">
                 <div className="flex flex-col w-full">
                   <Input
                     id="howDidYouHearAboutUs"

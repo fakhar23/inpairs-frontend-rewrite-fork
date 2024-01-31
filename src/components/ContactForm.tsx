@@ -31,8 +31,8 @@ export function ContactForm() {
       </h2>
       <div className="flex items-center flex-wrap gap-5">
         <div className="basis-auto mb-6 md:mb-0 md:w-full w-2/5 space-y-[3rem] md:mb-[4rem]">
-          <div className="border-b border-slate300">
-            <p className="md:mb-8 mb-10 font-light text-slate600 text-xl">
+          <div className="border-b border-mediumSlate">
+            <p className="md:mb-8 mb-10 font-light text-mediumSlate text-xl">
               Got a technical issue? Want to send feedback about a feature? Need
               details about our Business plan? Let us know.
             </p>
@@ -46,7 +46,7 @@ export function ContactForm() {
           </div>
 
           <div>
-            <p className="md:mb-8 mb-10 font-light text-slate600 text-xl">
+            <p className="md:mb-8 mb-10 font-light text-mediumSlate text-xl">
               Any feedback you want to give or a user you want to report? Use
               our user feedback form. If you still want to reach out to us, send
               us an email!
@@ -78,7 +78,7 @@ export function ContactForm() {
                 type="email"
                 id="email"
                 required
-                className="shadow-sm border border-slate400 text-neutral500 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-slate50"
+                className="shadow-sm border border-inputMediumSlate text-inputNeutralMedium text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-inputLightSlate"
                 placeholder="name@flowbite.com"
                 {...register("email", { required: "Email is required" })}
               />
@@ -89,14 +89,14 @@ export function ContactForm() {
             <div>
               <label
                 htmlFor="name"
-                className="block mb-2 text-sm font-bryantProMedium text-neutral900 dark:text-neutral300"
+                className="block mb-2 text-sm font-bryantProMedium text-inputNeutralDark dark:text-inputNeutralMedium"
               >
                 name
               </label>
               <input
                 type="text"
                 id="name"
-                className="shadow-sm border border-slate400 text-neutral500 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-slate50"
+                className="shadow-sm border border-inputMediumSlate text-inputNeutralMedium text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-inputLightSlate"
                 placeholder="Let us know how we can help you"
                 required
                 {...register("name", {
@@ -112,14 +112,14 @@ export function ContactForm() {
               <label
                 id="message"
                 htmlFor="message"
-                className="block mb-2 text-sm font-bryantProMedium text-neutral900 dark:text-neutral400"
+                className="block mb-2 text-sm font-bryantProMedium text-inputNeutralDark dark:text-inputNeutralMedium"
               >
                 Your message
               </label>
               <textarea
                 id="message"
                 rows={6}
-                className="shadow-sm border border-slate400 text-neutral500 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-slate50"
+                className="shadow-sm border border-inputMediumSlate text-inputNeutralMedium text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-inputLightSlate"
                 placeholder="Leave a comment..."
                 {...register("message", { required: true, minLength: 2 })}
               ></textarea>

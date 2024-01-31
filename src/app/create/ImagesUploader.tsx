@@ -99,12 +99,12 @@ function ImagesUploader() {
             images.length ? "justify-end py-5" : "justify-center"
           } ${
             images.length < 3 ? "cursor-pointer" : "cursor-pointer"
-          } w-full h-72  rounded-lg  bg-neutral50 dark:hover:bg-bray-800  hover:bg-neutral100 dark:border-neutral600 dark:hover:border-neutral500`}
+          } w-full h-72  rounded-lg  bg-inputNeutralLight dark:hover:bg-bray-800  hover:bg-inputNeutralMedium dark:border-x-inputNeutralMedium dark:hover:border-inputNeutralDark`}
         >
           <div>
             {!images.length && (
               <svg
-                className="w-8 h-8 mb-4 mx-auto group-hover:text-red500 dark:text-neutral400 "
+                className="w-8 h-8 mb-4 mx-auto group-hover:text-red500 dark:text-neutralMedium "
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -123,7 +123,7 @@ function ImagesUploader() {
             {images.length < 3 ? (
               <>
                 {images.length < 3 ? (
-                  <div className="flex flex-col items-center text-neutral500 group-hover:text-darkPurpleText dark:text-neutral400">
+                  <div className="flex flex-col items-center text-neutralMedium group-hover:text-darkPurple dark:text-neutralMedium">
                     <p className="mb-2 text-sm ">
                       <span className="font-semibold">
                         Click to upload images

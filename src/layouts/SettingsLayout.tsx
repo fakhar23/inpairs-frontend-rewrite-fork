@@ -18,7 +18,7 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div>
-      <ul className="flex justify-center px-[20%] gap-[3rem] text-[1.2rem] text-slate600 w-[100%] border-b border-slate300">
+      <ul className="flex justify-center px-[20%] gap-[3rem] text-[1.2rem] text-mediumSlate w-[100%] border-b border-mediumSlate">
         <Link
           href={"/settings"}
           className={

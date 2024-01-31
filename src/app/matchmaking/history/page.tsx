@@ -20,7 +20,7 @@ import Note from "./Note";
 
 const getMatchStatus = (status: string, reason: string) => {
   if (status == "ACCEPTED") {
-    return <span className="text-greenText">{status}</span>;
+    return <span className="text-mediumGreen">{status}</span>;
   } else if (status == "REJECTED") {
     return (
       <>
@@ -108,7 +108,7 @@ const MatchmakingHistory = () => {
               onClick={() => setMatchToEdit(row.original)}
               className="flex justify-end w-full"
             >
-              <IoChatbox className="text-darkPurpleText hover:opacity-75 zoom-scale-125 cursor-pointer   " />
+              <IoChatbox className="text-darkPurple hover:opacity-75 zoom-scale-125 cursor-pointer   " />
             </button>
           );
         },
@@ -136,19 +136,19 @@ const MatchmakingHistory = () => {
       <div className="max-w-7xl mx-auto">
         <CalculationTable />
         <div className="flex justify-between items-center">
-          <h1 className="my-10 text-2xl font-medium text-darkPurpleText">
+          <h1 className="my-10 text-2xl font-medium text-darkPurple">
             Matchmaking History
           </h1>
           <button
             onClick={() => setshowReasons(true)}
-            className="bg-red500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-primaryColorLight disabled:cursor-not-allowed disabled:bg-slate300"
+            className="bg-red500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-primaryColorLight disabled:cursor-not-allowed disabled:bg-buttonLightSlate"
           >
             Rejection Reasons
           </button>
         </div>
         <CustomInput
           id="search ID"
-          inputClassName="bg-neutral100 w-full"
+          inputClassName="bg-inputNeutralLight w-full"
           className="w-full my-5"
           onChange={debounce(
             (e: ChangeEvent<HTMLInputElement>) =>
@@ -165,7 +165,7 @@ const MatchmakingHistory = () => {
         />
         <CustomModal
           title="List of Rejection Reasons"
-          titleClassName="!text-2xl text-darkPurpleText"
+          titleClassName="!text-2xl text-darkPurple"
           className=""
           show={showReasons}
           onClose={() => setshowReasons(false)}

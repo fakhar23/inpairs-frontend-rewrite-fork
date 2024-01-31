@@ -18,7 +18,7 @@ export function TextSkeleton({
       className: twMerge(
         showText
           ? ""
-          : "animate-pulse inline-block bg-slate200 rounded mb-[-3px]",
+          : "animate-pulse inline-block bg-lightSlate rounded mb-[-3px]",
         className
       ),
     },

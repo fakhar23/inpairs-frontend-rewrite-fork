@@ -30,9 +30,9 @@ const ImageUploader = ({ images, setImages }: IImageUpload) => {
   return (
     <label>
       <div className="w-full my-5 h-[12rem]">
-        <div className="h-full w-full z-1 bg-slate400 flex flex-col gap-5 items-center justify-center cursor-pointer bg-opacity-[0.2] rounded-xl">
+        <div className="h-full w-full z-1 bg-mediumSlate flex flex-col gap-5 items-center justify-center cursor-pointer bg-opacity-[0.2] rounded-xl">
           <UploadIcon />
-          <p className="text-slate600">upload your photos</p>
+          <p className="text-mediumSlate">upload your photos</p>
         </div>
 
         <input hidden type="file" name="file" onChange={handleChange} />
