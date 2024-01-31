@@ -95,3 +95,10 @@ export type ProfileDataResponse = Partial<{
   Origin: string;
   ClosenessToFamily: string;
 }>;
+
+export interface SupportEmailBody {
+  email: string;
+  name: string;
+  message: string;
+  subject: string;
+}

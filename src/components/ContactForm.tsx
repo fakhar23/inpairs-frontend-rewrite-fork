@@ -1,28 +1,34 @@
 "use client";
-import { Link } from "@/components";
+import { Input, Link } from "@/components";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components";
 import { contactUsSchema } from "@/validation/index";
-
-interface FormValues {
-  email: string;
-  name: string;
-  message: string;
-}
+import { TextArea } from "./Input";
+import { SupportEmailBody } from "@/api/types";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { sendSupportEmail } from "@/api";
 
 export function ContactForm() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
+  } = useForm<SupportEmailBody>({
     resolver: yupResolver(contactUsSchema),
   });
 
-  const onSubmit = () => {};
+  const supportEmailMutation = useMutation({
+    mutationFn: async (payload: SupportEmailBody) => {
+      return await sendSupportEmail(payload);
+    },
+    onSuccess(response) {
+      toast.success(response.message);
+    },
+  });
 
   return (
     <section className="px-10 py-9">
@@ -30,7 +36,7 @@ export function ContactForm() {
         Contact Us
       </h2>
       <div className="flex items-center flex-wrap gap-5">
-        <div className="basis-auto mb-6 md:mb-0 md:w-full w-2/5 space-y-[3rem] md:mb-[4rem]">
+        <div className="basis-auto mb-6 md:w-full w-2/5 space-y-[3rem] md:mb-[4rem]">
           <div className="border-b border-slate-300">
             <p className="md:mb-8 mb-10 font-light text-slate-600 text-xl">
               Got a technical issue? Want to send feedback about a feature? Need
@@ -38,7 +44,7 @@ export function ContactForm() {
             </p>
             <a
               href="mailto:zachariah@inpairs.io"
-              className="block text-lg mb-3 flex items-baseline"
+              className="text-lg mb-3 flex items-baseline"
             >
               <i className="fa-solid fa-envelope text-purple mr-2"></i>
               zachariah@inpairs.io
@@ -66,76 +72,59 @@ export function ContactForm() {
           </div>
         </div>
         <div className="py-8 px-4 mx-auto w-1/2 md:w-full">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-bryantProMedium"
-              >
-                Your email
-              </label>
-              <input
-                type="email"
-                id="email"
-                required
-                className="shadow-sm border border-slate-400 text-neutral-500 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-slate-50"
-                placeholder="name@flowbite.com"
-                {...register("email", { required: "Email is required" })}
-              />
-              {errors.email && (
-                <p className="text-red">{errors.email.message}</p>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-bryantProMedium text-neutral-900 dark:text-neutral-300"
-              >
-                name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="shadow-sm border border-slate-400 text-neutral-500 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-slate-50"
-                placeholder="Let us know how we can help you"
-                required
-                {...register("name", {
-                  required: "Name is required",
-                  minLength: 2,
-                })}
-              />
-              {errors.name?.message && (
-                <p className="text-red">{errors.name.message}</p>
-              )}
-            </div>
-            <div className="sm:col-span-2">
-              <label
-                id="message"
-                htmlFor="message"
-                className="block mb-2 text-sm font-bryantProMedium text-neutral-900 dark:text-neutral-400"
-              >
-                Your message
-              </label>
-              <textarea
-                id="message"
-                rows={6}
-                className="shadow-sm border border-slate-400 text-neutral-500 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 bg-slate-50"
-                placeholder="Leave a comment..."
-                {...register("message", { required: true, minLength: 2 })}
-              ></textarea>
-              {errors.message && (
-                <p className="text-red">{errors.message.message}</p>
-              )}
-            </div>
+          <form
+            onSubmit={handleSubmit((payload) =>
+              supportEmailMutation.mutate(payload)
+            )}
+            className="space-y-8"
+          >
+            <Input
+              label="Your email"
+              type="email"
+              id="email"
+              variation="secondary"
+              placeholder="example@gmail.com"
+              error={errors.email}
+              {...register("email")}
+            />
+
+            <Input
+              label="Your name"
+              type="text"
+              id="name"
+              variation="secondary"
+              placeholder="Mohammad Mahdi"
+              error={errors.name}
+              {...register("name")}
+            />
+
+            <Input
+              label="Subject"
+              type="text"
+              id="subject"
+              variation="secondary"
+              placeholder="Assistance Needed: Issue with ..."
+              error={errors.subject}
+              {...register("subject")}
+            />
+
+            <TextArea
+              id="message"
+              variation="secondary"
+              label="Your message"
+              placeholder="let us know how we can help you ..."
+              error={errors.message}
+              rows={6}
+              {...register("message")}
+            />
+            <Button
+              type="submit"
+              className="mt-4"
+              isDisabled={isSubmitting}
+              isLoading={isSubmitting}
+              content="Send Message"
+            />
           </form>
-          <Button
-            type="button"
-            className="mt-4"
-            onClick={handleSubmit(onSubmit)}
-            isDisabled={isSubmitting}
-            isLoading={isSubmitting}
-            content="Send Message"
-          />
         </div>
       </div>
     </section>

@@ -1,6 +1,11 @@
 "use client";
 
-import { InputHTMLAttributes, Ref, useState } from "react";
+import {
+  InputHTMLAttributes,
+  Ref,
+  TextareaHTMLAttributes,
+  useState,
+} from "react";
 
 import Image from "next/image";
 
@@ -13,6 +18,15 @@ import React from "react";
 
 export type InputFieldProps<T extends FieldValues> =
   InputHTMLAttributes<HTMLInputElement> & {
+    id: Path<T>;
+    error?: FieldError | undefined;
+    name?: Path<T>;
+    label?: React.ReactNode;
+    variation?: "primary" | "secondary";
+  };
+
+export type TextAreaFieldProps<T extends FieldValues> =
+  TextareaHTMLAttributes<HTMLTextAreaElement> & {
     id: Path<T>;
     error?: FieldError | undefined;
     name?: Path<T>;
@@ -54,7 +68,7 @@ export const Input = React.forwardRef(function WrappedInput<
         {...rest}
         type={showPassword ? "text" : rest.type}
       />
-      {error && <p className="text-red text-[0.8rem]">{error.message}</p>}
+      {error && <p className="text-red text-[0.8rem] mt-2">{error.message}</p>}
 
       {rest.type === "password" && (
         <div className="absolute right-2 top-[18px] bottom-2">
@@ -79,6 +93,44 @@ export const Input = React.forwardRef(function WrappedInput<
           </button>
         </div>
       )}
+    </div>
+  );
+});
+
+export const TextArea = React.forwardRef(function WrappedTextArea<
+  T extends FieldValues,
+>(
+  {
+    className,
+    error,
+    label,
+    variation = "primary",
+    ...rest
+  }: TextAreaFieldProps<T>,
+  ref: unknown
+) {
+  return (
+    <div className={twMerge("w-full mb-2 relative", className)}>
+      {label && (
+        <label htmlFor={rest.id} className=" text-[#3D3C3C]">
+          {label}
+        </label>
+      )}
+
+      <textarea
+        ref={ref as Ref<HTMLTextAreaElement>}
+        className={twMerge(
+          "p-3",
+          variation === "primary" &&
+            "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:placeholder:text-[12px] md:text-[12px]",
+          variation === "secondary" &&
+            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 mt-2 leading-tight w-full md:placeholder:text-[12px] md:text-[12px] text-[#5B5B5B] outline-none focus:outline-[#EF3E37]",
+          rest.readOnly &&
+            "bg-[#EFEFEF96] text-[#7b7b7b] cursor-not-allowed focus:outline-[#7b7b7b] focus:outline"
+        )}
+        {...rest}
+      />
+      {error && <p className="text-red text-[0.8rem]">{error.message}</p>}
     </div>
   );
 });

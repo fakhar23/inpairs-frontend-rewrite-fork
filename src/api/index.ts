@@ -7,6 +7,7 @@ import {
   ProfileDataResponse,
   SetPassword,
   SignUpBody,
+  SupportEmailBody,
 } from "./types";
 import { toast } from "react-toastify";
 
@@ -21,6 +22,7 @@ export const ENDPOINTS = {
   resetPassword: "/auth/reset-password",
   setPassword: "/auth/set-password",
   profileData: "/profile",
+  supportEmail: "/email/support",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -30,6 +32,7 @@ const PUBLIC_ENDPOINTS = [
   ENDPOINTS.tokenVerification,
   ENDPOINTS.resetPassword,
   ENDPOINTS.setPassword,
+  ENDPOINTS.supportEmail,
 ];
 
 const axiosInstance = axios.create({
@@ -155,6 +158,14 @@ export async function setPassword(payload: SetPassword) {
 export async function getProfileData(userId: string) {
   const result = await axiosInstance.get<ProfileDataResponse>(
     ENDPOINTS.profileData + "/" + userId
+  );
+  return result.data;
+}
+
+export async function sendSupportEmail(payload: SupportEmailBody) {
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.supportEmail,
+    payload
   );
   return result.data;
 }
