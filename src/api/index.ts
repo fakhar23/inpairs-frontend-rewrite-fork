@@ -4,6 +4,7 @@ import {
   EmailVerificationBody,
   LoginBody,
   LoginResponse,
+  ProfileDataResponse,
   SetPassword,
   SignUpBody,
 } from "./types";
@@ -152,7 +153,7 @@ export async function setPassword(payload: SetPassword) {
 }
 
 export async function getProfileData(userId: string) {
-  const result = await axiosInstance.get<{ message: string }>(
+  const result = await axiosInstance.get<ProfileDataResponse>(
     ENDPOINTS.profileData + "/" + userId
   );
   return result.data;

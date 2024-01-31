@@ -60,3 +60,38 @@ export interface SetPassword {
 }
 
 export type ResetPassword = EmailVerificationBody;
+
+export type ProfileDataResponse = Partial<{
+  id: string;
+  first_name: string;
+  last_name: string;
+  country: string;
+  gender: string;
+  age: number;
+  images: string;
+  IslamRole: string;
+  Passion: string;
+  AboutYourself: string;
+  Interests: string;
+  FiveYearPlan: string;
+  Height: string;
+  EducationPursued: string;
+  FinishedEducationLevel: string;
+  JobOrFieldOfStudy: string;
+  SpokenLanguages: string;
+  DadOrigin: string;
+  MomOrigin: string;
+  Sect: string;
+  MainState: string;
+  MainCountry: string;
+  MainCity: string;
+  ResidencyCountry: string;
+  Married: string;
+  IslamImportance: string;
+  CareerOrFamilyOriented: string;
+  FinancialIndependence: string;
+  FitnessLevel: string;
+  WillingToMove: string;
+  Origin: string;
+  ClosenessToFamily: string;
+}>;

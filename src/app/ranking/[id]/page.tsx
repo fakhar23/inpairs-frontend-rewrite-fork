@@ -408,24 +408,13 @@ const Profile = ({ data }: any) => {
           </div>
 
           <div className="flex grow gap-4 justify-around   [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
-            <GeneralInfo
-              title="About me"
-              content={content}
-              question_key="about_yourself"
-              canEdit={canEdit}
-            />
-            <GeneralInfo
-              title="Passions"
-              content={content}
-              question_key="passionate"
-              canEdit={canEdit}
-            />
+            {/* <GeneralInfo title="About me" content={content} canEdit={canEdit} />
+            <GeneralInfo title="Passions" content={content} canEdit={canEdit} />
             <GeneralInfo
               title="Interests"
               content={content}
-              question_key="interests"
               canEdit={canEdit}
-            />
+            /> */}
           </div>
         </div>
 
@@ -440,8 +429,8 @@ const Profile = ({ data }: any) => {
           </div>
 
           <div className="flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
-            <Basics />
-            <Scales />
+            {/* <Basics /> */}
+            {/* <Scales /> */}
           </div>
         </div>
       </main>

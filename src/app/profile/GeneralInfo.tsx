@@ -7,17 +7,15 @@ import { twMerge } from "tailwind-merge";
 
 export interface IGeneral {
   title: string;
-  content: { answer: string; key: string; answer_id: number };
-  question_key: string;
-  canEdit: boolean;
+  content: { answer: string; descriptor: string };
+  editable: boolean;
   className?: string;
 }
 
 export const GeneralInfo = ({
   title,
   content,
-  question_key,
-  canEdit,
+  editable,
   className = "",
 }: IGeneral) => {
   const [disabled, setDisabled] = React.useState(true);
@@ -27,7 +25,6 @@ export const GeneralInfo = ({
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string>("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  // const { dispatch } = useAuth();
 
   useEffect(() => {
     if (!disabled || loading) {
@@ -84,7 +81,7 @@ export const GeneralInfo = ({
           className="absolute right-4 md:w-[1.5rem] hover:scale-110 cursor-pointer"
           onClick={disabled ? handleEdit : handleUpdate}
         >
-          {canEdit ? (
+          {editable ? (
             disabled ? (
               <Image src={EditIcon} alt="edit icon" />
             ) : (

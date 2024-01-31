@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
@@ -9,19 +8,23 @@ import profileBg from "@/assets/profileBgC.png";
 import { ENDPOINTS, getProfileData } from "@/api";
 import { useQuery } from "@tanstack/react-query";
 
-const Profile = ({ data }: any) => {
+export default function Profile() {
   const params = useParams<{ id: string }>();
   const user_id = params["id"] || "";
-  const content = { answer: "", key: "", answer_id: 1 };
   const profileData = useQuery({
     queryKey: [ENDPOINTS.profileData, user_id],
     queryFn: async () => {
       return await getProfileData(user_id);
     },
   });
+  const stateOrCountry =
+    profileData.data?.MainState ===
+    "Outside the US (literally any other country)"
+      ? profileData.data.MainCountry
+      : profileData.data?.MainState;
 
-  const [ranking, setRanking] = useState<boolean>(true);
-  const [canEdit, setCanEdit] = useState<boolean>(false);
+  const currentLocation = `${profileData.data?.MainCity}, ${stateOrCountry}`;
+  const [editable, setCanEdit] = useState<boolean>(user_id === "me");
 
   return (
     <UserProfileLayout>
@@ -32,10 +35,9 @@ const Profile = ({ data }: any) => {
           className="absolute left-0 w-full h-full blur-3xl -z-10 top-[-7rem]"
         />
         <UserInfo
-          ranking={ranking}
-          user_id={user_id as string}
-          hideEdit={!canEdit}
-          onlyShowFirstName={true}
+          {...profileData.data}
+          currentLocation={currentLocation}
+          viewingTheirOwnProfile={user_id === "me"}
         />
 
         <section className="flex flex-wrap h-auto resize-y justify-center w-[75%] px-[1rem] py-[3rem] md:w-full md:px-0 relative">
@@ -43,33 +45,53 @@ const Profile = ({ data }: any) => {
           <div className="flex flex-col gap-8 mr-[2rem] w-[45%] [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
             <GeneralInfo
               title="About me"
-              content={content}
-              question_key="about_yourself"
-              canEdit={canEdit}
-            />
-            <GeneralInfo
-              title="Passions"
-              content={content}
-              question_key="passionate"
-              canEdit={canEdit}
+              content={{
+                descriptor: "AboutYourself",
+                answer: profileData.data?.AboutYourself || "",
+              }}
+              editable={editable}
             />
             <GeneralInfo
               title="Interests"
-              content={content}
-              question_key="interests"
-              canEdit={canEdit}
+              content={{
+                descriptor: "Interests",
+                answer: profileData.data?.Interests || "",
+              }}
+              editable={editable}
+            />
+            <GeneralInfo
+              title="Passions"
+              content={{
+                descriptor: "Passion",
+                answer: profileData.data?.Passion || "",
+              }}
+              editable={editable}
+            />
+            <GeneralInfo
+              title="Role of islam"
+              content={{
+                descriptor: "IslamRole",
+                answer: profileData.data?.IslamRole || "",
+              }}
+              editable={editable}
+            />
+            <GeneralInfo
+              title="Five year plan"
+              content={{
+                descriptor: "FiveYearPlan",
+                answer: profileData.data?.FiveYearPlan || "",
+              }}
+              editable={editable}
             />
           </div>
 
           {/* Right column */}
           <div className="w-[45%] flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
-            <Basics />
-            <Scales />
+            <Basics {...profileData.data} currentLocation={currentLocation} />
+            <Scales {...profileData.data} />
           </div>
         </section>
       </section>
     </UserProfileLayout>
   );
-};
-
-export default Profile;
+}

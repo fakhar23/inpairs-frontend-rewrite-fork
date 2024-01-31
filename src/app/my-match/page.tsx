@@ -82,7 +82,7 @@ const Match = () => {
     <UserProfileLayout>
       {currentMatch?.match ? (
         <section className="relative flex justify-end mx-auto  md:flex-col sm:px-[1rem]">
-          <UserInfo ranking={false} />
+          <UserInfo currentLocation="" viewingTheirOwnProfile />
 
           <section className="flex flex-wrap h-auto resize-y w-[75%] md:w-full md:px-0 md:mt-3">
             <h2 className="font-bryantProMedium text-left ml-16 md:ml-4 text-[1.5rem] mt-2">

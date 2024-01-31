@@ -1,5 +1,7 @@
 "use client";
 
+import { ProfileDataResponse } from "@/api/types";
+
 export const SCALES: { [key: number]: string } = {
   5: "Primarily family oriented",
   4: "Leaning towards family-oriented",
@@ -8,7 +10,12 @@ export const SCALES: { [key: number]: string } = {
   1: "Primarily career-oriented.",
 };
 
-export function Scales() {
+export function Scales({
+  IslamImportance,
+  CareerOrFamilyOriented,
+  FinancialIndependence,
+  FitnessLevel,
+}: ProfileDataResponse) {
   const isClosenessToFamily = false;
 
   return (
@@ -21,30 +28,25 @@ export function Scales() {
         <h3 className="font-bryantProMedium text-light-black">
           Importance of Islam
         </h3>
-        <p>importanceOfIslam</p>
+        <p>{IslamImportance}</p>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Career vs Family
         </h3>
-        <p>
-          {/* {SCALES[
-            user.questionsAnswers?.["career_vs_family"]
-              ?.answer as unknown as number
-          ] || "N/A"} */}
-        </p>
+        <p>{CareerOrFamilyOriented}</p>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Financial independence
         </h3>
-        <p>financialIndependence</p>
+        <p>{FinancialIndependence}</p>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Fitness activity
         </h3>
-        <p>fitnessActivity</p>
+        <p>{FitnessLevel}</p>
       </div>
       {isClosenessToFamily && (
         <div>

@@ -12,6 +12,7 @@ import pearsInline from "@/assets/pears-white.svg";
 import profileImg from "@/assets/prof-pic.png";
 import bgArt from "@/assets/usernavArt.svg";
 import { twMerge } from "tailwind-merge";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,11 +33,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
   const profileMenuRef = useClickOutside(() => setOpenNav(false)); //if any click in done outside this ref, then setOpenNav will become false
   const router = useRouter();
 
-  const user = {
-    role: "MATCHMAKER",
-    firstName: "Muhammad",
-    lastName: "Fakhar",
-  };
+  const user = useAuthContext();
 
   function handleLogout() {
     // clear local storage
@@ -46,16 +43,16 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
     router.push("/login");
   }
 
-  const isAdministrationRole =
-    user && ["ADMIN", "MATCHMAKER"].includes(user?.role);
-  const isAdminOnly = user && user?.role == "ADMIN";
-
   const transitions = useTransition(openNav, {
     from: { opacity: 0, transform: "translate3d(0, -15%, 0)" },
     enter: { opacity: 1, transform: "translate3d(0, 0%, 0)" },
     leave: { opacity: 0, transform: "translate3d(0, -15%, 0)" },
     config: { duration: 200, clamp: true },
   });
+
+  const isAdministrationRole =
+    user && ["ADMIN", "MATCHMAKER"].includes(user.data?.role || "");
+  const isAdminOnly = user && user.data?.role == "ADMIN";
 
   return (
     <>
@@ -146,7 +143,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
               >
                 <p
                   className={`whitespace-nowrap ${poppins.className}`}
-                >{`${user?.firstName} ${user?.lastName}`}</p>{" "}
+                >{`${user?.data?.firstName} ${user?.data?.lastName}`}</p>{" "}
                 <div className="h-[2rem] w-[2rem] rounded-full">
                   <Image
                     src={profileImg}
