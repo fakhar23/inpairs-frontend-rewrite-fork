@@ -16,7 +16,7 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<SupportEmailBody>({
     resolver: yupResolver(contactUsSchema),
   });
@@ -120,8 +120,8 @@ export function ContactForm() {
             <Button
               type="submit"
               className="mt-4"
-              isDisabled={isSubmitting}
-              isLoading={isSubmitting}
+              isDisabled={supportEmailMutation.isPending}
+              isLoading={supportEmailMutation.isPending}
               content="Send Message"
             />
           </form>
