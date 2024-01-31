@@ -24,7 +24,7 @@ export default function Verify() {
       return await requestNewEmailVerification(data);
     },
     onSuccess(response) {
-      toast.success(response.data.message);
+      toast.success(response.message);
     },
   });
 
