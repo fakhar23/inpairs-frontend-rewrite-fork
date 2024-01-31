@@ -237,7 +237,7 @@ const EditProfile = (props: Props) => {
       className={`container px-[20%] transition-all-children-0_3 ${poppins.className}`}
     >
       {processing && (
-        <div className="absolute -top-16 bottom-0 right-0 left-0 bg-black900/10 pt-5 flex items-start  justify-center">
+        <div className="absolute -top-16 bottom-0 right-0 left-0 bg-darkBlackBackground/10 pt-5 flex items-start  justify-center">
           <Loading />
         </div>
       )}
@@ -320,7 +320,7 @@ const EditProfile = (props: Props) => {
           <Link
             href="/profile/me"
             type="button"
-            className="bg-while text-black900  px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate300"
+            className="bg-while text-darkBlackText  px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate300"
           >
             Cancel
           </Link>

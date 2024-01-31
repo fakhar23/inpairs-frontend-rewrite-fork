@@ -7,7 +7,7 @@ const UserLink = ({ user }: any) => {
     <Link
       href={href}
       target="blank"
-      className="text-blue500 underline underline-offset-2"
+      className="text-blueLink underline underline-offset-2"
     >{`${user?.first_name} ${user?.last_name}`}</Link>
   ) : (
     <></>

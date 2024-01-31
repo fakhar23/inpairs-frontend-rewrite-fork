@@ -109,7 +109,7 @@ export const GeneralInfo = ({
         />
       </div>
       {error && (
-        <p className="text-blue400" style={{ color: "red" }}>
+        <p className="text-blueText" style={{ color: "red" }}>
           {error}
         </p>
       )}

@@ -48,7 +48,7 @@ export function Modal({
             <div className="mr-7">{title}</div>
 
             <IoClose
-              className="text-2xl absolute top-0 right-0 hover:text-blue600 cursor-pointer"
+              className="text-2xl absolute top-0 right-0 hover:text-darkBlueText cursor-pointer"
               onClick={onClose}
             />
           </div>

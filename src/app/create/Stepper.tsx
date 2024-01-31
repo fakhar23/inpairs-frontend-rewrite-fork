@@ -47,7 +47,7 @@ export const Stepper = ({ activeStep, steps }: IStepper) => {
               </div>
               <div
                 className={`flex-auto border-t-2 transition duration-500 ease-in-out ${
-                  i + 1 < activeStep ? "border-rose500" : "border-slate300"
+                  i + 1 < activeStep ? "border-roseBorder" : "border-slate300"
                 }`}
               ></div>
             </div>

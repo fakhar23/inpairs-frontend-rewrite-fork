@@ -123,7 +123,7 @@ function ImagesUploader() {
             {images.length < 3 ? (
               <>
                 {images.length < 3 ? (
-                  <div className="flex flex-col items-center text-neutral500 group-hover:text-purple900 dark:text-neutral400">
+                  <div className="flex flex-col items-center text-neutral500 group-hover:text-darkPurpleText dark:text-neutral400">
                     <p className="mb-2 text-sm ">
                       <span className="font-semibold">
                         Click to upload images

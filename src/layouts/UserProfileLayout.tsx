@@ -51,7 +51,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <nav className="relative bg-red200 bg-gradient-to-r from-red500 to-purple900 px-[4rem] pt-[2rem] pb-[3rem] text-white mb-2">
+      <nav className="relative bg-red200 bg-gradient-to-r from-red500 to-darkPurpleBg px-[4rem] pt-[2rem] pb-[3rem] text-white mb-2">
         {/* Background Image of entire nav */}
         <Image
           src={bgArt}
@@ -155,7 +155,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                   item ? (
                     <animated.ul
                       style={style}
-                      className={`overflow-hidden border-orange block border nav absolute top-10 right-0 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg text-black900 ease-in-out duration-300 [&_*]:transition-all [&_*]:duration-300 `}
+                      className={`overflow-hidden border-orange block border nav absolute top-10 right-0 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg text-darkBlackText ease-in-out duration-300 [&_*]:transition-all [&_*]:duration-300 `}
                     >
                       <Link
                         onClick={() => setOpenNav(false)}

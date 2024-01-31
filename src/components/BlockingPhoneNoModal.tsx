@@ -33,19 +33,21 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
 
   return (
     <div className="p-6 w-full max-w-md max-h-[80vh] overflow-auto ">
-      <h2 className="text-2xl font-bold text-gray800">Blocked Phone Numbers</h2>
+      <h2 className="text-2xl font-bold text-darkGrayText">
+        Blocked Phone Numbers
+      </h2>
 
       <div className="my-5">
         {blockedNumbers.map((number, index) => (
           <>
-            <p className="text-gray700">{`Phone Number #${index + 1}`}</p>
+            <p className="text-darkGrayText">{`Phone Number #${index + 1}`}</p>
 
             <div key={index} className="flex items-stretch gap-2 mb-3">
               <input
                 type="text"
                 value={number}
                 onChange={handleInputChange(index)}
-                className={`outline-none flex-1 px-3 py-2 mt-1 w-full rounded-md border-gray500 border focus:ring-red600 ${
+                className={`outline-none flex-1 px-3 py-2 mt-1 w-full rounded-md border-grayBorder border focus:ring-red600 ${
                   number && number == error ? "border-red500 shake" : ""
                 }`}
                 placeholder="Enter phone number"
@@ -85,7 +87,7 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
         />
 
         <button
-          className="bg-while text-black900 px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate300"
+          className="bg-while text-darkBlackText px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate300"
           type="button"
           onClick={() => setIsBlockingModal(false)}
         >

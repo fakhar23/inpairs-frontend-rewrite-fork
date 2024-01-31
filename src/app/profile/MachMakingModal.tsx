@@ -93,7 +93,7 @@ export function MatchMakingModal(props: Props, ref: any) {
         >
           <th scope="row" className="px-6 py-4 font-normal whitespace-nowrap">
             <a
-              className="text-blue500 underline underline-offset-2"
+              className="text-blueLink underline underline-offset-2"
               href={`/profile/${potential.UserMatch.auth_id}`}
               target="_blank"
             >
@@ -151,13 +151,15 @@ export function MatchMakingModal(props: Props, ref: any) {
             <div className="text-sm flex items-center">
               <div>
                 Matched{" "}
-                <span className="text-blue500">
+                <span className="text-blueText">
                   {potential?.match_total || 0}
                 </span>
               </div>
               <div>
                 &nbsp;time{potential?.match_total > 1 ? "s" : ""}&nbsp;in{" "}
-                <span className="text-blue500">{potential?.member_months}</span>{" "}
+                <span className="text-blueText">
+                  {potential?.member_months}
+                </span>{" "}
                 months
               </div>
             </div>
@@ -240,7 +242,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                 }) => (
                   <a
                     key={u.email}
-                    className="text-blue500 underline underline-offset-2 mr-2"
+                    className="text-blueLink underline underline-offset-2 mr-2"
                     href={`/profile/${u.sharable_id}`}
                     target="_blank"
                   >
@@ -260,7 +262,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                 }) => (
                   <a
                     key={u.email}
-                    className="text-blue500 underline underline-offset-2 mr-2"
+                    className="text-blueLink underline underline-offset-2 mr-2"
                     href={`/profile/${u.sharable_id}`}
                     target="_blank"
                   >
@@ -280,7 +282,7 @@ export function MatchMakingModal(props: Props, ref: any) {
                 }) => (
                   <a
                     key={u.email}
-                    className="text-blue500 underline underline-offset-2 mr-2"
+                    className="text-blueLink underline underline-offset-2 mr-2"
                     href={`/profile/${u.sharable_id}`}
                     target="_blank"
                   >
@@ -308,8 +310,8 @@ export function MatchMakingModal(props: Props, ref: any) {
 
         <ul className="ml-6">
           <li className="flex gap-2 items-center">
-            <div className="w-5 h-5 bg-yellow100"></div> Users without a match
-            for more than two months.
+            <div className="w-5 h-5 bg-lightYellowBackground"></div> Users
+            without a match for more than two months.
           </li>
 
           <li className="flex gap-2 items-center">
@@ -364,7 +366,7 @@ export function MatchMakingModal(props: Props, ref: any) {
 
       <footer className="flex justify-center my-5 space-x-3">
         <button
-          className="bg-blue500 hover:bg-blue700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blueButton hover:bg-darkBlueButton text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           onClick={() => props.handleSave()}
           disabled={props.submitLoading}
         >

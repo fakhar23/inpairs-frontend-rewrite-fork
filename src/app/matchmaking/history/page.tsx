@@ -20,7 +20,7 @@ import Note from "./Note";
 
 const getMatchStatus = (status: string, reason: string) => {
   if (status == "ACCEPTED") {
-    return <span className="text-green500">{status}</span>;
+    return <span className="text-greenText">{status}</span>;
   } else if (status == "REJECTED") {
     return (
       <>
@@ -108,7 +108,7 @@ const MatchmakingHistory = () => {
               onClick={() => setMatchToEdit(row.original)}
               className="flex justify-end w-full"
             >
-              <IoChatbox className="text-purple900 hover:opacity-75 zoom-scale-125 cursor-pointer   " />
+              <IoChatbox className="text-darkPurpleText hover:opacity-75 zoom-scale-125 cursor-pointer   " />
             </button>
           );
         },
@@ -136,7 +136,7 @@ const MatchmakingHistory = () => {
       <div className="max-w-7xl mx-auto">
         <CalculationTable />
         <div className="flex justify-between items-center">
-          <h1 className="my-10 text-2xl font-medium text-purple900">
+          <h1 className="my-10 text-2xl font-medium text-darkPurpleText">
             Matchmaking History
           </h1>
           <button
@@ -165,7 +165,7 @@ const MatchmakingHistory = () => {
         />
         <CustomModal
           title="List of Rejection Reasons"
-          titleClassName="!text-2xl text-purple900"
+          titleClassName="!text-2xl text-darkPurpleText"
           className=""
           show={showReasons}
           onClose={() => setshowReasons(false)}

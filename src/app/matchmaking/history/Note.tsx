@@ -16,7 +16,7 @@ const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
   const { note, user_one, user_two } = matchToEdit || {};
   return (
     <form onSubmit={handleSubmit}>
-      <div className="text-2xl text-purple900 mr-7 mt-2">
+      <div className="text-2xl text-darkPurpleText mr-7 mt-2">
         {note ? "Edit" : "Add"} Notes Mesagge for <UserLink user={user_one} /> &{" "}
         <UserLink user={user_two} />
       </div>

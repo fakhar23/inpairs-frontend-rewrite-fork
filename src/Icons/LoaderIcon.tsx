@@ -4,7 +4,7 @@ const LoaderIcon = () => {
   return (
     <svg
       aria-hidden="true"
-      className="inline w-12 h-12 mr-2 text-lightBlueGray animate-spin dark:text-neutral600 fill-rose200"
+      className="inline w-12 h-12 mr-2 text-lightBlueGray animate-spin dark:text-neutral600 fill-LightRoseText"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

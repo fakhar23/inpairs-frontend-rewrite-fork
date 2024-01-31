@@ -36,15 +36,15 @@ const StatusComponent = ({ user, onAction }: any) => {
 
   if (status === "matched") {
     return (
-      <div className="gap-4 items-center text-black900">
+      <div className="gap-4 items-center text-darkBlackText">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           Congrats! Your match is here
         </h3>
-        <div className="flex items-center gap-4  text-black900">
+        <div className="flex items-center gap-4  text-darkBlackText">
           <div className="flex items-center gap-1">
             <BsFillTelephoneInboundFill /> {user?.phone_number}
           </div>
-          <div className="border-[0.4px] border-purple900 h-[1.25rem] inline" />
+          <div className="border-[0.4px] border-darkPurpleBorder h-[1.25rem] inline" />
 
           <div className="flex items-center gap-1">
             <BsInstagram />
@@ -55,7 +55,7 @@ const StatusComponent = ({ user, onAction }: any) => {
     );
   } else if (status == "waiting") {
     return (
-      <div className="flex  gap-4 items-center text-black900">
+      <div className="flex  gap-4 items-center text-darkBlackText">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           Waiting for match decision
         </h3>
@@ -63,7 +63,7 @@ const StatusComponent = ({ user, onAction }: any) => {
     );
   } else if (status == "rejected") {
     return (
-      <div className="flex  gap-4 items-center text-black900">
+      <div className="flex  gap-4 items-center text-darkBlackText">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           You have been rejected :(
         </h3>
@@ -71,7 +71,7 @@ const StatusComponent = ({ user, onAction }: any) => {
     );
   } else if (status == "rejecting") {
     return (
-      <div className="flex  gap-4 items-center text-black900">
+      <div className="flex  gap-4 items-center text-darkBlackText">
         <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
           You have already rejected this match
         </h3>
@@ -82,7 +82,7 @@ const StatusComponent = ({ user, onAction }: any) => {
       <div className="flex  gap-10 w-full">
         <span
           onClick={() => onAction("accept")}
-          className="text-green500 cursor-pointer hover:text-green300 transition-all ease-out duration-300"
+          className="text-greenText cursor-pointer hover:text-lightGreenText transition-all ease-out duration-300"
         >
           Accept
         </span>
@@ -147,16 +147,16 @@ const MatchCard = ({ user }: any) => {
                   {user?.firstName}
                 </h3>
 
-                <div className="flex gap-4 items-center text-black900">
+                <div className="flex gap-4 items-center text-darkBlackText">
                   <span>{user?.age} years</span>
-                  <div className="border-[0.4px] border-purple900 h-[1.25rem] inline" />
+                  <div className="border-[0.4px] border-darkPurpleBorder h-[1.25rem] inline" />
                 </div>
               </div>
 
               <Link
                 onClick={() => handleUpdateMatchHistory("profile")}
                 href="/profile/"
-                className="flex items-center whitespace-nowrap bg-purple900 text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-purple500 transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
+                className="flex items-center whitespace-nowrap bg-darkPurpleBg text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-purpleBg transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
               >
                 View Profile
               </Link>
@@ -195,7 +195,7 @@ const MatchCard = ({ user }: any) => {
             <button
               onClick={handleConfirm}
               className={`capitalize text-white font-semibold w-5/12 py-2 rounded-lg flex items-center justify-center gap-5
-               bg-green500 `}
+               bg-greenText `}
             >
               {isLoading && (
                 <ClipLoader

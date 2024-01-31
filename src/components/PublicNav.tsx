@@ -125,7 +125,7 @@ export function PublicNavbar({
       <button
         type="button"
         title="menu"
-        className="items-center p-2 text-neutral500 rounded-lg hidden md:inline-flex hover:bg-neutral100 focus:outline-none focus:ring-2 focus:ring-gray200 dark:text-neutral400 dark:hover:bg-neutral700 dark:focus:ring-gray600"
+        className="items-center p-2 text-neutral500 rounded-lg hidden md:inline-flex hover:bg-neutral100 focus:outline-none focus:ring-2 focus:ring-lightGrayButton dark:text-neutral400 dark:hover:bg-neutral700 dark:focus:ring-grayOutline"
         onClick={() => {
           setDisplay(!display);
         }}

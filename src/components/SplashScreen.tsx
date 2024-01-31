@@ -13,7 +13,7 @@ export const SplashScreen = () => {
           className="w-[8rem]"
           priority={true}
         />
-        <h1 className={`text-xl font-bold text-black900 mt-5 font-funky`}>
+        <h1 className={`text-xl font-bold text-darkBlackText mt-5 font-funky`}>
           Loading...
         </h1>
       </div>

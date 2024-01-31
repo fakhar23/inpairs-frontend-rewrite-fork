@@ -12,7 +12,7 @@ export function Footer({ className }: IFooter) {
   return (
     <footer
       className={twMerge(
-        "px-[5rem] py-[2rem] h-[15rem] relative bg-gradient-to-r from-red500/90 to-purple900/90 flex gap-[2rem] justify-between items-center text-white md:flex-col md:m-0 ",
+        "px-[5rem] py-[2rem] h-[15rem] relative bg-gradient-to-r from-red500/90 to-darkPurpleBg/90 flex gap-[2rem] justify-between items-center text-white md:flex-col md:m-0 ",
         className
       )}
     >

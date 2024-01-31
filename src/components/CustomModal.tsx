@@ -33,7 +33,7 @@ export default function CustomModal({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black900 bg-opacity-25" />
+          <div className="fixed inset-0 bg-darkBlackBackground bg-opacity-25" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -55,7 +55,7 @@ export default function CustomModal({
                 >
                   <div className="mr-7">{title}</div>
                   <IoClose
-                    className="text-2xl absolute top-0 right-0 hover:text-blue600 cursor-pointer"
+                    className="text-2xl absolute top-0 right-0 hover:text-darkBlueText cursor-pointer"
                     onClick={onClose}
                   />
                 </Dialog.Title>

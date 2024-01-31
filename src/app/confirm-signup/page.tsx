@@ -46,7 +46,7 @@ export default function ConfirmSignUp() {
                 . Please{" "}
                 <Link
                   href="/request-verification-email"
-                  className="text-blue500 hover:underline"
+                  className="text-blueLink hover:underline"
                 >
                   request a new verification email
                 </Link>
@@ -58,7 +58,7 @@ export default function ConfirmSignUp() {
               <div className="mb-4">
                 <h1>
                   Congratulations{" "}
-                  <span className="text-blue500">
+                  <span className="text-blueText">
                     {confirmation.data?.email}
                   </span>
                   ! Your email has been successfully confirmed.
@@ -69,7 +69,7 @@ export default function ConfirmSignUp() {
               </div>
               <div>
                 Please proceed to the{" "}
-                <Link href="/login" className="text-blue500 hover:underline">
+                <Link href="/login" className="text-blueLink hover:underline">
                   login
                 </Link>{" "}
                 page to start using our service

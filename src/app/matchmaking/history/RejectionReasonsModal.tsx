@@ -24,7 +24,7 @@ export default function RejectionReasonsModal() {
           </p>
         ))
       ) : (
-        <p className="text-gray600 text-center">Empty</p>
+        <p className="text-darkGrayText text-center">Empty</p>
       )}
     </div>
   );

@@ -48,17 +48,22 @@ const config: Config = {
         lightBlueGray: COLORS.lightBlueGray,
         paleGray: COLORS.paleGray,
 
-        blue400: colors.blue[400],
-        blue500: colors.blue[500],
-        blue600: colors.blue[600],
-        blue700: colors.blue[700],
+        blueButton: colors.blue[500],
+        darkBlueButton: colors.blue[600],
+        blueText: colors.blue[500],
+        darkBlueText: colors.blue[600],
+        blueLink: colors.blue[500],
+        darkBlueLink: colors.blue[600],
 
-        gray200: colors.gray[200],
-        gray300: colors.gray[300],
-        gray500: colors.gray[500],
-        gray600: colors.gray[600],
-        gray700: colors.gray[700],
-        gray800: colors.gray[800],
+        lightGrayOutline: colors.gray[300],
+        grayOutline: colors.gray[500],
+        darkGrayOutline: colors.gray[700],
+        lightGrayBorder: colors.gray[300],
+        grayBorder: colors.gray[500],
+        darkGrayBorder: colors.gray[700],
+        lightGrayText: colors.gray[300],
+        grayText: colors.gray[500],
+        darkGrayText: colors.gray[700],
 
         neutral100: colors.neutral[100],
         neutral200: colors.neutral[200],
@@ -70,11 +75,15 @@ const config: Config = {
         neutral800: colors.neutral[800],
         neutral900: colors.neutral[900],
 
-        green300: colors.green[900],
-        green500: colors.green[900],
+        lightGreenText: colors.green[300],
+        greenText: colors.green[500],
+        lightGreenBg: colors.green[300],
+        greenBg: colors.green[500],
 
-        purple500: colors.purple[500],
-        purple900: colors.purple[900],
+        purpleBg: colors.purple[500],
+        darkPurpleBg: colors.purple[900],
+        darkPurpleText: colors.purple[900],
+        darkPurpleBorder: colors.purple[900],
 
         red100: colors.red[100],
         red200: colors.red[200],
@@ -84,8 +93,12 @@ const config: Config = {
         red600: colors.red[600],
         red700: colors.red[700],
 
-        rose200: colors.rose[200],
-        rose500: colors.rose[500],
+        lightRoseBorder: colors.rose[200],
+        roseBorder: colors.rose[500],
+        roseText: colors.rose[500],
+        LightRoseText: colors.rose[200],
+        lightRoseBackground: colors.rose[200],
+        roseBackground: colors.rose[500],
 
         slate200: colors.slate[200],
         slate300: colors.slate[300],
@@ -95,12 +108,10 @@ const config: Config = {
         slate700: colors.slate[700],
         slate800: colors.slate[800],
 
-        yellow100: colors.yellow[100],
+        lightYellowBackground: colors.yellow[100],
 
-        zinc100: colors.zinc[100],
-        zinc200: colors.zinc[200],
-
-        black900: colors.black,
+        darkBlackText: colors.gray[900],
+        darkBlackBackground: colors.gray[900],
       },
       textColor: {
         purple: COLORS.secondaryColor,
