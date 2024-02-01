@@ -1,59 +1,98 @@
 "use client";
 
 import { ProfileDataResponse } from "@/api/types";
-
-export const SCALES: { [key: number]: string } = {
-  5: "Primarily family oriented",
-  4: "Leaning towards family-oriented",
-  3: "Both career and family focused",
-  2: "Leaning towards career-oriented",
-  1: "Primarily career-oriented.",
-};
+import { Skeleton } from "@/components";
 
 export function Scales({
   IslamImportance,
   CareerOrFamilyOriented,
   FinancialIndependence,
   FitnessLevel,
-}: ProfileDataResponse) {
-  const isClosenessToFamily = false;
+  ClosenessToFamily,
+  isLoading = true,
+}: ProfileDataResponse & { isLoading: boolean }) {
+  const SKELETON_WIDTH = "40%";
+  const SKELETON_HEIGHT = 24;
 
   return (
     <section className="my-5">
       <div className="flex items-center !justify-start font-bryantProBold text-purple text-[1.25rem]">
         Scales
       </div>
-
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Importance of Islam
         </h3>
-        <p>{IslamImportance}</p>
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{IslamImportance}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Career vs Family
         </h3>
-        <p>{CareerOrFamilyOriented}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{CareerOrFamilyOriented}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Financial independence
         </h3>
-        <p>{FinancialIndependence}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{FinancialIndependence}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Fitness activity
         </h3>
-        <p>{FitnessLevel}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{FitnessLevel}</p>
+        </Skeleton>
       </div>
-      {isClosenessToFamily && (
+      {ClosenessToFamily && (
         <div>
           <h3 className="font-bryantProMedium text-light-black">
             Closeness to family
           </h3>
-          <p>closenessToFamily</p>
+
+          <Skeleton
+            variant="rounded"
+            isLoading={isLoading}
+            animation="wave"
+            width={SKELETON_WIDTH}
+            height={SKELETON_HEIGHT}
+          >
+            <p>{ClosenessToFamily}</p>
+          </Skeleton>
         </div>
       )}
     </section>

@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -5,9 +6,15 @@ export interface IGeneral {
   title: string;
   content: { answer: string; descriptor: string };
   className?: string;
+  isLoading?: boolean;
 }
 
-export const GeneralInfo = ({ title, content, className = "" }: IGeneral) => {
+export const GeneralInfo = ({
+  title,
+  content,
+  className = "",
+  isLoading = true,
+}: IGeneral) => {
   return (
     <div
       className={twMerge(
@@ -21,11 +28,19 @@ export const GeneralInfo = ({ title, content, className = "" }: IGeneral) => {
         </div>
       </div>
       <div className="flex-1">
-        <textarea
-          className="min-h-[100%] w-full resize-y focus:outline-none bg-white"
-          disabled
-          defaultValue={content.answer}
-        />
+        <Skeleton
+          isLoading={isLoading}
+          variant="rounded"
+          animation="wave"
+          width={"100%"}
+          height={90}
+        >
+          <textarea
+            className="min-h-[100%] w-full resize-y focus:outline-none bg-white"
+            disabled
+            defaultValue={content.answer}
+          />
+        </Skeleton>
       </div>
     </div>
   );
