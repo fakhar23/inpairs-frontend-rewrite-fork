@@ -10,7 +10,7 @@ export function Scales({
   FitnessLevel,
   ClosenessToFamily,
   isLoading = true,
-}: ProfileDataResponse & { isLoading: boolean }) {
+}: ProfileDataResponse & { isLoading?: boolean }) {
   const SKELETON_WIDTH = "40%";
   const SKELETON_HEIGHT = 24;
 

@@ -21,7 +21,7 @@ export function UserInfo({
 }: ProfileDataResponse & {
   viewingTheirOwnProfile: boolean;
   currentLocation: string;
-  isLoading: boolean;
+  isLoading?: boolean;
 }) {
   const router = useRouter();
 
