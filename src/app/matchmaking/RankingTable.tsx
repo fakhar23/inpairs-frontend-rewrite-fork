@@ -140,7 +140,7 @@ export default function RankingTable() {
             i: i + 1,
             name: `${v.first_name} ${v.last_name}`,
             ranked: v.ranked ? 'Yes' : 'No',
-            potential_matches: v?.UserPotentialyMatched?.length || 0,
+            potential_matches: v?.UserPotentialMatches?.length || 0,
           }))
         : [],
     [userScoring]
