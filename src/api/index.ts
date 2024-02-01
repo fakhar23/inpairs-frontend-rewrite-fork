@@ -23,6 +23,7 @@ export const ENDPOINTS = {
   setPassword: "/auth/set-password",
   profileData: "/profile",
   supportEmail: "/email/support",
+  matchScoring: "/matchmaking/scoring",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -170,11 +171,9 @@ export async function sendSupportEmail(payload: SupportEmailBody) {
   return result.data;
 }
 
-export const handleError = (error: any) => {
-  const { message } = error?.response?.data || {}
-  console.error(error.response?.data)
-  toast.error(message)
-  return true
+export async function getMatchScoring(queryString: string) {
+  const result = await axiosInstance.get(ENDPOINTS.matchScoring + queryString)
+  return result.data
 }
 
 export { axiosInstance as axios };
