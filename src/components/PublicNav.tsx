@@ -10,7 +10,7 @@ import { useSpring, animated } from "react-spring";
 
 import { LinkButton } from "@/components";
 
-import logo from "../assets/pears-inline.png";
+import logo from "@/assets/pears-inline.png";
 import { CloseIcon } from "../Icons";
 import { MenuIcon } from "../Icons";
 

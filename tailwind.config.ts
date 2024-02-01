@@ -46,9 +46,8 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        circles: "url('/circles.svg')",
-        profile: "url('/profileBg.png')",
-        about: "url('/Group-5.svg')",
+        profile: "url('/src/assets/profileBg.png')",
+        about: "url('/src/assets/Group-5.svg')",
       },
       boxShadow: {
         "custom-shadow":
