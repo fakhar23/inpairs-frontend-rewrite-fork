@@ -13,7 +13,7 @@ import profileImg from "@/assets/prof-pic.png";
 import bgArt from "@/assets/usernavArt.svg";
 import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import { TextSkeleton } from "@/components/TextSkeleton";
+import { Skeleton } from "@/components";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -142,17 +142,18 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                 className="cursor-pointer flex items-center gap-[1rem]"
                 onClick={() => setOpenNav(!openNav)}
               >
-                <TextSkeleton
-                  className={twMerge(
-                    "whitespace-nowrap",
-                    poppins.className,
-                    user.isLoading ? "w-40" : ""
-                  )}
-                  as="p"
-                  showText={!user.isLoading}
-                >{`${user?.data?.firstName} ${
-                  user?.data?.lastName || ""
-                }`}</TextSkeleton>{" "}
+                <Skeleton isLoading={user.isLoading} width={150} height={24}>
+                  <p
+                    className={twMerge(
+                      "whitespace-nowrap",
+                      poppins.className,
+                      user.isLoading ? "w-40" : ""
+                    )}
+                  >{`${user?.data?.firstName} ${
+                    user?.data?.lastName || ""
+                  }`}</p>
+                </Skeleton>
+
                 <div className="h-[2rem] w-[2rem] rounded-full">
                   <Image
                     src={profileImg}

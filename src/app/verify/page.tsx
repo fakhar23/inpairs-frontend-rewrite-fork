@@ -8,7 +8,7 @@ import { Link } from "@/components";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { EmailVerificationBody } from "@/api/types";
 import { requestNewEmailVerification } from "@/api";
-import { TextSkeleton } from "@/components/TextSkeleton";
+import { Skeleton } from "@/components/Skeleton";
 import { twMerge } from "tailwind-merge";
 
 export default function Verify() {
@@ -58,12 +58,12 @@ export default function Verify() {
                   }
                   disabled={emailVerificationMutation.isPending}
                 >
-                  <TextSkeleton
+                  <Skeleton
                     as="span"
                     showText={!emailVerificationMutation.isPending}
                   >
                     Request a new Verification email
-                  </TextSkeleton>
+                  </Skeleton>
                 </button>
               </div>
             </>
