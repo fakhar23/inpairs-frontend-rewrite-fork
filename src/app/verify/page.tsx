@@ -59,8 +59,8 @@ export default function Verify() {
                   disabled={emailVerificationMutation.isPending}
                 >
                   <Skeleton
-                    as="span"
-                    showText={!emailVerificationMutation.isPending}
+                    width="154"
+                    isLoading={!emailVerificationMutation.isPending}
                   >
                     Request a new Verification email
                   </Skeleton>
