@@ -1,30 +1,30 @@
-'use client';
-import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import Link from 'next/link';
-import ReactPaginate from 'react-paginate';
-import { Button, Loading } from '@/components';
-import { queryParams } from '@/api/types';
-import CustomInput from '@/components/CustomInput';
-import { debounce } from 'lodash';
-import Table from '@/components/Table';
-import { SortingState } from '@tanstack/react-table';
-import Select from 'react-select';
-import './style.css';
-import { useGetScoring } from '@/api/matchmaking';
-import UserLink from '@/components/UserLink';
+"use client";
+import React, { ChangeEvent, useCallback, useMemo, useState } from "react";
+import Link from "next/link";
+import ReactPaginate from "react-paginate";
+import { Button, Loading } from "@/components";
+import { queryParams } from "@/api/types";
+import CustomInput from "@/components/CustomInput";
+import { debounce } from "lodash";
+import Table from "@/components/Table";
+import { SortingState } from "@tanstack/react-table";
+import Select from "react-select";
+import "./style.css";
+import { useGetScoring } from "@/api/matchmaking";
+import UserLink from "@/components/UserLink";
 
 const rankOptions = [
-  { value: null, label: 'All' },
-  { value: true, label: 'Ranked' },
-  { value: false, label: 'Not Ranked' },
+  { value: "", label: "All" },
+  { value: "true", label: "Ranked" },
+  { value: "false", label: "Not Ranked" },
 ];
 interface filterType {
-  ranked?: boolean;
+  ranked?: string;
 }
 
 export default function RankingTable() {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [page, setPage] = useState({ current: 1, take: 10 });
   const [filter, setFilter] = useState<filterType>({});
 
@@ -38,7 +38,7 @@ export default function RankingTable() {
       qp.filter = {
         ...qp.filter,
         search: searchText,
-        search_keys: 'first_name,last_name',
+        search_keys: "first_name,last_name",
       };
     }
 
@@ -54,33 +54,33 @@ export default function RankingTable() {
     (key: string, value: number) => {
       setPage({ ...page, [key]: value });
     },
-    [page]
+    [page],
   );
 
   const handleFilterChange = useCallback(
     (key: keyof filterType, value: any) => {
       const newFilter = { ...filter };
-      if (value) {
+      if (!!value) {
         newFilter[key] = value;
       } else {
         delete newFilter[key];
       }
       setFilter(newFilter);
     },
-    [filter]
+    [filter],
   );
 
   const columns = useMemo(
     () => [
       {
         id: 1,
-        header: 'ID',
-        accessorKey: 'i',
+        header: "ID",
+        accessorKey: "i",
       },
       {
         id: 2,
-        header: 'NAME',
-        accessorKey: 'name',
+        header: "NAME",
+        accessorKey: "name",
         cell: ({ row }: any) => <UserLink user={row.original} />,
       },
       {
@@ -93,29 +93,30 @@ export default function RankingTable() {
             >
               <div>Ranking</div>
               <Select
-                id="xyz"
+                id="ranked"
                 value={
-                  rankOptions.find((v) => v.value === !!filter.ranked) ||
-                  rankOptions[0]
+                  filter.ranked
+                    ? rankOptions.find((v) => v.value == filter.ranked)
+                    : rankOptions[0]
                 }
                 options={rankOptions}
-                onChange={(v: any) => handleFilterChange('ranked', v.value)}
+                onChange={(v: any) => handleFilterChange("ranked", v.value)}
               />
             </div>
           );
         },
 
-        accessorKey: 'ranked',
+        accessorKey: "ranked",
       },
       {
         id: 4,
-        header: 'POTENTIAL MATCHES',
-        accessorKey: 'potential_matches',
+        header: "POTENTIAL MATCHES",
+        accessorKey: "potential_matches",
       },
       {
         id: 5,
-        header: '',
-        accessorKey: 'id',
+        header: "",
+        accessorKey: "id",
         cell: ({ row }: any) => (
           <Link
             href={{
@@ -129,7 +130,7 @@ export default function RankingTable() {
         ),
       },
     ],
-    [handleFilterChange, filter.ranked]
+    [handleFilterChange, filter.ranked],
   );
 
   const data = useMemo(
@@ -139,11 +140,11 @@ export default function RankingTable() {
             ...v,
             i: i + 1,
             name: `${v.first_name} ${v.last_name}`,
-            ranked: v.ranked ? 'Yes' : 'No',
+            ranked: v.ranked ? "Yes" : "No",
             potential_matches: v?.UserPotentialMatches?.length || 0,
           }))
         : [],
-    [userScoring]
+    [userScoring],
   );
   const loading = restScoringList.isLoading;
 
@@ -170,11 +171,12 @@ export default function RankingTable() {
           onChange={debounce(
             (e: ChangeEvent<HTMLInputElement>) =>
               setSearchText(e?.target.value),
-            700
+            700,
           )}
           label="Search user"
         />
         <Table
+          className="min-h-60"
           columns={columns}
           data={data}
           sorting={sorting}
@@ -183,20 +185,20 @@ export default function RankingTable() {
 
         {!!meta?.count ? (
           <ReactPaginate
-            previousLabel={'<'}
-            nextLabel={'>'}
+            previousLabel={"<"}
+            nextLabel={">"}
             pageCount={Math.ceil(meta?.count / page.take)}
             onPageChange={({ selected }) =>
-              handlePageChange('current', selected + 1)
+              handlePageChange("current", selected + 1)
             }
-            containerClassName={'pagination'}
-            pageClassName={'page-item'}
-            pageLinkClassName={'page-link'}
-            previousClassName={'page-item'}
-            previousLinkClassName={'page-link'}
-            nextClassName={'page-item'}
-            nextLinkClassName={'page-link'}
-            activeClassName={'active'}
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item"}
+            nextLinkClassName={"page-link"}
+            activeClassName={"active"}
           />
         ) : null}
       </div>

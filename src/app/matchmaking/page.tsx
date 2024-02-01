@@ -1,13 +1,13 @@
-'use client';
-import React from 'react';
-import UserProfileLayout from '@/layouts/UserProfileLayout';
-import RankingTable from './RankingTable';
-import useVerifyPermission from '@/hooks/useVerifyPermission';
-import { Loading } from '@/components';
-import './style.css';
+"use client";
+import React from "react";
+import UserProfileLayout from "@/layouts/UserProfileLayout";
+import RankingTable from "./RankingTable";
+import useVerifyPermission from "@/hooks/useVerifyPermission";
+import { Loading } from "@/components";
+import "./style.css";
 
 const MatchMakingPage = () => {
-  const { isLoading } = useVerifyPermission(['ADMIN', 'MATCHMAKER']);
+  const { isLoading } = useVerifyPermission(["ADMIN", "MATCHMAKER"]);
 
   return (
     <UserProfileLayout>
