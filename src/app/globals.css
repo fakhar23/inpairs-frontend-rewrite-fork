@@ -63,6 +63,11 @@ html {
   }
 }
 
+.wrapper {
+  @apply max-w-[1440px] w-full mx-auto px-4
+}
+
+
 .zoom-scale-125 {
   @apply transition-all ease-in-out delay-0 hover:scale-125 duration-300;
 }

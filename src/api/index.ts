@@ -170,4 +170,11 @@ export async function sendSupportEmail(payload: SupportEmailBody) {
   return result.data;
 }
 
+export const handleError = (error: any) => {
+  const { message } = error?.response?.data || {}
+  console.error(error.response?.data)
+  toast.error(message)
+  return true
+}
+
 export { axiosInstance as axios };

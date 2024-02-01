@@ -13,7 +13,8 @@ import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 
 interface TableProps<D extends object> {
   columns: {
-    header: string | (() => string);
+    id?: any
+    header: string | (() => string | any) | any;
     accessorKey: string;
     cell?: (cell: any) => any;
   }[];

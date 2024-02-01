@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
-
-import UserLink from "./UserLink";
 import { Button } from "@/components";
+import UserLink from "@/components/UserLink";
 
 const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
