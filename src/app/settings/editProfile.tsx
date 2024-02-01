@@ -7,13 +7,6 @@ import { formStructure } from "./formStructure";
 import BlockingPhoneNoModal from "../../components/BlockingPhoneNoModal";
 import RegularTextArea from "../../components/RegularTextArea";
 
-import { Poppins } from "next/font/google";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
-
 type Props = {
   answers: {
     [key: string]: string;
@@ -234,7 +227,7 @@ const EditProfile = (props: Props) => {
 
   return (
     <div
-      className={`container px-[20%] transition-all-children-0_3 ${poppins.className}`}
+      className={`container px-[20%] transition-all-children-0_3 font-poppins`}
     >
       {processing && (
         <div className="absolute -top-16 bottom-0 right-0 left-0 bg-black/10 pt-5 flex items-start  justify-center">

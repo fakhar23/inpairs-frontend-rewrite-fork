@@ -68,6 +68,7 @@ const config: Config = {
         funky: ["Funky", "system-ui", "sans-serif"],
         inter: ["Inter", "system-ui", "sans-serif"],
         pacifico: ["Pacifico", "cursive", "system-ui", "sans-serif"],
+        poppins: ["Poppins", "system-ui", "sans-serif"],
       },
       fontSize: {
         xsmall: "12px",

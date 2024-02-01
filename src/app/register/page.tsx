@@ -1,6 +1,5 @@
 "use client";
 
-import { Poppins } from "next/font/google";
 import { Link } from "@/components";
 import { useRouter } from "next/navigation";
 
@@ -15,11 +14,6 @@ import { SignUpBody } from "@/api/types";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api";
 import { toast } from "react-toastify";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export default function Register() {
   const signUpMutation = useMutation({
@@ -47,8 +41,8 @@ export default function Register() {
   return (
     <NavbarLayout>
       <FormsLayout>
-        <div className={poppins.className}>
-          <div className={`text-lg px-[2rem] ${poppins.className}`}>
+        <div className="font-poppins">
+          <div className={`text-lg px-[2rem] font-poppins`}>
             Create Your Account
           </div>
 

@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode, useState } from "react";
-import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { Link } from "@/components";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,11 +13,6 @@ import bgArt from "@/assets/usernavArt.svg";
 import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { TextSkeleton } from "@/components/TextSkeleton";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 const NavigationPaths = {
   matchmaking: "/matchmaking",
@@ -145,7 +139,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                 <TextSkeleton
                   className={twMerge(
                     "whitespace-nowrap",
-                    poppins.className,
+                    "font-poppins",
                     user.isLoading ? "w-40" : ""
                   )}
                   as="p"
