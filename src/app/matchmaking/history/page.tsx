@@ -1,30 +1,29 @@
-'use client';
-import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import { SortingState } from '@tanstack/react-table';
-import debounce from 'lodash/debounce';
-import { IoChatbox } from 'react-icons/io5';
-import CustomInput from '@/components/CustomInput';
-import ExpandableText from '@/components/ExpandableText';
-import Table from '@/components/Table';
-import UserProfileLayout from '@/layouts/UserProfileLayout';
-import CalculationTable from './CalculationTable';
-import CustomModal from '@/components/CustomModal';
-import RejectionReasonsModal from './RejectionReasonsModal';
-import Note from './Note';
-import { useListMatchmaking } from '@/api/matchmaking';
-import { queryParams } from '@/api/types';
-import { Loading } from '@/components';
-import { PencilIcon } from '@/Icons/PencilIcon';
-import UserLink from '@/components/UserLink';
-import '../style.css';
-import useVerifyPermission from '@/hooks/useVerifyPermission';
+"use client";
+import React, { ChangeEvent, useCallback, useMemo, useState } from "react";
+import ReactPaginate from "react-paginate";
+import { SortingState } from "@tanstack/react-table";
+import debounce from "lodash/debounce";
+import { IoChatbox } from "react-icons/io5";
+import CustomInput from "@/components/CustomInput";
+import ExpandableText from "@/components/ExpandableText";
+import Table from "@/components/Table";
+import UserProfileLayout from "@/layouts/UserProfileLayout";
+import CalculationTable from "./CalculationTable";
+import CustomModal from "@/components/CustomModal";
+import RejectionReasonsModal from "./RejectionReasonsModal";
+import Note from "./Note";
+import { useListMatchmaking } from "@/api/matchmaking";
+import { queryParams } from "@/api/types";
+import { Loading } from "@/components";
+import { PencilIcon } from "@/Icons/PencilIcon";
+import UserLink from "@/components/UserLink";
+import "../style.css";
+import useVerifyPermission from "@/hooks/useVerifyPermission";
 
 export default function MatchmakingHistory() {
-  const { isLoading } = useVerifyPermission(['ADMIN', 'MATCHMAKER']);
-
+  const { isLoading } = useVerifyPermission(["ADMIN", "MATCHMAKER"]);
   const [showReasons, setshowReasons] = useState(false);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [matchToEdit, setMatchToEdit] = useState<any>(null);
   const [page, setPage] = useState({ current: 1, take: 10 });
@@ -38,7 +37,7 @@ export default function MatchmakingHistory() {
       qp.filter = {
         search: searchText,
         search_keys:
-          'UserOne.first_name,UserOne.last_name,UserTwo.first_name,UserTwo.last_name',
+          "UserOne.first_name,UserOne.last_name,UserTwo.first_name,UserTwo.last_name",
       };
     }
     return qp;
@@ -56,42 +55,42 @@ export default function MatchmakingHistory() {
   const columns = useMemo(
     () => [
       {
-        header: () => 'User 1',
-        accessorKey: 'user_one_name',
+        header: () => "User 1",
+        accessorKey: "user_one_name",
         cell: ({ row }: any) => {
           return <UserLink user={row.original.UserOne} />;
         },
       },
       {
-        header: () => 'Status',
-        accessorKey: 'male_response',
+        header: () => "Status",
+        accessorKey: "male_response",
         cell: ({ row }: any) => {
           return getMatchStatus(
             row?.original?.male_response,
-            row?.original?.male_response_message
+            row?.original?.male_response_message,
           );
         },
       },
       {
-        header: () => 'User 2',
-        accessorKey: 'user_two_name',
+        header: () => "User 2",
+        accessorKey: "user_two_name",
         cell: ({ row }: any) => {
           return <UserLink user={row.original.UserTwo} />;
         },
       },
       {
-        header: () => 'Status',
-        accessorKey: 'female_response',
+        header: () => "Status",
+        accessorKey: "female_response",
         cell: ({ row }: any) => {
           return getMatchStatus(
             row?.original?.female_response,
-            row?.original?.female_response_message
+            row?.original?.female_response_message,
           );
         },
       },
       {
-        header: () => 'Notes',
-        accessorKey: 'matchmaker_notes',
+        header: () => "Notes",
+        accessorKey: "matchmaker_notes",
         cell: ({ row }: any) => {
           const {
             matchmaker_notes,
@@ -104,7 +103,7 @@ export default function MatchmakingHistory() {
             <div className="w-auto flex items-center">
               <ExpandableText text={matchmaker_notes} maxChar={50} />
               <button
-                title={read ? 'already read' : `Edit`}
+                title={read ? "already read" : `Edit`}
                 disabled={read}
                 className="flex justify-end w-full disabled:grayscale group "
               >
@@ -126,18 +125,18 @@ export default function MatchmakingHistory() {
         },
       },
     ],
-    []
+    [],
   );
 
   const handlePageChange = useCallback(
     (value: number, key: string) => {
       setPage({ ...page, [key]: value });
     },
-    [page]
+    [page],
   );
 
   const data = matches?.length
-    ? matches.map((v, i) => ({
+    ? matches.map((v: any, i: number) => ({
         ...v,
         i,
         user_one_name: `${v.UserOne.first_name} ${v.UserOne.last_name}`,
@@ -173,7 +172,7 @@ export default function MatchmakingHistory() {
           onChange={debounce(
             (e: ChangeEvent<HTMLInputElement>) =>
               setSearchText(e?.target.value),
-            700
+            700,
           )}
           label="Search user"
         />
@@ -186,20 +185,20 @@ export default function MatchmakingHistory() {
 
         {meta?.count && (
           <ReactPaginate
-            previousLabel={'<'}
-            nextLabel={'>'}
+            previousLabel={"<"}
+            nextLabel={">"}
             pageCount={Math.ceil(meta?.count / page.take)}
             onPageChange={({ selected }) =>
-              handlePageChange(selected + 1, 'current')
+              handlePageChange(selected + 1, "current")
             }
-            containerClassName={'pagination'}
-            pageClassName={'page-item'}
-            pageLinkClassName={'page-link'}
-            previousClassName={'page-item'}
-            previousLinkClassName={'page-link'}
-            nextClassName={'page-item'}
-            nextLinkClassName={'page-link'}
-            activeClassName={'active'}
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item"}
+            nextLinkClassName={"page-link"}
+            activeClassName={"active"}
           />
         )}
         <CustomModal
@@ -220,9 +219,9 @@ export default function MatchmakingHistory() {
 }
 
 const getMatchStatus = (status: string, reason: string) => {
-  if (status == 'ACCEPTED') {
+  if (status == "ACCEPTED") {
     return <span className="text-green-500">{status}</span>;
-  } else if (status == 'REJECTED') {
+  } else if (status == "REJECTED") {
     return (
       <>
         <span className="text-red mr-2">{status}</span>because &#8220;
@@ -230,6 +229,6 @@ const getMatchStatus = (status: string, reason: string) => {
       </>
     );
   } else {
-    return '';
+    return "";
   }
 };
