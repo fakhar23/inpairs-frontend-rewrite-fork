@@ -10,10 +10,16 @@ export function Skeleton({
   isLoading,
   variant = "rounded",
   animation = "wave",
+
   ...props
 }: ISkeleton) {
   return isLoading ? (
-    <MUISkeleton variant={variant} animation={animation} {...props} />
+    <MUISkeleton
+      variant={variant}
+      animation={animation}
+      style={{ borderRadius: "10px" }}
+      {...props}
+    />
   ) : (
     children
   );

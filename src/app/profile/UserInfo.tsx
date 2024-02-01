@@ -5,7 +5,7 @@ import Image from "next/image";
 import { CloudinaryImage } from "@/components";
 import Pin from "@/assets/pin.svg";
 import { ProfileDataResponse } from "@/api/types";
-import { Skeleton } from "@mui/material";
+import { Skeleton } from "@/components";
 
 const FALLBACK_IMAGE_URL =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
@@ -28,15 +28,14 @@ export function UserInfo({
   return (
     <section className="absolute left-[5rem] top-[-3rem] bg-white p-[2rem] w-[22%] rounded-xl shadow-md md:static flex flex-col md:flex-row md:w-full flex-wrap md:gap-[2rem]">
       <div className="md:w-full md:flex md:gap-[2rem] md:items-center md:border-b md:border-slate-300 space-y-4 mb-4">
-        {isLoading ? (
-          <Skeleton
-            variant="rounded"
-            animation="wave"
-            className="w-[15rem] h-[15rem] object-cover rounded-xl mb-[2rem] md:w-[12rem] md:h-[12rem] m-auto"
-            width={240}
-            height={240}
-          />
-        ) : (
+        <Skeleton
+          variant="rounded"
+          animation="wave"
+          height={240}
+          width={240}
+          style={{ margin: "auto" }}
+          isLoading={isLoading}
+        >
           <CloudinaryImage
             alt={`${first_name} ${last_name} gallery`}
             url={images?.[0]}
@@ -46,17 +45,16 @@ export function UserInfo({
             loading="eager"
             className="w-[15rem] h-[15rem] object-cover rounded-xl mb-[2rem] md:w-[12rem] md:h-[12rem] m-auto"
           />
-        )}
+        </Skeleton>
 
-        {isLoading ? (
-          <Skeleton
-            variant="rounded"
-            animation="wave"
-            className="mb-[1rem]"
-            width={250}
-            height={24}
-          />
-        ) : (
+        <Skeleton
+          variant="rounded"
+          animation="wave"
+          className="mb-[1rem]"
+          width={"100%"}
+          height={30}
+          isLoading={isLoading}
+        >
           <div className="mb-[1rem]">
             <h2 className="font-bryantProBold text-xl text-center mb-2.5 leading-tight">
               {first_name} {last_name || ""}
@@ -79,20 +77,18 @@ export function UserInfo({
               </div>
             </div>
           </div>
-        )}
+        </Skeleton>
       </div>
 
       <section className="md:w-full md:flex md:justify-between md:items-center space-y-5">
         <div className="flex justify-center md:items-start gap-[1rem] w-full md:w-auto md:mb-auto">
-          {isLoading ? (
-            <Skeleton
-              variant="rounded"
-              animation="wave"
-              className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
-              width={80}
-              height={120}
-            />
-          ) : (
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width={80}
+            height={120}
+            isLoading={isLoading}
+          >
             <CloudinaryImage
               alt={`${first_name} ${last_name} gallery`}
               url={images?.[1]}
@@ -101,17 +97,15 @@ export function UserInfo({
               fallback={FALLBACK_IMAGE_URL}
               className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
             />
-          )}
+          </Skeleton>
 
-          {isLoading ? (
-            <Skeleton
-              variant="rounded"
-              animation="wave"
-              className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
-              width={80}
-              height={120}
-            />
-          ) : (
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width={80}
+            height={120}
+            isLoading={isLoading}
+          >
             <CloudinaryImage
               alt={`${first_name} ${last_name} gallery`}
               url={images?.[2]}
@@ -120,7 +114,7 @@ export function UserInfo({
               fallback={FALLBACK_IMAGE_URL}
               className="w-[7rem] h-[7rem] object-cover rounded-xl md:w-[5rem] md:h-[5rem]"
             />
-          )}
+          </Skeleton>
         </div>
 
         {viewingTheirOwnProfile && (

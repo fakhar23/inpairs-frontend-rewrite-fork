@@ -3,23 +3,15 @@
 import { ProfileDataResponse } from "@/api/types";
 import { Skeleton } from "@/components";
 
-export const SCALES: { [key: number]: string } = {
-  5: "Primarily family oriented",
-  4: "Leaning towards family-oriented",
-  3: "Both career and family focused",
-  2: "Leaning towards career-oriented",
-  1: "Primarily career-oriented.",
-};
-
 export function Scales({
   IslamImportance,
   CareerOrFamilyOriented,
   FinancialIndependence,
   FitnessLevel,
+  ClosenessToFamily,
   isLoading = true,
 }: ProfileDataResponse & { isLoading: boolean }) {
-  const isClosenessToFamily = false;
-  const SKELETON_WIDTH = 120;
+  const SKELETON_WIDTH = "40%";
   const SKELETON_HEIGHT = 24;
 
   return (
@@ -27,7 +19,6 @@ export function Scales({
       <div className="flex items-center !justify-start font-bryantProBold text-purple text-[1.25rem]">
         Scales
       </div>
-
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Importance of Islam
@@ -87,7 +78,7 @@ export function Scales({
           <p>{FitnessLevel}</p>
         </Skeleton>
       </div>
-      {isClosenessToFamily && (
+      {ClosenessToFamily && (
         <div>
           <h3 className="font-bryantProMedium text-light-black">
             Closeness to family
@@ -100,7 +91,7 @@ export function Scales({
             width={SKELETON_WIDTH}
             height={SKELETON_HEIGHT}
           >
-            <p>closenessToFamily</p>
+            <p>{ClosenessToFamily}</p>
           </Skeleton>
         </div>
       )}

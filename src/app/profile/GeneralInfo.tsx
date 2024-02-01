@@ -32,7 +32,7 @@ export const GeneralInfo = ({
           isLoading={isLoading}
           variant="rounded"
           animation="wave"
-          width={380}
+          width={"100%"}
           height={90}
         >
           <textarea

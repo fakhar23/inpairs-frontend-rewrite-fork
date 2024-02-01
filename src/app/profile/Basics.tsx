@@ -20,7 +20,7 @@ export function Basics({
   currentLocation: string;
   isLoading?: boolean;
 }) {
-  const SKELETON_WIDTH = 120;
+  const SKELETON_WIDTH = "40%";
   const SKELETON_HEIGHT = 24;
 
   return (
