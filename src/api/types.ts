@@ -1,3 +1,34 @@
+export interface listParams {
+  queryParams?: queryParams;
+  skip?: boolean;
+}
+
+export interface filterQuery {
+  search?: string;
+  search_keys?: string;
+  [key: string]: any;
+}
+
+export interface queryParams {
+  filter?: filterQuery;
+  take?: number;
+  page?: number;
+  sort?: string;
+  select?: string;
+}
+
+export interface metaResponse {
+  count: number;
+  take: number;
+  page: number;
+  pageCount: number;
+}
+
+export interface listResult {
+  data: any[];
+  meta: metaResponse;
+}
+
 export interface SignUpBody {
   email: string;
   password: string;

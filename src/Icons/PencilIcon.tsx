@@ -1,6 +1,6 @@
-import React, { SVGProps } from "react";
+import React from 'react';
 
-export function Pencil(props: SVGProps<SVGSVGElement>) {
+export function PencilIcon(props: any) {
   return (
     <svg
       id="Iconly_Bulk_Edit"
