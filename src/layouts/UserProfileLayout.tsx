@@ -34,13 +34,14 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
   const profileMenuRef = useClickOutside(() => setOpenNav(false)); //if any click in done outside this ref, then setOpenNav will become false
 
   const user = useAuthContext();
+  const router = useRouter();
 
   function handleLogout() {
     // clear local storage
     localStorage.removeItem("jwt");
     localStorage.removeItem("expires_at");
     localStorage.removeItem("uid");
-    window.location.href = "/login";
+    router.push("/login");
   }
 
   const transitions = useTransition(openNav, {

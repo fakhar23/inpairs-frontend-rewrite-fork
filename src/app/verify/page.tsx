@@ -44,27 +44,31 @@ export default function Verify() {
               <div className="h-24 w-24 mb-4">
                 <Image src={GreenCheck} alt="green check" />
               </div>
-              <div>
-                Haven&apos;t received it?{" "}
-                <button
-                  className={twMerge(
-                    "text-blue-500 hover:underline",
-                    emailVerificationMutation.isPending ? "" : "cursor-pointer"
-                  )}
-                  onClick={() =>
-                    emailVerificationMutation.mutate({
-                      email: emailSearchParam.data,
-                    })
-                  }
-                  disabled={emailVerificationMutation.isPending}
+              <div className="flex gap-1 items-center">
+                <span>Haven&apos;t received it? </span>
+                <Skeleton
+                  width="200px"
+                  height="15px"
+                  style={{ borderRadius: 5 }}
+                  isLoading={emailVerificationMutation.isPending}
                 >
-                  <Skeleton
-                    width="154"
-                    isLoading={!emailVerificationMutation.isPending}
+                  <button
+                    className={twMerge(
+                      "text-blue-500 hover:underline",
+                      emailVerificationMutation.isPending
+                        ? ""
+                        : "cursor-pointer"
+                    )}
+                    onClick={() =>
+                      emailVerificationMutation.mutate({
+                        email: emailSearchParam.data,
+                      })
+                    }
+                    disabled={emailVerificationMutation.isPending}
                   >
                     Request a new Verification email
-                  </Skeleton>
-                </button>
+                  </button>
+                </Skeleton>
               </div>
             </>
           ) : (

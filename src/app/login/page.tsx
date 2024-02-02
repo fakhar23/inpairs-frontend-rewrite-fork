@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Poppins } from "next/font/google";
 import { Link } from "@/components";
@@ -11,7 +11,7 @@ import { PublicNavbar } from "@/components/PublicNav";
 import FormsLayout from "@/layouts/FormsLayout";
 
 import { LoginBody } from "@/api/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { login } from "@/api";
 import { handleSuccessfulLoginRoute } from "@/api/routeUser";
 import { useRouter } from "next/navigation";
@@ -24,6 +24,15 @@ const poppins = Poppins({
 
 function LoginForm() {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    // when on login, start fresh and clear all previous queries caches
+    // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
+    queryClient.clear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loginMutation = useMutation({
     mutationFn: async (payload: LoginBody) => {
       return await login(payload);
