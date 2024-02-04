@@ -1,4 +1,4 @@
-import { Button } from "@/components";
+import { Button, Input } from "@/components";
 import React, { useState } from "react";
 import { IoAddOutline } from "react-icons/io5";
 
@@ -42,24 +42,25 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
           <>
             <p className="text-gray-700">{`Phone Number #${index + 1}`}</p>
 
-            <div key={index} className="flex items-stretch gap-2 mb-3">
-              <input
-                type="text"
-                value={number}
-                onChange={handleInputChange(index)}
-                className={`outline-none flex-1 px-3 py-2 mt-1 w-full rounded-md border-gray-500 border focus:ring-red-600 ${
+            <div key={index} className="flex items-center gap-2 mb-1">
+              <Input
+                id={`phone-number-${index}`}
+                name={`phone-number-${index}`}
+                className={`flex-1 px-3  w-full rounded-md  ${
                   number && number == error ? "border-red-500 shake" : ""
                 }`}
+                value={number}
+                onChange={handleInputChange(index)}
                 placeholder="Enter phone number"
+                variation="secondary"
               />
 
-              <button
+              <Button
+                content="&times;"
+                className="my-2 p-2 rounded "
                 onClick={() => deleteBlockedNumber(index)}
-                className="my-2 bg-red-500 text-white p-2 rounded hover:bg-red-600"
                 aria-label="Delete"
-              >
-                &times;
-              </button>
+              />
             </div>
           </>
         ))}
@@ -70,29 +71,30 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
           </p>
         )}
 
-        <button
+        <Button
+          content=""
           onClick={addNewBlockedNumber}
+          showChildrenOrContent="children"
+          isInverted={true}
           className="flex  gap-2 items-center w-fit mx-auto border-red-500 border-2 px-[1rem] py-[0.3rem] rounded-3xl text-[1rem] shadow-xl  disabled:cursor-not-allowed disabled:bg-slate-300"
         >
           <IoAddOutline /> <p>Add more</p>
-        </button>
+        </Button>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         <Button
           content="Save changes"
           onClick={handleSaveChanges}
           isDisabled={isSaveDisabled}
           isLoading={isLoading}
         />
-
-        <button
-          className="bg-while text-black px-[4rem] py-[0.3rem] md:px-[10rem] md:py-[1rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl border border-black disabled:cursor-not-allowed disabled:bg-slate-300"
+        <Button
+          content="Cancel"
           type="button"
           onClick={() => setIsBlockingModal(false)}
-        >
-          Cancel
-        </button>
+          isInverted={true}
+        />
       </div>
     </div>
   );

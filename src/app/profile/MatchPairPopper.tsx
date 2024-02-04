@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -8,16 +9,15 @@ export const MatchPairPopper = ({ popper }: { popper: React.ReactNode }) => {
 
   return (
     <>
-      <button
+      <Button
         type="button"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline ml-2 text-sm"
+        className="bg-blue-500 hover:bg-blue-700 border-transparent text-sm rounded-md"
         onClick={(e) => {
           e.preventDefault();
           setShown((shown) => !shown);
         }}
-      >
-        {shown ? "hide" : "show"}
-      </button>
+        content={shown ? "Hide" : "Show"}
+      />
 
       {shown &&
         createPortal(
@@ -44,15 +44,15 @@ export const MatchPairPopper = ({ popper }: { popper: React.ReactNode }) => {
             >
               {popper}
             </div>
-            <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-2"
+
+            <Button
+              className="rounded"
               onClick={(e) => {
                 e.stopPropagation();
                 setShown(false);
               }}
-            >
-              Hide
-            </button>
+              content="Hide"
+            />
           </div>,
           document.body
         )}

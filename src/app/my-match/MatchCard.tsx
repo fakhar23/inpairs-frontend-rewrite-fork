@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Link } from "@/components";
+import { Button, Input, Link } from "@/components";
 import { ClipLoader } from "react-spinners";
 import { BsFillTelephoneInboundFill, BsInstagram } from "react-icons/bs";
 import { CloudinaryImage, Modal, Pooling } from "@/components";
@@ -183,24 +183,20 @@ const MatchCard = ({ user }: any) => {
             <span className="text-purple"> {user?.name}</span> as your match?
           </h2>
 
-          <div className="flex justify-center w-full mt-8">
-            <button
+          <div className="flex justify-center w-full mt-8 gap-2">
+            <Button
               onClick={onClose}
-              className="bg-white text-secondary font-semibold w-5/12 py-5 rounded-lg mr-4 border-primary border border-solid"
-            >
-              Go Back
-            </button>
+              isInverted={true}
+              className="font-semibold rounded-lg border-primary py-3"
+              content="Go Back"
+            />
 
-            <button
+            <Button
               onClick={handleConfirm}
-              className={`capitalize text-white font-semibold w-5/12 py-2 rounded-lg flex items-center justify-center gap-5
-               bg-green-500 `}
-            >
-              {isLoading && (
-                <ClipLoader color="#EF3E37" size={20} aria-label="Loading..." />
-              )}
-              Accept
-            </button>
+              className="font-semibold rounded-lg  border-primary bg-green-500 py-3"
+              isLoading={isLoading}
+              content="Accept"
+            />
           </div>
         </div>
       </Modal>
@@ -234,40 +230,35 @@ const MatchCard = ({ user }: any) => {
 
             {survey?.question1 && survey?.question2 && (
               <div className="space-y-4">
-                <label htmlFor="">
-                  Can you explain why you&apos;re saying no? It helps our
-                  matchmakers pick a better Pair for you next time!
-                </label>
-
-                <input
+                <Input
+                  id="reason"
                   name="reason"
-                  className="w-full bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 leading-tight h-[3rem]   text-[#5B5B5B] focus:outline-[#EF3E37]"
-                  placeholder=""
+                  className="w-full"
+                  label="Can you explain why you're saying no? It helps our matchmakers pick a better Pair for you next time!"
                   onChange={onSurveyChange}
+                  variation="secondary"
                 />
               </div>
             )}
           </div>
 
-          <div className="flex justify-center w-full mt-8">
-            <button
+          <div className="flex justify-center w-full mt-8 gap-2">
+            <Button
+              className="rounded-md"
+              type="button"
               onClick={onClose}
-              className="bg-white text-secondary font-semibold w-5/12 py-5 rounded-lg mr-4 border-primary border border-solid"
-            >
-              Go Back
-            </button>
+              content="Go Back"
+              isInverted={true}
+            />
 
-            <button
-              disabled={isDisabled}
+            <Button
+              className=" disabled:bg-slate-300 disabled:text-white disabled:border-slate-300 rounded-md"
+              type="button"
               onClick={handleConfirm}
-              className={`capitalize text-white font-semibold w-5/12 py-2 rounded-lg flex items-center justify-center gap-5
-              ${isDisabled ? "bg-neutral-500" : "bg-red-500"} `}
-            >
-              {isLoading && (
-                <ClipLoader color="#EF3E37" size={20} aria-label="Loading..." />
-              )}{" "}
-              Reject
-            </button>
+              isDisabled={isDisabled}
+              isLoading={isLoading}
+              content="Reject"
+            />
           </div>
         </div>
       </Modal>

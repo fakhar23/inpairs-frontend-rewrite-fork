@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { CloudinaryImage } from "@/components";
+import { Button, CloudinaryImage } from "@/components";
+import { UserOptions } from "./UserOptions";
 import Pin from "@/assets/pin.svg";
 import { ProfileDataResponse } from "@/api/types";
 import { Skeleton } from "@/components";
@@ -119,12 +120,10 @@ export function UserInfo({
 
         {viewingTheirOwnProfile && (
           <div className="flex justify-center items-center gap-[0.7rem] flex-col">
-            <button
-              className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] focus:outline-none focus:shadow-outline hover:bg-[#f87171] md:hidden"
+            <Button
               onClick={() => router.push("/settings")}
-            >
-              Edit Profile
-            </button>
+              content="Edit profile"
+            />
             <div className="mt-5" />
           </div>
         )}

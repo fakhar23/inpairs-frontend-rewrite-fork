@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components";
 import { useRouter } from "next/navigation";
 
 const Complete = () => {
@@ -15,12 +16,12 @@ const Complete = () => {
       <p className="text-gray-gunmetal mb-[2rem] text-xl">
         Your profile has been created
       </p>
-      <button
-        className="bg-white text-gray-gunmetal py-2 px-4 rounded-xl font-semibold cursor-pointer border-2 border-rose-200 hover:bg-slate-500 hover:text-white transition duration-200 ease-in-out"
+      <Button
+        className="rounded-md"
         onClick={() => router.push(`/profile/me`)}
-      >
-        Go to your profile
-      </button>
+        content="Go to your profile"
+        isInverted={true}
+      />
     </div>
   );
 };
