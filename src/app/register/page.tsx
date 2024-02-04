@@ -1,7 +1,7 @@
 "use client";
 
 import { Poppins } from "next/font/google";
-import { Link } from "@/components";
+import { Button, Link } from "@/components";
 import { useRouter } from "next/navigation";
 
 import { useForm, Controller } from "react-hook-form";
@@ -269,14 +269,12 @@ export default function Register() {
             )}
 
             <div className="flex w-full justify-center mt-3">
-              <button
-                className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:w-full md:mt-[2rem] md:text-regular"
+              <Button
                 type="submit"
-                disabled={signUpMutation.isPending}
-              >
-                {signUpMutation.isPending && <LoadingCircle />}
-                Sign up
-              </button>
+                isDisabled={signUpMutation.isPending}
+                content={"Sign up"}
+                isLoading={signUpMutation.isPending}
+              />
             </div>
           </form>
 

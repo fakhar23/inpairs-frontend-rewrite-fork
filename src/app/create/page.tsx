@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { GateNavbar } from "@/components";
+import { Button, GateNavbar } from "@/components";
 
 import Complete from "./Complete";
 import Greeting from "./Greeting";
@@ -120,26 +120,24 @@ export default function Create() {
           <Stepper activeStep={activeStep} steps={steps} />
 
           <section className="flex w-[100%]">
-            <button
-              className="bg-white text-slate-800 uppercase py-2 px-4 rounded-xl font-semibold cursor-pointer border-2 border-slate-300 hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out disabled:cursor-not-allowed disabled:bg-slate-300 disabled:pointer-events-none disabled:text-white bottom-20  md:text-regular"
+            <Button
+              className="font-bold disabled:bg-slate-300 disabled:text-white disabled:border-slate-300"
               onClick={() => {
                 if (activeStep > 1) setActiveStep((step) => --step);
               }}
-              disabled={activeStep === 1}
-            >
-              Back
-            </button>
+              isDisabled={activeStep === 1}
+              content="Back"
+            />
 
             <div className="grow"></div>
-            <button
-              className="bg-red-500 text-white uppercase py-2 px-4 rounded-xl font-semibold cursor-pointer hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out disabled:cursor-not-allowed disabled:bg-slate-300 disabled:pointer-events-none md:text-regular"
+            <Button
+              className="font-bold disabled:bg-slate-300 disabled:text-white disabled:border-slate-300"
               onClick={() => {
                 if (activeStep < steps.length) setActiveStep((step) => ++step);
               }}
-              disabled={isNextStepDisabled}
-            >
-              Next
-            </button>
+              isDisabled={isNextStepDisabled}
+              content="Next"
+            ></Button>
           </section>
         </div>
       </div>
