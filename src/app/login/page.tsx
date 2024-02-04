@@ -7,7 +7,7 @@ import { Link } from "@/components";
 import { useForm } from "react-hook-form";
 
 import { Input, LoadingCircle } from "@/components";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 import FormsLayout from "@/layouts/FormsLayout";
 
 import { LoginBody } from "@/api/types";
@@ -27,6 +27,9 @@ function LoginForm() {
   const queryClient = useQueryClient();
 
   useEffect(() => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("uid");
+    localStorage.removeItem("expires_at");
     // when on login, start fresh and clear all previous queries caches
     // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
     queryClient.clear();
@@ -40,7 +43,7 @@ function LoginForm() {
     onSuccess(data) {
       const redirectState = handleSuccessfulLoginRoute(data);
       if (redirectState.shouldRedirect) {
-        router.push(redirectState.newRoute);
+        router.push(redirectState.path);
       }
     },
   });
@@ -104,7 +107,7 @@ function LoginForm() {
 export default function Login() {
   return (
     <div className="relative flex flex-col justify-around">
-      <PublicNavbar />
+      <GateNavbar />
       <div className="flex justify-center items-center">
         <FormsLayout>
           <div

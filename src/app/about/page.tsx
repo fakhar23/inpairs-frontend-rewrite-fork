@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 
 const About = () => {
   return (
     <>
-      <PublicNavbar />
+      <GateNavbar />
       <div className="py-[4rem] px-[6rem] bg-about space-y-[3rem]">
         <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
           <h2 className="font-bryantProBold text-5xl font-bold text-purple">

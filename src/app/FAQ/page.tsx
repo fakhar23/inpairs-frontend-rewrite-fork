@@ -1,13 +1,7 @@
 "use client";
-
 import React from "react";
-
 import Image from "next/image";
-
 import Accordion from "@/components/Accordion";
-import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
-
 import questionSvg from "./Questions-bro.svg";
 import { NavbarLayout } from "@/layouts";
 

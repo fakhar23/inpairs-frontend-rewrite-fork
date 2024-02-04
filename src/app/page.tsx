@@ -19,7 +19,7 @@ import thumpsUp from "@/assets/thumbsUp.svg";
 import web from "@/assets/web.png";
 import { LinkButton } from "@/components";
 import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 
 interface IModalProps {
   shown: boolean;
@@ -136,7 +136,7 @@ export default function Home() {
 
   return (
     <>
-      <PublicNavbar canViewTheirProfile={false} />
+      <GateNavbar />
       <div className="relative">
         <div className="relative p-[4rem] flex items-center justify-between mb-[7rem] md:flex-col-reverse md:justify-center md:p-0 md:m-0 md:mb-[4rem]">
           <div className="w-[55%] flex flex-col	items-start gap-[2rem] pl-[4rem] md:w-screen md:p-0 md:m-0 md:justify-center md:items-center md:p-auto md:mt-[6rem] md:gap-[3rem] md:text-center md:px-7">

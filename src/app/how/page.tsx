@@ -1,15 +1,13 @@
 "use client";
 import { useState } from "react";
-
 import Image from "next/image";
-
 import fillForm from "@/assets/fillForm.svg";
 import theMatch from "@/assets/fillForm.svg";
 import getToKnowEachOther from "@/assets/getToKnowEachOther.svg";
 import pairing from "@/assets/pairing.svg";
 import waitMatching from "@/assets/waitMatching.svg";
 import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 
 interface IHowStepCardProps {
   id: number;
@@ -30,7 +28,7 @@ const HowStepCard = ({
   return (
     <div
       key={id}
-      className=" mb-[1rem] flex justify-around mb-[3rem] items-center md:shadow-md md:p-5"
+      className="flex justify-around mb-[3rem] items-center md:shadow-md md:p-5"
     >
       <div className="w-[30%] md:w-full flex justify-center items-center">
         <Image
@@ -118,8 +116,8 @@ const data: IHowStepCardProps[] = [
 const HowItWorks = () => {
   return (
     <div>
-      <PublicNavbar />
-      <div className="text-center w-[60%] mx-auto my-0 my-[4rem] md:w-[80%]">
+      <GateNavbar />
+      <div className="text-center w-[60%] mx-auto my-[4rem] md:w-[80%]">
         <h2 className="font-bryantProBold text-[2rem] mb-[1rem] font-semibold text-purple">
           Is your thumb tired of swiping? Try something that works.{" "}
         </h2>

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-import { PublicNavbar } from "@/components";
+import { GateNavbar } from "@/components";
 
 import Complete from "./Complete";
 import Greeting from "./Greeting";
@@ -113,7 +113,7 @@ export default function Create() {
 
   return (
     <div className="flex flex-col	h-[100vh]">
-      <PublicNavbar canViewTheirProfile={false} />
+      <GateNavbar />
 
       <div className="w-[100%] grow mb-5 md:h-screen flex justify-center items-center relative">
         <div className="space-y-[1rem]  sm:h-[100%] min-h-[645px] flex flex-col justify-between md:flex md:flex-col  md:mt-[1rem] md:h-[90vh] md:justify-between w-[72rem] md:w-[40rem] px-[3rem] py-[1rem] md:m-0 bg-white shadow-lg relative md:p-[1rem]">
