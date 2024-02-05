@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
       <GateNavbar />
-      <div className="py-[4rem] px-[6rem] bg-about space-y-[3rem]">
+      <div className="py-[4rem] px-[6rem] md:px-[2rem] bg-about space-y-[3rem]">
         <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
           <h2 className="font-bryantProBold text-5xl font-bold text-purple">
             What is <span className="font-funky text-red">Inpairs?</span>

@@ -26,13 +26,18 @@ export const Toast = ({ message, icon, type, title, onClose }: IToast) => {
   return (
     <div
       className={twMerge(
-        "flex items-center gap-1 border border-l-4 px-4 py-3 rounded relative",
+        "flex gap-5 border border-l-4 px-4 py-3 rounded relative items-stretch",
         colors[type]
       )}
       role="alert"
     >
-      {icon && icons[type]}
-      <strong className="font-bold ">{title}: </strong>
+      {icon && (
+        <div className="w-[5rem] flex items-start  [&>svg]:h-auto [&>svg]:w-full">
+          {" "}
+          {icons[type]}
+        </div>
+      )}
+      {title && <strong className="font-bold">{title}: </strong>}
       <span className="block sm:inline">{message}</span>
       <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
         {onClose && (
