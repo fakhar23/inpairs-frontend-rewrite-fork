@@ -52,10 +52,10 @@ function getLink(userContext: AuthContextResponse | undefined) {
   else if (userContext.role === "ADMIN" || userContext.role === "MATCHMAKER")
     return links.administrativeRole;
   else if (userContext.shouldBeOnlyWaitlisted) return links.nonSupportedCountry;
-  if (userContext.isPayingUser && !userContext.completedTheirProfile)
-    return links.payingAndCompletedTheirProfile;
   if (userContext.isPayingUser && userContext.completedTheirProfile)
     return links.payingAndCompletedTheirProfile;
+  if (userContext.isPayingUser && !userContext.completedTheirProfile)
+    return links.payingButDidNotCompleteTheirProfile;
   if (!userContext.completedTheirProfile && !userContext.shouldBeOnlyWaitlisted)
     return links.didNotStartCreatingTheirProfile;
   else if (userContext.isDisabled && !userContext.completedTheirProfile)
