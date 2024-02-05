@@ -128,7 +128,7 @@ const RegularDropdown = ({
           }),
         }}
       />
-      {error && <p className="text-red">{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };

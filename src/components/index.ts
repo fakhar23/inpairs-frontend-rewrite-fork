@@ -1,5 +1,5 @@
 export { default as LinkButton } from "./LinkButton";
-export { default as Button } from "./Button";
+export { default as Button, type IButtonProps } from "./Button";
 export { Loading } from "./Loading";
 export { GateNavbar } from "./GateNavbar";
 export { Footer } from "./Footer";

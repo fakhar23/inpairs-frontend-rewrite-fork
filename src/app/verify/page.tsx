@@ -74,7 +74,7 @@ export default function Verify() {
           ) : (
             <div className="mb-4">
               <h1 className="bold">You're not authorized to view this page</h1>
-              <Link href="/" className="text-red">
+              <Link href="/" className="text-red-500">
                 Visit Home
               </Link>
             </div>

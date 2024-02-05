@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "@/components";
+import { Button, Link } from "@/components";
 
 import { LinkButton, Loading, Modal } from "@/components";
 import { Input, Select, RegularImages as Images } from "@/components";
@@ -233,9 +233,7 @@ const EditProfile = (props: Props) => {
   const processing = loading;
 
   return (
-    <div
-      className={`container px-[20%] transition-all-children-0_3 ${poppins.className}`}
-    >
+    <div className={`container px-[20%]  ${poppins.className}`}>
       {processing && (
         <div className="absolute -top-16 bottom-0 right-0 left-0 bg-black/10 pt-5 flex items-start  justify-center">
           <Loading />
@@ -252,12 +250,7 @@ const EditProfile = (props: Props) => {
 
         <h1 className="text-2xl font-bold text-slate-800">Edit Profile</h1>
 
-        <button
-          className="bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300 "
-          onClick={() => setIsBlockingModal(true)}
-        >
-          Blocked Users
-        </button>
+        <Button onClick={() => setIsBlockingModal(true)}>Blocked Users</Button>
       </div>
 
       <form onSubmit={(e) => e.preventDefault()}>
@@ -309,13 +302,9 @@ const EditProfile = (props: Props) => {
         </div>
 
         <div className="flex justify-center gap-4 my-8">
-          <LinkButton
-            type="button"
-            path="#"
-            content="Save changes"
-            isLoading={loading}
-            onClick={SAVE}
-          />
+          <LinkButton type="button" path="#" isLoading={loading} onClick={SAVE}>
+            Save changes
+          </LinkButton>
 
           <Link
             href="/profile/me"

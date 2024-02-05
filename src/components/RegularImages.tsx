@@ -114,7 +114,7 @@ const RegularImages = ({
         </div>
       </div>
 
-      {error && <p className="text-red text-[0.8rem]">{error}</p>}
+      {error && <p className="text-red-500 text-[0.8rem]">{error}</p>}
     </div>
   );
 };

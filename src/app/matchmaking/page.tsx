@@ -96,9 +96,7 @@ const RankingTable = () => {
               pathname: `/profile/${score.id}`,
             }}
           >
-            <button className="bg-red-500 hover:bg-red-700 ml-3 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Rank
-            </button>
+            <Button className="rounded-xl">Rank</Button>
           </Link>
         </td>
       </tr>
@@ -111,12 +109,12 @@ const RankingTable = () => {
 
   return (
     <div className="relative overflow-x-auto mt-5">
-      <div className="flex justify-between">
-        <div className="text-2xl font-medium mb-3 text-red">
+      <div className="flex justify-between mb-2">
+        <div className="text-2xl font-medium mb-3 text-red-500">
           Total: {rankingTableData.totalItems}
         </div>
         <Link href="/matchmaking/history">
-          <Button content="History" />
+          <Button>History</Button>
         </Link>
       </div>
       <table className="w-full text-lg text-left text-neutral-500">

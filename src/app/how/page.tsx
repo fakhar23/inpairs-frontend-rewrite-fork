@@ -6,8 +6,7 @@ import theMatch from "@/assets/fillForm.svg";
 import getToKnowEachOther from "@/assets/getToKnowEachOther.svg";
 import pairing from "@/assets/pairing.svg";
 import waitMatching from "@/assets/waitMatching.svg";
-import { Footer } from "@/components/Footer";
-import { GateNavbar } from "@/components";
+import { GateNavbar, Button, Footer } from "@/components";
 
 interface IHowStepCardProps {
   id: number;
@@ -40,7 +39,7 @@ const HowStepCard = ({
       </div>
       <div className="w-[60%] md:w-full md:mb-[3rem]">
         <h3 className="font-bryantProBold text-[2rem] font-semibold text-purple mb-[1rem]">
-          <span className="text-red">{id}-</span> {title}
+          <span className="text-red-500">{id}-</span> {title}
         </h3>
         <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] leading-8 mb-3">
           {primary}
@@ -56,12 +55,13 @@ const HowStepCard = ({
           </p>
         ))}
 
-        <button
-          className="font-bryantProMedium mt-6 text-[1.2rem] text-red font-semibold"
+        <Button
+          className="font-bryantProMedium "
           onClick={toggleExpanded}
+          variant="outlined"
         >
           {expanded ? "Show Less" : "See More"}
-        </button>
+        </Button>
       </div>
     </div>
   );
