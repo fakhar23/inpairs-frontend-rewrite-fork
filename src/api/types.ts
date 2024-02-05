@@ -1,33 +1,24 @@
-export interface listParams {
-  queryParams?: queryParams;
-  skip?: boolean;
-}
+export type metaResponse = {
+  count: number;
+  take: number;
+  page: number;
+  pageCount: number;
+};
 
-export interface filterQuery {
+export type filterQuery = {
   search?: string;
   search_keys?: string;
-  [key: string]: any;
-}
+  ranked?: boolean | "true" | "false" | "" | string;
+};
 
-export interface queryParams {
+export type queryParams = {
   filter?: filterQuery;
   take?: number;
   page?: number;
   sort?: string;
   select?: string;
-}
+};
 
-export interface metaResponse {
-  count: number;
-  take: number;
-  page: number;
-  pageCount: number;
-}
-
-export interface listResult {
-  data: any[];
-  meta: metaResponse;
-}
 
 export interface SignUpBody {
   email: string;

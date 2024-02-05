@@ -1,32 +1,60 @@
 "use client";
-import React, { ChangeEvent, useCallback, useMemo, useState } from "react";
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import Link from "next/link";
 import ReactPaginate from "react-paginate";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button, Loading } from "@/components";
-import { queryParams } from "@/api/types";
 import CustomInput from "@/components/CustomInput";
 import { debounce } from "lodash";
 import Table from "@/components/Table";
-import { SortingState } from "@tanstack/react-table";
-import Select from "react-select";
-import "./style.css";
+import {
+  ColumnDef,
+  SortingState,
+  createColumnHelper,
+} from "@tanstack/react-table";
+import Select, { SingleValue } from "react-select";
 import { useGetScoring } from "@/api/matchmaking";
 import UserLink from "@/components/UserLink";
+import { qsToQueryParams, queryParamsToQs } from "@/api/helpers";
+import { filterQuery, queryParams } from "@/api/types";
+import useVerifyPermission from "@/hooks/useVerifyPermission";
 
-const rankOptions = [
+type rankOptionItem = { value: string; label: string };
+export type userScoring = {
+  i: number;
+  id: string;
+  name: string;
+  ranked: "Yes" | "No";
+  potential_matches: number;
+};
+
+export const rankOptions: rankOptionItem[] = [
   { value: "", label: "All" },
   { value: "true", label: "Ranked" },
   { value: "false", label: "Not Ranked" },
 ];
-interface filterType {
-  ranked?: string;
-}
 
 export default function RankingTable() {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [searchText, setSearchText] = useState("");
   const [page, setPage] = useState({ current: 1, take: 10 });
-  const [filter, setFilter] = useState<filterType>({});
+  const [filter, setFilter] = useState<filterQuery>({});
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const qs = searchParams?.toString();
+  const urlQp: queryParams = qsToQueryParams(qs);
+
+  const { isLoading: checkPermission } = useVerifyPermission([
+    "ADMIN",
+    "MATCHMAKER",
+  ]);
 
   const queryParams: queryParams = useMemo(() => {
     const qp: queryParams = {
@@ -34,16 +62,22 @@ export default function RankingTable() {
       take: page.take,
     };
     qp.filter = filter;
-    if (searchText) {
-      qp.filter = {
-        ...qp.filter,
-        search: searchText,
-        search_keys: "first_name,last_name",
-      };
-    }
 
     return qp;
-  }, [page, searchText, filter]);
+  }, [page, filter]);
+
+  useEffect(() => {
+    if (urlQp) {
+      if (urlQp?.filter) {
+        setFilter(urlQp.filter);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const queryString = queryParamsToQs(queryParams);
+    router.push(`${pathname}${queryString}`);
+  }, [queryParams, pathname, router]);
 
   const { data: scoringList, ...restScoringList } = useGetScoring({
     queryParams,
@@ -58,38 +92,43 @@ export default function RankingTable() {
   );
 
   const handleFilterChange = useCallback(
-    (key: keyof filterType, value: any) => {
+    (key: keyof filterQuery, value: string) => {
       const newFilter = { ...filter };
       if (!!value) {
         newFilter[key] = value;
+        if (key === "search") {
+          newFilter.search_keys = "first_name,last_name";
+        }
       } else {
         delete newFilter[key];
+        if (key === "search") {
+          delete newFilter.search_keys;
+        }
       }
       setFilter(newFilter);
     },
     [filter],
   );
 
-  const columns = useMemo(
-    () => [
-      {
-        id: 1,
+  const columns = useMemo<ColumnDef<userScoring, any>[]>(() => {
+    const col = createColumnHelper<userScoring>();
+    return [
+      col.accessor("i", {
+        id: "ID",
         header: "ID",
-        accessorKey: "i",
-      },
-      {
-        id: 2,
+      }),
+      col.accessor("name", {
+        id: "NAME",
         header: "NAME",
-        accessorKey: "name",
-        cell: ({ row }: any) => <UserLink user={row.original} />,
-      },
-      {
-        id: 3,
+        cell: ({ row }) => <UserLink user={row.original} />,
+      }),
+      col.accessor("ranked", {
+        id: "RANKING",
         header: () => {
           return (
             <div
               onClick={(e) => e.preventDefault()}
-              className="px-6 py-3 flex items-center gap-3"
+              className="w-full px-6 py-3 flex items-center justify-center gap-3"
             >
               <div>Ranking</div>
               <Select
@@ -100,24 +139,27 @@ export default function RankingTable() {
                     : rankOptions[0]
                 }
                 options={rankOptions}
-                onChange={(v: any) => handleFilterChange("ranked", v.value)}
+                onChange={(v: SingleValue<rankOptionItem>) => {
+                  const value: filterQuery["ranked"] = v?.value || "";
+                  handleFilterChange("ranked", value);
+                }}
               />
             </div>
           );
         },
+        cell: ({ row }) => (
+          <div className="flex justify-center">{row.original?.ranked}</div>
+        ),
+      }),
 
-        accessorKey: "ranked",
-      },
-      {
-        id: 4,
+      col.accessor("potential_matches", {
+        id: "POTENTIAL MATCHES",
         header: "POTENTIAL MATCHES",
-        accessorKey: "potential_matches",
-      },
-      {
-        id: 5,
+      }),
+      col.display({
+        id: "ACTION",
         header: "",
-        accessorKey: "id",
-        cell: ({ row }: any) => (
+        cell: ({ row }) => (
           <Link
             href={{
               pathname: `/ranking/${row.original.id}`,
@@ -128,20 +170,19 @@ export default function RankingTable() {
             </button>
           </Link>
         ),
-      },
-    ],
-    [handleFilterChange, filter.ranked],
-  );
+      }),
+    ];
+  }, [handleFilterChange, filter.ranked]);
 
-  const data = useMemo(
+  const data = useMemo<userScoring[]>(
     () =>
       userScoring?.length
-        ? userScoring.map((v, i) => ({
+        ? userScoring.map((v, i: number) => ({
             ...v,
             i: i + 1,
             name: `${v.first_name} ${v.last_name}`,
             ranked: v.ranked ? "Yes" : "No",
-            potential_matches: v?.UserPotentialMatches?.length || 0,
+            potential_matches: v.UserPotentialMatches.length || 0,
           }))
         : [],
     [userScoring],
@@ -150,7 +191,7 @@ export default function RankingTable() {
 
   return (
     <div className="w-full">
-      {loading && (
+      {(loading || checkPermission) && (
         <div className="absolute z-20 top-0 bottom-0 right-0 left-0 flex items-center justify-center bg-black/10">
           <Loading />
         </div>
@@ -170,7 +211,7 @@ export default function RankingTable() {
           className="w-full my-5"
           onChange={debounce(
             (e: ChangeEvent<HTMLInputElement>) =>
-              setSearchText(e?.target.value),
+              handleFilterChange("search", e.target.value),
             700,
           )}
           label="Search user"

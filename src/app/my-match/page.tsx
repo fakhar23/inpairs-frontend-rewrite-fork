@@ -76,8 +76,6 @@ const Match = () => {
     );
   }
 
-  console.log({ currentMatch });
-
   return (
     <UserProfileLayout>
       {currentMatch?.match ? (

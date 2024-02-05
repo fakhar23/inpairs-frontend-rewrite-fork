@@ -10,15 +10,11 @@ import {
   Updater,
 } from "@tanstack/react-table";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import type { ColumnDef } from "@tanstack/react-table";
 
 interface TableProps<D extends object> {
   className?: string;
-  columns: {
-    id?: any;
-    header: string | (() => string | any) | any;
-    accessorKey: string;
-    cell?: (cell: any) => any;
-  }[];
+  columns: ColumnDef<D>[];
   data: D[];
   sorting?: SortingState;
   setSorting?: (updater: Updater<SortingState>) => void;

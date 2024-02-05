@@ -1,5 +1,5 @@
-import { queryParams } from '@/api/types';
 import * as qs from 'qs';
+import { queryParams } from './types';
 
 
 export const queryParamsToQs = (queryParams: queryParams = {}): string => {
@@ -13,4 +13,13 @@ export const queryParamsToQs = (queryParams: queryParams = {}): string => {
       })
     : '';
   return queryString;
+};
+
+
+export const qsToQueryParams = (queryString: string): queryParams => {
+  const parsedParams = qs.parse(queryString, {
+    ignoreQueryPrefix: true,
+  }) as queryParams;
+
+  return parsedParams;
 };
