@@ -81,7 +81,7 @@ function LoginForm() {
             })}
           />
           {loginMutation.isError && (
-            <p className="text-red">
+            <p className="text-red-500">
               {isAxiosError(loginMutation.error)
                 ? loginMutation.error.response?.data.message
                 : loginMutation.error.message}
@@ -95,8 +95,9 @@ function LoginForm() {
           type="submit"
           isDisabled={loginMutation.isPending}
           isLoading={loginMutation.isPending}
-          content="Sign In"
-        />
+        >
+          Sign In
+        </Button>
       </div>
     </form>
   );
@@ -116,19 +117,19 @@ export default function Login() {
               <p className="text-center text-xsmall">
                 Forgot your password?{" "}
                 <Link href="/account-management/reset-password">
-                  <span className=" text-red">Reset password</span>
+                  <span className=" text-red-500">Reset password</span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Didn't receive verification email?{" "}
                 <Link href="/account-management/request-verification-email">
-                  <span className=" text-red">Request new email </span>
+                  <span className=" text-red-500">Request new email </span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Don't have an account?{" "}
                 <Link href="/register">
-                  <span className=" text-red md:text-[12px]">
+                  <span className=" text-red-500 md:text-[12px]">
                     Create an account
                   </span>
                 </Link>

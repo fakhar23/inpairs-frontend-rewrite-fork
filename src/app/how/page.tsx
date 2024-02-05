@@ -39,7 +39,7 @@ const HowStepCard = ({
       </div>
       <div className="w-[60%] md:w-full md:mb-[3rem]">
         <h3 className="font-bryantProBold text-[2rem] font-semibold text-purple mb-[1rem]">
-          <span className="text-red">{id}-</span> {title}
+          <span className="text-red-500">{id}-</span> {title}
         </h3>
         <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] leading-8 mb-3">
           {primary}
@@ -58,9 +58,10 @@ const HowStepCard = ({
         <Button
           className="font-bryantProMedium "
           onClick={toggleExpanded}
-          isInverted={true}
-          content={expanded ? "Show Less" : "See More"}
-        />
+          variant="outlined"
+        >
+          {expanded ? "Show Less" : "See More"}
+        </Button>
       </div>
     </div>
   );

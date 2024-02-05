@@ -25,7 +25,7 @@ const getMatchStatus = (status: string, reason: string) => {
   } else if (status == "REJECTED") {
     return (
       <>
-        <span className="text-red mr-2">{status}</span>because &#8220;
+        <span className="text-red-500 mr-2">{status}</span>because &#8220;
         {reason}&#8221;
       </>
     );
@@ -140,10 +140,9 @@ const MatchmakingHistory = () => {
           <h1 className="my-10 text-2xl font-medium text-purple-900">
             Matchmaking History
           </h1>
-          <Button
-            onClick={() => setshowReasons(true)}
-            content="Rejection Reasons"
-          />
+          <Button onClick={() => setshowReasons(true)}>
+            Rejection Reasons
+          </Button>
         </div>
         <CustomInput
           id="search ID"

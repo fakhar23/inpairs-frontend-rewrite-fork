@@ -16,8 +16,9 @@ export const MatchPairPopper = ({ popper }: { popper: React.ReactNode }) => {
           e.preventDefault();
           setShown((shown) => !shown);
         }}
-        content={shown ? "Hide" : "Show"}
-      />
+      >
+        {shown ? "Hide" : "Show"}
+      </Button>
 
       {shown &&
         createPortal(
@@ -51,8 +52,9 @@ export const MatchPairPopper = ({ popper }: { popper: React.ReactNode }) => {
                 e.stopPropagation();
                 setShown(false);
               }}
-              content="Hide"
-            />
+            >
+              Hide
+            </Button>
           </div>,
           document.body
         )}

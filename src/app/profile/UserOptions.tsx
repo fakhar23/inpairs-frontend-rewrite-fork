@@ -27,15 +27,17 @@ export const UserOptions = () => {
       <div className="flex gap-4 items-center">
         <Button
           className="w-full"
-          content="Questions"
           onClick={() => setShowQuestion(!showQuestion)}
-        />
+        >
+          Questions
+        </Button>
         <Button
           className="w-full"
-          content="Download"
           isLoading={downloadProfileLoading}
           onClick={() => downloadUserData()}
-        />
+        >
+          Download
+        </Button>
       </div>
     </div>
   );

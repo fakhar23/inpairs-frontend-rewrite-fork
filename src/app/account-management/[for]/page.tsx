@@ -66,15 +66,16 @@ export default function ResetPassword() {
             <Button
               isDisabled={mutation.isPending}
               isLoading={mutation.isPending}
-              content={buttonContent}
-            />
+            >
+              {buttonContent}
+            </Button>
           </div>
         </form>
 
         <p className="text-center text-xsmall mt-4">
           You don&apos;t have an account?{" "}
           <Link href="/register">
-            <span className="text-red">Create an account</span>
+            <span className="text-red-500">Create an account</span>
           </Link>
         </p>
       </FormsLayout>

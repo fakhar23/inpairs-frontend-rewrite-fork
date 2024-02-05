@@ -90,11 +90,12 @@ const User = () => {
         return (
           <Button
             onClick={(e: any) => handleAction(e, row?.original)}
-            content={row?.original?.disabled ? "Activate" : "Deactivate"}
             className={`!rounded-md ${
               row?.original?.disabled ? "!bg-green-500" : ""
             }`}
-          />
+          >
+            {row?.original?.disabled ? "Activate" : "Deactivate"}
+          </Button>
         );
       },
     },

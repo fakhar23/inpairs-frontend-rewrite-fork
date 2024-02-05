@@ -145,7 +145,6 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
       </div>
       {
         <Button
-          content="Save Images"
           className="mt-3"
           onClick={async () => {
             await uploadImagesMutation.mutateAsync(images);
@@ -156,7 +155,9 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
           isDisabled={
             !images.length || user.isFetching || uploadImagesMutation.isPending
           }
-        />
+        >
+          Save Images
+        </Button>
       }
     </div>
   );

@@ -124,7 +124,7 @@ export default function Register() {
 
               <div className="border-b border-slate-400  w-full" />
               {errors.country && (
-                <p className="text-red text-[0.8rem]">
+                <p className="text-red-500 text-[0.8rem]">
                   {errors.country.message}
                 </p>
               )}
@@ -148,7 +148,9 @@ export default function Register() {
               />
 
               {errors?.phoneNumber && (
-                <p className="text-red text-[0.8rem]">Invalid Phone Number</p>
+                <p className="text-red-500 text-[0.8rem]">
+                  Invalid Phone Number
+                </p>
               )}
             </div>
 
@@ -190,7 +192,7 @@ export default function Register() {
                     id="female"
                     type="radio"
                     value="FEMALE"
-                    className="w-4 h-4 text-red bg-neutral-100 border-neutral-500 focus:ring-red-500 focus:outline-none"
+                    className="w-4 h-4 text-red-500 bg-neutral-100 border-neutral-500 focus:ring-red-500 focus:outline-none"
                     {...register("gender", { required: "Gender is required" })}
                   />
                   <label
@@ -206,7 +208,7 @@ export default function Register() {
                     id="male"
                     type="radio"
                     value="MALE"
-                    className="w-4 h-4 text-red bg-neutral-100 border-neutral-500 focus:ring-red-500 focus:outline-none"
+                    className="w-4 h-4 text-red-500 bg-neutral-100 border-neutral-500 focus:ring-red-500 focus:outline-none"
                     {...register("gender", { required: "Gender is required" })}
                   />
 
@@ -221,7 +223,7 @@ export default function Register() {
             </div>
 
             {errors.gender && (
-              <p className="text-red text-[0.8rem]">Select a gender</p>
+              <p className="text-red-500 text-[0.8rem]">Select a gender</p>
             )}
 
             <div className="flex w-full mb-2 md:mt-[1rem] text-neutral-500 gap-1">
@@ -245,7 +247,7 @@ export default function Register() {
 
                 {getValues("howDidYouHearAboutUs") !== "Other" &&
                   errors.howDidYouHearAboutUs && (
-                    <p className="text-red text-[0.8rem]">
+                    <p className="text-red-500 text-[0.8rem]">
                       {errors?.howDidYouHearAboutUs?.message}
                     </p>
                   )}
@@ -272,16 +274,17 @@ export default function Register() {
               <Button
                 type="submit"
                 isDisabled={signUpMutation.isPending}
-                content={"Sign up"}
                 isLoading={signUpMutation.isPending}
-              />
+              >
+                Sign up
+              </Button>
             </div>
           </form>
 
           <p className="text-center mt-[2rem] md:text-[12px]">
             Already Have An Account ?{" "}
             <Link href="/login">
-              <span className="text-red md:text-[12px]">Sign in</span>
+              <span className="text-red-500 md:text-[12px]">Sign in</span>
             </Link>
           </p>
         </div>

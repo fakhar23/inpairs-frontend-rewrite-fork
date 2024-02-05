@@ -299,7 +299,9 @@ export function RankingTable(props: Props, ref: any) {
       </section>
 
       <div className="flex justify-end w-full">
-        <Button className="" content="Save" onClick={() => undefined} />
+        <Button className="" onClick={() => undefined}>
+          Save
+        </Button>
       </div>
     </div>
   );

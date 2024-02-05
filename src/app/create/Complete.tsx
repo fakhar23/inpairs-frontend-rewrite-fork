@@ -10,7 +10,7 @@ const Complete = () => {
       <div className="h-[5rem] w-[5rem] rounded-full text-white bg-red-500 text-3xl flex justify-center items-center mb-[2rem]">
         &#x2713;
       </div>
-      <h3 className="text-red uppercase text-2xl font-semibold">
+      <h3 className="text-red-500 uppercase text-2xl font-semibold">
         Congratulations!
       </h3>
       <p className="text-gray-gunmetal mb-[2rem] text-xl">
@@ -19,9 +19,10 @@ const Complete = () => {
       <Button
         className="rounded-md"
         onClick={() => router.push(`/profile/me`)}
-        content="Go to your profile"
-        isInverted={true}
-      />
+        variant="outlined"
+      >
+        Go to your profile
+      </Button>
     </div>
   );
 };

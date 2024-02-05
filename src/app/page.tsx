@@ -151,7 +151,7 @@ export default function Home() {
               makes you, you.
             </p>
             <div className="">
-              <LinkButton content="Get Started" path="/login" />
+              <LinkButton path="/login">Get Started</LinkButton>
             </div>
           </div>
           <div className="w-[35%] md:w-[70%]">

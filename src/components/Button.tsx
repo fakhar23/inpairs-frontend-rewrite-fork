@@ -1,15 +1,13 @@
 import { twMerge } from "tailwind-merge";
 import { LoadingCircle } from ".";
 
-interface IButtonProps {
-  content: string;
+export interface IButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   onClick?: (e?: any) => void;
   isDisabled?: boolean;
   isLoading?: boolean;
-  isInverted?: boolean;
-  showChildrenOrContent?: "children" | "content";
+  variant?: "outlined" | "filled";
   children?: React.ReactNode;
 }
 
@@ -19,17 +17,16 @@ export default function Button({
   onClick,
   isDisabled,
   isLoading,
-  content,
-  isInverted = false,
+  variant = "filled",
   children,
-  showChildrenOrContent = "content",
 }: IButtonProps) {
   const baseClassName =
-    "px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl disabled:cursor-not-allowed";
-  const invertedClassName = isInverted
-    ? "bg-white border-red-500 text-black border-2"
-    : "bg-red-500 text-white border-2 border-red-500 disabled:bg-gray-400 disabled:border-gray-500";
-  const mergedClassName = twMerge(baseClassName, invertedClassName, className);
+    "w-fit px-4 py-2 md:px-6 md:py-3 md:text-xl rounded-lg text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none";
+  const variantClassName =
+    variant === "outlined"
+      ? "bg-white border-red-700 text-red-700 border-1 hover:bg-red-50 active:bg-rose-100 "
+      : "bg-red-500 text-white hover:bg-red-600 active:bg-red-700 ";
+  const mergedClassName = twMerge(baseClassName, variantClassName, className);
 
   return (
     <div>
@@ -39,10 +36,9 @@ export default function Button({
         onClick={onClick}
         disabled={isDisabled || isLoading || false}
       >
-        {showChildrenOrContent === "content" && isLoading && <LoadingCircle />}
-        {showChildrenOrContent === "content" && content}
+        {isLoading && <LoadingCircle />}
 
-        {showChildrenOrContent === "children" && children}
+        {children}
       </button>
     </div>
   );

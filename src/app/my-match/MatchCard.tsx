@@ -87,7 +87,7 @@ const StatusComponent = ({ user, onAction }: any) => {
         </span>
         <span
           onClick={() => onAction("reject")}
-          className="text-red cursor-pointer hover:text-red-300 transition-all ease-out duration-300"
+          className="text-red-500 cursor-pointer hover:text-red-300 transition-all ease-out duration-300"
         >
           Decline
         </span>
@@ -184,19 +184,17 @@ const MatchCard = ({ user }: any) => {
           </h2>
 
           <div className="flex justify-center w-full mt-8 gap-2">
-            <Button
-              onClick={onClose}
-              isInverted={true}
-              className="font-semibold rounded-lg border-primary py-3"
-              content="Go Back"
-            />
+            <Button onClick={onClose} variant="outlined">
+              Go Back
+            </Button>
 
             <Button
               onClick={handleConfirm}
               className="font-semibold rounded-lg  border-primary bg-green-500 py-3"
               isLoading={isLoading}
-              content="Accept"
-            />
+            >
+              Accept
+            </Button>
           </div>
         </div>
       </Modal>
@@ -247,9 +245,10 @@ const MatchCard = ({ user }: any) => {
               className="rounded-md"
               type="button"
               onClick={onClose}
-              content="Go Back"
-              isInverted={true}
-            />
+              variant="outlined"
+            >
+              Go Back
+            </Button>
 
             <Button
               className=" disabled:bg-slate-300 disabled:text-white disabled:border-slate-300 rounded-md"
@@ -257,8 +256,9 @@ const MatchCard = ({ user }: any) => {
               onClick={handleConfirm}
               isDisabled={isDisabled}
               isLoading={isLoading}
-              content="Reject"
-            />
+            >
+              Reject
+            </Button>
           </div>
         </div>
       </Modal>

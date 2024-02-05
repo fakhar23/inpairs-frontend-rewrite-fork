@@ -120,10 +120,9 @@ export function UserInfo({
 
         {viewingTheirOwnProfile && (
           <div className="flex justify-center items-center gap-[0.7rem] flex-col">
-            <Button
-              onClick={() => router.push("/settings")}
-              content="Edit profile"
-            />
+            <Button onClick={() => router.push("/settings")}>
+              Edit profile
+            </Button>
             <div className="mt-5" />
           </div>
         )}

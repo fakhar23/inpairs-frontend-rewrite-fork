@@ -14,6 +14,6 @@
   }
 
   .active .page-link {
-    @apply bg-theme-red pointer-events-none;
+    @apply bg-theme-red-500 pointer-events-none;
   }
 }

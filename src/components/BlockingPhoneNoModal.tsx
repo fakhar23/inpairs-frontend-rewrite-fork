@@ -56,45 +56,46 @@ const BlockingPhoneNoModal: React.FC<BlockingPhoneNoModalProps> = ({
               />
 
               <Button
-                content="&times;"
                 className="my-2 p-2 rounded "
                 onClick={() => deleteBlockedNumber(index)}
                 aria-label="Delete"
-              />
+              >
+                &times;
+              </Button>
             </div>
           </>
         ))}
 
         {error && (
-          <p className="text-red mt-[-1px] mb-1.5 ">
+          <p className="text-red-500 mt-[-1px] mb-1.5 ">
             No user found against : {error}
           </p>
         )}
 
         <Button
-          content=""
           onClick={addNewBlockedNumber}
-          showChildrenOrContent="children"
-          isInverted={true}
-          className="flex  gap-2 items-center w-fit mx-auto border-red-500 border-2 px-[1rem] py-[0.3rem] rounded-3xl text-[1rem] shadow-xl  disabled:cursor-not-allowed disabled:bg-slate-300"
+          variant="outlined"
+          className="flex gap-2 items-center mx-auto"
         >
           <IoAddOutline /> <p>Add more</p>
         </Button>
       </div>
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center justify-between gap-2 ">
         <Button
-          content="Save changes"
           onClick={handleSaveChanges}
           isDisabled={isSaveDisabled}
           isLoading={isLoading}
-        />
+        >
+          Save changes
+        </Button>
         <Button
-          content="Cancel"
           type="button"
           onClick={() => setIsBlockingModal(false)}
-          isInverted={true}
-        />
+          variant="outlined"
+        >
+          Cancel
+        </Button>
       </div>
     </div>
   );

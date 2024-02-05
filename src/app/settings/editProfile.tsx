@@ -233,9 +233,7 @@ const EditProfile = (props: Props) => {
   const processing = loading;
 
   return (
-    <div
-      className={`container px-[20%] transition-all-children-0_3 ${poppins.className}`}
-    >
+    <div className={`container px-[20%]  ${poppins.className}`}>
       {processing && (
         <div className="absolute -top-16 bottom-0 right-0 left-0 bg-black/10 pt-5 flex items-start  justify-center">
           <Loading />
@@ -252,10 +250,7 @@ const EditProfile = (props: Props) => {
 
         <h1 className="text-2xl font-bold text-slate-800">Edit Profile</h1>
 
-        <Button
-          content="Blocked Users"
-          onClick={() => setIsBlockingModal(true)}
-        />
+        <Button onClick={() => setIsBlockingModal(true)}>Blocked Users</Button>
       </div>
 
       <form onSubmit={(e) => e.preventDefault()}>
@@ -307,13 +302,9 @@ const EditProfile = (props: Props) => {
         </div>
 
         <div className="flex justify-center gap-4 my-8">
-          <LinkButton
-            type="button"
-            path="#"
-            content="Save changes"
-            isLoading={loading}
-            onClick={SAVE}
-          />
+          <LinkButton type="button" path="#" isLoading={loading} onClick={SAVE}>
+            Save changes
+          </LinkButton>
 
           <Link
             href="/profile/me"

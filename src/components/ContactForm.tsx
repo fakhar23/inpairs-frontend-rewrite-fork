@@ -62,11 +62,7 @@ export function ContactForm() {
               href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL || ""}
               target="_blank"
             >
-              <Button
-                type="submit"
-                className="text-sm"
-                content="User Feedback/User Reporting Form"
-              />
+              <Button type="submit">User Feedback/User Reporting Form</Button>
             </Link>
           </div>
         </div>
@@ -121,8 +117,9 @@ export function ContactForm() {
               className="mt-4"
               isDisabled={supportEmailMutation.isPending}
               isLoading={supportEmailMutation.isPending}
-              content="Send Message"
-            />
+            >
+              Send Message
+            </Button>
           </form>
         </div>
       </div>

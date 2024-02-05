@@ -126,8 +126,9 @@ export default function Create() {
                 if (activeStep > 1) setActiveStep((step) => --step);
               }}
               isDisabled={activeStep === 1}
-              content="Back"
-            />
+            >
+              Back
+            </Button>
 
             <div className="grow"></div>
             <Button
@@ -136,8 +137,9 @@ export default function Create() {
                 if (activeStep < steps.length) setActiveStep((step) => ++step);
               }}
               isDisabled={isNextStepDisabled}
-              content="Next"
-            ></Button>
+            >
+              Next
+            </Button>
           </section>
         </div>
       </div>
