@@ -31,8 +31,8 @@ export function UserInfo({
         <Skeleton
           variant="rounded"
           animation="wave"
-          height={240}
-          width={240}
+          height={"12rem"}
+          width={"12rem"}
           style={{ margin: "auto" }}
           isLoading={isLoading}
         >
@@ -85,8 +85,8 @@ export function UserInfo({
           <Skeleton
             variant="rounded"
             animation="wave"
-            width={80}
-            height={120}
+            width={"7rem"}
+            height={"7rem"}
             isLoading={isLoading}
           >
             <CloudinaryImage
@@ -102,8 +102,8 @@ export function UserInfo({
           <Skeleton
             variant="rounded"
             animation="wave"
-            width={80}
-            height={120}
+            width={"7rem"}
+            height={"7rem"}
             isLoading={isLoading}
           >
             <CloudinaryImage
