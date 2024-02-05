@@ -1,8 +1,6 @@
 "use client";
-import { useState } from "react";
-
+import { Suspense, useState } from "react";
 import { Button, GateNavbar } from "@/components";
-
 import Complete from "./Complete";
 import Greeting from "./Greeting";
 import Payment from "./Payment";
@@ -10,10 +8,11 @@ import PersonalDetails from "./PersonalDetails";
 import ReferralInstructions from "./ReferralInstructions";
 import Stepper, { IStep } from "./Stepper";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import { useQuery } from "@tanstack/react-query";
+import { useSearchParams, usePathname } from "next/navigation";
 
 function useProfileStepper(activeStep: number) {
   const user = useAuthContext();
+
   switch (activeStep) {
     case 1: {
       return {
@@ -46,28 +45,17 @@ function useProfileStepper(activeStep: number) {
   };
 }
 
-export default function Create() {
+const stepQueryToStepNumberMap: Record<string, number> = {
+  payment: 2,
+  "profile-details": 4,
+};
+
+function Create() {
   const user = useAuthContext();
-  const [activeStep, setActiveStep] = useState<number>(1);
-
-  useQuery({
-    queryKey: ["get-active-step"],
-    queryFn: async () => {
-      const queryParams = Object.fromEntries(
-        new URLSearchParams(document.location.search)
-      );
-
-      if ("step" in queryParams) {
-        if (queryParams.step === "payment") setActiveStep(2);
-        else if (queryParams.step === "profile-details") setActiveStep(4);
-      }
-
-      return null;
-    },
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    refetchOnMount: false,
-  });
+  const step = String(useSearchParams().get("step"));
+  const [activeStep, setActiveStep] = useState<number>(
+    stepQueryToStepNumberMap[step] || 1
+  );
 
   const { isNextStepDisabled } = useProfileStepper(activeStep);
   const formerPayingUser =
@@ -144,5 +132,13 @@ export default function Create() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CreatePage() {
+  return (
+    <Suspense>
+      <Create />
+    </Suspense>
   );
 }

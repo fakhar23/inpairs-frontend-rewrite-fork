@@ -6,7 +6,7 @@ import { Button, Loading } from "@/components";
 import { CldUploadWidget, CldUploadWidgetInfo } from "next-cloudinary";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { twMerge } from "tailwind-merge";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { uploadImages } from "@/api";
 
 function ImagesUploader({ onClose }: { onClose: () => void }) {

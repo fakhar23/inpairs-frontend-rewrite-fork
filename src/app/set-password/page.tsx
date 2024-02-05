@@ -35,6 +35,8 @@ const SetNewPassword = () => {
         return { accessToken };
       }
     },
+    staleTime: 0,
+    refetchOnWindowFocus: false,
   });
 
   const setPasswordMutation = useMutation({

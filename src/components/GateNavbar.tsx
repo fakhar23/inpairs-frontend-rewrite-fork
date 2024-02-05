@@ -15,38 +15,51 @@ import { AuthContextResponse } from "@/api/types";
 
 function getLink(userContext: AuthContextResponse | undefined) {
   const links = {
-    unauthenticated: {
-      content: "Start your journey",
-      path: "/login",
-    },
-    administrativeRole: {
-      content: "Scoring dashboard",
-      path: "/matchmaking",
-    },
-    nonSupportedCountry: {
-      content: "Logout",
-      path: "/login",
-    },
-    payingButDidNotCompleteTheirProfile: {
-      content: "Continue your profile",
-      path: "/create?step=profile-details",
-    },
-    didNotStartCreatingTheirProfile: {
-      content: "Continue your profile",
-      path: "/create",
-    },
-    payingAndCompletedTheirProfile: {
-      content: "My profile",
-      path: "/profile/me",
-    },
-    disabledAndDidNotCompleteTheirProfile: {
-      content: "Continue your profile",
-      path: "/create?step=payment",
-    },
-    disabled: {
-      content: "My profile",
-      path: "/profile/me",
-    },
+    unauthenticated: (
+      <LinkButton className="md:hidden" path="/login">
+        Start your journey
+      </LinkButton>
+    ),
+    administrativeRole: (
+      <>
+        <LinkButton className="md:hidden" path="/matchmaking">
+          Scoring dashboard
+        </LinkButton>
+        <LinkButton className="md:hidden" path="/login">
+          Logout
+        </LinkButton>
+      </>
+    ),
+    nonSupportedCountry: (
+      <LinkButton className="md:hidden" path="/login">
+        Logout
+      </LinkButton>
+    ),
+    payingButDidNotCompleteTheirProfile: (
+      <LinkButton className="md:hidden" path="/create?step=profile-details">
+        Continue your profile
+      </LinkButton>
+    ),
+    didNotStartCreatingTheirProfile: (
+      <LinkButton className="md:hidden" path="/create">
+        Continue creating your profile
+      </LinkButton>
+    ),
+    payingAndCompletedTheirProfile: (
+      <LinkButton className="md:hidden" path="/profile/me">
+        My profile
+      </LinkButton>
+    ),
+    disabledAndDidNotCompleteTheirProfile: (
+      <LinkButton className="md:hidden" path="/create?step=payment">
+        Continue creating your profile
+      </LinkButton>
+    ),
+    disabled: (
+      <LinkButton className="md:hidden" path="/profile/me">
+        My profile
+      </LinkButton>
+    ),
   };
   if (!userContext) return links.unauthenticated;
   else if (userContext.role === "ADMIN" || userContext.role === "MATCHMAKER")
@@ -131,7 +144,7 @@ export function GateNavbar() {
         width={250}
         height={38}
       >
-        <LinkButton className="md:hidden" {...getLink(user.data)} />
+        {getLink(user.data)}
       </Skeleton>
     </div>
   );
