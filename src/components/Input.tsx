@@ -68,7 +68,9 @@ export const Input = React.forwardRef(function WrappedInput<
         {...rest}
         type={showPassword ? "text" : rest.type}
       />
-      {error && <p className="text-red text-[0.8rem] mt-2">{error.message}</p>}
+      {error && (
+        <p className="text-red-500 text-[0.8rem] mt-2">{error.message}</p>
+      )}
 
       {rest.type === "password" && (
         <div className="absolute right-2 top-[18px] bottom-2">
@@ -130,7 +132,7 @@ export const TextArea = React.forwardRef(function WrappedTextArea<
         )}
         {...rest}
       />
-      {error && <p className="text-red text-[0.8rem]">{error.message}</p>}
+      {error && <p className="text-red-500 text-[0.8rem]">{error.message}</p>}
     </div>
   );
 });

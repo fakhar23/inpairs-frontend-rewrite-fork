@@ -17,6 +17,7 @@ import CustomModal from "@/components/CustomModal";
 import UserLink from "@/components/UserLink";
 import RejectionReasonsModal from "./RejectionReasonsModal";
 import Note from "./Note";
+import { Button } from "@/components";
 
 const getMatchStatus = (status: string, reason: string) => {
   if (status == "ACCEPTED") {
@@ -24,7 +25,7 @@ const getMatchStatus = (status: string, reason: string) => {
   } else if (status == "REJECTED") {
     return (
       <>
-        <span className="text-red mr-2">{status}</span>because &#8220;
+        <span className="text-red-500 mr-2">{status}</span>because &#8220;
         {reason}&#8221;
       </>
     );
@@ -139,12 +140,9 @@ const MatchmakingHistory = () => {
           <h1 className="my-10 text-2xl font-medium text-purple-900">
             Matchmaking History
           </h1>
-          <button
-            onClick={() => setshowReasons(true)}
-            className="bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300"
-          >
+          <Button onClick={() => setshowReasons(true)}>
             Rejection Reasons
-          </button>
+          </Button>
         </div>
         <CustomInput
           id="search ID"

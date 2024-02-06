@@ -1,17 +1,17 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Poppins } from "next/font/google";
-import { Link } from "@/components";
+import { Button, Link } from "@/components";
 
 import { useForm } from "react-hook-form";
 
 import { Input, LoadingCircle } from "@/components";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 import FormsLayout from "@/layouts/FormsLayout";
 
 import { LoginBody } from "@/api/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { login } from "@/api";
 import { handleSuccessfulLoginRoute } from "@/api/routeUser";
 import { useRouter } from "next/navigation";
@@ -24,6 +24,18 @@ const poppins = Poppins({
 
 function LoginForm() {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("uid");
+    localStorage.removeItem("expires_at");
+    // when on login, start fresh and clear all previous queries caches
+    // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
+    queryClient.clear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loginMutation = useMutation({
     mutationFn: async (payload: LoginBody) => {
       return await login(payload);
@@ -31,7 +43,7 @@ function LoginForm() {
     onSuccess(data) {
       const redirectState = handleSuccessfulLoginRoute(data);
       if (redirectState.shouldRedirect) {
-        router.push(redirectState.newRoute);
+        router.push(redirectState.path);
       }
     },
   });
@@ -69,7 +81,7 @@ function LoginForm() {
             })}
           />
           {loginMutation.isError && (
-            <p className="text-red">
+            <p className="text-red-500">
               {isAxiosError(loginMutation.error)
                 ? loginMutation.error.response?.data.message
                 : loginMutation.error.message}
@@ -79,14 +91,13 @@ function LoginForm() {
       </div>
 
       <div className="flex w-full justify-center mt-3">
-        <button
-          className=" bg-red-500 text-white px-[2.5rem] py-[0.3rem] rounded-3xl shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:px-[3.5rem] md:py-[0.6rem] md:mt-[3rem]"
+        <Button
           type="submit"
-          disabled={loginMutation.isPending}
+          isDisabled={loginMutation.isPending}
+          isLoading={loginMutation.isPending}
         >
-          {loginMutation.isPending && <LoadingCircle />}
           Sign In
-        </button>
+        </Button>
       </div>
     </form>
   );
@@ -95,7 +106,7 @@ function LoginForm() {
 export default function Login() {
   return (
     <div className="relative flex flex-col justify-around">
-      <PublicNavbar />
+      <GateNavbar />
       <div className="flex justify-center items-center">
         <FormsLayout>
           <div
@@ -106,19 +117,19 @@ export default function Login() {
               <p className="text-center text-xsmall">
                 Forgot your password?{" "}
                 <Link href="/account-management/reset-password">
-                  <span className=" text-red">Reset password</span>
+                  <span className=" text-red-500">Reset password</span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Didn't receive verification email?{" "}
                 <Link href="/account-management/request-verification-email">
-                  <span className=" text-red">Request new email </span>
+                  <span className=" text-red-500">Request new email </span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Don't have an account?{" "}
                 <Link href="/register">
-                  <span className=" text-red md:text-[12px]">
+                  <span className=" text-red-500 md:text-[12px]">
                     Create an account
                   </span>
                 </Link>

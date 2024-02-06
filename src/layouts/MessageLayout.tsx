@@ -28,7 +28,7 @@ export function MessageLayout({
         <h2
           className={`text-center text-[2.6rem] mb-[0.5rem] md:text-[2.2rem] font-semibold font-pacifico`}
         >
-          <span className="text-red">InPairs</span>
+          <span className="text-red-500">InPairs</span>
         </h2>
         {children}
       </div>

@@ -6,7 +6,6 @@ import { Basics, GeneralInfo, Scales, UserInfo } from "..";
 import profileBg from "@/assets/profileBgC.png";
 import { ENDPOINTS, getProfileData } from "@/api";
 import { useQuery } from "@tanstack/react-query";
-import { SplashScreen } from "@/components";
 
 export default function Profile() {
   const params = useParams<{ id: string }>();
@@ -25,7 +24,6 @@ export default function Profile() {
 
   const currentLocation = `${profileData.data?.MainCity}, ${stateOrCountry}`;
 
-  if (profileData.isLoading) return <SplashScreen />;
   return (
     <UserProfileLayout>
       <section className="relative flex justify-end mx-auto px-[4rem] bg-profile bg-no-repeat	bg-cover [&_h2]:mb-[1rem] [&_h2]:text-purple [&_h2]:text-[2rem] [&_p]:text-gray-gunmetal md:flex-col sm:px-[1rem]">
@@ -36,6 +34,7 @@ export default function Profile() {
         />
         <UserInfo
           {...profileData.data}
+          isLoading={profileData.isLoading}
           currentLocation={currentLocation}
           viewingTheirOwnProfile={userId === "me"}
         />
@@ -49,6 +48,7 @@ export default function Profile() {
                 descriptor: "AboutYourself",
                 answer: profileData.data?.AboutYourself || "",
               }}
+              isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Interests"
@@ -56,6 +56,7 @@ export default function Profile() {
                 descriptor: "Interests",
                 answer: profileData.data?.Interests || "",
               }}
+              isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Passions"
@@ -63,6 +64,7 @@ export default function Profile() {
                 descriptor: "Passion",
                 answer: profileData.data?.Passion || "",
               }}
+              isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Role of islam"
@@ -70,6 +72,7 @@ export default function Profile() {
                 descriptor: "IslamRole",
                 answer: profileData.data?.IslamRole || "",
               }}
+              isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Five year plan"
@@ -77,13 +80,18 @@ export default function Profile() {
                 descriptor: "FiveYearPlan",
                 answer: profileData.data?.FiveYearPlan || "",
               }}
+              isLoading={profileData.isLoading}
             />
           </div>
 
           {/* Right column */}
           <div className="w-[45%] flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
-            <Basics {...profileData.data} currentLocation={currentLocation} />
-            <Scales {...profileData.data} />
+            <Basics
+              isLoading={profileData.isLoading}
+              {...profileData.data}
+              currentLocation={currentLocation}
+            />
+            <Scales isLoading={profileData.isLoading} {...profileData.data} />
           </div>
         </section>
       </section>

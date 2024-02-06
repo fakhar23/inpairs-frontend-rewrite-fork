@@ -19,13 +19,26 @@ const config: Config = {
     extend: {
       textColor: {
         purple: "#622466",
-        red: "#Ef3E37",
+
         light: {
           black: "#3D3C3C",
         },
         gray: {
           charcoal: "#5B5B5B",
           gunmetal: "#3D3C3C",
+        },
+        red: {
+          "50": "#fef2f2",
+          "100": "#fee3e2",
+          "200": "#feccca",
+          "300": "#fca8a5",
+          "400": "#f97570",
+          "500": "#ef3e37",
+          "600": "#dd2c25",
+          "700": "#ba211b",
+          "800": "#9a1f1a",
+          "900": "#80201c",
+          "950": "#450c0a",
         },
       },
       backgroundColor: {
@@ -46,9 +59,8 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        circles: "url('/circles.svg')",
-        profile: "url('/profileBg.png')",
-        about: "url('/Group-5.svg')",
+        profile: "url('/src/assets/profileBg.png')",
+        about: "url('/src/assets/Group-5.svg')",
       },
       boxShadow: {
         "custom-shadow":

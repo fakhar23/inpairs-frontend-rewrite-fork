@@ -29,12 +29,12 @@ const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
         className=" p-2 resize w-[50vw] md:w-full mt-5 border-[0.3px] border-red-500 focus:outline-none rounded-xl "
       />
       <div className="flex justify-end items-center gap-3 mt-3">
-        <Button
-          type="button"
-          onClick={() => setMatchToEdit(null)}
-          content="Cancel"
-        />
-        <Button isLoading={updating} type="submit" content="Save" />
+        <Button type="button" onClick={() => setMatchToEdit(null)}>
+          Cancel
+        </Button>
+        <Button isLoading={updating} type="submit">
+          Save
+        </Button>
       </div>
     </form>
   );

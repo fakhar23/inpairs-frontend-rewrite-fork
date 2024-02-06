@@ -12,7 +12,6 @@ export default function ConfirmSignUp() {
   // http://localhost:3001/confirm-signup#error=unauthorized_client&error_code=401&error_description=Email+link+is+invalid+or+has+expired
   const confirmation = useQuery({
     queryKey: ["get-window-hash"],
-
     queryFn: async () => {
       const hashParams = Object.fromEntries(
         new URLSearchParams(window.location.hash.slice(1)).entries()
@@ -26,7 +25,6 @@ export default function ConfirmSignUp() {
       }
     },
     refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
   });
 
   return confirmation.isLoading ? (

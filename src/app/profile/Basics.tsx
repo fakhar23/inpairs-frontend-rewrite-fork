@@ -1,4 +1,5 @@
 import { ProfileDataResponse } from "@/api/types";
+import { Skeleton } from "@/components";
 
 export function Basics({
   JobOrFieldOfStudy,
@@ -14,9 +15,14 @@ export function Basics({
   Height,
   Married,
   WillingToMove,
+  isLoading = true,
 }: ProfileDataResponse & {
   currentLocation: string;
+  isLoading?: boolean;
 }) {
+  const SKELETON_WIDTH = "40%";
+  const SKELETON_HEIGHT = 24;
+
   return (
     <section className="last:border-0">
       <div className="flex items-center !justify-start font-bryantProBold text-purple text-[1.25rem]">
@@ -24,51 +30,139 @@ export function Basics({
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Occupation</h3>
-        <p>{JobOrFieldOfStudy}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{JobOrFieldOfStudy}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Age</h3>
-        <p>{age}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{age}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Current location
         </h3>
-        <p>{currentLocation}</p>
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{currentLocation}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           State spent most time in
         </h3>
-        <p>{MainState}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{MainState}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Education</h3>
-        <p>{FinishedEducationLevel}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{FinishedEducationLevel}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Languages</h3>
-        <p>{SpokenLanguages}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{SpokenLanguages}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Origin</h3>
-        <p>{[Origin, DadOrigin, MomOrigin].filter(Boolean).join(", ")}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{[Origin, DadOrigin, MomOrigin].filter(Boolean).join(", ")}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Sect</h3>
-        <p>
-          {Sect?.replaceAll("[", "").replaceAll("]", "").replaceAll('"', "")}
-        </p>{" "}
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>
+            {Sect?.replaceAll("[", "").replaceAll("]", "").replaceAll('"', "")}
+          </p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">Height</h3>
-        <p>{Height}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{Height}</p>
+        </Skeleton>
       </div>
       <div>
         <h3 className="font-bryantProMedium text-light-black">
           Married before?
         </h3>
-        <p>{Married === "true" ? "Yes" : "No"}</p>
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{Married === "true" ? "Yes" : "No"}</p>
+        </Skeleton>
       </div>
 
       {/* {false && (
@@ -82,7 +176,16 @@ export function Basics({
         <h3 className="font-bryantProMedium text-light-black">
           Willing to move?
         </h3>
-        <p>{WillingToMove}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{WillingToMove}</p>
+        </Skeleton>
       </div>
     </section>
   );

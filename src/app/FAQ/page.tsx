@@ -1,13 +1,7 @@
 "use client";
-
 import React from "react";
-
 import Image from "next/image";
-
 import Accordion from "@/components/Accordion";
-import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
-
 import questionSvg from "./Questions-bro.svg";
 import { NavbarLayout } from "@/layouts";
 
@@ -42,7 +36,7 @@ const FAQ = () => {
           <section className="w-[50%] md:w-full min-h-full ">
             <div className="">
               <h2 className="mb-5 font-bryantProBold text-[2rem] font-semibold  text-purple capitalize">
-                Frequently asked <span className="text-red">questions</span>
+                Frequently asked <span className="text-red-500">questions</span>
               </h2>
             </div>
 

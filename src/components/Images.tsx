@@ -102,7 +102,7 @@ const Images = ({
             </div>
           </div>
           {error && error.message && (
-            <p className="text-red text-[0.8rem]">{error.message}</p>
+            <p className="text-red-500 text-[0.8rem]">{error.message}</p>
           )}
         </div>
       )}

@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 
-import { PublicNavbar } from "@/components";
+import { GateNavbar } from "@/components";
 import { Footer } from "@/components";
 import { twMerge } from "tailwind-merge";
 
@@ -24,7 +24,7 @@ const NavbarLayout = ({
         containerClassName
       )}
     >
-      <PublicNavbar />
+      <GateNavbar />
       <div className={twMerge("flex items-stretch grow", contentClassName)}>
         {children}
       </div>

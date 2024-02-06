@@ -35,6 +35,8 @@ const SetNewPassword = () => {
         return { accessToken };
       }
     },
+    staleTime: 0,
+    refetchOnWindowFocus: false,
   });
 
   const setPasswordMutation = useMutation({
@@ -102,15 +104,16 @@ const SetNewPassword = () => {
             <Button
               isDisabled={setPasswordMutation.isPending}
               isLoading={setPasswordMutation.isPending}
-              content="Update Password"
-            />
+            >
+              Update Password
+            </Button>
           </div>
         </form>
 
         <p className="text-start mt-4">
           You don&quot;t have an account?{" "}
           <Link href="/register">
-            <span className="text-red">Create an account</span>
+            <span className="text-red-500">Create an account</span>
           </Link>
         </p>
       </FormsLayout>

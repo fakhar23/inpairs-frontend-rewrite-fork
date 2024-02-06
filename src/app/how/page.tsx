@@ -1,15 +1,12 @@
 "use client";
 import { useState } from "react";
-
 import Image from "next/image";
-
 import fillForm from "@/assets/fillForm.svg";
 import theMatch from "@/assets/fillForm.svg";
 import getToKnowEachOther from "@/assets/getToKnowEachOther.svg";
 import pairing from "@/assets/pairing.svg";
 import waitMatching from "@/assets/waitMatching.svg";
-import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar, Button, Footer } from "@/components";
 
 interface IHowStepCardProps {
   id: number;
@@ -30,7 +27,7 @@ const HowStepCard = ({
   return (
     <div
       key={id}
-      className=" mb-[1rem] flex justify-around mb-[3rem] items-center md:shadow-md md:p-5"
+      className="flex justify-around mb-[3rem] items-center md:shadow-md md:p-5"
     >
       <div className="w-[30%] md:w-full flex justify-center items-center">
         <Image
@@ -42,7 +39,7 @@ const HowStepCard = ({
       </div>
       <div className="w-[60%] md:w-full md:mb-[3rem]">
         <h3 className="font-bryantProBold text-[2rem] font-semibold text-purple mb-[1rem]">
-          <span className="text-red">{id}-</span> {title}
+          <span className="text-red-500">{id}-</span> {title}
         </h3>
         <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] leading-8 mb-3">
           {primary}
@@ -58,12 +55,13 @@ const HowStepCard = ({
           </p>
         ))}
 
-        <button
-          className="font-bryantProMedium mt-6 text-[1.2rem] text-red font-semibold"
+        <Button
+          className="font-bryantProMedium "
           onClick={toggleExpanded}
+          variant="outlined"
         >
           {expanded ? "Show Less" : "See More"}
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -118,8 +116,8 @@ const data: IHowStepCardProps[] = [
 const HowItWorks = () => {
   return (
     <div>
-      <PublicNavbar />
-      <div className="text-center w-[60%] mx-auto my-0 my-[4rem] md:w-[80%]">
+      <GateNavbar />
+      <div className="text-center w-[60%] mx-auto my-[4rem] md:w-[80%]">
         <h2 className="font-bryantProBold text-[2rem] mb-[1rem] font-semibold text-purple">
           Is your thumb tired of swiping? Try something that works.{" "}
         </h2>

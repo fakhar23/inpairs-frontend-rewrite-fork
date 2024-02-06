@@ -1,16 +1,17 @@
+"use client";
 import Image from "next/image";
 
 import { Footer } from "@/components/Footer";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 
 const About = () => {
   return (
     <>
-      <PublicNavbar />
-      <div className="py-[4rem] px-[6rem] bg-about space-y-[3rem]">
+      <GateNavbar />
+      <div className="py-[4rem] px-[6rem] md:px-[2rem] bg-about space-y-[3rem]">
         <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
           <h2 className="font-bryantProBold text-5xl font-bold text-purple">
-            What is <span className="font-funky text-red">Inpairs?</span>
+            What is <span className="font-funky text-red-500">Inpairs?</span>
           </h2>
           <p className="font-bryantProMedium text-gray text-lg text-light-black">
             inpairs is a Muslim matchmaking service that aims to help you find

@@ -31,7 +31,6 @@ export type UserMatch =
     };
 
 const Match = () => {
-  //   const { data: currentMatch, isLoading } = useGetMatch()
   const currentMatch = {
     match: {
       id: 2842,
@@ -58,15 +57,6 @@ const Match = () => {
   const isLoading = false;
 
   const [needToRefetch, setNeedToRefetch] = useState<boolean>(false);
-  const today = new Date();
-  const dayOfMonth = today.getDate();
-  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-  const currentMonthName = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-  }).format(today);
-  const nextMonthName = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-  }).format(nextMonth);
 
   if (isLoading) {
     return (

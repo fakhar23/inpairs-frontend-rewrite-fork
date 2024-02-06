@@ -62,12 +62,7 @@ export function ContactForm() {
               href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL || ""}
               target="_blank"
             >
-              <button
-                type="submit"
-                className="py-3 px-5 text-sm  font-bryantProMedium text-center text-white rounded-3xl bg-red-500 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300"
-              >
-                User Feedback/User Reporting Form
-              </button>
+              <Button type="submit">User Feedback/User Reporting Form</Button>
             </Link>
           </div>
         </div>
@@ -122,8 +117,9 @@ export function ContactForm() {
               className="mt-4"
               isDisabled={supportEmailMutation.isPending}
               isLoading={supportEmailMutation.isPending}
-              content="Send Message"
-            />
+            >
+              Send Message
+            </Button>
           </form>
         </div>
       </div>
