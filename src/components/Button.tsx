@@ -30,17 +30,15 @@ export default function Button({
   const mergedClassName = twMerge(baseClassName, variantClassName, className);
 
   return (
-    <>
-      <button
-        type={type}
-        className={mergedClassName}
-        onClick={onClick}
-        disabled={isDisabled || isLoading || false}
-      >
-        {isLoading && <LoadingCircle />}
+    <button
+      type={type}
+      className={mergedClassName}
+      onClick={onClick}
+      disabled={isDisabled || isLoading || false}
+    >
+      {isLoading && <LoadingCircle />}
 
-        {children}
-      </button>
-    </>
+      {children}
+    </button>
   );
 }
