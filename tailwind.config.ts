@@ -73,13 +73,9 @@ const config: Config = {
         0.8: "0.8px",
       },
       fontFamily: {
-        bryantProRegular: ["Bryant Pro Regular", "system-ui", "sans-serif"],
-        bryantProLight: ["Bryant Pro Light", "system-ui", "sans-serif"],
-        bryantProMedium: ["Bryant Pro Medium", "system-ui", "sans-serif"],
-        bryantProBold: ["Bryant Pro Bold", "system-ui", "sans-serif"],
-        funky: ["Funky", "system-ui", "sans-serif"],
-        inter: ["Inter", "system-ui", "sans-serif"],
-        pacifico: ["Pacifico", "cursive", "system-ui", "sans-serif"],
+        bryant: ["var(--font-bryant)", "system-ui", "sans-serif"],
+        funky: ["var(--font-funky)", "system-ui", "sans-serif"],
+        poppins: ["var(--font-poppins)", "system-ui", "sans-serif"],
       },
       fontSize: {
         xsmall: "12px",

@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 
-import { Poppins } from "next/font/google";
 import { Button, Link } from "@/components";
 
 import { useForm } from "react-hook-form";
@@ -16,11 +15,6 @@ import { login } from "@/api";
 import { handleSuccessfulLoginRoute } from "@/api/routeUser";
 import { useRouter } from "next/navigation";
 import { isAxiosError } from "axios";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 function LoginForm() {
   const router = useRouter();
@@ -110,7 +104,7 @@ export default function Login() {
       <div className="flex justify-center items-center">
         <FormsLayout>
           <div
-            className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full ${poppins.className}`}
+            className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full font-poppins`}
           >
             <LoginForm />
             <div className="flex flex-col justify-start text-nowrap">

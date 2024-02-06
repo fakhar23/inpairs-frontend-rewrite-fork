@@ -197,7 +197,7 @@ export function GateNavbar() {
       </Link>
 
       <ul
-        className={`font-bryantProMedium  flex justify-between items-center  gap-[3rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray-charcoal list-none md:hidden`}
+        className={`font-bryant font-medium   flex justify-between items-center  gap-[3rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray-charcoal list-none md:hidden`}
       >
         <li className={pathname === "/" ? "text-purple" : ""}>
           <Link href="/">Home</Link>

@@ -23,7 +23,7 @@ export const GeneralInfo = ({
       )}
     >
       <div className="flex justify-between items-center">
-        <div className="font-bryantProBold text-purple text-[1.25rem]">
+        <div className="font-bryant font-bold  text-purple text-[1.25rem]">
           {title}
         </div>
       </div>

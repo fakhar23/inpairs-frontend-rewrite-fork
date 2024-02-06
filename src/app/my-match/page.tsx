@@ -73,7 +73,7 @@ const Match = () => {
           <UserInfo currentLocation="" viewingTheirOwnProfile />
 
           <section className="flex flex-wrap h-auto resize-y w-[75%] md:w-full md:px-0 md:mt-3">
-            <h2 className="font-bryantProMedium text-left ml-16 md:ml-4 text-[1.5rem] mt-2">
+            <h2 className="font-bryant font-medium  text-left ml-16 md:ml-4 text-[1.5rem] mt-2">
               Best Matches For You
             </h2>
 
@@ -93,7 +93,7 @@ const Match = () => {
         </section>
       ) : (
         <section className="w-[80%] p-5 py-[3rem] my-0 mx-auto">
-          <h2 className="font-bryantProMedium text-[2rem] text-purple font-bold mb-[4rem]">
+          <h2 className="font-bryant font-medium  text-[2rem] text-purple font-bold mb-[4rem]">
             Best Match For You
           </h2>
 

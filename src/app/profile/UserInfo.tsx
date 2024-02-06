@@ -57,11 +57,11 @@ export function UserInfo({
           isLoading={isLoading}
         >
           <div className="mb-[1rem]">
-            <h2 className="font-bryantProBold text-xl text-center mb-2.5 leading-tight">
+            <h2 className="font-bryant font-bold  text-xl text-center mb-2.5 leading-tight">
               {first_name} {last_name || ""}
             </h2>
 
-            <div className="font-bryantProMedium flex item-center gap-2">
+            <div className="font-bryant font-medium  flex item-center gap-2">
               <p>{age} Years</p>
               <div className="grow border-r-1 border-solid border-[#622466]" />{" "}
               <div className="grow flex gap-1 items-center justify-between">
