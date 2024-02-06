@@ -100,9 +100,9 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="relative flex flex-col justify-around">
+    <div className="relative flex flex-col justify-around h-[100dvh]">
       <GateNavbar loginPage />
-      <div className="flex justify-center items-center">
+      <div className="flex grow justify-center items-center">
         <FormsLayout>
           <div
             className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full font-poppins`}
