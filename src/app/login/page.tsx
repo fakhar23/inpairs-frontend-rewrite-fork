@@ -24,9 +24,16 @@ function LoginForm() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("uid");
     localStorage.removeItem("expires_at");
-    // when on login, start fresh and clear all previous queries caches
-    // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
-    queryClient.clear();
+
+    const timeoutId = setTimeout(() => {
+      // when on login, start fresh and clear all previous queries caches
+      // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
+      queryClient.clear();
+    }, 0);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
