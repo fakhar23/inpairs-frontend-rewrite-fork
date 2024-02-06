@@ -109,11 +109,11 @@ function FeatureModal({
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <h2 className="font-bryantProBold text-purple text-[2rem] text-center mb-[2rem]">
+                  <h2 className="font-bryant font-bold  text-purple text-[2rem] text-center mb-[2rem]">
                     {title}
                   </h2>
 
-                  <p className="font-bryantProMedium my-4 text-gray-gunmetal text-md leading-relaxed">
+                  <p className="font-bryant font-medium  my-4 text-gray-gunmetal text-md leading-relaxed">
                     {description}
                   </p>
                 </div>
@@ -140,10 +140,10 @@ export default function Home() {
       <div className="relative">
         <div className="relative p-[4rem] flex items-center justify-between mb-[7rem] md:flex-col-reverse md:justify-center md:p-0 md:m-0 md:mb-[4rem]">
           <div className="w-[55%] flex flex-col	items-start gap-[2rem] pl-[4rem] md:w-screen md:p-0 md:m-0 md:justify-center md:items-center md:p-auto md:mt-[6rem] md:gap-[3rem] md:text-center md:px-7">
-            <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-purple font-normal capitalize">
+            <h1 className="font-bryant font-bold  text-[2.1rem] leading-[3.5rem] text-purple font-normal capitalize">
               Take the guesswork out of the most important decision you can make
             </h1>
-            <p className="font-bryantProMedium text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
+            <p className="font-bryant font-medium  text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
               Inpairs is a service that brings the 21st century to Muslim
               matchmaking, blending data science with human matchmakers for the
               best results. Our team pairs couples based on a combination of
@@ -160,17 +160,17 @@ export default function Home() {
         </div>
         <section className="relative space-y-10 p-[7rem] text-left mb-[2rem] bg-gradient-to-r from-purple-900/20 to-red-500/20 shadow-custom-shadow">
           <div className="absolute bg-about bg-contain bg-no-repeat bg-right w-full h-full z-[-1] top-0 right-0"></div>
-          <h2 className="font-bryantProBold text-[2.5rem] font-bold text-purple">
+          <h2 className="font-bryant font-bold  text-[2.5rem] font-bold text-purple">
             The Problem
           </h2>
-          <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] sm:px-0">
+          <p className="font-bryant font-medium  text-gray-gunmetal text-[1.5rem] sm:px-0">
             Let’s be honest, it’s tough finding somebody. As a practicing Muslim
             and, most likely, first-generation immigrant, you have to filter
             through so many layers before you can even entertain the idea of
             somebody. You start yet another talking stage and then find out the
             two of you have wildly different personalities.
           </p>
-          <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] sm:px-0">
+          <p className="font-bryant font-medium  text-gray-gunmetal text-[1.5rem] sm:px-0">
             The issue with the apps is that they are designed to keep you coming
             back. We’re not here to profit off of you, we’re here to help you
             find your person.
@@ -178,7 +178,7 @@ export default function Home() {
         </section>
         <div className="pt-[5rem]">
           <div className="px-[4rem] mb-[7rem]">
-            <h2 className="font-bryantProBold text-[2.5rem] leading-[3rem] font-bold text-purple text-center mb-[2rem]">
+            <h2 className="font-bryant font-bold  text-[2.5rem] leading-[3rem] font-bold text-purple text-center mb-[2rem]">
               What Makes Us Different From Everything Else?
             </h2>
           </div>
@@ -230,10 +230,10 @@ export default function Home() {
                       className="w-2/3 h-2/3 object-contain	"
                     />
                   </div>
-                  <h2 className="font-bryantProBold text-purple text-[1.2rem] md:text-regular md:font-bold">
+                  <h2 className="font-bryant font-bold  text-purple text-[1.2rem] md:text-regular md:font-bold">
                     {title}
                   </h2>
-                  <p className="font-bryantProMedium text-gray-gunmetal md:text-[12px]">
+                  <p className="font-bryant font-medium  text-gray-gunmetal md:text-[12px]">
                     {description.substring(0, 85)} ...
                   </p>
                   <button
@@ -257,7 +257,7 @@ export default function Home() {
             className="absolute top-0 left-0 w-[100%] h-[100%] object-cover z-[-1] object-top"
           />
           <div className="text-white md:w-full md:flex md:justify-center md:flex-col md:items-center relative md:mt-[4rem]">
-            <h2 className="font-bryantProBold text-[2.5rem] mb-[2rem] uppercase font-bold">
+            <h2 className="font-bryant font-bold  text-[2.5rem] mb-[2rem] uppercase font-bold">
               our instagram
             </h2>
             <div className="grid grid-cols-4 gap-[3rem] lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full">

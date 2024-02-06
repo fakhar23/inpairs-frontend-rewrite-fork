@@ -41,7 +41,7 @@ export const Stepper = ({ activeStep, steps }: IStepper) => {
                     i + 1
                   )}
                 </div>
-                <div className="absolute top-0 text-center mt-16 text-xs font-bryantProMedium uppercase sm:hidden">
+                <div className="absolute top-0 text-center mt-16 text-xs font-bryant font-medium  uppercase sm:hidden">
                   {step.label}
                 </div>
               </div>

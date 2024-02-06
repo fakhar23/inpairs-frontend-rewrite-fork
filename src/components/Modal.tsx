@@ -43,7 +43,7 @@ export function Modal({
           className={`rounded-2xl p-6 align-middle shadow-xl transition-all bg-white ${className} `}
         >
           <div
-            className={`text-lg font-bryantProMedium leading-6 text-neutral-900 relative ${titleClassName}`}
+            className={`text-lg font-bryant font-medium  leading-6 text-neutral-900 relative ${titleClassName}`}
           >
             <div className="mr-7">{title}</div>
 

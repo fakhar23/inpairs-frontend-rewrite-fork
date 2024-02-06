@@ -178,7 +178,7 @@ const MatchCard = ({ user }: any) => {
         onClose={onClose}
       >
         <div className="flex flex-col items-center justify-center w-[30rem]">
-          <h2 className="text-center text-secondary text-2xl font-bryantProMedium mt-7">
+          <h2 className="text-center text-secondary text-2xl font-bryant font-medium  mt-7">
             Are you sure you want to accept
             <span className="text-purple"> {user?.name}</span> as your match?
           </h2>
@@ -207,7 +207,7 @@ const MatchCard = ({ user }: any) => {
         onClose={onClose}
       >
         <div className="flex flex-col items-center justify-center w-[30rem]">
-          <h2 className="text-center text-secondary text-2xl font-bryantProMedium mt-7">
+          <h2 className="text-center text-secondary text-2xl font-bryant font-medium  mt-7">
             Are you sure you want to reject
             <span className="text-purple"> {user?.name}</span> as your match?
           </h2>
