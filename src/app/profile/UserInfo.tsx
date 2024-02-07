@@ -63,7 +63,7 @@ export function UserInfo({
 
             <div className="font-bryantProMedium flex item-center gap-2">
               <p>{age} Years</p>
-              <div className="grow border-r-1 border-solid border-[#622466]" />{" "}
+              <div className="grow border-r-1 border-solid border-secondary" />{" "}
               <div className="grow flex gap-1 items-center justify-between">
                 <Image
                   src={Pin}

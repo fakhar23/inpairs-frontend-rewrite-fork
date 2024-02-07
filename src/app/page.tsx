@@ -101,15 +101,15 @@ function FeatureModal({
           >
             <div className="relative w-auto my-6 mx-auto max-w-2xl">
               {/*content*/}
-              <div className="border-2 border-rose-200 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-[1rem]">
+              <div className="border-2 border-300-200 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-[1rem]">
                 <div className="flex justify-center items-center">
-                  <div className="w-[5rem] h-[5rem] bg-rose-200 rounded-full flex justify-center items-center">
+                  <div className="w-[5rem] h-[5rem] bg-primary-300 rounded-full flex justify-center items-center">
                     <Image width="53" height="53" src={icon} alt="pears icon" />
                   </div>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <h2 className="font-bryantProBold text-purple text-[2rem] text-center mb-[2rem]">
+                  <h2 className="font-bryantProBold text-title text-[2rem] text-center mb-[2rem]">
                     {title}
                   </h2>
 
@@ -140,7 +140,7 @@ export default function Home() {
       <div className="relative">
         <div className="relative p-[4rem] flex items-center justify-between mb-[7rem] md:flex-col-reverse md:justify-center md:p-0 md:m-0 md:mb-[4rem]">
           <div className="w-[55%] flex flex-col	items-start gap-[2rem] pl-[4rem] md:w-screen md:p-0 md:m-0 md:justify-center md:items-center md:p-auto md:mt-[6rem] md:gap-[3rem] md:text-center md:px-7">
-            <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-purple font-normal capitalize">
+            <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-title font-normal capitalize">
               Take the guesswork out of the most important decision you can make
             </h1>
             <p className="font-bryantProMedium text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
@@ -158,9 +158,9 @@ export default function Home() {
             <Image src={headerBG} alt="header texting image" priority />
           </div>
         </div>
-        <section className="relative space-y-10 p-[7rem] text-left mb-[2rem] bg-gradient-to-r from-purple-900/20 to-red-500/20 shadow-custom-shadow">
+        <section className="relative space-y-10 p-[7rem] text-left mb-[2rem] bg-gradient-to-r from-secondary/40 to-primary/10 shadow-custom-shadow">
           <div className="absolute bg-about bg-contain bg-no-repeat bg-right w-full h-full z-[-1] top-0 right-0"></div>
-          <h2 className="font-bryantProBold text-[2.5rem] font-bold text-purple">
+          <h2 className="font-bryantProBold text-[2.5rem] font-bold text-title">
             The Problem
           </h2>
           <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] sm:px-0">
@@ -178,7 +178,7 @@ export default function Home() {
         </section>
         <div className="pt-[5rem]">
           <div className="px-[4rem] mb-[7rem]">
-            <h2 className="font-bryantProBold text-[2.5rem] leading-[3rem] font-bold text-purple text-center mb-[2rem]">
+            <h2 className="font-bryantProBold text-[2.5rem] leading-[3rem] font-bold text-title text-center mb-[2rem]">
               What Makes Us Different From Everything Else?
             </h2>
           </div>
@@ -218,39 +218,39 @@ export default function Home() {
             text-center 
             before:content-[""] before:top-[-3px] 
             before:left-1/8 before:w-[92%] 
-            before:h-[3px] before:bg-red-500 
+            before:h-[3px] before:bg-primary
             before:absolute before:rounded-lg 
             drop-shadow-[0_3px_3px_rgba(0,0,0,0.25)]
             w-full'
                 >
-                  <div className="w-[5rem] h-[5rem] bg-rose-200 rounded-full flex justify-center items-center">
+                  <div className="w-[5rem] h-[5rem] bg-primary-300 rounded-full flex justify-center items-center">
                     <Image
                       src={icon}
                       alt="pears icon"
                       className="w-2/3 h-2/3 object-contain	"
                     />
                   </div>
-                  <h2 className="font-bryantProBold text-purple text-[1.2rem] md:text-regular md:font-bold">
+                  <h2 className="font-bryantProBold text-title text-[1.2rem] md:text-regular md:font-bold">
                     {title}
                   </h2>
                   <p className="font-bryantProMedium text-gray-gunmetal md:text-[12px]">
                     {description.substring(0, 85)} ...
                   </p>
                   <button
-                    className="py-[0.2rem] px-[1rem] rounded-md hover:shadow-md text-purple md:text-[12px] md:hover:text-purple"
+                    className="py-[0.2rem] px-[1rem] rounded-md hover:shadow-md text-secondary md:text-[12px] md:hover:text-secondary"
                     onClick={() =>
                       setModal({ shown: true, icon, title, description })
                     }
                   >
                     See more{" "}
-                    <i className="fa-solid fa-arrow-right text-purple"></i>
+                    <i className="fa-solid fa-arrow-right text-secondary"></i>
                   </button>
                 </div>
               )
             )}
           </div>
         </div>
-        <div className="relative p-[4rem] bg-gradient-to-r from-purple-900/50 to-red-500/50 md:p-[2rem] md:m-0 md:justify-center md:items-center md:flex">
+        <div className="relative p-[4rem] bg-gradient-to-r from-secondary/60 to-primary/50 md:p-[2rem] md:m-0 md:justify-center md:items-center md:flex">
           <Image
             src={background}
             alt="guy with flowers"
@@ -262,17 +262,14 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-4 gap-[3rem] lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full">
               {INSTAGRAM_POSTS.map(({ url, img, alt }) => (
-                <div
-                  className="bg-slate-200 h-[20rem] rounded-xl md:h-[30rem]"
-                  key={url}
-                >
+                <div className="h-[20rem] rounded-xl md:h-[30rem]" key={url}>
                   <Link href={url} target="_blank">
                     <Image
                       width={350}
                       height={320}
                       src={img}
                       alt={alt}
-                      className="object-cover h-full w-full rounded-xl backdrop-brightness-1 hover:scale-105 filter brightness-75"
+                      className="transition-all object-cover h-full w-full rounded-xl backdrop-brightness-1 hover:scale-105 filter brightness-75"
                     />
                   </Link>
                 </div>

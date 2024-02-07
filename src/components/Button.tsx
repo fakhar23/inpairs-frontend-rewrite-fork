@@ -24,8 +24,9 @@ export default function Button({
     "w-fit px-4 py-2 md:px-6 md:py-3 md:text-xl rounded-lg text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none";
   const variantClassName =
     variant === "outlined"
-      ? "bg-white border-red-700 text-red-700 border-1 hover:bg-red-50 active:bg-rose-100 "
-      : "bg-red-500 text-white hover:bg-red-600 active:bg-red-700 ";
+      ? "bg-white border-primary-700 text-primary-700 border-1 hover:bg-primary-200 hover:bg-opacity-35 active:bg-primary-200 active:bg-opacity-60"
+      : "bg-primary text-white hover:bg-primary-600 active:bg-primary-700";
+
   const mergedClassName = twMerge(baseClassName, variantClassName, className);
 
   return (

@@ -110,7 +110,7 @@ const RankingTable = () => {
   return (
     <div className="relative overflow-x-auto mt-5">
       <div className="flex justify-between mb-2">
-        <div className="text-2xl font-medium mb-3 text-red-500">
+        <div className="text-2xl font-medium mb-3 text-primary">
           Total: {rankingTableData.totalItems}
         </div>
         <Link href="/matchmaking/history">

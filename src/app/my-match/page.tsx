@@ -5,6 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { UserProfileLayout } from "@/layouts";
 import { UserInfo } from "../profile";
 import MatchCard from "./MatchCard";
+import { COLORS } from "../../../tailwind.config";
 
 export type UserMatch =
   | {
@@ -61,7 +62,11 @@ const Match = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
-        <ClipLoader color="#EF3E37" size={75} aria-label="Loading..." />
+        <ClipLoader
+          color={COLORS.primary.DEFAULT}
+          size={75}
+          aria-label="Loading..."
+        />
       </div>
     );
   }
@@ -77,7 +82,7 @@ const Match = () => {
               Best Matches For You
             </h2>
 
-            <div className="w-full  my-5 h-[11px] bg-[#F9F9F9] mr-[-8rem] " />
+            <div className="w-full  my-5 h-[11px] bg-gray-200 mr-[-8rem] " />
 
             <div className="flex flex-wrap justify-between w-full  ">
               <Fragment key={currentMatch?.match.currentUser}>
@@ -86,14 +91,14 @@ const Match = () => {
                   needToRefetch={needToRefetch}
                   setNeedToRefetch={setNeedToRefetch}
                 />
-                <div className="w-full my-5 h-[11px] bg-[#F9F9F9]" />
+                <div className="w-full my-5 h-[11px] bg-gray-200" />
               </Fragment>
             </div>
           </section>
         </section>
       ) : (
         <section className="w-[80%] p-5 py-[3rem] my-0 mx-auto">
-          <h2 className="font-bryantProMedium text-[2rem] text-purple font-bold mb-[4rem]">
+          <h2 className="font-bryantProMedium text-[2rem] text-title font-bold mb-[4rem]">
             Best Match For You
           </h2>
 

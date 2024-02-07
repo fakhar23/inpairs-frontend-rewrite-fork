@@ -54,10 +54,10 @@ const RegularImages = ({
   return (
     <div>
       <div className="flex flex-row gap-4">
-        <div className="w-[170px] h-[170px] bg-[#F2F2F2] rounded-[10px]">
+        <div className="w-[170px] h-[170px] bg-gray-100 rounded-[10px]">
           <label htmlFor="dropzone-file" className="cursor-pointer h-full">
             <div className="flex flex-col items-center justify-center w-full h-full my-auto">
-              <div className="flex flex-col items-center justify-center p-3 rounded-[50%] bg-[#622466]">
+              <div className="flex flex-col items-center justify-center p-3 rounded-[50%] bg-secondary">
                 <Image src={uploadIcon} alt="upload Icon" />
               </div>
               <span className="mt-2">Upload Your Photos</span>
@@ -84,7 +84,7 @@ const RegularImages = ({
                 <button
                   type="button"
                   dangerouslySetInnerHTML={{ __html: "&times;" }}
-                  className="flex flex-col items-center justify-center bg-white text-red-500 hover:bg-red-500 hover:text-white"
+                  className="flex flex-col items-center justify-center bg-white text-primary hover:bg-primary hover:text-white"
                   style={{
                     position: "absolute",
                     top: "3px",
@@ -105,7 +105,7 @@ const RegularImages = ({
               <Image
                 src={v.url}
                 alt="profile image"
-                className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-[#EF3E37]"
+                className="w-[170px] h-[170px] object-cover rounded-[10px] border-1 border-primary"
                 width={150}
                 height={150}
               />

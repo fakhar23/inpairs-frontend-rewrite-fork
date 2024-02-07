@@ -9,7 +9,7 @@ const BillingSettings = () => {
     <UserProfileLayout>
       <SettingsLayout>
         <section className="w-[100%] p-10 py-[3rem] my-0 mx-auto md:w-[100%]">
-          <h2 className="text-[2.5rem] text-purple font-bold mb-[2rem]">
+          <h2 className="text-[2.5rem] text-title font-bold mb-[2rem]">
             Billing Settings
           </h2>
 

@@ -10,10 +10,10 @@ const About = () => {
       <GateNavbar />
       <div className="py-[4rem] px-[6rem] md:px-[2rem] bg-about space-y-[3rem]">
         <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-purple">
-            What is <span className="font-funky text-red-500">Inpairs?</span>
+          <h2 className="font-bryantProBold text-5xl font-bold text-title">
+            What is <span className="font-funky text-primary">Inpairs?</span>
           </h2>
-          <p className="font-bryantProMedium text-gray text-lg text-light-black">
+          <p className="font-bryantProMedium text-lg text-light-black">
             inpairs is a Muslim matchmaking service that aims to help you find
             your perfect match on the first try. Our innovative approach to
             matchmaking combines the best of technology and human expertise to
@@ -23,24 +23,24 @@ const About = () => {
           </p>
         </section>
         <section className="space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-purple">
+          <h2 className="font-bryantProBold text-5xl font-bold text-title">
             The Problem
           </h2>
-          <p className="font-bryantProMedium text-gray text-lg text-light-black">
+          <p className="font-bryantProMedium text-lg text-light-black">
             Let’s be honest, it’s tough finding somebody. As a practicing Muslim
             and [most likely] first-generation immigrant, you have to filter
             through so many layers before you can even entertain the idea of
             somebody. You start yet another talking stage and then find out the
             two of you have wildly different personalities.
           </p>
-          <p className="font-bryantProMedium text-gray text-lg text-light-black">
+          <p className="font-bryantProMedium  text-lg text-light-black">
             The issue with the apps is that they are designed to keep you coming
             back. We’re not here to profit off of you, we’re here to help you
             find your person.
           </p>
         </section>
         <section className="space-y-10 p-[3rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-purple">
+          <h2 className="font-bryantProBold text-5xl font-bold text-title">
             Our Team
           </h2>
           <div className="grid grid-cols-3 gap-[2rem] md:grid-cols-1">

@@ -113,7 +113,7 @@ const SetNewPassword = () => {
         <p className="text-start mt-4">
           You don&quot;t have an account?{" "}
           <Link href="/register">
-            <span className="text-red-500">Create an account</span>
+            <span className="text-primary">Create an account</span>
           </Link>
         </p>
       </FormsLayout>

@@ -38,8 +38,8 @@ const HowStepCard = ({
         />
       </div>
       <div className="w-[60%] md:w-full md:mb-[3rem]">
-        <h3 className="font-bryantProBold text-[2rem] font-semibold text-purple mb-[1rem]">
-          <span className="text-red-500">{id}-</span> {title}
+        <h3 className="font-bryantProBold text-[2rem] font-semibold text-title mb-[1rem]">
+          <span className="text-primary">{id}-</span> {title}
         </h3>
         <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] leading-8 mb-3">
           {primary}
@@ -118,7 +118,7 @@ const HowItWorks = () => {
     <div>
       <GateNavbar />
       <div className="text-center w-[60%] mx-auto my-[4rem] md:w-[80%]">
-        <h2 className="font-bryantProBold text-[2rem] mb-[1rem] font-semibold text-purple">
+        <h2 className="font-bryantProBold text-[2rem] mb-[1rem] font-semibold text-title">
           Is your thumb tired of swiping? Try something that works.{" "}
         </h2>
         <p className="font-bryantProMedium text-[1.2rem] px-[5rem] text-gray-gunmetal md:px-[3rem]">

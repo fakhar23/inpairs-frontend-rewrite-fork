@@ -57,7 +57,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <nav className="relative bg-red-200 bg-gradient-to-r from-red-500 to-purple-900 px-[4rem] pt-[2rem] pb-[3rem] text-white mb-2">
+      <nav className="relative bg-primary-200 bg-gradient-to-r from-primary to-secondary px-[4rem] pt-[2rem] pb-[3rem] text-white mb-2">
         {/* Background Image of entire nav */}
         <Image
           src={bgArt}
@@ -174,7 +174,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/profile/me"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm hover:bg-orange ">
                           Profile
                         </li>
                       </Link>
@@ -182,7 +182,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/settings"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm hover:bg-orange ">
                           Settings
                         </li>
                       </Link>
@@ -190,7 +190,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/my-match"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm hover:bg-orange ">
                           My Match
                         </li>
                       </Link>
@@ -198,12 +198,12 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/profile/contact"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm  hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm  hover:bg-orange ">
                           Contact
                         </li>
                       </Link>
                       <li
-                        className="hover:bg-[#ef3e37] hover:bg-opacity-50 text-gray block px-4 py-2 text-sm  hover:bg-orange  cursor-pointer"
+                        className="hover:bg-primary-300  text-gray block px-4 py-2 text-sm  hover:bg-orange  cursor-pointer"
                         onClick={() => {
                           setOpenNav(false);
                           handleLogout();

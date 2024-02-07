@@ -1,6 +1,7 @@
 import Select, { MultiValue, SingleValue } from "react-select";
 import { twMerge } from "tailwind-merge";
 import { safeParse } from "./utils";
+import { COLORS } from "../../tailwind.config";
 
 type Props = {
   id: string;
@@ -55,9 +56,7 @@ const RegularDropdown = ({
 
   return (
     <div className={twMerge("w-[50%] mb-2", readOnly && "cursor-not-allowed")}>
-      <label className="text-md mb-5 text-[#3D3C3C]">
-        {label.replaceAll("*", "")}
-      </label>
+      <label className="text-md mb-5">{label.replaceAll("*", "")}</label>
       <Select
         options={options}
         value={processValue(value)}
@@ -72,7 +71,9 @@ const RegularDropdown = ({
             return {
               ...baseStyles,
               borderColor: "transparent !important",
-              boxShadow: state.isFocused ? "0 0 0 1px #EF3E37" : "none",
+              boxShadow: state.isFocused
+                ? `0 0 0 1px ${COLORS.primary.DEFAULT}`
+                : "none",
               border: "none",
               borderRadius: "10px",
               backgroundColor: "#EFEFEF96",
@@ -112,17 +113,20 @@ const RegularDropdown = ({
           option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isSelected
-              ? "#EF3E37" // Darker orange when selected (change as needed)
+              ? COLORS.primary.DEFAULT
               : state.isFocused
-                ? "#EF3E37" // Slightly darker orange when hovered (change as needed)
-                : "lightorange", // Lighter orange by default (change as needed)
-            color: state.isSelected || state.isFocused ? "white" : "#EF3E37",
+                ? COLORS.primary.DEFAULT
+                : COLORS.primary[50],
+            color:
+              state.isSelected || state.isFocused
+                ? "white"
+                : COLORS.primary.DEFAULT,
             cursor: "pointer",
             margin: "0.25rem 0.5rem",
             borderRadius: "4px",
             width: "calc(100% - 1rem)",
             ":active": {
-              backgroundColor: "rgba(239, 62, 55 , 0.9)", // Orangish color for the :active state
+              backgroundColor: `rgba(${COLORS.primary.DEFAULT}, 0.8)`,
               color: "white",
             },
           }),
