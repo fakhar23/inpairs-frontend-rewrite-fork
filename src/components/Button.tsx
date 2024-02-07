@@ -30,7 +30,7 @@ export default function Button({
   const mergedClassName = twMerge(baseClassName, variantClassName, className);
 
   return (
-    <div>
+    <>
       <button
         type={type}
         className={mergedClassName}
@@ -41,6 +41,6 @@ export default function Button({
 
         {children}
       </button>
-    </div>
+    </>
   );
 }
