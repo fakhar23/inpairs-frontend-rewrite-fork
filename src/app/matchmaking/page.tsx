@@ -1,14 +1,9 @@
 "use client";
 import React, { useState } from "react";
-
-import { Link } from "@/components";
-
 import ReactPaginate from "react-paginate";
 import Select from "react-select";
-
+import { Link } from "@/components";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
-
-import "./style.css";
 import { Button } from "@/components";
 
 const MatchMakingPage = () => {

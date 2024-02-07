@@ -102,3 +102,39 @@ export interface SupportEmailBody {
   message: string;
   subject: string;
 }
+export interface UpdateUserStatus {
+  id: string;
+  disabled?: boolean;
+  deleted?: boolean;
+}
+
+export type metaResponse = {
+  count: number;
+  take: number;
+  page: number;
+  pageCount: number;
+};
+
+export type filterQuery = {
+  search?: string;
+  search_keys?: string;
+  ranked?: boolean | "true" | "false" | "" | string;
+};
+
+export type queryParams = {
+  filter?: filterQuery;
+  take?: number;
+  page?: number;
+  sort?: string;
+  select?: string;
+};
+
+export type listParams = {
+  queryParams?: queryParams;
+  skip?: boolean;
+};
+
+export type MetaResult = {
+  data?: any[];
+  meta?: metaResponse;
+};

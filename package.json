@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev -p 4001",
     "build": "next build",
     "start": "next start",
     "start:dev": "next start  -p 4500",
@@ -19,6 +19,7 @@
     "@mui/base": "^5.0.0-beta.31",
     "@mui/material": "^5.15.4",
     "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@sentry/nextjs": "^7.92.0",
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.2.2",
