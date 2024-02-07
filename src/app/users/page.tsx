@@ -14,7 +14,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { SortingState } from "@tanstack/react-table";
 import { UserProfileLayout } from "@/layouts";
 import { Button, Loading } from "@/components";
-import { user, userListData } from "./data";
 import CustomInput from "@/components/CustomInput";
 import Table from "@/components/Table";
 import ReactPaginate from "react-paginate";
@@ -161,10 +160,22 @@ const User = () => {
       accessorKey: "role",
     },
     {
-      header: "Active",
+      header: "Subscribed",
       accessorKey: "disabled",
       cell: ({ row }: any) => {
         const icon = !row?.original?.disabled ? (
+          <IoCheckmark className="text-green-500 text-xl" />
+        ) : (
+          <IoClose className="text-red-500 text-xl" />
+        );
+        return <div className="pl-4">{icon}</div>;
+      },
+    },
+    {
+      header: "Active",
+      accessorKey: "deleted",
+      cell: ({ row }: any) => {
+        const icon = !row?.original?.deleted ? (
           <IoCheckmark className="text-green-500 text-xl" />
         ) : (
           <IoClose className="text-red-500 text-xl" />
@@ -178,16 +189,18 @@ const User = () => {
       cell: ({ row }: any) => {
         return (
           <div className="flex flex-row gap-2">
-            <Button
-              onClick={(e: any) =>
-                setConfirm({ type: "disabled", data: row?.original })
-              }
-              className={`!rounded-md ${
-                row?.original?.disabled ? "!bg-green-500" : ""
-              }`}
-            >
-              {row?.original?.disabled ? "Resume" : "Pause"}
-            </Button>
+            {!row?.original?.deleted && (
+              <Button
+                onClick={(e: any) =>
+                  setConfirm({ type: "disabled", data: row?.original })
+                }
+                className={`!rounded-md ${
+                  row?.original?.disabled ? "!bg-green-500" : ""
+                }`}
+              >
+                {row?.original?.disabled ? "Resume" : "Pause"}
+              </Button>
+            )}
             <Button
               onClick={(e: any) =>
                 setConfirm({ type: "deleted", data: row?.original })
