@@ -257,7 +257,7 @@ export default function Home() {
             className="absolute top-0 left-0 w-[100%] h-[100%] object-cover z-[-1] object-top"
           />
           <div className="text-white md:w-full md:flex md:justify-center md:flex-col md:items-center relative md:mt-[4rem]">
-            <h2 className="font-bryant font-bold  text-[2.5rem] mb-[2rem] uppercase font-bold">
+            <h2 className="font-bryant font-bold  text-[2.5rem] mb-[2rem] uppercase">
               our instagram
             </h2>
             <div className="grid grid-cols-4 gap-[3rem] lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full">
