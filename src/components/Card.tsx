@@ -37,7 +37,7 @@ export const Card = ({
         {loading ? (
           <Loading />
         ) : isCompleted ? (
-          <div className="h-[5rem] w-[5rem] rounded-full text-white bg-red-500 text-3xl flex justify-center items-center mb-[1rem]">
+          <div className="h-[5rem] w-[5rem] rounded-full text-white bg-primary text-3xl flex justify-center items-center mb-[1rem]">
             &#x2713;
           </div>
         ) : (

@@ -50,7 +50,7 @@ export const Input = React.forwardRef(function WrappedInput<
   return (
     <div className={twMerge("w-full mb-2 relative", className)}>
       {label && (
-        <label htmlFor={rest.id} className=" text-[#3D3C3C]">
+        <label htmlFor={rest.id} className=" text-gray-gunmetal">
           {label}
         </label>
       )}
@@ -59,17 +59,17 @@ export const Input = React.forwardRef(function WrappedInput<
         ref={ref as Ref<HTMLInputElement>}
         className={twMerge(
           variation === "primary" &&
-            "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
+            "appearance-none border-b border-gray-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-primary bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
           variation === "secondary" &&
-            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-[#5B5B5B] outline-none focus:outline-[#EF3E37]",
+            "bg-gray-100 rounded-[10px] px-3 border-gray-200 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-gray-gunmetal outline-none focus:outline-primary",
           rest.readOnly &&
-            "bg-[#EFEFEF96] text-[#7b7b7b] cursor-not-allowed focus:outline-[#7b7b7b] focus:outline"
+            "bg-gray-100 text-gray-gunmetal cursor-not-allowed focus:outline-gray focus:outline"
         )}
         {...rest}
         type={showPassword ? "text" : rest.type}
       />
       {error && (
-        <p className="text-red-500 text-[0.8rem] mt-2">{error.message}</p>
+        <p className="text-primary text-[0.8rem] mt-2">{error.message}</p>
       )}
 
       {rest.type === "password" && (
@@ -114,7 +114,7 @@ export const TextArea = React.forwardRef(function WrappedTextArea<
   return (
     <div className={twMerge("w-full mb-2 relative", className)}>
       {label && (
-        <label htmlFor={rest.id} className=" text-[#3D3C3C]">
+        <label htmlFor={rest.id} className=" text-gray-gunmetal">
           {label}
         </label>
       )}
@@ -124,15 +124,15 @@ export const TextArea = React.forwardRef(function WrappedTextArea<
         className={twMerge(
           "p-3",
           variation === "primary" &&
-            "appearance-none border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none w-full focus:placeholder-transparent focus:border-red-500 bg-transparent md:placeholder:text-[12px] md:text-[12px]",
+            "appearance-none border-b border-gray-400 text-gray-gunmetal leading-tight focus:outline-none w-full focus:placeholder-transparent focus:border-primary bg-transparent md:placeholder:text-[12px] md:text-[12px]",
           variation === "secondary" &&
-            "bg-[#EFEFEF96] rounded-[10px] px-3 border-slate-400 mt-2 leading-tight w-full md:placeholder:text-[12px] md:text-[12px] text-[#5B5B5B] outline-none focus:outline-[#EF3E37]",
+            "bg-gray-100 rounded-[10px] px-3 border-gray-400 mt-2 leading-tight w-full md:placeholder:text-[12px] md:text-[12px] text-gray outline-none focus:outline-primary",
           rest.readOnly &&
-            "bg-[#EFEFEF96] text-[#7b7b7b] cursor-not-allowed focus:outline-[#7b7b7b] focus:outline"
+            "bg-gray-100 text-gray-gunmetal cursor-not-allowed focus:outline-gray focus:outline"
         )}
         {...rest}
       />
-      {error && <p className="text-red-500 text-[0.8rem]">{error.message}</p>}
+      {error && <p className="text-primary text-[0.8rem]">{error.message}</p>}
     </div>
   );
 });

@@ -26,7 +26,7 @@ export default function Profile() {
 
   return (
     <UserProfileLayout>
-      <section className="relative flex justify-end mx-auto px-[4rem] bg-profile bg-no-repeat	bg-cover [&_h2]:mb-[1rem] [&_h2]:text-purple [&_h2]:text-[2rem] [&_p]:text-gray-gunmetal md:flex-col sm:px-[1rem]">
+      <section className="relative flex justify-end mx-auto px-[4rem] bg-profile bg-no-repeat	bg-cover [&_h2]:mb-[1rem] [&_h2]:text-secondary [&_h2]:text-[2rem] [&_p]:text-gray-gunmetal md:flex-col sm:px-[1rem]">
         <Image
           src={profileBg}
           alt="profile background"

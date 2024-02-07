@@ -16,7 +16,7 @@ const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
   const { note, user_one, user_two } = matchToEdit || {};
   return (
     <form onSubmit={handleSubmit}>
-      <div className="text-2xl text-purple-900 mr-7 mt-2">
+      <div className="text-2xl text-secondary-600 mr-7 mt-2">
         {note ? "Edit" : "Add"} Notes Mesagge for <UserLink user={user_one} /> &{" "}
         <UserLink user={user_two} />
       </div>
@@ -27,7 +27,7 @@ const Note = ({ matchToEdit = {}, setMatchToEdit }: any) => {
         autoFocus
         id=""
         rows={7}
-        className=" p-2 resize w-[50vw] md:w-full mt-5 border-[0.3px] border-red-500 focus:outline-none rounded-xl "
+        className=" p-2 resize w-[50vw] md:w-full mt-5 border-[0.3px] border-primary focus:outline-none rounded-xl "
       />
       <div className="flex justify-end items-center gap-3 mt-3">
         <Button type="button" onClick={() => setMatchToEdit(null)}>

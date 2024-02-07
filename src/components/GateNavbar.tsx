@@ -197,25 +197,25 @@ export function GateNavbar() {
       </Link>
 
       <ul
-        className={`font-bryant font-medium   flex justify-between items-center  gap-[3rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray-charcoal list-none md:hidden`}
+        className={`font-bryantProMedium  flex justify-between items-center  gap-[3rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray list-none md:hidden`}
       >
-        <li className={pathname === "/" ? "text-purple" : ""}>
+        <li className={pathname === "/" ? "text-secondary" : ""}>
           <Link href="/">Home</Link>
         </li>
 
-        <li className={pathname === "/how" ? "text-purple" : ""}>
+        <li className={pathname === "/how" ? "text-secondary" : ""}>
           <Link href="how">How does it work?</Link>
         </li>
 
-        <li className={pathname === "/about" ? "text-purple" : ""}>
+        <li className={pathname === "/about" ? "text-secondary" : ""}>
           <Link href="about">About us</Link>
         </li>
 
-        <li className={pathname === "/contact" ? "text-purple" : ""}>
+        <li className={pathname === "/contact" ? "text-secondary" : ""}>
           <Link href="contact">Contact us</Link>
         </li>
 
-        <li className={pathname === "/FAQ" ? "text-purple" : ""}>
+        <li className={pathname === "/FAQ" ? "text-secondary" : ""}>
           <Link href="FAQ">FAQ</Link>
         </li>
       </ul>

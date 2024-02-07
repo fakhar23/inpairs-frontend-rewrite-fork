@@ -43,7 +43,7 @@ const StatusComponent = ({ user, onAction }: any) => {
           <div className="flex items-center gap-1">
             <BsFillTelephoneInboundFill /> {user?.phone_number}
           </div>
-          <div className="border-[0.4px] border-purple-900 h-[1.25rem] inline" />
+          <div className="border-[0.4px] border-secondary h-[1.25rem] inline" />
 
           <div className="flex items-center gap-1">
             <BsInstagram />
@@ -87,7 +87,7 @@ const StatusComponent = ({ user, onAction }: any) => {
         </span>
         <span
           onClick={() => onAction("reject")}
-          className="text-red-500 cursor-pointer hover:text-red-300 transition-all ease-out duration-300"
+          className="text-red-400 cursor-pointer hover:text-red-600 transition-all ease-out duration-300"
         >
           Decline
         </span>
@@ -148,14 +148,14 @@ const MatchCard = ({ user }: any) => {
 
                 <div className="flex gap-4 items-center text-black">
                   <span>{user?.age} years</span>
-                  <div className="border-[0.4px] border-purple-900 h-[1.25rem] inline" />
+                  <div className="border-[0.4px] border-secondary h-[1.25rem] inline" />
                 </div>
               </div>
 
               <Link
                 onClick={() => handleUpdateMatchHistory("profile")}
                 href="/profile/"
-                className="flex items-center whitespace-nowrap bg-purple-900 text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-purple-500 transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
+                className="flex items-center whitespace-nowrap bg-secondary text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-secondary transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
               >
                 View Profile
               </Link>
@@ -178,9 +178,9 @@ const MatchCard = ({ user }: any) => {
         onClose={onClose}
       >
         <div className="flex flex-col items-center justify-center w-[30rem]">
-          <h2 className="text-center text-secondary text-2xl font-bryant font-medium  mt-7">
+          <h2 className="text-center text-title text-2xl font-bryantProMedium mt-7">
             Are you sure you want to accept
-            <span className="text-purple"> {user?.name}</span> as your match?
+            <span className="text-title"> {user?.name}</span> as your match?
           </h2>
 
           <div className="flex justify-center w-full mt-8 gap-2">
@@ -207,9 +207,9 @@ const MatchCard = ({ user }: any) => {
         onClose={onClose}
       >
         <div className="flex flex-col items-center justify-center w-[30rem]">
-          <h2 className="text-center text-secondary text-2xl font-bryant font-medium  mt-7">
+          <h2 className="text-center text-title text-2xl font-bryantProMedium mt-7">
             Are you sure you want to reject
-            <span className="text-purple"> {user?.name}</span> as your match?
+            <span className="text-title"> {user?.name}</span> as your match?
           </h2>
 
           <div className="mt-10 w-full text-left space-y-5">

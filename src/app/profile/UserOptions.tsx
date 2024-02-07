@@ -18,7 +18,7 @@ export const UserOptions = () => {
         title="Questions"
         isOpen={showQuestion}
         onClose={() => setShowQuestion(false)}
-        titleClassName="!text-[2rem] text-purple"
+        titleClassName="!text-[2rem] text-secondary"
         className="w-5/6 px-4"
       >
         <ProfileQuestions />

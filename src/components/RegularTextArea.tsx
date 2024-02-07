@@ -26,16 +26,16 @@ const RegularTextArea = ({
 
   return (
     <div className="w-[50%] mb-2">
-      <label htmlFor={id} className="px-1 text-[#3D3C3C]">
+      <label htmlFor={id} className="px-1 ">
         {placeholder.replaceAll("*", "")}
       </label>
 
       <textarea
         id={id}
         className={twMerge(
-          "bg-[#EFEFEF96] transition-none rounded-[10px] px-3 py-3 border-slate-400 mt-2  w-full   md:text-[12px] text-[#5B5B5B] outline-none focus:outline-[#EF3E37]",
+          "bg-gray-50 transition-none rounded-[10px] px-3 py-3 border-slate-400 mt-2  w-full   md:text-[12px] text-gray-400 outline-none focus:outline-primary",
           readOnly &&
-            "bg-[#EFEFEF96] text-[#7b7b7b] cursor-not-allowed focus:outline-[#7b7b7b] focus:outline"
+            "bg-gray-50 text-gray-400 cursor-not-allowed focus:outline-gray-400 focus:outline"
         )}
         name={name}
         rows={1}
@@ -48,7 +48,7 @@ const RegularTextArea = ({
         }
       />
 
-      {error && <p className="text-red-500 text-[0.8rem] mt-1">{error}</p>}
+      {error && <p className="text-primary text-[0.8rem] mt-1">{error}</p>}
     </div>
   );
 };

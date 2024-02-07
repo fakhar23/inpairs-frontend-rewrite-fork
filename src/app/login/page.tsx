@@ -68,7 +68,7 @@ function LoginForm() {
           placeholder="Email"
           error={errors.email}
           {...register("email", {
-            required: "email is required",
+            required: "Email is required",
           })}
         />
         <div className="w-full relative">
@@ -78,7 +78,7 @@ function LoginForm() {
             placeholder="Password"
             error={errors.password}
             {...register("password", {
-              required: "password is required",
+              required: "Password is required",
             })}
           />
           {loginMutation.isError && (
@@ -118,19 +118,19 @@ export default function Login() {
               <p className="text-center text-xsmall">
                 Forgot your password?{" "}
                 <Link href="/account-management/reset-password">
-                  <span className=" text-red-500">Reset password</span>
+                  <span className=" text-primary">Reset password</span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Didn't receive verification email?{" "}
                 <Link href="/account-management/request-verification-email">
-                  <span className=" text-red-500">Request new email </span>
+                  <span className=" text-primary">Request new email </span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Don't have an account?{" "}
                 <Link href="/register">
-                  <span className=" text-red-500 md:text-[12px]">
+                  <span className=" text-primary md:text-[12px]">
                     Create an account
                   </span>
                 </Link>

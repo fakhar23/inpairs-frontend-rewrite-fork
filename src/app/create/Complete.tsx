@@ -7,10 +7,10 @@ const Complete = () => {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="h-[5rem] w-[5rem] rounded-full text-white bg-red-500 text-3xl flex justify-center items-center mb-[2rem]">
+      <div className="h-[5rem] w-[5rem] rounded-full text-white bg-primary text-3xl flex justify-center items-center mb-[2rem]">
         &#x2713;
       </div>
-      <h3 className="text-red-500 uppercase text-2xl font-semibold">
+      <h3 className="text-primary uppercase text-2xl font-semibold">
         Congratulations!
       </h3>
       <p className="text-gray-gunmetal mb-[2rem] text-xl">

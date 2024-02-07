@@ -95,7 +95,7 @@ const PersonalDetails = () => {
             title={
               <>
                 <div>Upload Pictures</div>
-                <span className="text-rose-500 text-regular ml-2">
+                <span className="text-primary-200 text-regular ml-2">
                   {numberOfUploadedImages}/3 uploaded
                 </span>
               </>
