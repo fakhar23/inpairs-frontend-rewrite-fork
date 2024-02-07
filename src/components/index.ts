@@ -20,3 +20,4 @@ export { default as Images } from "./Images";
 export { Toast } from "./Toast";
 export { Link } from "./Link";
 export { Skeleton } from "./Skeleton";
+export { ToggleButton, ToggleButtonGroup } from "./Toggle";

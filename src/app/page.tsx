@@ -233,11 +233,11 @@ export default function Home() {
                   <h2 className="font-bryant font-bold text-title text-[1.2rem] md:text-regular md:font-bold">
                     {title}
                   </h2>
-                  <p className="font-bryant font-medium  text-gray-gunmetal md:text-[12px]">
+                  <p className="font-bryant font-medium  text-gray-gunmetal  ">
                     {description.substring(0, 85)} ...
                   </p>
                   <button
-                    className="py-[0.2rem] px-[1rem] rounded-md hover:shadow-md text-secondary md:text-[12px] md:hover:text-secondary"
+                    className="py-[0.2rem] px-[1rem] rounded-md hover:shadow-md text-secondary   md:hover:text-secondary"
                     onClick={() =>
                       setModal({ shown: true, icon, title, description })
                     }

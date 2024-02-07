@@ -124,9 +124,7 @@ export default function Login() {
               <p className="text-center text-xsmall">
                 Don't have an account?{" "}
                 <Link href="/register">
-                  <span className=" text-primary md:text-[12px]">
-                    Create an account
-                  </span>
+                  <span className=" text-primary  ">Create an account</span>
                 </Link>
               </p>
             </div>

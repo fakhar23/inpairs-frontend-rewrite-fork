@@ -33,7 +33,7 @@ const RegularTextArea = ({
       <textarea
         id={id}
         className={twMerge(
-          "bg-gray-50 transition-none rounded-[10px] px-3 py-3 border-slate-400 mt-2  w-full   md:text-[12px] text-gray-400 outline-none focus:outline-primary",
+          "bg-gray-50 transition-none rounded-[10px] px-3 py-3 border-slate-400 mt-2  w-full     text-gray-400 outline-none focus:outline-primary",
           readOnly &&
             "bg-gray-50 text-gray-400 cursor-not-allowed focus:outline-gray-400 focus:outline"
         )}
