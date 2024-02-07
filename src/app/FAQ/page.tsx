@@ -35,7 +35,7 @@ const FAQ = () => {
 
           <section className="w-[50%] md:w-full min-h-full ">
             <div className="">
-              <h2 className="mb-5 font-bryantProBold text-[2rem] font-semibold  text-title capitalize">
+              <h2 className="mb-5 font-bryant font-bold text-[2rem] font-semibold  text-title capitalize">
                 Frequently asked <span className="text-primary">questions</span>
               </h2>
             </div>

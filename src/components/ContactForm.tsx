@@ -32,7 +32,7 @@ export function ContactForm() {
 
   return (
     <section className="px-10 py-9">
-      <h2 className="font-bryantProBold mb-[2rem] text-5xl tracking-tight font-extrabold text-title">
+      <h2 className="font-bryant font-bold mb-[2rem] text-5xl tracking-tight font-extrabold text-title">
         Contact Us
       </h2>
       <div className="flex items-center flex-wrap gap-5">

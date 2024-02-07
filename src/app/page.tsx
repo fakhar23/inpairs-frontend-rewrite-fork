@@ -109,7 +109,7 @@ function FeatureModal({
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <h2 className="font-bryantProBold text-title text-[2rem] text-center mb-[2rem]">
+                  <h2 className="font-bryant font-bold text-title text-[2rem] text-center mb-[2rem]">
                     {title}
                   </h2>
 
@@ -140,7 +140,7 @@ export default function Home() {
       <div className="relative">
         <div className="relative p-[4rem] flex items-center justify-between mb-[7rem] md:flex-col-reverse md:justify-center md:p-0 md:m-0 md:mb-[4rem]">
           <div className="w-[55%] flex flex-col	items-start gap-[2rem] pl-[4rem] md:w-screen md:p-0 md:m-0 md:justify-center md:items-center md:p-auto md:mt-[6rem] md:gap-[3rem] md:text-center md:px-7">
-            <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-title font-normal capitalize">
+            <h1 className="font-bryant font-bold text-[2.1rem] leading-[3.5rem] text-title font-normal capitalize">
               Take the guesswork out of the most important decision you can make
             </h1>
             <p className="font-bryant font-medium  text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
@@ -160,7 +160,7 @@ export default function Home() {
         </div>
         <section className="relative space-y-10 p-[7rem] text-left mb-[2rem] bg-gradient-to-r from-secondary/40 to-primary/10 shadow-custom-shadow">
           <div className="absolute bg-about bg-contain bg-no-repeat bg-right w-full h-full z-[-1] top-0 right-0"></div>
-          <h2 className="font-bryantProBold text-[2.5rem] font-bold text-title">
+          <h2 className="font-bryant font-bold text-[2.5rem] font-bold text-title">
             The Problem
           </h2>
           <p className="font-bryant font-medium  text-gray-gunmetal text-[1.5rem] sm:px-0">
@@ -178,7 +178,7 @@ export default function Home() {
         </section>
         <div className="pt-[5rem]">
           <div className="px-[4rem] mb-[7rem]">
-            <h2 className="font-bryantProBold text-[2.5rem] leading-[3rem] font-bold text-title text-center mb-[2rem]">
+            <h2 className="font-bryant font-bold text-[2.5rem] leading-[3rem] font-bold text-title text-center mb-[2rem]">
               What Makes Us Different From Everything Else?
             </h2>
           </div>
@@ -230,7 +230,7 @@ export default function Home() {
                       className="w-2/3 h-2/3 object-contain	"
                     />
                   </div>
-                  <h2 className="font-bryantProBold text-title text-[1.2rem] md:text-regular md:font-bold">
+                  <h2 className="font-bryant font-bold text-title text-[1.2rem] md:text-regular md:font-bold">
                     {title}
                   </h2>
                   <p className="font-bryant font-medium  text-gray-gunmetal md:text-[12px]">

@@ -10,7 +10,7 @@ const About = () => {
       <GateNavbar />
       <div className="py-[4rem] px-[6rem] md:px-[2rem] bg-about space-y-[3rem]">
         <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-title">
+          <h2 className="font-bryant font-bold text-5xl font-bold text-title">
             What is <span className="font-funky text-primary">Inpairs?</span>
           </h2>
           <p className="font-bryantProMedium text-lg text-light-black">
@@ -23,7 +23,7 @@ const About = () => {
           </p>
         </section>
         <section className="space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-title">
+          <h2 className="font-bryant font-bold text-5xl font-bold text-title">
             The Problem
           </h2>
           <p className="font-bryantProMedium text-lg text-light-black">
@@ -40,7 +40,7 @@ const About = () => {
           </p>
         </section>
         <section className="space-y-10 p-[3rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-title">
+          <h2 className="font-bryant font-bold text-5xl font-bold text-title">
             Our Team
           </h2>
           <div className="grid grid-cols-3 gap-[2rem] md:grid-cols-1">
