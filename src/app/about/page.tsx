@@ -9,8 +9,8 @@ const About = () => {
     <>
       <GateNavbar />
       <div className="py-[4rem] px-[6rem] md:px-[2rem] bg-about space-y-[3rem]">
-        <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryant font-bold text-5xl font-bold text-title">
+        <section className=" space-y-10 p-[5rem] md:p-0 bg-white shadow-custom-shadow text-center rounded-xl">
+          <h2 className="font-bryant text-5xl font-bold text-title">
             What is <span className="font-funky text-primary">Inpairs?</span>
           </h2>
           <p className="font-bryantProMedium text-lg text-light-black">
@@ -22,8 +22,8 @@ const About = () => {
             us in the search for your perfect match.
           </p>
         </section>
-        <section className="space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryant font-bold text-5xl font-bold text-title">
+        <section className="space-y-10 p-[5rem] md:p-0 bg-white shadow-custom-shadow text-center rounded-xl">
+          <h2 className="font-bryant text-5xl font-bold text-title">
             The Problem
           </h2>
           <p className="font-bryantProMedium text-lg text-light-black">
@@ -39,11 +39,11 @@ const About = () => {
             find your person.
           </p>
         </section>
-        <section className="space-y-10 p-[3rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryant font-bold text-5xl font-bold text-title">
+        <section className="space-y-10 p-[3rem] md:p-0 bg-white shadow-custom-shadow text-center rounded-xl">
+          <h2 className="font-bryant text-5xl font-bold text-title">
             Our Team
           </h2>
-          <div className="grid grid-cols-3 gap-[2rem] md:grid-cols-1">
+          <div className="grid grid-cols-3 md:grid-cols-1">
             <div className="text-center text-gray-gunmetal w-[100%] my-0 mx-auto flex flex-col items-center gap-5 p-5 shadow-xl rounded-xl ease-in-out col-start-2 col-end-3 ">
               <Image
                 className="mx-auto mb-4 w-[15rem] h-[15rem] rounded-full object-cover"

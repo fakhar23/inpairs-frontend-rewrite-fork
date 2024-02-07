@@ -117,8 +117,8 @@ const HowItWorks = () => {
   return (
     <div>
       <GateNavbar />
-      <div className="text-center w-[60%] mx-auto my-[4rem] md:w-[80%]">
-        <h2 className="font-bryant font-bold text-[2rem] mb-[1rem] font-semibold text-title">
+      <div className="text-center w-[60%] mx-auto my-[4rem] md:mt-[2rem] md:mb-0 md:w-[80%]">
+        <h2 className="font-bryant text-[2rem] mb-[1rem] font-semibold text-title">
           Is your thumb tired of swiping? Try something that works.{" "}
         </h2>
         <p className="font-bryant font-medium  text-[1.2rem] px-[5rem] text-gray-gunmetal md:px-[3rem]">
