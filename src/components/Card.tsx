@@ -30,7 +30,7 @@ export const Card = ({
 }: ICard) => {
   return (
     <div
-      className="flex items-center justify-center w-[100%]  py-[2rem] min-h-[125px] md:mb-[2rem] rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out hover:shadow-xl cursor-pointer"
+      className="flex items-center justify-center w-[100%] py-[2rem] h-full md:mb-[2rem] rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out hover:shadow-xl cursor-pointer"
       onClick={disabled ? undefined : onClick}
     >
       <div className="flex flex-col items-center gap-[1rem]">

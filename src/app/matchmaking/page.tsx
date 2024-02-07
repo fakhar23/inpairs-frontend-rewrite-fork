@@ -74,13 +74,13 @@ const RankingTable = () => {
       <tr key={score.auth_id} className="bg-white border-b">
         <th
           scope="row"
-          className="px-6 py-4 font-bryantProMedium text-neutral-900 whitespace-nowrap font-medium"
+          className="px-6 py-4 font-bryant font-medium  text-neutral-900 whitespace-nowrap font-medium"
         >
           <p>{score.id}</p>
         </th>
         <th
           scope="row"
-          className="px-6 py-4 font-bryantProMedium text-neutral-900 whitespace-nowrap font-medium"
+          className="px-6 py-4 font-bryant font-medium  text-neutral-900 whitespace-nowrap font-medium"
         >
           <Link
             href={{

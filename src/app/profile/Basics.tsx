@@ -29,7 +29,9 @@ export function Basics({
         Basics
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Occupation</h3>
+        <h3 className="font-bryant font-medium  text-light-black">
+          Occupation
+        </h3>
 
         <Skeleton
           variant="rounded"
@@ -42,7 +44,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Age</h3>
+        <h3 className="font-bryant font-medium  text-light-black">Age</h3>
 
         <Skeleton
           variant="rounded"
@@ -55,7 +57,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Current location
         </h3>
         <Skeleton
@@ -69,7 +71,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           State spent most time in
         </h3>
 
@@ -84,7 +86,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Education</h3>
+        <h3 className="font-bryant font-medium  text-light-black">Education</h3>
 
         <Skeleton
           variant="rounded"
@@ -97,7 +99,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Languages</h3>
+        <h3 className="font-bryant font-medium  text-light-black">Languages</h3>
 
         <Skeleton
           variant="rounded"
@@ -110,7 +112,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Origin</h3>
+        <h3 className="font-bryant font-medium  text-light-black">Origin</h3>
 
         <Skeleton
           variant="rounded"
@@ -123,7 +125,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Sect</h3>
+        <h3 className="font-bryant font-medium  text-light-black">Sect</h3>
 
         <Skeleton
           variant="rounded"
@@ -138,7 +140,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Height</h3>
+        <h3 className="font-bryant font-medium  text-light-black">Height</h3>
 
         <Skeleton
           variant="rounded"
@@ -151,7 +153,7 @@ export function Basics({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Married before?
         </h3>
         <Skeleton
@@ -167,13 +169,13 @@ export function Basics({
 
       {/* {false && (
         <div>
-          <h3 className="font-bryantProMedium text-light-black">Has kids?</h3>
+          <h3 className="font-bryant font-medium  text-light-black">Has kids?</h3>
           <p>{Kid}</p>
         </div>
       )} */}
 
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Willing to move?
         </h3>
 

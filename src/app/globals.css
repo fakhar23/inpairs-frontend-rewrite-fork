@@ -6,34 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 
-@font-face {
-  font-family: "Bryant Pro Regular";
-  src: url("../../public/fonts/BryantPro-Regular.otf");
-}
-
-@font-face {
-  font-family: "Bryant Pro Light";
-  src: url("../../public/fonts/BryantPro-Light.otf");
-}
-
-@font-face {
-  font-family: "Bryant Pro Bold";
-  src: url("../../public/fonts/BryantPro-Bold.otf");
-}
-
-@font-face {
-  font-family: "Bryant Pro Medium";
-  src: url("../../public/fonts/BryantPro-Medium.otf");
-}
-
-@font-face {
-  font-family: "Funky";
-  src: url("../../public/fonts/Funkydori-Bold.otf");
-}
-
 @layer base {
   html {
-    font-family: "Bryant Pro Regular", system-ui, sans-serif;
+    font-family: "var(--font-bryant)", system-ui, sans-serif;
   }
 }
 

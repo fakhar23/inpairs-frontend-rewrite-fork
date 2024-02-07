@@ -113,7 +113,7 @@ function FeatureModal({
                     {title}
                   </h2>
 
-                  <p className="font-bryantProMedium my-4 text-gray-gunmetal text-md leading-relaxed">
+                  <p className="font-bryant font-medium  my-4 text-gray-gunmetal text-md leading-relaxed">
                     {description}
                   </p>
                 </div>
@@ -143,7 +143,7 @@ export default function Home() {
             <h1 className="font-bryantProBold text-[2.1rem] leading-[3.5rem] text-title font-normal capitalize">
               Take the guesswork out of the most important decision you can make
             </h1>
-            <p className="font-bryantProMedium text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
+            <p className="font-bryant font-medium  text-[1.2rem] leading-[1.5rem] mb-[2rem] text-gray-gunmetal">
               Inpairs is a service that brings the 21st century to Muslim
               matchmaking, blending data science with human matchmakers for the
               best results. Our team pairs couples based on a combination of
@@ -163,14 +163,14 @@ export default function Home() {
           <h2 className="font-bryantProBold text-[2.5rem] font-bold text-title">
             The Problem
           </h2>
-          <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] sm:px-0">
+          <p className="font-bryant font-medium  text-gray-gunmetal text-[1.5rem] sm:px-0">
             Let’s be honest, it’s tough finding somebody. As a practicing Muslim
             and, most likely, first-generation immigrant, you have to filter
             through so many layers before you can even entertain the idea of
             somebody. You start yet another talking stage and then find out the
             two of you have wildly different personalities.
           </p>
-          <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] sm:px-0">
+          <p className="font-bryant font-medium  text-gray-gunmetal text-[1.5rem] sm:px-0">
             The issue with the apps is that they are designed to keep you coming
             back. We’re not here to profit off of you, we’re here to help you
             find your person.
@@ -233,7 +233,7 @@ export default function Home() {
                   <h2 className="font-bryantProBold text-title text-[1.2rem] md:text-regular md:font-bold">
                     {title}
                   </h2>
-                  <p className="font-bryantProMedium text-gray-gunmetal md:text-[12px]">
+                  <p className="font-bryant font-medium  text-gray-gunmetal md:text-[12px]">
                     {description.substring(0, 85)} ...
                   </p>
                   <button
@@ -257,7 +257,7 @@ export default function Home() {
             className="absolute top-0 left-0 w-[100%] h-[100%] object-cover z-[-1] object-top"
           />
           <div className="text-white md:w-full md:flex md:justify-center md:flex-col md:items-center relative md:mt-[4rem]">
-            <h2 className="font-bryantProBold text-[2.5rem] mb-[2rem] uppercase font-bold">
+            <h2 className="font-bryant font-bold  text-[2.5rem] mb-[2rem] uppercase font-bold">
               our instagram
             </h2>
             <div className="grid grid-cols-4 gap-[3rem] lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full">

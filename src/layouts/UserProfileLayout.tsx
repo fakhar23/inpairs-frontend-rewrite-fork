@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode, useState } from "react";
-import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { Link } from "@/components";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,11 +13,6 @@ import bgArt from "@/assets/usernavArt.svg";
 import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { Skeleton } from "@/components";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 const NavigationPaths = {
   matchmaking: "/matchmaking",
@@ -77,7 +71,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
           </div>
           {/* Tab names that are displayed in center */}
           <div className="flex items-center w-full">
-            <ul className="flex p-4 mt-0 flex-row items-center justify-around lg:space-x-8 text-lg lg:font-bryantProMedium lg:border-0 w-[50%] my-0 mx-auto md:w-full md:hidden">
+            <ul className="flex p-4 mt-0 flex-row items-center justify-around lg:space-x-8 text-lg lg:font-bryant font-medium  lg:border-0 w-[50%] my-0 mx-auto md:w-full md:hidden">
               <>
                 {isAdministrationRole ? (
                   <Link
@@ -145,8 +139,8 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                 <Skeleton isLoading={user.isLoading} width={150} height={24}>
                   <p
                     className={twMerge(
-                      "whitespace-nowrap",
-                      poppins.className,
+                      "whitespace-nowrap font-poppins",
+
                       user.isLoading ? "w-40" : ""
                     )}
                   >{`${user?.data?.firstName} ${

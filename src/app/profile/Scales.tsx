@@ -20,7 +20,7 @@ export function Scales({
         Scales
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Importance of Islam
         </h3>
         <Skeleton
@@ -34,7 +34,7 @@ export function Scales({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Career vs Family
         </h3>
 
@@ -49,7 +49,7 @@ export function Scales({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Financial independence
         </h3>
 
@@ -64,7 +64,7 @@ export function Scales({
         </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Fitness activity
         </h3>
 
@@ -80,7 +80,7 @@ export function Scales({
       </div>
       {ClosenessToFamily && (
         <div>
-          <h3 className="font-bryantProMedium text-light-black">
+          <h3 className="font-bryant font-medium  text-light-black">
             Closeness to family
           </h3>
 

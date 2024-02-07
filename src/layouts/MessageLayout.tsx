@@ -26,7 +26,7 @@ export function MessageLayout({
       />
       <div className="w-[50%] p-[3rem] md:w-full">
         <h2
-          className={`text-center text-[2.6rem] mb-[0.5rem] md:text-[2.2rem] font-semibold font-pacifico`}
+          className={`text-center text-[2.6rem] mb-[0.5rem] md:text-[2.2rem] font-funky`}
         >
           <span className="text-primary">InPairs</span>
         </h2>
