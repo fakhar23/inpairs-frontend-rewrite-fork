@@ -34,7 +34,7 @@ export const Card = ({
   return (
     <div
       className={twMerge(
-        "flex items-center justify-center w-[100%] py-[2rem] md:mb-[2rem] rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out hover:shadow-xl cursor-pointer",
+        "flex items-center justify-center w-[100%] py-[2rem] h-full md:mb-[2rem] rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out hover:shadow-xl cursor-pointer",
         className
       )}
       onClick={disabled ? undefined : onClick}

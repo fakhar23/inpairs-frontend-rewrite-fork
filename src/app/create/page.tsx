@@ -73,7 +73,7 @@ function Create() {
       content: (
         <>
           {formerPayingUser && (
-            <h3 className="text-slate-600 font-bold text-[1.1rem] md:text-regular text-center pb-5">
+            <h3 className="text-slate-600 font-bold text-[1.1rem] md:text-regular text-center text-nowrap pb-5">
               Welcome back! To continue enjoying our service, kindly consider
               re-subscribing.
             </h3>
@@ -104,7 +104,7 @@ function Create() {
       <GateNavbar />
 
       <div className="w-[100%] grow mb-5 flex justify-center items-center relative">
-        <div className="space-y-[1rem]  sm:h-[100%] min-h-[645px] flex flex-col justify-between md:flex md:flex-col  md:mt-[1rem] md:h-[90vh] md:justify-between w-[72rem] md:w-[40rem] px-[3rem] py-[1rem] md:m-0 bg-white shadow-lg relative md:p-[1rem]">
+        <div className="space-y-[1rem]  sm:h-[100%] min-h-[645px] flex flex-col justify-between md:flex md:flex-col  md:mt-[1rem]  md:justify-between w-[72rem] md:w-[40rem] px-[3rem] py-[1rem] md:m-0 bg-white shadow-lg relative md:p-[1rem]">
           <Stepper activeStep={activeStep} steps={steps} />
 
           <section className="flex w-[100%]">

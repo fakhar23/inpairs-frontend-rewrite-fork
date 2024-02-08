@@ -55,11 +55,11 @@ const PersonalDetails = () => {
         <ImagesUploader onClose={() => setIsImageModalOpened(false)} />
       </Modal>
 
-      <div className="my-0 mx-auto flex flex-col gap-[5rem] items-center md:flex-col-reverse">
-        <section className="flex gap-4 justify-center items-stretch w-[100%] md:flex-col md:items-center md:justify-center">
+      <div className="my-0 gap-[5rem] items-center ">
+        <section className="flex gap-4 justify-center flex-wrap">
           <PopupButton
             id={process.env.NEXT_PUBLIC_FORM_ONE_ID}
-            className="flex justify-center w-[100%]"
+            className="flex justify-center"
             size={90}
             onSubmit={handleSubmit}
             hidden={{
@@ -79,6 +79,7 @@ const PersonalDetails = () => {
             }}
           >
             <Card
+              className="w-[200px] md:w-[150px] "
               title="Demographics"
               icon={demographics}
               loading={user.isLoading || ingestResponseMutation.isPending}
@@ -88,14 +89,13 @@ const PersonalDetails = () => {
                 ingestResponseMutation.isPending
               }
               isCompleted={completedFirstForm}
-              className="h-full"
             />
           </PopupButton>
 
           <PopupButton
             id={process.env.NEXT_PUBLIC_FORM_TWO_ID as string}
             size={90}
-            className="flex justify-center w-[100%]"
+            className="flex justify-center"
             onSubmit={handleSubmit}
             hidden={{
               user_id: uid,
@@ -114,6 +114,7 @@ const PersonalDetails = () => {
             }}
           >
             <Card
+              className="w-[200px] md:w-[150px]"
               title="Personal Test"
               icon={personal}
               loading={user.isLoading || ingestResponseMutation.isPending}
@@ -123,11 +124,11 @@ const PersonalDetails = () => {
                 ingestResponseMutation.isPending
               }
               isCompleted={completedSecondForm}
-              className="h-full"
             />
           </PopupButton>
 
           <Card
+            className="w-[200px] md:w-[150px]"
             title={
               <>
                 <div>Upload Pictures</div>
