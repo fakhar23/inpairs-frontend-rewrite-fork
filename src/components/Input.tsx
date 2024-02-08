@@ -59,9 +59,9 @@ export const Input = React.forwardRef(function WrappedInput<
         ref={ref as Ref<HTMLInputElement>}
         className={twMerge(
           variation === "primary" &&
-            "appearance-none border-b border-gray-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-primary bg-transparent md:h-[4rem] md:placeholder:text-[12px] md:text-[12px]",
+            "appearance-none border-b border-gray-400 text-gray-gunmetal leading-tight focus:outline-none h-[3rem] w-full focus:placeholder-transparent focus:border-primary bg-transparent md:h-[4rem]    ",
           variation === "secondary" &&
-            "bg-gray-100 rounded-[10px] px-3 border-gray-200 mt-2 leading-tight h-[3rem] w-full md:h-[4rem] md:placeholder:text-[12px] md:text-[12px] text-gray-gunmetal outline-none focus:outline-primary",
+            "bg-gray-100 rounded-[10px] px-3 border-gray-200 mt-2 leading-tight h-[3rem] w-full md:h-[4rem]     text-gray-gunmetal outline-none focus:outline-primary",
           rest.readOnly &&
             "bg-gray-100 text-gray-gunmetal cursor-not-allowed focus:outline-gray focus:outline"
         )}
@@ -124,9 +124,9 @@ export const TextArea = React.forwardRef(function WrappedTextArea<
         className={twMerge(
           "p-3",
           variation === "primary" &&
-            "appearance-none border-b border-gray-400 text-gray-gunmetal leading-tight focus:outline-none w-full focus:placeholder-transparent focus:border-primary bg-transparent md:placeholder:text-[12px] md:text-[12px]",
+            "appearance-none border-b border-gray-400 text-gray-gunmetal leading-tight focus:outline-none w-full focus:placeholder-transparent focus:border-primary bg-transparent    ",
           variation === "secondary" &&
-            "bg-gray-100 rounded-[10px] px-3 border-gray-400 mt-2 leading-tight w-full md:placeholder:text-[12px] md:text-[12px] text-gray outline-none focus:outline-primary",
+            "bg-gray-100 rounded-[10px] px-3 border-gray-400 mt-2 leading-tight w-full     text-gray outline-none focus:outline-primary",
           rest.readOnly &&
             "bg-gray-100 text-gray-gunmetal cursor-not-allowed focus:outline-gray focus:outline"
         )}

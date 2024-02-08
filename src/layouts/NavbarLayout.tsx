@@ -25,9 +25,7 @@ const NavbarLayout = ({
       )}
     >
       <GateNavbar />
-      <div className={twMerge("flex items-stretch grow", contentClassName)}>
-        {children}
-      </div>
+      <div className={twMerge("flex grow", contentClassName)}>{children}</div>
       {footer ? <Footer /> : <div></div>}
     </div>
   );

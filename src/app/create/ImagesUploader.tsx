@@ -30,22 +30,22 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
   }, [user.isLoading]);
 
   return (
-    <div className="w-[90vw] h-[80vh] bg-white shadow-sm rounded-sm  flex flex-col justify-center items-center">
+    <div className="w-[90vw] h-[60vh] bg-white shadow-sm rounded-sm  flex flex-col justify-center items-center">
       {user.isLoading && (
         <div className="absolute z-20 top-0 bottom-0 right-0 left-0 flex items-center justify-center bg-black/10">
           <Loading />
         </div>
       )}
-      <div className="relative p-1 flex items-center justify-center w-[70%] md:w-[90%] border-2	 border-dashed border-primary">
-        <label
-          className={`group flex flex-col items-center ${
-            images.length ? "justify-end py-5" : "justify-center"
-          } ${
-            images.length < 3 ? "cursor-pointer" : "cursor-pointer"
-          } w-full h-72  rounded-lg  bg-neutral-50 dark:hover:bg-gray-500  hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500`}
-        >
-          <div>
-            {images.length < 3 ? (
+      <div className="relative p-1 flex flex-col-reverse items-center justify-center w-[70%] md:w-[90%] border-2	 border-dashed border-primary">
+        {images.length < 3 ? (
+          <label
+            className={`group flex flex-col items-center ${
+              images.length ? "justify-end py-5" : "justify-center"
+            } ${
+              images.length < 3 ? "cursor-pointer" : "cursor-pointer"
+            } w-full  rounded-lg  bg-neutral-50 dark:hover:bg-gray-500  hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500`}
+          >
+            <div>
               <CldUploadWidget
                 uploadPreset={
                   process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME as string
@@ -99,19 +99,19 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
                   );
                 }}
               </CldUploadWidget>
-            ) : null}
-          </div>
-        </label>
+            </div>
+          </label>
+        ) : null}
         {!!images.length && (
           <div
             className={twMerge(
-              "absolute top-0 flex items-center justify-center w-auto mx-auto",
+              " top-0 flex items-center justify-center w-auto mx-auto",
               images.length >= 3 ? "h-full" : ""
             )}
           >
-            <div className="flex flex-row items-center justify-center pt-5 pb-6 gap-6">
+            <div className="flex flex-row flex-wrap items-center justify-center pt-5 pb-6 gap-6">
               {images.map((currentImage) => (
-                <div className="relative " key={currentImage}>
+                <div className="relative" key={currentImage}>
                   <button
                     type="button"
                     className="absolute z-10 -top-[11px] left-0 flex flex-col items-center justify-center bg-white hover:bg-primary text-primary hover:text-white"
@@ -131,7 +131,7 @@ function ImagesUploader({ onClose }: { onClose: () => void }) {
                     &times;
                   </button>
                   <Image
-                    className="w-[10rem] h-[10rem] object-cover"
+                    className="w-[8rem] h-[8rem] object-cover"
                     src={currentImage}
                     alt={"image"}
                     width={160}

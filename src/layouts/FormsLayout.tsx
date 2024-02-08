@@ -23,7 +23,7 @@ const FormsLayout = ({ children }: IFromsLayoutProps) => {
         <h2 className={`font-funky text-center text-[2.6rem] mb-[0.5rem]`}>
           Welcome To <span className="text-primary">Inpairs</span>
         </h2>
-        <div className="relative flex flex-col items-center md:w-full md:px-10">
+        <div className="relative flex flex-col items-center md:w-full md:px-8">
           {children}
         </div>
       </div>

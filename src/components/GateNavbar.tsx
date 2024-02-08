@@ -22,7 +22,7 @@ function getLink(
   userContext: AuthContextResponse | undefined,
   view: "desktop" | "mobile"
 ) {
-  const className = twMerge(view === "desktop" ? "md:hidden" : "w-full");
+  const className = twMerge(view === "desktop" ? "lg:hidden" : "w-full");
   const links = {
     unauthenticated: (
       <LinkButton className={className} path="/login">
@@ -107,7 +107,7 @@ const Menu = ({ isOpen, onClose, loginPage }: IMenuProps) => {
     <Link key={path} href={path} onClick={onClose}>
       <li
         className={twMerge(
-          "hover:bg-[#ef3e37] active:bg-[#ef3e37] hover:text-white active:text-white py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md",
+          "hover:bg-[#ef3e37] active:bg-[#ef3e37] hover:text-white active:text-white py-4 my-1 px-2 hover:bg-opacity-90 transition-all duration-300 rounded-md",
           pathname === path ? "text-purple" : ""
         )}
       >
@@ -119,19 +119,19 @@ const Menu = ({ isOpen, onClose, loginPage }: IMenuProps) => {
   return (
     <animated.div
       style={props}
-      className={`fixed z-10 shadow-md bg-white top-0 right-0 p-[1.5rem] w-[50%] h-[100vh] sm:w-[70%]
+      className={`fixed z-10 shadow-md bg-white top-0 right-0 p-[1rem] w-[50%] h-[100vh] sm:w-[70%]
           space-y-10 text-right`}
       ref={closeOnOutsideClickRef}
     >
       <button
-        className="cursor-pointer px-12"
+        className="cursor-pointer pl-6"
         title="closing button"
         onClick={onClose}
       >
         <CloseIcon size={"2.5em"} />
       </button>
 
-      <ul className="text-[1.5rem] text-left [] flex flex-col gap-4">
+      <ul className="text-[1.2rem] text-left flex flex-col">
         {links}
         <Skeleton
           isLoading={user.isLoading || !!isLoggedIn.data}
@@ -159,18 +159,18 @@ export function GateNavbar({ loginPage = false }: { loginPage?: boolean }) {
   const pathname = usePathname();
 
   return (
-    <div className="relative px-[4rem] py-[0.6rem] flex justify-between items-center w-[100%] shadow-md mb-0 bg-white  z-[10]">
+    <div className="relative px-[2rem] lg:pr-2 py-[0.6rem] flex gap-4 flex-wrap justify-between items-center w-[100%] shadow-md mb-0 bg-white  z-[10]">
       <Link href="/">
         <Image
           src={logo}
           alt="pairs logo"
-          className="w-[8rem]"
+          className="w-[7rem]"
           priority={true}
         />
       </Link>
 
       <ul
-        className={`font-bryantProMedium  flex justify-between items-center  gap-[3rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray list-none md:hidden`}
+        className={`font-bryant font-medium   flex justify-between items-center  gap-[2rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray list-none lg:hidden`}
       >
         <li className={pathname === "/" ? "text-secondary" : ""}>
           <Link href="/">Home</Link>
@@ -202,7 +202,7 @@ export function GateNavbar({ loginPage = false }: { loginPage?: boolean }) {
           {getLink(user.data, "desktop")}
 
           {shouldDisplayLogout && (
-            <LinkButton className="md:hidden" path="/login">
+            <LinkButton className="lg:hidden" path="/login">
               Logout
             </LinkButton>
           )}
@@ -212,7 +212,7 @@ export function GateNavbar({ loginPage = false }: { loginPage?: boolean }) {
       <button
         type="button"
         title="menu"
-        className="items-center p-2 text-neutral-500 rounded-lg hidden md:inline-flex hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:ring-gray-600"
+        className="items-center p-2 text-neutral-500 rounded-lg hidden lg:inline-flex hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         onClick={() => {
           setIsMenuOpened(!isMenuOpened);
         }}

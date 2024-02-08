@@ -49,7 +49,7 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
             value={countryOptions.find((c) => c.value === value)}
             components={{ Option: FlagOption }}
             placeholder="Which country do you live"
-            className="select md:placeholder:text-[12px] md:text-[12px] text-primary leading-tight"
+            className="select     text-primary leading-tight"
             onChange={(option) => onChange(option?.value)}
             styles={{
               control(baseStyles, state) {

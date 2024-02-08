@@ -26,7 +26,7 @@ export default function Profile() {
 
   return (
     <UserProfileLayout>
-      <section className="relative flex justify-end mx-auto px-[4rem] bg-profile bg-no-repeat	bg-cover [&_h2]:mb-[1rem] [&_h2]:text-secondary [&_h2]:text-[2rem] [&_p]:text-gray-gunmetal md:flex-col sm:px-[1rem]">
+      <section className="relative flex justify-end mx-auto px-[2rem] bg-profile bg-no-repeat	bg-cover [&_h2]:mb-[1rem] [&_h2]:text-secondary [&_h2]:text-[2rem] [&_p]:text-gray-gunmetal md:flex-col sm:px-[1rem]">
         <Image
           src={profileBg}
           alt="profile background"
@@ -41,7 +41,7 @@ export default function Profile() {
 
         <section className="flex flex-wrap h-auto resize-y justify-center w-[75%] px-[1rem] py-[3rem] md:w-full md:px-0 relative">
           {/* left column */}
-          <div className="flex flex-col gap-8 mr-[2rem] w-[45%] [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
+          <div className="flex flex-col gap-8 mr-[2rem] md:mr-0 md:mb-[3rem] w-[45%] [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
             <GeneralInfo
               title="About me"
               content={{

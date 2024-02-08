@@ -55,7 +55,7 @@ export const Stepper = ({ activeStep, steps }: IStepper) => {
         })}
       </section>
 
-      <section className="md:px-[40px] pt-[4rem] md:mb-[10rem] md:flex-1 md:pt-[3rem] relative pb-[3rem]">
+      <section className="flex justify-center items-center">
         {steps[activeStep - 1].content}
       </section>
     </>

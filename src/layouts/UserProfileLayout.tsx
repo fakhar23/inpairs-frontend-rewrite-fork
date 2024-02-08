@@ -51,16 +51,17 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <nav className="relative bg-primary-200 bg-gradient-to-r from-primary to-secondary px-[4rem] pt-[2rem] pb-[3rem] text-white mb-2">
+      <nav className="w-full py-8 px-4 relative bg-primary-200 bg-gradient-to-r from-primary to-secondary text-white mb-6">
         {/* Background Image of entire nav */}
         <Image
           src={bgArt}
           alt="art"
           className="absolute top-0 left-0 w-[100%] h-[100%] object-cover object-center z-0"
         />
-        <section className="relative flex justify-between z-2">
+
+        <section className="relative flex justify-between items-center z-2">
           {/* Left Logo */}
-          <div className="flex items-center w-[8%] sm:w-[50%]">
+          <div className="flex items-center w-[25%] max-w-[120px]">
             <Link href="/">
               <Image
                 className="h-[100%] w-[100%]"
@@ -69,9 +70,10 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
               />
             </Link>
           </div>
+
           {/* Tab names that are displayed in center */}
-          <div className="flex items-center w-full">
-            <ul className="flex p-4 mt-0 flex-row items-center justify-around lg:space-x-8 text-lg lg:font-bryant font-medium  lg:border-0 w-[50%] my-0 mx-auto md:w-full md:hidden">
+          <div className="flex items-center w-full md:hidden">
+            <ul className="flex p-4 mt-0 flex-row gap-8 items-center justify-around lg:space-x-8 text-lg lg:font-bryant font-medium  lg:border-0 my-0 mx-auto md:w-full md:hidden">
               <>
                 {isAdministrationRole ? (
                   <Link
@@ -129,11 +131,12 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
               </>
             </ul>
           </div>
+
           {/* User's name with profile Icon on the Right */}
-          <div className="flex items-center gap-[1rem]" ref={profileMenuRef}>
+          <div ref={profileMenuRef}>
             <div className="relative">
               <button
-                className="cursor-pointer flex items-center gap-[1rem]"
+                className="cursor-pointer flex items-center gap-[1rem] md:gap-2"
                 onClick={() => setOpenNav(!openNav)}
               >
                 <Skeleton isLoading={user.isLoading} width={150} height={24}>
