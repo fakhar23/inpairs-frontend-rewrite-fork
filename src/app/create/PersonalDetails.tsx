@@ -1,6 +1,6 @@
 "use client";
 
-import { PopupButton, Widget } from "@typeform/embed-react";
+import { PopupButton } from "@typeform/embed-react";
 
 import about from "@/assets/About Yourself.svg";
 import demographics from "@/assets/Demographics.svg";
@@ -9,6 +9,10 @@ import { Card, Modal } from "@/components";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import ImagesUploader from "./ImagesUploader";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { ingestTypeformResponse } from "@/api";
+import { TypeformResponseIngestRequest } from "@/api/types";
+import { toast } from "react-toastify";
 
 const PersonalDetails = () => {
   const [isImageModalOpened, setIsImageModalOpened] = useState<boolean>(false);
@@ -26,8 +30,19 @@ const PersonalDetails = () => {
     completedFirstForm,
     completedSecondForm,
   } = user.data || {};
-  const handleSubmit = () => {
-    // TODO: Backend
+
+  const ingestResponseMutation = useMutation({
+    mutationFn: async (payload: TypeformResponseIngestRequest) => {
+      return await ingestTypeformResponse(payload);
+    },
+    onSuccess({ message }) {
+      toast.success(message);
+    },
+  });
+
+  const handleSubmit = async (payload: TypeformResponseIngestRequest) => {
+    await ingestResponseMutation.mutateAsync(payload);
+    await user.refetch();
   };
 
   // preset
@@ -41,7 +56,7 @@ const PersonalDetails = () => {
       </Modal>
 
       <div className="my-0 mx-auto flex flex-col gap-[5rem] items-center md:flex-col-reverse">
-        <section className="flex gap-4 justify-center w-[100%] md:flex-col md:items-center md:justify-center">
+        <section className="flex gap-4 justify-center items-stretch w-[100%] md:flex-col md:items-center md:justify-center">
           <PopupButton
             id={process.env.NEXT_PUBLIC_FORM_ONE_ID}
             className="flex justify-center w-[100%]"
@@ -56,14 +71,24 @@ const PersonalDetails = () => {
               last_name: lastName,
               date_of_birth: dateOfBirth,
             }}
-            disabled={true}
+            buttonProps={{
+              disabled:
+                completedFirstForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending,
+            }}
           >
             <Card
               title="Demographics"
               icon={demographics}
-              loading={user.isLoading}
-              disabled={completedFirstForm || user.isLoading}
+              loading={user.isLoading || ingestResponseMutation.isPending}
+              disabled={
+                completedFirstForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending
+              }
               isCompleted={completedFirstForm}
+              className="h-full"
             />
           </PopupButton>
 
@@ -81,13 +106,24 @@ const PersonalDetails = () => {
               last_name: lastName,
               date_of_birth: dateOfBirth,
             }}
+            buttonProps={{
+              disabled:
+                completedSecondForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending,
+            }}
           >
             <Card
               title="Personal Test"
               icon={personal}
-              loading={user.isLoading}
-              disabled={completedSecondForm || user.isLoading}
+              loading={user.isLoading || ingestResponseMutation.isPending}
+              disabled={
+                completedSecondForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending
+              }
               isCompleted={completedSecondForm}
+              className="h-full"
             />
           </PopupButton>
 

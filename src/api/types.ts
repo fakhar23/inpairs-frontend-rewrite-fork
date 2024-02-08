@@ -102,3 +102,8 @@ export interface SupportEmailBody {
   message: string;
   subject: string;
 }
+
+export interface TypeformResponseIngestRequest {
+  formId: string;
+  responseId: string;
+}
