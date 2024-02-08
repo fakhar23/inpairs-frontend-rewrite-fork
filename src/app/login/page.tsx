@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 
 import { Button, Link } from "@/components";
 
@@ -20,20 +20,14 @@ function LoginForm() {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("uid");
     localStorage.removeItem("expires_at");
 
-    const timeoutId = setTimeout(() => {
-      // when on login, start fresh and clear all previous queries caches
-      // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
-      queryClient.clear();
-    }, 0);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    // when on login, start fresh and clear all previous queries caches
+    // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
+    queryClient.clear();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -107,7 +101,7 @@ function LoginForm() {
 export default function Login() {
   return (
     <div className="relative flex flex-col justify-around">
-      <GateNavbar />
+      <GateNavbar loginPage />
       <div className="flex justify-center items-center">
         <FormsLayout>
           <div

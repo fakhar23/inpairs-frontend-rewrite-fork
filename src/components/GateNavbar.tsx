@@ -1,25 +1,21 @@
 "use client";
 import { useState } from "react";
-
 import Image from "next/image";
 import { Link, Skeleton } from "@/components";
 import { usePathname } from "next/navigation";
-
 import { LinkButton } from "@/components";
-
 import logo from "@/assets/pears-inline.png";
 import { CloseIcon, MenuIcon } from "../Icons";
-import { useQuery } from "@tanstack/react-query";
-import { useAuthContext } from "@/hooks/useAuthContext";
 import { AuthContextResponse } from "@/api/types";
 import { useClickOutside } from "@mantine/hooks";
 import { useSpring, animated } from "react-spring";
 import { twMerge } from "tailwind-merge";
+import { useGateNav } from "@/hooks/useGateNav";
 
 interface IMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  canViewTheirProfile?: boolean;
+  loginPage?: boolean;
 }
 
 function getLink(
@@ -39,8 +35,8 @@ function getLink(
       </LinkButton>
     ),
     nonSupportedCountry: (
-      <LinkButton className={className} path="/login">
-        Logout
+      <LinkButton className={className} path="/coming-soon">
+        Coming Soon
       </LinkButton>
     ),
     payingButDidNotCompleteTheirProfile: (
@@ -86,22 +82,9 @@ function getLink(
   else throw new Error("Unsupported state");
 }
 
-const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
-  const { data: isLoggedIn } = useQuery({
-    queryKey: ["load-jwt"],
-    queryFn: async () => {
-      return !!localStorage.getItem("jwt");
-    },
-    staleTime: 0,
-  });
-
-  const user = useAuthContext({
-    enabled: !!isLoggedIn,
-  });
-
-  const shouldDisplayLogout = user.data?.shouldBeOnlyWaitlisted || user.data;
-
+const Menu = ({ isOpen, onClose, loginPage }: IMenuProps) => {
   const pathname = usePathname();
+  const { isLoggedIn, shouldDisplayLogout, user } = useGateNav(loginPage);
 
   const props = useSpring({
     to: {
@@ -150,7 +133,11 @@ const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
 
       <ul className="text-[1.5rem] text-left [] flex flex-col gap-4">
         {links}
-        <Skeleton isLoading={false} width={250} height={38}>
+        <Skeleton
+          isLoading={user.isLoading || !!isLoggedIn.data}
+          width={250}
+          height={38}
+        >
           <div className="flex flex-col gap-4">
             {getLink(user.data, "mobile")}
 
@@ -166,24 +153,10 @@ const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
   );
 };
 
-export function GateNavbar() {
+export function GateNavbar({ loginPage = false }: { loginPage?: boolean }) {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
-
+  const { isLoggedIn, shouldDisplayLogout, user } = useGateNav(loginPage);
   const pathname = usePathname();
-
-  const { data: isLoggedIn } = useQuery({
-    queryKey: ["load-jwt"],
-    queryFn: async () => {
-      return !!localStorage.getItem("jwt");
-    },
-    staleTime: 0,
-  });
-
-  const user = useAuthContext({
-    enabled: !!isLoggedIn,
-  });
-
-  const shouldDisplayLogout = user.data?.shouldBeOnlyWaitlisted || user.data;
 
   return (
     <div className="relative px-[4rem] py-[0.6rem] flex justify-between items-center w-[100%] shadow-md mb-0 bg-white  z-[10]">
@@ -221,7 +194,7 @@ export function GateNavbar() {
       </ul>
 
       <Skeleton
-        isLoading={!!isLoggedIn && user.isLoading}
+        isLoading={!!isLoggedIn.data && user.isLoading}
         width={250}
         height={38}
       >
@@ -250,7 +223,7 @@ export function GateNavbar() {
       <Menu
         isOpen={isMenuOpened}
         onClose={() => setIsMenuOpened(false)}
-        canViewTheirProfile={user.data?.canViewTheirProfile}
+        loginPage={loginPage}
       />
     </div>
   );
