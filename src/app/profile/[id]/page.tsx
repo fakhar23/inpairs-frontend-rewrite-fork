@@ -4,25 +4,13 @@ import Image from "next/image";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
 import { Basics, GeneralInfo, Scales, UserInfo } from "..";
 import profileBg from "@/assets/profileBgC.png";
-import { ENDPOINTS, getProfileData } from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useProfile } from "@/hooks/useProfile";
 
 export default function Profile() {
   const params = useParams<{ id: string }>();
   const userId = params["id"] || "";
-  const profileData = useQuery({
-    queryKey: [ENDPOINTS.profileData, userId],
-    queryFn: async () => {
-      return await getProfileData(userId);
-    },
-  });
-  const stateOrCountry =
-    profileData.data?.MainState ===
-    "Outside the US (literally any other country)"
-      ? profileData.data.MainCountry
-      : profileData.data?.MainState;
 
-  const currentLocation = `${profileData.data?.MainCity}, ${stateOrCountry}`;
+  const { profileData, currentLocation } = useProfile(userId);
 
   return (
     <UserProfileLayout>

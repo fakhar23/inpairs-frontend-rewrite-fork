@@ -11,6 +11,7 @@ import {
   TypeformResponseIngestRequest,
 } from "./types";
 import { toast } from "react-toastify";
+import { GetMatchResponse } from "./types";
 
 export const ENDPOINTS = {
   login: "/auth/login",
@@ -25,6 +26,7 @@ export const ENDPOINTS = {
   profileData: "/profile",
   supportEmail: "/email/support",
   ingestTypeformResponse: "/answers/response",
+  match: "/match",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -179,6 +181,11 @@ export async function ingestTypeformResponse(
     ENDPOINTS.ingestTypeformResponse,
     payload
   );
+  return result.data;
+}
+
+export async function getMatch() {
+  const result = await axiosInstance.get<GetMatchResponse>(ENDPOINTS.match);
   return result.data;
 }
 

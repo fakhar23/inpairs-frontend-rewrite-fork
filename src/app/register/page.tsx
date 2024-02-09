@@ -208,42 +208,8 @@ export default function Register() {
                     </ToggleButtonGroup>
                   )}
                 />
-
-                {/* <div className="flex items-center">
-                  <input
-                    id="female"
-                    type="radio"
-                    value="FEMALE"
-                    className="w-4 h-4 text-primary bg-neutral-100 border-neutral-500 focus:ring-primary focus:outline-none"
-                    {...register("gender", { required: "Gender is required" })}
-                  />
-                  <label
-                    htmlFor="female"
-                    className="ml-2 text-sm font-bryant font-medium  text-neutral-900  "
-                  >
-                    Female
-                  </label>
-                </div>
-
-                <div className="flex items-center">
-                  <input
-                    id="male"
-                    type="radio"
-                    value="MALE"
-                    className="w-4 h-4 text-primary bg-neutral-100 border-neutral-500 focus:ring-primary focus:outline-none"
-                    {...register("gender", { required: "Gender is required" })}
-                  />
-
-                  <label
-                    htmlFor="male"
-                    className="ml-2 text-sm font-bryant font-medium  text-neutral-900  "
-                  >
-                    Male
-                  </label>
-                </div> */}
               </div>
             </div>
-
             {errors.gender && (
               <p className="text-red-500 text-[0.8rem]">Select a gender</p>
             )}

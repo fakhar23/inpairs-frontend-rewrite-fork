@@ -3,7 +3,7 @@ export interface SignUpBody {
   password: string;
   firstName: string;
   lastName: string;
-  gender: "MALE" | "FEMALE" | "OTHER";
+  gender: "MALE" | "FEMALE";
   dob: string;
   country: string;
   phoneNumber: string;
@@ -20,7 +20,7 @@ export interface LoginResponse {
   uid: string;
   token: {
     jwt: string;
-    expirationDate: 1705763642000;
+    expirationDate: number;
   };
   firstName: string;
   lastName: string;
@@ -106,4 +106,26 @@ export interface SupportEmailBody {
 export interface TypeformResponseIngestRequest {
   formId: string;
   responseId: string;
+}
+
+export type MatchPairResponse = "ACCEPTED" | "REJECTED" | "PENDING";
+
+export type GetMatchResponse = Partial<{
+  firstName: string;
+  phoneNumber: string;
+  images: string[];
+  age: number;
+  currentLocation: string;
+  igHandle: string;
+  userResponse: MatchPairResponse;
+  matchResponse: MatchPairResponse;
+  matchId: number;
+  matchedUserId: string;
+  message: string;
+}>;
+
+export interface MatchRejectionSurveyPayload {
+  matchPhysicalAttraction: number;
+  matchQuality: number;
+  rejectionReason: string;
 }
