@@ -6,9 +6,8 @@ import { useRouter } from "next/router";
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { UserProfileLayout } from "@/layouts";
 
-import { Button } from "@/components";
+import { Button, Input } from "@/components";
 import { user, userListData } from "./data";
-import CustomInput from "@/components/CustomInput";
 import Table from "@/components/Table";
 import { SortingState } from "@tanstack/react-table";
 import ReactPaginate from "react-paginate";
@@ -108,16 +107,16 @@ const User = () => {
           <div className="flex justify-between items-center">
             <h1 className="my-10 text-2xl font-medium text-title">User Page</h1>
           </div>
-          <CustomInput
+          <Input
             id="search"
-            inputClassName="bg-neutral-100 w-full"
             className="w-full my-5"
+            variation="secondary"
             onChange={debounce(
               (e: React.ChangeEvent<HTMLInputElement>) =>
                 setSearch(e.target.value),
               700
             )}
-            label="Search"
+            placeholder="Search"
           />
 
           <Table

@@ -5,7 +5,6 @@ import { SortingState } from "@tanstack/react-table";
 import debounce from "lodash/debounce";
 import { IoChatbox } from "react-icons/io5";
 
-import CustomInput from "@/components/CustomInput";
 import ExpandableText from "@/components/ExpandableText";
 import Table from "@/components/Table";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
@@ -13,11 +12,10 @@ import UserProfileLayout from "@/layouts/UserProfileLayout";
 import CalculationTable from "./CalculationTable";
 import { matchesData } from "./matchesData";
 import { Pencil } from "./pencil";
-import CustomModal from "@/components/CustomModal";
 import RejectionReasonsModal from "./RejectionReasonsModal";
 import UserLink from "./UserLink";
 import Note from "./Note";
-import { Button } from "@/components";
+import { Button, Input, Modal } from "@/components";
 
 const getMatchStatus = (status: string, reason: string) => {
   if (status == "ACCEPTED") {
@@ -144,16 +142,16 @@ const MatchmakingHistory = () => {
             Rejection Reasons
           </Button>
         </div>
-        <CustomInput
+        <Input
           id="search ID"
-          inputClassName="bg-neutral-100 w-full"
           className="w-full my-5"
+          variation="secondary"
           onChange={debounce(
             (e: ChangeEvent<HTMLInputElement>) =>
               setSearchText(e?.target.value),
             1000
           )}
-          label="Search label"
+          placeholder="Search label"
         />
         <Table
           columns={columns}
@@ -161,18 +159,18 @@ const MatchmakingHistory = () => {
           sorting={sorting}
           setSorting={setSorting}
         />
-        <CustomModal
+        <Modal
           title="List of Rejection Reasons"
           titleClassName="!text-2xl text-secondary-600"
           className=""
-          show={showReasons}
+          isOpen={showReasons}
           onClose={() => setshowReasons(false)}
         >
           <RejectionReasonsModal />
-        </CustomModal>
-        <CustomModal show={!!matchToEdit} onClose={() => setMatchToEdit(null)}>
+        </Modal>
+        <Modal isOpen={!!matchToEdit} onClose={() => setMatchToEdit(null)}>
           <Note matchToEdit={matchToEdit} setMatchToEdit={setMatchToEdit} />
-        </CustomModal>
+        </Modal>
       </div>
     </UserProfileLayout>
   );
