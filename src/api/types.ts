@@ -112,6 +112,7 @@ export type MatchPairResponse = "ACCEPTED" | "REJECTED" | "PENDING";
 
 export type GetMatchResponse = Partial<{
   firstName: string;
+  lastName: string;
   phoneNumber: string;
   images: string[];
   age: number;

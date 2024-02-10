@@ -116,7 +116,7 @@ const MatchCard = () => {
             <div className="flex gap-20 xl:gap-8 ld:gap-20 md:gap-4 ms:gap-0 ms:justify-between">
               <div className="flex flex-col justify-between whitespace-nowrap">
                 <h3 className="text-[20px] font-semibold tracking-[0.6px] capitalize md:text-[16px]">
-                  {match.data?.firstName}
+                  {match.data?.firstName} {match.data?.lastName || ""}
                 </h3>
 
                 <div className="flex gap-4 items-center text-black">
