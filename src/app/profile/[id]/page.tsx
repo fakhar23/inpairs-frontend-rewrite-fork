@@ -5,12 +5,24 @@ import UserProfileLayout from "@/layouts/UserProfileLayout";
 import { Basics, GeneralInfo, Scales, UserInfo } from "..";
 import profileBg from "@/assets/profileBgC.png";
 import { useProfile } from "@/hooks/useProfile";
+import { MessageLayout } from "@/layouts";
 
 export default function Profile() {
   const params = useParams<{ id: string }>();
   const userId = params["id"] || "";
 
   const { profileData, currentLocation } = useProfile(userId);
+
+  if (profileData.isError)
+    return (
+      <UserProfileLayout>
+        <MessageLayout>
+          <p className="text-center">
+            Sorry but you're not authorized to view this profile
+          </p>
+        </MessageLayout>
+      </UserProfileLayout>
+    );
 
   return (
     <UserProfileLayout>

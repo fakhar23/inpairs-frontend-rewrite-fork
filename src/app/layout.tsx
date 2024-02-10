@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-phone-number-input/style.css";
 import { Providers } from "./providers";
 import { Next13NProgress } from "nextjs13-progress";
-import { bryant, funky, inter, poppins } from "@/styles/Fonts";
+import { bryant, funky, poppins } from "@/styles/Fonts";
 
 export const metadata: Metadata = {
   title: "InPairs",

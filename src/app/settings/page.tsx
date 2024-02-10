@@ -170,20 +170,8 @@ const ProfileSettings = () => {
             type="warn"
             message={
               <p className="text-2xl">
-                This page is still under construction. If you’d like to modify
-                any of your profile settings, send an email to
-                <a
-                  href="mailto:zachariah@inpairs.io"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="underline text-blue-500  inline-flex items-end gap-1"
-                >
-                  <span className="ml-1">
-                    <MdEmail />
-                  </span>
-                  zachariah@inpairs.io
-                </a>{" "}
-                !
+                We're preparing to launch this page soon. Please revisit in the
+                upcoming days for the latest updates!
               </p>
             }
           />

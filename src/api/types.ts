@@ -129,3 +129,16 @@ export interface MatchRejectionSurveyPayload {
   matchQuality: number;
   rejectionReason: string;
 }
+
+export type UpdateMatchRequest =
+  | {
+      matchId: number;
+      status: "ACCEPTED";
+    }
+  | {
+      matchId: number;
+      status: "REJECTED";
+      physicalAttraction: number;
+      matchQuality: number;
+      rejectionReason: string;
+    };

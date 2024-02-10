@@ -6,7 +6,10 @@ import { BsFillTelephoneInboundFill, BsInstagram } from "react-icons/bs";
 import { CloudinaryImage, Modal, Pooling } from "@/components";
 import { useGetMatch } from "@/hooks/useGetMatch";
 import { useForm } from "react-hook-form";
-import { MatchRejectionSurveyPayload } from "@/api/types";
+import { MatchRejectionSurveyPayload, UpdateMatchRequest } from "@/api/types";
+import { useMutation } from "@tanstack/react-query";
+import { updateMatch } from "@/api";
+import { toast } from "react-toastify";
 
 const StatusComponent = ({
   onAccept,
@@ -77,7 +80,14 @@ const StatusComponent = ({
 
 const MatchCard = () => {
   const match = useGetMatch();
-  const [survey, setSurvey] = useState(null);
+  const updateMatchResponseMutation = useMutation({
+    mutationFn: async (data: UpdateMatchRequest) => {
+      return await updateMatch(data);
+    },
+    onSuccess({ message }) {
+      toast.success(message);
+    },
+  });
   const [isAcceptanceModalOpened, setIsAcceptanceModalOpened] =
     useState<boolean>(false);
   const [isRejectionModalOpened, setIsRejectionModalOpened] =
@@ -88,17 +98,6 @@ const MatchCard = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<MatchRejectionSurveyPayload>();
-
-  const handleUpdateMatchHistory = async (key: "match" | "profile") => {};
-
-  const onClose = () => {
-    setSurvey(null);
-    setIsAcceptanceModalOpened((isOpen) => !isOpen);
-  };
-
-  const handleConfirm = async (payload: unknown) => {
-    console.log("mhmd", payload);
-  };
 
   return (
     <>
@@ -125,10 +124,8 @@ const MatchCard = () => {
                   <div className="border-[0.4px] border-secondary h-[1.25rem] inline" />
                 </div>
               </div>
-
               <Link
-                onClick={() => handleUpdateMatchHistory("profile")}
-                href="/profile/"
+                href={`/profile/${match.data?.matchedUserId}`}
                 className="flex items-center whitespace-nowrap bg-secondary text-white px-[2rem] h-[42px] rounded-3xl text-[1rem] focus:outline-none focus:shadow-outline hover:bg-secondary transition-all ease-out duration-300  md:h-[36px] md:text-[14px]  "
               >
                 View Profile
@@ -151,7 +148,7 @@ const MatchCard = () => {
         title="Confirm Match Acceptance"
         titleClassName="!text-2xl"
         isOpen={isAcceptanceModalOpened}
-        onClose={onClose}
+        onClose={() => setIsAcceptanceModalOpened(false)}
       >
         <div className="flex flex-col items-center justify-center w-[30rem]">
           <h2 className="text-center text-title text-2xl font-bryantProMedium mt-7">
@@ -161,14 +158,27 @@ const MatchCard = () => {
           </h2>
 
           <div className="flex justify-center w-full mt-8 gap-2">
-            <Button onClick={onClose} variant="outlined">
+            <Button
+              onClick={() => setIsRejectionModalOpened(false)}
+              variant="outlined"
+            >
               Go Back
             </Button>
 
             <Button
-              onClick={handleConfirm}
+              onClick={async () => {
+                await updateMatchResponseMutation.mutateAsync({
+                  matchId: match.data?.matchId || 0,
+                  status: "ACCEPTED",
+                });
+                await match.refetch();
+                setIsAcceptanceModalOpened(false);
+              }}
               className="font-semibold rounded-lg  border-primary bg-green-500 py-3"
-              isLoading={true}
+              isDisabled={
+                updateMatchResponseMutation.isPending || match.isLoading
+              }
+              isLoading={updateMatchResponseMutation.isPending}
             >
               Accept
             </Button>
@@ -261,7 +271,7 @@ const MatchCard = () => {
             <Button
               className="rounded-md"
               type="button"
-              onClick={onClose}
+              onClick={() => setIsRejectionModalOpened(false)}
               variant="outlined"
             >
               Go Back
@@ -270,9 +280,21 @@ const MatchCard = () => {
             <Button
               className=" disabled:bg-slate-300 disabled:text-white disabled:border-slate-300 rounded-md"
               type="button"
-              isDisabled={false}
-              isLoading={false}
-              onClick={handleSubmit(handleConfirm)}
+              isDisabled={
+                updateMatchResponseMutation.isPending || match.isLoading
+              }
+              isLoading={updateMatchResponseMutation.isPending}
+              onClick={handleSubmit(async (data) => {
+                await updateMatchResponseMutation.mutateAsync({
+                  matchId: match.data?.matchId || 0,
+                  status: "REJECTED",
+                  matchQuality: Number(data.matchQuality),
+                  physicalAttraction: Number(data.matchPhysicalAttraction),
+                  rejectionReason: data.rejectionReason,
+                });
+                await match.refetch();
+                setIsRejectionModalOpened(false);
+              })}
             >
               Reject
             </Button>

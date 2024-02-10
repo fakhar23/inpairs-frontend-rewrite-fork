@@ -9,6 +9,7 @@ import {
   SignUpBody,
   SupportEmailBody,
   TypeformResponseIngestRequest,
+  UpdateMatchRequest,
 } from "./types";
 import { toast } from "react-toastify";
 import { GetMatchResponse } from "./types";
@@ -186,6 +187,14 @@ export async function ingestTypeformResponse(
 
 export async function getMatch() {
   const result = await axiosInstance.get<GetMatchResponse>(ENDPOINTS.match);
+  return result.data;
+}
+
+export async function updateMatch(payload: UpdateMatchRequest) {
+  const result = await axiosInstance.patch<{ message: string }>(
+    ENDPOINTS.match,
+    payload
+  );
   return result.data;
 }
 
