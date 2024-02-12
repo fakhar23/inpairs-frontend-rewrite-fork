@@ -134,7 +134,7 @@ const Menu = ({ isOpen, onClose, loginPage }: IMenuProps) => {
       <ul className="text-[1.2rem] text-left flex flex-col">
         {links}
         <Skeleton
-          isLoading={user.isLoading || !!isLoggedIn.data}
+          isLoading={user.isLoading || !isLoggedIn.data}
           width={250}
           height={38}
         >
