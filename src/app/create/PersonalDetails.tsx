@@ -35,7 +35,7 @@ const PersonalDetails = () => {
     mutationFn: async (payload: TypeformResponseIngestRequest) => {
       return await ingestTypeformResponse(payload);
     },
-    retry: 5,
+    retry: 10,
     onSuccess({ message }) {
       toast.success(message);
     },
