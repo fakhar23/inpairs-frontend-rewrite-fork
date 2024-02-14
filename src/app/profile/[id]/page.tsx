@@ -75,10 +75,10 @@ export default function Profile() {
               isLoading={profileData.isLoading}
             />
             <GeneralInfo
-              title="Five year plan"
+              title="Most interesting thing about you"
               content={{
                 descriptor: "FiveYearPlan",
-                answer: profileData.data?.FiveYearPlan || "",
+                answer: profileData.data?.mostInterestingThing || "",
               }}
               isLoading={profileData.isLoading}
             />
@@ -88,8 +88,8 @@ export default function Profile() {
           <div className="w-[45%] flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
             <Basics
               isLoading={profileData.isLoading}
+              // currentLocation={currentLocation}
               {...profileData.data}
-              currentLocation={currentLocation}
             />
             <Scales isLoading={profileData.isLoading} {...profileData.data} />
           </div>

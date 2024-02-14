@@ -94,6 +94,9 @@ export type ProfileDataResponse = Partial<{
   WillingToMove: string;
   Origin: string;
   ClosenessToFamily: string;
+  currentLocation: string;
+  mostSpentLocation: string;
+  mostInterestingThing: string;
 }>;
 
 export interface SupportEmailBody {
