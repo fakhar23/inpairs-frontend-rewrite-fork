@@ -21,6 +21,7 @@ interface ICard {
   loading?: boolean;
   disabled?: boolean;
   className?: string;
+  id?: string;
 }
 export const Card = ({
   title,
@@ -30,6 +31,7 @@ export const Card = ({
   loading,
   disabled,
   className,
+  id,
 }: ICard) => {
   return (
     <div
@@ -38,6 +40,7 @@ export const Card = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
+      id={id}
     >
       <div className="flex flex-col items-center gap-[1rem]">
         {loading ? (

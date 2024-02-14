@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   AuthContextResponse,
   EmailVerificationBody,
+  GroupAnswersResponse,
   LoginBody,
   LoginResponse,
   ProfileDataResponse,
@@ -28,6 +29,7 @@ export const ENDPOINTS = {
   supportEmail: "/email/support",
   ingestTypeformResponse: "/answers/response",
   match: "/match",
+  answers: "/answers",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -194,6 +196,13 @@ export async function updateMatch(payload: UpdateMatchRequest) {
   const result = await axiosInstance.patch<{ message: string }>(
     ENDPOINTS.match,
     payload
+  );
+  return result.data;
+}
+
+export async function getAnswers() {
+  const result = await axiosInstance.get<GroupAnswersResponse>(
+    ENDPOINTS.answers
   );
   return result.data;
 }

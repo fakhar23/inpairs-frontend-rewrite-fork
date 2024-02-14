@@ -146,3 +146,20 @@ export type UpdateMatchRequest =
       matchQuality: number;
       rejectionReason: string;
     };
+
+export type QuestionGroup =
+  | "GeneralInformation"
+  | "Ethnic"
+  | "Location"
+  | "Personality"
+  | "Religion"
+  | "AboutThem";
+
+export type GroupAnswersResponse = Record<
+  QuestionGroup,
+  {
+    question_text: string;
+    question_type: string;
+    answer: string;
+  }[]
+>;
