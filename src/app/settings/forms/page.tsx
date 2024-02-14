@@ -7,12 +7,12 @@ import { Button } from "@/components";
 
 const BillingSettings = () => {
   const answers = useGetAnswer();
-  const GROUPS: QuestionGroup[] = [
-    "GeneralInformation",
-    "Ethnic",
-    "Location",
-    "Religion",
-    "AboutThem",
+  const GROUPS: Array<{ key: QuestionGroup; title: string; formId: string }> = [
+    { key: "GeneralInformation", formId: "", title: "General Information" },
+    { key: "Ethnic", formId: "", title: "Ethnic" },
+    { key: "Location", formId: "", title: "Location" },
+    { key: "Religion", formId: "", title: "Religion" },
+    { key: "AboutThem", formId: "", title: "About Them" },
   ];
 
   return (
@@ -22,16 +22,16 @@ const BillingSettings = () => {
           {GROUPS.map((group) => {
             return (
               <div
-                key={group}
-                id={group}
+                key={group.key}
+                id={group.key}
                 className="flex flex-col p-4 rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out"
               >
                 <div className="text-2xl text-wrap py-4 text-secondary-500 font-medium">
-                  {group}
+                  {group.title}
                 </div>
                 <div className="flex flex-col gap-10">
                   {answers.data &&
-                    answers.data[group].map((question) => {
+                    answers.data[group.key].map((question) => {
                       return (
                         <div
                           key={question.question_text}
@@ -45,8 +45,8 @@ const BillingSettings = () => {
                       );
                     })}
                 </div>
-                <div className="flex items-center p-4">
-                  <Button>Edit {group} section</Button>
+                <div className="flex items-center justify-center p-4 pt-8">
+                  <Button>Edit {group.title} section</Button>
                 </div>
               </div>
             );
