@@ -1,13 +1,7 @@
 "use client";
 
 import { SettingsLayout, UserProfileLayout } from "@/layouts";
-
-import EditProfile from "./editProfile";
-import { Card, Toast } from "@/components";
-
 import { useGetAnswer } from "@/hooks/useGetAnswer";
-import { useAuthContext } from "@/hooks/useAuthContext";
-import { usePathname, useSearchParams } from "next/navigation";
 
 const ProfileSettings = () => {
   const answers = useGetAnswer();

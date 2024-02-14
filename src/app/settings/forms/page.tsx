@@ -26,10 +26,10 @@ const BillingSettings = () => {
                 id={group.key}
                 className="flex flex-col p-4 rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out"
               >
-                <div className="text-2xl text-wrap py-4 text-secondary-500 font-medium">
+                <div className="text-2xl text-wrap py-4 md:pb-6 pb-8 text-secondary-500 font-medium">
                   {group.title}
                 </div>
-                <div className="flex flex-col gap-10">
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(30%,1fr))] md:flex md:flex-col gap-10">
                   {answers.data &&
                     answers.data[group.key].map((question) => {
                       return (

@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { Card, Link } from "@/components";
+import { Link } from "@/components";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
@@ -17,42 +17,13 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
     }
   }, [pathname]);
 
-  const linkClassName = "";
-
   return (
-    // <div>
-    //   <ul className="flex justify-center px-[20%] gap-[3rem] text-[1.2rem] text-slate-600 w-[100%] border-b border-slate-300">
-    //     <Link
-    //       href={"/settings"}
-    //       className={
-    //         "py-2 " +
-    //         (tab === 1 ? "text-primary font-bold border-b border-primary" : "")
-    //       }
-    //       onClick={() => setTab(1)}
-    //     >
-    //       <li>Profile</li>
-    //     </Link>
-
-    //     <Link
-    //       href={"/settings/billing"}
-    //       className={
-    //         "py-2 " +
-    //         (tab === 3 ? "text-primary font-bold border-b border-primary" : "")
-    //       }
-    //       onClick={() => setTab(3)}
-    //     >
-    //       <li>Billing</li>
-    //     </Link>
-    //   </ul>
-    //   {children}
-    // </div>
-
-    <div className="w-full flex flex-col gap-[1rem] px-[1rem] mt-[2rem]">
+    <div className="w-full flex flex-col gap-[1rem] px-[4rem] md:px-[1rem] mt-[2rem]">
       <div className="text-[2rem]  text-title font-bold">Settings</div>
 
-      <div className="grid grid-cols-[100px_minmax(0,_1fr)] gap-2">
-        <div className="w-full bg-white min-w-[6.25rem] self-start sticky top-8 border-r">
-          <nav className="min-h-[320px] flex flex-col gap-2 py-4 font-medium font-bryant text-lg">
+      <div className="grid md:grid-cols-[100px_minmax(0,_1fr)] grid-cols-[150px_minmax(0,_1fr)] gap-8 md:gap-2">
+        <div className="w-full bg-white md:min-w-[6.25rem]  self-start sticky top-8 border-r">
+          <nav className="min-h-[320px] flex flex-col gap-2 py-4 font-medium font-bryant md:text-lg text-xl">
             <Link
               href={"/settings"}
               className={twMerge(
@@ -91,7 +62,7 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
             </Link>
 
             {tab === 3 && (
-              <nav className="flex flex-col gap-1 mt-[-5px] pl-2 text-sm font-normal text-slate-400 [&>a:hover]:text-neutral-500">
+              <nav className="flex flex-col gap-1 mt-[-5px] pl-2 md:text-sm text-base font-normal text-slate-400 [&>a:hover]:text-neutral-500">
                 <a className="" href="#GeneralInformation">
                   General Information
                 </a>
