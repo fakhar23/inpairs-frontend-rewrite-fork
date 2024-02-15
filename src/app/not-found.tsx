@@ -9,7 +9,7 @@ export default function NotFound() {
           <p className={`text-large font-funky md:text-[30px]`}>
             Page is not found 404
           </p>
-          <LinkButton content={"Home"} path="/" />{" "}
+          <LinkButton path="/">Home</LinkButton>
         </div>
       </div>
     </div>

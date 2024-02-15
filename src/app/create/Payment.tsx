@@ -24,6 +24,7 @@ const Payment = () => {
       <div className="my-0 mx-auto flex flex-col gap-[5rem] items-center md:flex-col-reverse">
         <section className="flex flex-wrap gap-4 justify-center w-[100%] max-w-[400px] md:flex-col md:items-center md:justify-center">
           <Card
+            className="w-[250px]"
             isCompleted={isPayingUser}
             loading={user.isLoading || paymentMutation.isPending}
             title="Fill Payment Information"

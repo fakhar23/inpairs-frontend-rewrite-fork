@@ -1,7 +1,7 @@
 export { default as LinkButton } from "./LinkButton";
-export { default as Button } from "./Button";
+export { default as Button, type IButtonProps } from "./Button";
 export { Loading } from "./Loading";
-export { PublicNavbar } from "./PublicNav";
+export { GateNavbar } from "./GateNavbar";
 export { Footer } from "./Footer";
 export { ContactForm } from "./ContactForm";
 export { SplashScreen } from "./SplashScreen";
@@ -19,3 +19,5 @@ export { default as Pooling } from "./Pooling";
 export { default as Images } from "./Images";
 export { Toast } from "./Toast";
 export { Link } from "./Link";
+export { Skeleton } from "./Skeleton";
+export { ToggleButton, ToggleButtonGroup } from "./Toggle";

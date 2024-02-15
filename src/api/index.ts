@@ -8,8 +8,11 @@ import {
   SetPassword,
   SignUpBody,
   SupportEmailBody,
+  TypeformResponseIngestRequest,
+  UpdateMatchRequest,
 } from "./types";
 import { toast } from "react-toastify";
+import { GetMatchResponse } from "./types";
 
 export const ENDPOINTS = {
   login: "/auth/login",
@@ -25,6 +28,8 @@ export const ENDPOINTS = {
   supportEmail: "/email/support",
   matchmaking: "/matchmaking",
   matchTracking: "/matchmaking/tracking",
+  ingestTypeformResponse: "/answers/response",
+  match: "/match",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -172,6 +177,29 @@ export async function sendSupportEmail(payload: SupportEmailBody) {
   return result.data;
 }
 
+export async function ingestTypeformResponse(
+  payload: TypeformResponseIngestRequest
+) {
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.ingestTypeformResponse,
+    payload
+  );
+  return result.data;
+}
+
+export async function getMatch() {
+  const result = await axiosInstance.get<GetMatchResponse>(ENDPOINTS.match);
+  return result.data;
+}
+
+export async function updateMatch(payload: UpdateMatchRequest) {
+  const result = await axiosInstance.patch<{ message: string }>(
+    ENDPOINTS.match,
+    payload
+  );
+  return result.data;
+}
+
 export async function getMatchmaking(queryString: string) {
   const result = await axiosInstance.get(ENDPOINTS.matchmaking + queryString);
   return result.data;
@@ -184,7 +212,6 @@ export async function updateMatchmaking(id: string, payload: any) {
   );
   return result.data;
 }
-
 export async function getMatchTracking(queryString: string) {
   console.log(ENDPOINTS.matchTracking + queryString);
   const result = await axiosInstance.get(ENDPOINTS.matchTracking + queryString);

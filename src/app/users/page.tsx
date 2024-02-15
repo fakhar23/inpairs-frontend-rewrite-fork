@@ -90,11 +90,12 @@ const User = () => {
         return (
           <Button
             onClick={(e: any) => handleAction(e, row?.original)}
-            content={row?.original?.disabled ? "Activate" : "Deactivate"}
             className={`!rounded-md ${
               row?.original?.disabled ? "!bg-green-500" : ""
             }`}
-          />
+          >
+            {row?.original?.disabled ? "Activate" : "Deactivate"}
+          </Button>
         );
       },
     },
@@ -105,9 +106,7 @@ const User = () => {
       <div className="max-w-7xl mx-auto">
         <div>
           <div className="flex justify-between items-center">
-            <h1 className="my-10 text-2xl font-medium text-purple-900">
-              User Page
-            </h1>
+            <h1 className="my-10 text-2xl font-medium text-title">User Page</h1>
           </div>
           <CustomInput
             id="search"

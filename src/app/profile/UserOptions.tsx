@@ -18,7 +18,7 @@ export const UserOptions = () => {
         title="Questions"
         isOpen={showQuestion}
         onClose={() => setShowQuestion(false)}
-        titleClassName="!text-[2rem] text-purple"
+        titleClassName="!text-[2rem] text-secondary"
         className="w-5/6 px-4"
       >
         <ProfileQuestions />
@@ -27,15 +27,17 @@ export const UserOptions = () => {
       <div className="flex gap-4 items-center">
         <Button
           className="w-full"
-          content="Questions"
           onClick={() => setShowQuestion(!showQuestion)}
-        />
+        >
+          Questions
+        </Button>
         <Button
           className="w-full"
-          content="Download"
           isLoading={downloadProfileLoading}
           onClick={() => downloadUserData()}
-        />
+        >
+          Download
+        </Button>
       </div>
     </div>
   );

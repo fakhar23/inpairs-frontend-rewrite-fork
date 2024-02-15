@@ -13,7 +13,7 @@ export default function ReferralInstructions() {
         matches we can make. It&apos;s mad easy, just look below
       </p>
 
-      <div className="flex flex-col gap-3 md:pb-[10rem] flex-wrap md:p-[1rem]">
+      <div className="flex flex-col gap-3 flex-wrap md:p-[1rem]">
         <p className="self-start text-xsmall italic md:text-[10px]">
           Make a Referral by giving them your phone number. They will have to
           provide it in this section of forms

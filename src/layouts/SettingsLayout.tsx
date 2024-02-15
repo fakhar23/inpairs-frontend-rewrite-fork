@@ -23,7 +23,7 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
           href={"/settings"}
           className={
             "py-2 " +
-            (tab === 1 ? "text-red font-bold border-b border-red-500" : "")
+            (tab === 1 ? "text-primary font-bold border-b border-primary" : "")
           }
           onClick={() => setTab(1)}
         >
@@ -34,7 +34,7 @@ const SettingsLayout = ({ children }: { children: ReactNode }) => {
           href={"/settings/billing"}
           className={
             "py-2 " +
-            (tab === 3 ? "text-red font-bold border-b border-red-500" : "")
+            (tab === 3 ? "text-primary font-bold border-b border-primary" : "")
           }
           onClick={() => setTab(3)}
         >

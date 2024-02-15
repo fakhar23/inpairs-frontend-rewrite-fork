@@ -263,7 +263,7 @@ export function RankingTable(props: Props, ref: any) {
               </li>
 
               <li className="flex gap-2">
-                <div className="w-5 h-5 mt-[3px] bg-red-100"></div>
+                <div className="w-5 h-5 mt-[3px] bg-primary-100"></div>
                 <div className="md:text-wrap text-nowrap">
                   Users who haven&apos;t uploaded any pictures of themselves.
                 </div>
@@ -299,7 +299,9 @@ export function RankingTable(props: Props, ref: any) {
       </section>
 
       <div className="flex justify-end w-full">
-        <Button className="" content="Save" onClick={() => undefined} />
+        <Button className="" onClick={() => undefined}>
+          Save
+        </Button>
       </div>
     </div>
   );

@@ -1,29 +1,36 @@
 "use client";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 
-import { Poppins } from "next/font/google";
-import { Link } from "@/components";
+import { Button, Link } from "@/components";
 
 import { useForm } from "react-hook-form";
 
 import { Input, LoadingCircle } from "@/components";
-import { PublicNavbar } from "@/components/PublicNav";
+import { GateNavbar } from "@/components";
 import FormsLayout from "@/layouts/FormsLayout";
 
 import { LoginBody } from "@/api/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { login } from "@/api";
 import { handleSuccessfulLoginRoute } from "@/api/routeUser";
 import { useRouter } from "next/navigation";
 import { isAxiosError } from "axios";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
-
 function LoginForm() {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
+  useLayoutEffect(() => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("uid");
+    localStorage.removeItem("expires_at");
+
+    // when on login, start fresh and clear all previous queries caches
+    // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
+    queryClient.clear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loginMutation = useMutation({
     mutationFn: async (payload: LoginBody) => {
       return await login(payload);
@@ -31,7 +38,7 @@ function LoginForm() {
     onSuccess(data) {
       const redirectState = handleSuccessfulLoginRoute(data);
       if (redirectState.shouldRedirect) {
-        router.push(redirectState.newRoute);
+        router.push(redirectState.path);
       }
     },
   });
@@ -55,7 +62,7 @@ function LoginForm() {
           placeholder="Email"
           error={errors.email}
           {...register("email", {
-            required: "email is required",
+            required: "Email is required",
           })}
         />
         <div className="w-full relative">
@@ -65,11 +72,11 @@ function LoginForm() {
             placeholder="Password"
             error={errors.password}
             {...register("password", {
-              required: "password is required",
+              required: "Password is required",
             })}
           />
           {loginMutation.isError && (
-            <p className="text-red">
+            <p className="text-red-500">
               {isAxiosError(loginMutation.error)
                 ? loginMutation.error.response?.data.message
                 : loginMutation.error.message}
@@ -79,14 +86,13 @@ function LoginForm() {
       </div>
 
       <div className="flex w-full justify-center mt-3">
-        <button
-          className=" bg-red-500 text-white px-[2.5rem] py-[0.3rem] rounded-3xl shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:px-[3.5rem] md:py-[0.6rem] md:mt-[3rem]"
+        <Button
           type="submit"
-          disabled={loginMutation.isPending}
+          isDisabled={loginMutation.isPending}
+          isLoading={loginMutation.isPending}
         >
-          {loginMutation.isPending && <LoadingCircle />}
           Sign In
-        </button>
+        </Button>
       </div>
     </form>
   );
@@ -94,33 +100,31 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="relative flex flex-col justify-around">
-      <PublicNavbar />
-      <div className="flex justify-center items-center">
+    <div className="relative flex flex-col justify-around h-[100dvh]">
+      <GateNavbar loginPage />
+      <div className="flex grow justify-center items-center">
         <FormsLayout>
           <div
-            className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full ${poppins.className}`}
+            className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full font-poppins`}
           >
             <LoginForm />
             <div className="flex flex-col justify-start text-nowrap">
               <p className="text-center text-xsmall">
                 Forgot your password?{" "}
                 <Link href="/account-management/reset-password">
-                  <span className=" text-red">Reset password</span>
+                  <span className=" text-primary">Reset password</span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Didn't receive verification email?{" "}
                 <Link href="/account-management/request-verification-email">
-                  <span className=" text-red">Request new email </span>
+                  <span className=" text-primary">Request new email </span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Don't have an account?{" "}
                 <Link href="/register">
-                  <span className=" text-red md:text-[12px]">
-                    Create an account
-                  </span>
+                  <span className=" text-primary  ">Create an account</span>
                 </Link>
               </p>
             </div>

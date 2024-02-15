@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode, useState } from "react";
-import { Poppins } from "next/font/google";
 import Image from "next/image";
 import { Link } from "@/components";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,12 +12,7 @@ import profileImg from "@/assets/prof-pic.png";
 import bgArt from "@/assets/usernavArt.svg";
 import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "@/hooks/useAuthContext";
-import { TextSkeleton } from "@/components/TextSkeleton";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
+import { Skeleton } from "@/components";
 
 const NavigationPaths = {
   matchmaking: "/matchmaking",
@@ -32,9 +26,9 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
   const [openNav, setOpenNav] = useState<boolean>(false);
   const pathName = usePathname();
   const profileMenuRef = useClickOutside(() => setOpenNav(false)); //if any click in done outside this ref, then setOpenNav will become false
-  const router = useRouter();
 
   const user = useAuthContext();
+  const router = useRouter();
 
   function handleLogout() {
     // clear local storage
@@ -57,16 +51,17 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <nav className="relative bg-red-200 bg-gradient-to-r from-red-500 to-purple-900 px-[4rem] pt-[2rem] pb-[3rem] text-white mb-2">
+      <nav className="w-full py-8 px-4 relative bg-primary-200 bg-gradient-to-r from-primary to-secondary text-white mb-6">
         {/* Background Image of entire nav */}
         <Image
           src={bgArt}
           alt="art"
           className="absolute top-0 left-0 w-[100%] h-[100%] object-cover object-center z-0"
         />
-        <section className="relative flex justify-between z-2">
+
+        <section className="relative flex justify-between items-center z-2">
           {/* Left Logo */}
-          <div className="flex items-center w-[8%] sm:w-[50%]">
+          <div className="flex items-center w-[25%] max-w-[120px]">
             <Link href="/">
               <Image
                 className="h-[100%] w-[100%]"
@@ -75,9 +70,10 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
               />
             </Link>
           </div>
+
           {/* Tab names that are displayed in center */}
-          <div className="flex items-center w-full">
-            <ul className="flex p-4 mt-0 flex-row items-center justify-around lg:space-x-8 text-lg lg:font-bryantProMedium lg:border-0 w-[50%] my-0 mx-auto md:w-full md:hidden">
+          <div className="flex items-center w-full md:hidden">
+            <ul className="flex p-4 mt-0 flex-row gap-8 items-center justify-around lg:space-x-8 text-lg lg:font-bryant font-medium  lg:border-0 my-0 mx-auto md:w-full md:hidden">
               <>
                 {isAdministrationRole ? (
                   <Link
@@ -135,24 +131,26 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
               </>
             </ul>
           </div>
+
           {/* User's name with profile Icon on the Right */}
-          <div className="flex items-center gap-[1rem]" ref={profileMenuRef}>
+          <div ref={profileMenuRef}>
             <div className="relative">
               <button
-                className="cursor-pointer flex items-center gap-[1rem]"
+                className="cursor-pointer flex items-center gap-[1rem] md:gap-2"
                 onClick={() => setOpenNav(!openNav)}
               >
-                <TextSkeleton
-                  className={twMerge(
-                    "whitespace-nowrap",
-                    poppins.className,
-                    user.isLoading ? "w-40" : ""
-                  )}
-                  as="p"
-                  showText={!user.isLoading}
-                >{`${user?.data?.firstName} ${
-                  user?.data?.lastName || ""
-                }`}</TextSkeleton>{" "}
+                <Skeleton isLoading={user.isLoading} width={150} height={24}>
+                  <p
+                    className={twMerge(
+                      "whitespace-nowrap font-poppins",
+
+                      user.isLoading ? "w-40" : ""
+                    )}
+                  >{`${user?.data?.firstName} ${
+                    user?.data?.lastName || ""
+                  }`}</p>
+                </Skeleton>
+
                 <div className="h-[2rem] w-[2rem] rounded-full">
                   <Image
                     src={profileImg}
@@ -173,7 +171,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/profile/me"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm hover:bg-orange ">
                           Profile
                         </li>
                       </Link>
@@ -181,7 +179,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/settings"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm hover:bg-orange ">
                           Settings
                         </li>
                       </Link>
@@ -189,7 +187,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/my-match"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm hover:bg-orange ">
                           My Match
                         </li>
                       </Link>
@@ -197,12 +195,12 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                         onClick={() => setOpenNav(false)}
                         href={"/profile/contact"}
                       >
-                        <li className="hover:bg-[#ef3e37] text-gray block px-4 py-2 text-sm  hover:bg-orange hover:bg-opacity-50">
+                        <li className="hover:bg-primary-300 text-gray block px-4 py-2 text-sm  hover:bg-orange ">
                           Contact
                         </li>
                       </Link>
                       <li
-                        className="hover:bg-[#ef3e37] hover:bg-opacity-50 text-gray block px-4 py-2 text-sm  hover:bg-orange  cursor-pointer"
+                        className="hover:bg-primary-300  text-gray block px-4 py-2 text-sm  hover:bg-orange  cursor-pointer"
                         onClick={() => {
                           setOpenNav(false);
                           handleLogout();

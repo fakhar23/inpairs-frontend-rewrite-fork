@@ -32,13 +32,13 @@ export function ContactForm() {
 
   return (
     <section className="px-10 py-9">
-      <h2 className="font-bryantProBold mb-[2rem] text-5xl tracking-tight font-extrabold text-purple">
+      <h2 className="font-bryant mb-[2rem] text-5xl tracking-tight font-extrabold text-title">
         Contact Us
       </h2>
       <div className="flex items-center flex-wrap gap-5">
         <div className="basis-auto mb-6 md:w-full w-2/5 space-y-[3rem] md:mb-[4rem]">
-          <div className="border-b border-slate-300">
-            <p className="md:mb-8 mb-10 font-light text-slate-600 text-xl">
+          <div className="border-b border-gray">
+            <p className="md:mb-8 mb-10 font-light text-xl">
               Got a technical issue? Want to send feedback about a feature? Need
               details about our Business plan? Let us know.
             </p>
@@ -46,13 +46,13 @@ export function ContactForm() {
               href="mailto:zachariah@inpairs.io"
               className="text-lg mb-3 flex items-baseline"
             >
-              <i className="fa-solid fa-envelope text-purple mr-2"></i>
+              <i className="fa-solid fa-envelope text-secondary mr-2"></i>
               zachariah@inpairs.io
             </a>
           </div>
 
           <div>
-            <p className="md:mb-8 mb-10 font-light text-slate-600 text-xl">
+            <p className="md:mb-8 mb-10 font-light text-xl">
               Any feedback you want to give or a user you want to report? Use
               our user feedback form. If you still want to reach out to us, send
               us an email!
@@ -62,12 +62,7 @@ export function ContactForm() {
               href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL || ""}
               target="_blank"
             >
-              <button
-                type="submit"
-                className="py-3 px-5 text-sm  font-bryantProMedium text-center text-white rounded-3xl bg-red-500 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300"
-              >
-                User Feedback/User Reporting Form
-              </button>
+              <Button type="submit">User Feedback/User Reporting Form</Button>
             </Link>
           </div>
         </div>
@@ -122,8 +117,9 @@ export function ContactForm() {
               className="mt-4"
               isDisabled={supportEmailMutation.isPending}
               isLoading={supportEmailMutation.isPending}
-              content="Send Message"
-            />
+            >
+              Send Message
+            </Button>
           </form>
         </div>
       </div>

@@ -21,13 +21,13 @@ const FormsLayout = ({ children }: IFromsLayoutProps) => {
       />
       <div className="w-[50%] p-[3rem] flex flex-col items-center justify-center md:w-full md:p-0 md:m-0 md:flex md:justify-center md:items-center md:flex-col">
         <h2 className={`font-funky text-center text-[2.6rem] mb-[0.5rem]`}>
-          Welcome To <span className="text-red">Inpairs</span>
+          Welcome To <span className="text-primary">Inpairs</span>
         </h2>
-        <div className="relative flex flex-col items-center md:w-full md:px-10">
+        <div className="relative flex flex-col items-center md:w-full md:px-8">
           {children}
         </div>
       </div>
-      <div className="bg-[#F8F8F8] w-[50%] md:w-full md:rounded-xl md:hidden">
+      <div className="bg-gray-50 w-[50%] md:w-full md:rounded-xl md:hidden">
         <Image src={couple} alt="couple image" className="w-[100%]" />
       </div>
     </div>

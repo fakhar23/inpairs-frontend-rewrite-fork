@@ -14,7 +14,7 @@ import RejectionReasonsModal from "./RejectionReasonsModal";
 import Note from "./Note";
 import { useListMatchmaking } from "@/api/matchmaking";
 import { queryParams } from "@/api/types";
-import { Loading } from "@/components";
+import { Button, Loading } from "@/components";
 import { PencilIcon } from "@/Icons/PencilIcon";
 import UserLink from "@/components/UserLink";
 import "../style.css";
@@ -119,7 +119,7 @@ export default function MatchmakingHistory() {
               onClick={() => setMatchToEdit(row.original)}
               className="flex justify-end w-full"
             >
-              <IoChatbox className="text-purple-900 hover:opacity-75 zoom-scale-125 cursor-pointer   " />
+              <IoChatbox className="text-secondary-600 hover:opacity-75 zoom-scale-125 cursor-pointer   " />
             </button>
           );
         },
@@ -155,15 +155,12 @@ export default function MatchmakingHistory() {
         )}
         <CalculationTable />
         <div className="flex justify-between items-center">
-          <h1 className="my-10 text-2xl font-medium text-purple-900">
+          <h1 className="my-10 text-2xl font-medium text-secondary-600">
             Matchmaking History
           </h1>
-          <button
-            onClick={() => setshowReasons(true)}
-            className="bg-red-500 text-white px-[2rem] py-[0.3rem] md:px-[5rem] md:py-[0.4rem] md:text-regular rounded-3xl text-[1.2rem] shadow-xl hover:bg-[#f87171] disabled:cursor-not-allowed disabled:bg-slate-300"
-          >
+          <Button onClick={() => setshowReasons(true)}>
             Rejection Reasons
-          </button>
+          </Button>
         </div>
         <CustomInput
           id="search ID"
@@ -203,7 +200,7 @@ export default function MatchmakingHistory() {
         )}
         <CustomModal
           title="List of Rejection Reasons"
-          titleClassName="!text-2xl text-purple-900"
+          titleClassName="!text-2xl text-secondary-600"
           className=""
           show={showReasons}
           onClose={() => setshowReasons(false)}

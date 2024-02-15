@@ -37,7 +37,7 @@ const ImageUploader = ({ images, setImages }: IImageUpload) => {
 
         <input hidden type="file" name="file" onChange={handleChange} />
 
-        <p className="text-red">{error}</p>
+        <p className="text-red-500">{error}</p>
       </div>
     </label>
   );

@@ -1,9 +1,9 @@
 import { ProfileDataResponse } from "@/api/types";
+import { Skeleton } from "@/components";
 
 export function Basics({
   JobOrFieldOfStudy,
   age,
-  MainState,
   currentLocation,
   FinishedEducationLevel,
   SpokenLanguages,
@@ -14,75 +14,179 @@ export function Basics({
   Height,
   Married,
   WillingToMove,
+  mostSpentLocation,
+  isLoading = true,
 }: ProfileDataResponse & {
-  currentLocation: string;
+  isLoading?: boolean;
 }) {
+  const SKELETON_WIDTH = "40%";
+  const SKELETON_HEIGHT = 24;
+
   return (
     <section className="last:border-0">
-      <div className="flex items-center !justify-start font-bryantProBold text-purple text-[1.25rem]">
+      <div className="flex items-center !justify-start font-bryant font-bold text-secondary text-[1.25rem]">
         Basics
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Occupation</h3>
-        <p>{JobOrFieldOfStudy}</p>
+        <h3 className="font-bryant font-medium  text-light-black">
+          Occupation
+        </h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{JobOrFieldOfStudy}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Age</h3>
-        <p>{age}</p>
+        <h3 className="font-bryant font-medium  text-light-black">Age</h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{age}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Current location
         </h3>
-        <p>{currentLocation}</p>
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{currentLocation}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
-          State spent most time in
+        <h3 className="font-bryant font-medium  text-light-black">
+          Spent most time in
         </h3>
-        <p>{MainState}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{mostSpentLocation}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Education</h3>
-        <p>{FinishedEducationLevel}</p>
+        <h3 className="font-bryant font-medium  text-light-black">Education</h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{FinishedEducationLevel}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Languages</h3>
-        <p>{SpokenLanguages}</p>
+        <h3 className="font-bryant font-medium  text-light-black">Languages</h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{SpokenLanguages}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Origin</h3>
-        <p>{[Origin, DadOrigin, MomOrigin].filter(Boolean).join(", ")}</p>
+        <h3 className="font-bryant font-medium  text-light-black">Origin</h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{[Origin, DadOrigin, MomOrigin].filter(Boolean).join(", ")}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Sect</h3>
-        <p>
-          {Sect?.replaceAll("[", "").replaceAll("]", "").replaceAll('"', "")}
-        </p>{" "}
+        <h3 className="font-bryant font-medium  text-light-black">Sect</h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>
+            {Sect?.replaceAll("[", "").replaceAll("]", "").replaceAll('"', "")}
+          </p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">Height</h3>
-        <p>{Height}</p>
+        <h3 className="font-bryant font-medium  text-light-black">Height</h3>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{Height}</p>
+        </Skeleton>
       </div>
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Married before?
         </h3>
-        <p>{Married === "true" ? "Yes" : "No"}</p>
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{Married === "true" ? "Yes" : "No"}</p>
+        </Skeleton>
       </div>
 
       {/* {false && (
         <div>
-          <h3 className="font-bryantProMedium text-light-black">Has kids?</h3>
+          <h3 className="font-bryant font-medium  text-light-black">Has kids?</h3>
           <p>{Kid}</p>
         </div>
       )} */}
 
       <div>
-        <h3 className="font-bryantProMedium text-light-black">
+        <h3 className="font-bryant font-medium  text-light-black">
           Willing to move?
         </h3>
-        <p>{WillingToMove}</p>
+
+        <Skeleton
+          variant="rounded"
+          isLoading={isLoading}
+          animation="wave"
+          width={SKELETON_WIDTH}
+          height={SKELETON_HEIGHT}
+        >
+          <p>{WillingToMove}</p>
+        </Skeleton>
       </div>
     </section>
   );

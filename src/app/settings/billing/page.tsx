@@ -1,33 +1,39 @@
 "use client";
 
+import { MdEmail } from "react-icons/md";
+import { Toast } from "@/components";
 import { SettingsLayout, UserProfileLayout } from "@/layouts";
 
 const BillingSettings = () => {
   return (
     <UserProfileLayout>
       <SettingsLayout>
-        <section className="w-[80%] p-5 py-[3rem] my-0 mx-auto">
-          <h2 className="text-[2rem] text-purple font-bold mb-[4rem]">
+        <section className="w-[100%] p-10 py-[3rem] my-0 mx-auto md:w-[100%]">
+          <h2 className="text-[2.5rem] text-title font-bold mb-[2rem]">
             Billing Settings
           </h2>
 
-          <div className="w-[100%] p-10 flex justify-center items-center shadow-xl">
-            <p className="text-[20px]">
-              This page is still under construction. If you’d like to modify any
-              of your billing settings, send an email to
-              <a
-                href="mailto:zachariah@inpairs.io"
-                rel="noreferrer"
-                target="_blank"
-                className="text-lg"
-              >
-                {" "}
-                <i className="fa-solid fa-envelope text-purple mr-1"></i>
-                zachariah@inpairs.io
-              </a>{" "}
-              !
-            </p>
-          </div>
+          <Toast
+            type="warn"
+            message={
+              <p className="text-2xl">
+                This page is still under construction. If you’d like to modify
+                any of your billing settings, send an email to
+                <a
+                  href="mailto:zachariah@inpairs.io"
+                  rel="noreferrer"
+                  target="_blank"
+                  className="underline text-blue-500  inline-flex items-end gap-1"
+                >
+                  <span className="ml-1">
+                    <MdEmail />
+                  </span>
+                  zachariah@inpairs.io
+                </a>{" "}
+                !
+              </p>
+            }
+          />
         </section>
       </SettingsLayout>
     </UserProfileLayout>

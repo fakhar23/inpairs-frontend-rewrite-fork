@@ -1,7 +1,6 @@
 "use client";
 
-import { Poppins } from "next/font/google";
-import { Link } from "@/components";
+import { Button, Link, ToggleButton, ToggleButtonGroup } from "@/components";
 import { useRouter } from "next/navigation";
 
 import { useForm, Controller } from "react-hook-form";
@@ -15,11 +14,7 @@ import { SignUpBody } from "@/api/types";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api";
 import { toast } from "react-toastify";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
+import { FaFemale, FaMale } from "react-icons/fa";
 
 export default function Register() {
   const signUpMutation = useMutation({
@@ -47,14 +42,14 @@ export default function Register() {
   return (
     <NavbarLayout>
       <FormsLayout>
-        <div className={poppins.className}>
-          <div className={`text-lg px-[2rem] ${poppins.className}`}>
+        <div className="font-poppins">
+          <div className="text-lg px-[2rem] font-poppins mb-4 text-center">
             Create Your Account
           </div>
 
           <form
             onSubmit={handleSubmit((data) => signUpMutation.mutate(data))}
-            className="flex flex-col items-start px-[2rem] gap-[1rem]"
+            className="flex flex-col items-start md:px-0 px-[2rem] gap-[1rem]"
           >
             <Input
               id="email"
@@ -74,10 +69,9 @@ export default function Register() {
                 {...register("password", {
                   required: "Password is required",
                   pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
                     message:
-                      "password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+                      "Valid passwords must be at least 6 characters long and include at least one lowercase letter, one uppercase letter, and one number",
                   },
                 })}
               />
@@ -124,7 +118,7 @@ export default function Register() {
 
               <div className="border-b border-slate-400  w-full" />
               {errors.country && (
-                <p className="text-red text-[0.8rem]">
+                <p className="text-red-500 text-[0.8rem]">
                   {errors.country.message}
                 </p>
               )}
@@ -137,7 +131,7 @@ export default function Register() {
                 rules={{ required: "Phone number is required", minLength: 11 }}
                 render={({ field: { onChange, value } }) => (
                   <PhoneInput
-                    className="appearance-none border-b  border-slate-400 text-gray-gunmetal leading-tight fne h-[3rem] w-full focus:placeholder-transparent focus:outline-none focus:border-red-500 bg-transparent md:h-[4rem] md:text-[12px]"
+                    className="appearance-none border-b  border-slate-400 text-gray-gunmetal leading-tight fne h-[3rem] w-full focus:placeholder-transparent focus:outline-none focus:border-primary bg-transparent md:h-[4rem]  "
                     placeholder="Phone Number"
                     value={value}
                     onChange={onChange}
@@ -148,12 +142,14 @@ export default function Register() {
               />
 
               {errors?.phoneNumber && (
-                <p className="text-red text-[0.8rem]">Invalid Phone Number</p>
+                <p className="text-red-500 text-[0.8rem]">
+                  Invalid Phone Number
+                </p>
               )}
             </div>
 
             <div className="w-full mb-2 relative">
-              <label className="mb-3 md:text-[12px] md:mb-[1rem] text-gray-gunmetal">
+              <label className="mb-3   md:mb-[1rem] text-gray-gunmetal">
                 Date of birth
               </label>
 
@@ -182,52 +178,45 @@ export default function Register() {
               />
             </div>
 
-            <div className="border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none py-[0.7rem] px-[0.5rem] w-full focus:placeholder-transparent focus:border-red-500">
-              <p className="mb-3 md:text-[12px] md:mb-[1rem]">Gender</p>
+            <div className="border-b border-slate-400 text-gray-gunmetal leading-tight focus:outline-none py-[0.7rem] px-[0.5rem] w-full focus:placeholder-transparent focus:border-primary">
+              <p className="mb-3   md:mb-[1rem]">Gender</p>
               <div className="flex gap-5">
-                <div className="flex items-center">
-                  <input
-                    id="female"
-                    type="radio"
-                    value="FEMALE"
-                    className="w-4 h-4 text-red bg-neutral-100 border-neutral-500 focus:ring-red-500 focus:outline-none"
-                    {...register("gender", { required: "Gender is required" })}
-                  />
-                  <label
-                    htmlFor="female"
-                    className="ml-2 text-sm font-bryantProMedium text-neutral-900 md:text-[12px]"
-                  >
-                    Female
-                  </label>
-                </div>
-
-                <div className="flex items-center">
-                  <input
-                    id="male"
-                    type="radio"
-                    value="MALE"
-                    className="w-4 h-4 text-red bg-neutral-100 border-neutral-500 focus:ring-red-500 focus:outline-none"
-                    {...register("gender", { required: "Gender is required" })}
-                  />
-
-                  <label
-                    htmlFor="male"
-                    className="ml-2 text-sm font-bryantProMedium text-neutral-900 md:text-[12px]"
-                  >
-                    Male
-                  </label>
-                </div>
+                <Controller
+                  name="gender"
+                  control={control}
+                  rules={{ required: "Gender is required" }}
+                  render={({ field: { onChange, value } }) => (
+                    <ToggleButtonGroup
+                      value={value}
+                      exclusive
+                      onChange={onChange}
+                      aria-label="gender"
+                    >
+                      <ToggleButton value="MALE" aria-label="male">
+                        Male
+                        <span className="w-[30px] py-1 [&>svg]:h-auto [&>svg]:w-full">
+                          <FaMale />
+                        </span>
+                      </ToggleButton>
+                      <ToggleButton value="FEMALE" aria-label="female">
+                        Female
+                        <span className="w-[30px] py-1 [&>svg]:h-auto [&>svg]:w-full">
+                          <FaFemale />
+                        </span>
+                      </ToggleButton>
+                    </ToggleButtonGroup>
+                  )}
+                />
               </div>
             </div>
-
             {errors.gender && (
-              <p className="text-red text-[0.8rem]">Select a gender</p>
+              <p className="text-red-500 text-[0.8rem]">Select a gender</p>
             )}
 
             <div className="flex w-full mb-2 md:mt-[1rem] text-neutral-500 gap-1">
               <div className="flex flex-col w-full">
                 <select
-                  className={`w-full h-10 border-b focus:outline-none border-neutral-100 text-gray-gunmetal md:text-[12px] bg-white`}
+                  className={`w-full h-10 border-b focus:outline-none border-neutral-100 text-gray-gunmetal   bg-white`}
                   id="howDidYouHearAboutUs"
                   {...register("howDidYouHearAboutUs", {
                     required: "How did you hear about us is required",
@@ -245,7 +234,7 @@ export default function Register() {
 
                 {getValues("howDidYouHearAboutUs") !== "Other" &&
                   errors.howDidYouHearAboutUs && (
-                    <p className="text-red text-[0.8rem]">
+                    <p className="text-red-500 text-[0.8rem]">
                       {errors?.howDidYouHearAboutUs?.message}
                     </p>
                   )}
@@ -269,21 +258,20 @@ export default function Register() {
             )}
 
             <div className="flex w-full justify-center mt-3">
-              <button
-                className="bg-red-500 text-white px-[2rem] py-[0.3rem] rounded-3xl text-[1.3rem] shadow-[0_12px_10px_rgba(0,0,0,0.16)] md:w-full md:mt-[2rem] md:text-regular"
+              <Button
                 type="submit"
-                disabled={signUpMutation.isPending}
+                isDisabled={signUpMutation.isPending}
+                isLoading={signUpMutation.isPending}
               >
-                {signUpMutation.isPending && <LoadingCircle />}
                 Sign up
-              </button>
+              </Button>
             </div>
           </form>
 
-          <p className="text-center mt-[2rem] md:text-[12px]">
+          <p className="text-center mt-[2rem]  ">
             Already Have An Account ?{" "}
             <Link href="/login">
-              <span className="text-red md:text-[12px]">Sign in</span>
+              <span className="text-primary  ">Sign in</span>
             </Link>
           </p>
         </div>
