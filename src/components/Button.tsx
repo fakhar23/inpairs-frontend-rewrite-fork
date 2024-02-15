@@ -21,7 +21,7 @@ export default function Button({
   children,
 }: IButtonProps) {
   const baseClassName =
-    "w-fit px-4 py-2 md:px-6 md:py-3 md:text-xl rounded-lg text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none";
+    "w-fit px-4 py-2  md:text-xl rounded-lg text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none";
   const variantClassName =
     variant === "outlined"
       ? "bg-white border-primary-700 text-primary-700 border hover:bg-primary-200 hover:bg-opacity-35 active:bg-primary-200 active:bg-opacity-60"
@@ -30,17 +30,15 @@ export default function Button({
   const mergedClassName = twMerge(baseClassName, variantClassName, className);
 
   return (
-    <>
-      <button
-        type={type}
-        className={mergedClassName}
-        onClick={onClick}
-        disabled={isDisabled || isLoading || false}
-      >
-        {isLoading && <LoadingCircle />}
+    <button
+      type={type}
+      className={mergedClassName}
+      onClick={onClick}
+      disabled={isDisabled || isLoading || false}
+    >
+      {isLoading && <LoadingCircle />}
 
-        {children}
-      </button>
-    </>
+      {children}
+    </button>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { PopupButton, Widget } from "@typeform/embed-react";
+import { PopupButton } from "@typeform/embed-react";
 
 import about from "@/assets/About Yourself.svg";
 import demographics from "@/assets/Demographics.svg";
@@ -9,6 +9,10 @@ import { Card, Modal } from "@/components";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import ImagesUploader from "./ImagesUploader";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { ingestTypeformResponse } from "@/api";
+import { TypeformResponseIngestRequest } from "@/api/types";
+import { toast } from "react-toastify";
 
 const PersonalDetails = () => {
   const [isImageModalOpened, setIsImageModalOpened] = useState<boolean>(false);
@@ -26,8 +30,20 @@ const PersonalDetails = () => {
     completedFirstForm,
     completedSecondForm,
   } = user.data || {};
-  const handleSubmit = () => {
-    // TODO: Backend
+
+  const ingestResponseMutation = useMutation({
+    mutationFn: async (payload: TypeformResponseIngestRequest) => {
+      return await ingestTypeformResponse(payload);
+    },
+    retry: 10,
+    onSuccess({ message }) {
+      toast.success(message);
+    },
+  });
+
+  const handleSubmit = async (payload: TypeformResponseIngestRequest) => {
+    await ingestResponseMutation.mutateAsync(payload);
+    await user.refetch();
   };
 
   // preset
@@ -40,11 +56,11 @@ const PersonalDetails = () => {
         <ImagesUploader onClose={() => setIsImageModalOpened(false)} />
       </Modal>
 
-      <div className="my-0 mx-auto flex flex-col gap-[5rem] items-center md:flex-col-reverse">
-        <section className="flex gap-4 justify-center w-[100%] md:flex-col md:items-center md:justify-center">
+      <div className="my-0 gap-[5rem] items-center ">
+        <section className="flex gap-4 justify-center flex-wrap">
           <PopupButton
             id={process.env.NEXT_PUBLIC_FORM_ONE_ID}
-            className="flex justify-center w-[100%]"
+            className="flex justify-center"
             size={90}
             onSubmit={handleSubmit}
             hidden={{
@@ -56,13 +72,23 @@ const PersonalDetails = () => {
               last_name: lastName,
               date_of_birth: dateOfBirth,
             }}
-            disabled={true}
+            buttonProps={{
+              disabled:
+                completedFirstForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending,
+            }}
           >
             <Card
+              className="w-[200px] md:w-[150px] "
               title="Demographics"
               icon={demographics}
-              loading={user.isLoading}
-              disabled={completedFirstForm || user.isLoading}
+              loading={user.isLoading || ingestResponseMutation.isPending}
+              disabled={
+                completedFirstForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending
+              }
               isCompleted={completedFirstForm}
             />
           </PopupButton>
@@ -70,7 +96,7 @@ const PersonalDetails = () => {
           <PopupButton
             id={process.env.NEXT_PUBLIC_FORM_TWO_ID as string}
             size={90}
-            className="flex justify-center w-[100%]"
+            className="flex justify-center"
             onSubmit={handleSubmit}
             hidden={{
               user_id: uid,
@@ -81,17 +107,29 @@ const PersonalDetails = () => {
               last_name: lastName,
               date_of_birth: dateOfBirth,
             }}
+            buttonProps={{
+              disabled:
+                completedSecondForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending,
+            }}
           >
             <Card
+              className="w-[200px] md:w-[150px]"
               title="Personal Test"
               icon={personal}
-              loading={user.isLoading}
-              disabled={completedSecondForm || user.isLoading}
+              loading={user.isLoading || ingestResponseMutation.isPending}
+              disabled={
+                completedSecondForm ||
+                user.isLoading ||
+                ingestResponseMutation.isPending
+              }
               isCompleted={completedSecondForm}
             />
           </PopupButton>
 
           <Card
+            className="w-[200px] md:w-[150px]"
             title={
               <>
                 <div>Upload Pictures</div>

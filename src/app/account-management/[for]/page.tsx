@@ -46,39 +46,41 @@ export default function ResetPassword() {
 
   return (
     <NavbarLayout>
-      <FormsLayout>
-        <form
-          onSubmit={handleSubmit((payload) => mutation.mutate(payload))}
-          className="w-[300px] flex flex-col items-start gap-[1rem] md:[&>*]:w-full md:p-[1rem]"
-        >
-          <p className="font-bold mb-4">Enter your email</p>
-          <Input
-            id="email"
-            type="email"
-            placeholder="Email"
-            error={errors.email}
-            {...register("email", {
-              required: "Email is required",
-            })}
-          />
+      <div className="w-full flex items-center justify-center">
+        <FormsLayout>
+          <form
+            onSubmit={handleSubmit((payload) => mutation.mutate(payload))}
+            className="w-[300px] flex flex-col items-start gap-[1rem] md:[&>*]:w-full md:p-[1rem]"
+          >
+            <p className="font-bold mb-4">Enter your email</p>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Email"
+              error={errors.email}
+              {...register("email", {
+                required: "Email is required",
+              })}
+            />
 
-          <div className="flex w-full justify-center mt-3">
-            <Button
-              isDisabled={mutation.isPending}
-              isLoading={mutation.isPending}
-            >
-              {buttonContent}
-            </Button>
-          </div>
-        </form>
+            <div className="flex w-full justify-center mt-3">
+              <Button
+                isDisabled={mutation.isPending}
+                isLoading={mutation.isPending}
+              >
+                {buttonContent}
+              </Button>
+            </div>
+          </form>
 
-        <p className="text-center text-xsmall mt-4">
-          You don&apos;t have an account?{" "}
-          <Link href="/register">
-            <span className="text-primary">Create an account</span>
-          </Link>
-        </p>
-      </FormsLayout>
+          <p className="text-center text-xsmall mt-4">
+            You don&apos;t have an account?{" "}
+            <Link href="/register">
+              <span className="text-primary">Create an account</span>
+            </Link>
+          </p>
+        </FormsLayout>
+      </div>
     </NavbarLayout>
   );
 }

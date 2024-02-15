@@ -4,7 +4,6 @@ import { Skeleton } from "@/components";
 export function Basics({
   JobOrFieldOfStudy,
   age,
-  MainState,
   currentLocation,
   FinishedEducationLevel,
   SpokenLanguages,
@@ -15,9 +14,9 @@ export function Basics({
   Height,
   Married,
   WillingToMove,
+  mostSpentLocation,
   isLoading = true,
 }: ProfileDataResponse & {
-  currentLocation: string;
   isLoading?: boolean;
 }) {
   const SKELETON_WIDTH = "40%";
@@ -25,7 +24,7 @@ export function Basics({
 
   return (
     <section className="last:border-0">
-      <div className="flex items-center !justify-start font-bryantProBold text-secondary text-[1.25rem]">
+      <div className="flex items-center !justify-start font-bryant font-bold text-secondary text-[1.25rem]">
         Basics
       </div>
       <div>
@@ -72,7 +71,7 @@ export function Basics({
       </div>
       <div>
         <h3 className="font-bryant font-medium  text-light-black">
-          State spent most time in
+          Spent most time in
         </h3>
 
         <Skeleton
@@ -82,7 +81,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{MainState}</p>
+          <p>{mostSpentLocation}</p>
         </Skeleton>
       </div>
       <div>

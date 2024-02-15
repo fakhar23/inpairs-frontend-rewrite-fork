@@ -16,7 +16,7 @@ export function Scales({
 
   return (
     <section className="my-5">
-      <div className="flex items-center !justify-start font-bryantProBold text-secondary text-[1.25rem]">
+      <div className="flex items-center !justify-start font-bryant font-bold text-secondary text-[1.25rem]">
         Scales
       </div>
       <div>

@@ -6,6 +6,10 @@ import { UserProfileLayout } from "@/layouts";
 import { UserInfo } from "../profile";
 import MatchCard from "./MatchCard";
 import { COLORS } from "../../../tailwind.config";
+import { useProfile } from "@/hooks/useProfile";
+import { useQuery } from "@tanstack/react-query";
+import { ENDPOINTS, getMatch } from "@/api";
+import { useGetMatch } from "@/hooks/useGetMatch";
 
 export type UserMatch =
   | {
@@ -32,34 +36,10 @@ export type UserMatch =
     };
 
 const Match = () => {
-  const currentMatch = {
-    match: {
-      id: 2842,
-      matchEntryId: 2843,
-      note: null,
-      get_end: false,
-      isUserOne: true,
-      match_viewed: true,
-      profile_viewed: true,
-      currentUser: "9cf8ca2b-51b6-4872-95d8-b7bd69913b7a",
-      currentUserResponse: "PENDEING",
-      match: "644a7438-4ea9-4d0c-a32d-1eb5d841a0b3",
-      name: "Mohammed Rabah",
-      firstName: "Mohammed",
-      age: 29,
-      response: "PENDEING",
-      image: null,
-      currentWave: 0,
-      offsetWave: 1,
-    },
-    message: "success",
-  };
+  const { profileData, currentLocation } = useProfile("me");
+  const match = useGetMatch();
 
-  const isLoading = false;
-
-  const [needToRefetch, setNeedToRefetch] = useState<boolean>(false);
-
-  if (isLoading) {
+  if (match.isLoading) {
     return (
       <div className="flex justify-center items-center h-[70vh]">
         <ClipLoader
@@ -73,26 +53,25 @@ const Match = () => {
 
   return (
     <UserProfileLayout>
-      {currentMatch?.match ? (
+      {match.data?.matchedUserId ? (
         <section className="relative flex justify-end mx-auto  md:flex-col sm:px-[1rem]">
-          <UserInfo currentLocation="" viewingTheirOwnProfile />
+          <UserInfo
+            {...profileData.data}
+            isLoading={profileData.isLoading}
+            currentLocation={currentLocation}
+            viewingTheirOwnProfile
+          />
 
           <section className="flex flex-wrap h-auto resize-y w-[75%] md:w-full md:px-0 md:mt-3">
             <h2 className="font-bryant font-medium  text-left ml-16 md:ml-4 text-[1.5rem] mt-2">
               Best Matches For You
             </h2>
 
-            <div className="w-full  my-5 h-[11px] bg-gray-200 mr-[-8rem] " />
+            <div className="w-full  my-5 h-[11px] mr-[-8rem] " />
 
-            <div className="flex flex-wrap justify-between w-full  ">
-              <Fragment key={currentMatch?.match.currentUser}>
-                <MatchCard
-                  user={currentMatch.match}
-                  needToRefetch={needToRefetch}
-                  setNeedToRefetch={setNeedToRefetch}
-                />
-                <div className="w-full my-5 h-[11px] bg-gray-200" />
-              </Fragment>
+            <div className="flex flex-wrap justify-between w-full">
+              <MatchCard />
+              <div className="w-full my-5 h-[11px]" />
             </div>
           </section>
         </section>
@@ -103,7 +82,7 @@ const Match = () => {
           </h2>
 
           <div className="w-[100%] h-[10rem] flex justify-center items-center shadow-xl">
-            <p className="text-[20px] p-4">{currentMatch?.message}</p>
+            <p className="text-[20px] p-4">{match.data?.message}</p>
           </div>
         </section>
       )}

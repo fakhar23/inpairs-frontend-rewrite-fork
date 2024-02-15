@@ -15,7 +15,6 @@ const BillingSettings = () => {
 
           <Toast
             type="warn"
-            icon
             message={
               <p className="text-2xl">
                 This page is still under construction. If you’d like to modify

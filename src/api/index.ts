@@ -9,8 +9,11 @@ import {
   SignUpBody,
   SupportEmailBody,
   UpdateUserStatus,
+  TypeformResponseIngestRequest,
+  UpdateMatchRequest,
 } from "./types";
 import { toast } from "react-toastify";
+import { GetMatchResponse } from "./types";
 
 export const ENDPOINTS = {
   login: "/auth/login",
@@ -25,6 +28,8 @@ export const ENDPOINTS = {
   profileData: "/profile",
   supportEmail: "/email/support",
   users: "/users",
+  ingestTypeformResponse: "/answers/response",
+  match: "/match",
 };
 
 const PUBLIC_ENDPOINTS = [
@@ -179,6 +184,29 @@ export async function getUserList(queryString: string) {
 export async function updateUserStatus({ id, ...payload }: UpdateUserStatus) {
   const result = await axiosInstance.patch(
     `${ENDPOINTS.users}/${id}/status`,
+    payload,
+  );
+  return result.data;
+}
+
+export async function ingestTypeformResponse(
+  payload: TypeformResponseIngestRequest,
+) {
+  const result = await axiosInstance.post<{ message: string }>(
+    ENDPOINTS.ingestTypeformResponse,
+    payload,
+  );
+  return result.data;
+}
+
+export async function getMatch() {
+  const result = await axiosInstance.get<GetMatchResponse>(ENDPOINTS.match);
+  return result.data;
+}
+
+export async function updateMatch(payload: UpdateMatchRequest) {
+  const result = await axiosInstance.patch<{ message: string }>(
+    ENDPOINTS.match,
     payload,
   );
   return result.data;

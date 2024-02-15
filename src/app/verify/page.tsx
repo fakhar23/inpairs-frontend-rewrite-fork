@@ -44,7 +44,7 @@ export default function Verify() {
               <div className="h-24 w-24 mb-4">
                 <Image src={GreenCheck} alt="green check" />
               </div>
-              <div className="flex gap-1 items-center">
+              <div className="flex gap-1 items-center flex-col">
                 <span>Haven&apos;t received it? </span>
                 <Skeleton
                   width="200px"
