@@ -4,6 +4,7 @@ import { Control, Controller } from "react-hook-form";
 import Select, { OptionProps, components } from "react-select";
 import { SignUpBody } from "@/api/types";
 import { countries } from "./countries";
+import { COLORS } from "../../../tailwind.config";
 
 type CountryOption = {
   value: string;
@@ -48,7 +49,7 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
             value={countryOptions.find((c) => c.value === value)}
             components={{ Option: FlagOption }}
             placeholder="Which country do you live"
-            className="select md:placeholder:text-[12px] md:text-[12px] text-red-500 leading-tight"
+            className="select     text-primary leading-tight"
             onChange={(option) => onChange(option?.value)}
             styles={{
               control(baseStyles, state) {
@@ -63,7 +64,7 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
               dropdownIndicator(base) {
                 return {
                   ...base,
-                  color: "#622466 !important",
+                  color: `${COLORS.gray[300]} !important`,
                 };
               },
               indicatorSeparator(base) {
@@ -93,18 +94,20 @@ export function CountrySelect({ control }: { control: Control<SignUpBody> }) {
               option: (provided, state) => ({
                 ...provided,
                 backgroundColor: state.isSelected
-                  ? "#EF3E37"
+                  ? COLORS.primary.DEFAULT
                   : state.isFocused
-                    ? "#EF3E37"
-                    : "lightorange",
+                    ? COLORS.primary.DEFAULT
+                    : COLORS.primary[300],
                 color:
-                  state.isSelected || state.isFocused ? "white" : "#EF3E37",
+                  state.isSelected || state.isFocused
+                    ? "white"
+                    : COLORS.primary.DEFAULT,
                 cursor: "pointer",
                 margin: "0.25rem 0.5rem",
                 borderRadius: "4px",
                 width: "calc(100% - 1rem)",
                 ":active": {
-                  backgroundColor: "rgba(239, 62, 55 , 0.9)", // Orangish color for the :active state
+                  backgroundColor: `rgba(${COLORS.primary.DEFAULT}, 0.8)`,
                   color: "white",
                 },
               }),

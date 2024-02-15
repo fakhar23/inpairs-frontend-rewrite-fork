@@ -19,11 +19,11 @@ export const GeneralInfo = ({
     <div
       className={twMerge(
         className,
-        "min-h-[10rem] w-full relative border border-red-500 h-content flex flex-col flex-grow-1 h-content"
+        "min-h-[10rem] w-full relative border border-primary h-content flex flex-col flex-grow-1 h-content"
       )}
     >
       <div className="flex justify-between items-center">
-        <div className="font-bryantProBold text-purple text-[1.25rem]">
+        <div className="font-bryant font-bold text-title text-[1.25rem]">
           {title}
         </div>
       </div>

@@ -26,7 +26,7 @@ export const Toast = ({ message, icon, type, title, onClose }: IToast) => {
   return (
     <div
       className={twMerge(
-        "flex gap-5 border border-l-4 px-4 py-3 rounded relative items-stretch",
+        "flex gap-5  border-l-4 px-4 py-3 rounded relative items-stretch",
         colors[type]
       )}
       role="alert"

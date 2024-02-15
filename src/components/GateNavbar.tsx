@@ -1,32 +1,28 @@
 "use client";
 import { useState } from "react";
-
 import Image from "next/image";
 import { Link, Skeleton } from "@/components";
 import { usePathname } from "next/navigation";
-
 import { LinkButton } from "@/components";
-
 import logo from "@/assets/pears-inline.png";
 import { CloseIcon, MenuIcon } from "../Icons";
-import { useQuery } from "@tanstack/react-query";
-import { useAuthContext } from "@/hooks/useAuthContext";
 import { AuthContextResponse } from "@/api/types";
 import { useClickOutside } from "@mantine/hooks";
 import { useSpring, animated } from "react-spring";
 import { twMerge } from "tailwind-merge";
+import { useGateNav } from "@/hooks/useGateNav";
 
 interface IMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  canViewTheirProfile?: boolean;
+  loginPage?: boolean;
 }
 
 function getLink(
   userContext: AuthContextResponse | undefined,
   view: "desktop" | "mobile"
 ) {
-  const className = twMerge(view === "desktop" ? "md:hidden" : "w-full");
+  const className = twMerge(view === "desktop" ? "lg:hidden" : "w-full");
   const links = {
     unauthenticated: (
       <LinkButton className={className} path="/login">
@@ -39,8 +35,8 @@ function getLink(
       </LinkButton>
     ),
     nonSupportedCountry: (
-      <LinkButton className={className} path="/login">
-        Logout
+      <LinkButton className={className} path="/coming-soon">
+        Coming Soon
       </LinkButton>
     ),
     payingButDidNotCompleteTheirProfile: (
@@ -86,22 +82,9 @@ function getLink(
   else throw new Error("Unsupported state");
 }
 
-const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
-  const { data: isLoggedIn } = useQuery({
-    queryKey: ["load-jwt"],
-    queryFn: async () => {
-      return !!localStorage.getItem("jwt");
-    },
-    staleTime: 0,
-  });
-
-  const user = useAuthContext({
-    enabled: !!isLoggedIn,
-  });
-
-  const shouldDisplayLogout = user.data?.shouldBeOnlyWaitlisted || user.data;
-
+const Menu = ({ isOpen, onClose, loginPage }: IMenuProps) => {
   const pathname = usePathname();
+  const { isLoggedIn, shouldDisplayLogout, user } = useGateNav(loginPage);
 
   const props = useSpring({
     to: {
@@ -124,7 +107,7 @@ const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
     <Link key={path} href={path} onClick={onClose}>
       <li
         className={twMerge(
-          "hover:bg-[#ef3e37] active:bg-[#ef3e37] hover:text-white active:text-white py-4 my-1 px-4 hover:bg-opacity-90 transition-all duration-300 rounded-md",
+          "hover:bg-[#ef3e37] active:bg-[#ef3e37] hover:text-white active:text-white py-4 my-1 px-2 hover:bg-opacity-90 transition-all duration-300 rounded-md",
           pathname === path ? "text-purple" : ""
         )}
       >
@@ -136,21 +119,25 @@ const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
   return (
     <animated.div
       style={props}
-      className={`fixed z-10 shadow-md bg-white top-0 right-0 p-[1.5rem] w-[50%] h-[100vh] sm:w-[70%]
+      className={`fixed z-10 shadow-md bg-white top-0 right-0 p-[1rem] w-[50%] h-[100vh] sm:w-[70%]
           space-y-10 text-right`}
       ref={closeOnOutsideClickRef}
     >
       <button
-        className="cursor-pointer px-12"
+        className="cursor-pointer pl-6"
         title="closing button"
         onClick={onClose}
       >
         <CloseIcon size={"2.5em"} />
       </button>
 
-      <ul className="text-[1.5rem] text-left [] flex flex-col gap-4">
+      <ul className="text-[1.2rem] text-left flex flex-col">
         {links}
-        <Skeleton isLoading={false} width={250} height={38}>
+        <Skeleton
+          isLoading={user.isLoading || !isLoggedIn.data}
+          width={250}
+          height={38}
+        >
           <div className="flex flex-col gap-4">
             {getLink(user.data, "mobile")}
 
@@ -166,62 +153,48 @@ const Menu = ({ isOpen, onClose, canViewTheirProfile = false }: IMenuProps) => {
   );
 };
 
-export function GateNavbar() {
+export function GateNavbar({ loginPage = false }: { loginPage?: boolean }) {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
-
+  const { isLoggedIn, shouldDisplayLogout, user } = useGateNav(loginPage);
   const pathname = usePathname();
 
-  const { data: isLoggedIn } = useQuery({
-    queryKey: ["load-jwt"],
-    queryFn: async () => {
-      return !!localStorage.getItem("jwt");
-    },
-    staleTime: 0,
-  });
-
-  const user = useAuthContext({
-    enabled: !!isLoggedIn,
-  });
-
-  const shouldDisplayLogout = user.data?.shouldBeOnlyWaitlisted || user.data;
-
   return (
-    <div className="relative px-[4rem] py-[0.6rem] flex justify-between items-center w-[100%] shadow-md mb-0 bg-white  z-[10]">
+    <div className="relative px-[2rem] lg:pr-2 py-[0.6rem] flex gap-4 flex-wrap justify-between items-center w-[100%] shadow-md mb-0 bg-white  z-[10]">
       <Link href="/">
         <Image
           src={logo}
           alt="pairs logo"
-          className="w-[8rem]"
+          className="w-[7rem]"
           priority={true}
         />
       </Link>
 
       <ul
-        className={`font-bryantProMedium  flex justify-between items-center  gap-[3rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray-charcoal list-none md:hidden`}
+        className={`font-bryant font-medium   flex justify-between items-center  gap-[2rem] [&>*]:cursor-pointer [&>*]:text-[1.2rem] text-gray list-none lg:hidden`}
       >
-        <li className={pathname === "/" ? "text-purple" : ""}>
+        <li className={pathname === "/" ? "text-secondary" : ""}>
           <Link href="/">Home</Link>
         </li>
 
-        <li className={pathname === "/how" ? "text-purple" : ""}>
+        <li className={pathname === "/how" ? "text-secondary" : ""}>
           <Link href="how">How does it work?</Link>
         </li>
 
-        <li className={pathname === "/about" ? "text-purple" : ""}>
+        <li className={pathname === "/about" ? "text-secondary" : ""}>
           <Link href="about">About us</Link>
         </li>
 
-        <li className={pathname === "/contact" ? "text-purple" : ""}>
+        <li className={pathname === "/contact" ? "text-secondary" : ""}>
           <Link href="contact">Contact us</Link>
         </li>
 
-        <li className={pathname === "/FAQ" ? "text-purple" : ""}>
+        <li className={pathname === "/FAQ" ? "text-secondary" : ""}>
           <Link href="FAQ">FAQ</Link>
         </li>
       </ul>
 
       <Skeleton
-        isLoading={!!isLoggedIn && user.isLoading}
+        isLoading={!!isLoggedIn.data && user.isLoading}
         width={250}
         height={38}
       >
@@ -229,7 +202,7 @@ export function GateNavbar() {
           {getLink(user.data, "desktop")}
 
           {shouldDisplayLogout && (
-            <LinkButton className="md:hidden" path="/login">
+            <LinkButton className="lg:hidden" path="/login">
               Logout
             </LinkButton>
           )}
@@ -239,7 +212,7 @@ export function GateNavbar() {
       <button
         type="button"
         title="menu"
-        className="items-center p-2 text-neutral-500 rounded-lg hidden md:inline-flex hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:ring-gray-600"
+        className="items-center p-2 text-neutral-500 rounded-lg hidden lg:inline-flex hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         onClick={() => {
           setIsMenuOpened(!isMenuOpened);
         }}
@@ -250,7 +223,7 @@ export function GateNavbar() {
       <Menu
         isOpen={isMenuOpened}
         onClose={() => setIsMenuOpened(false)}
-        canViewTheirProfile={user.data?.canViewTheirProfile}
+        loginPage={loginPage}
       />
     </div>
   );

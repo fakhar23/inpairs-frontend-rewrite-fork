@@ -78,10 +78,9 @@ const SetNewPassword = () => {
               {...register("password", {
                 required: "Password is required",
                 pattern: {
-                  value:
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
                   message:
-                    "password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+                    "Valid passwords must be at least 6 characters long and include at least one lowercase letter, one uppercase letter, and one number",
                 },
               })}
             />
@@ -113,7 +112,7 @@ const SetNewPassword = () => {
         <p className="text-start mt-4">
           You don&quot;t have an account?{" "}
           <Link href="/register">
-            <span className="text-red-500">Create an account</span>
+            <span className="text-primary">Create an account</span>
           </Link>
         </p>
       </FormsLayout>

@@ -367,7 +367,7 @@ const Profile = ({ data }: any) => {
 
         <div className="flex  bg-white rounded-xl py-8 px-5  shadow-md  gap-[1.5rem] border-b border-rose-200 ">
           <div className="flex flex-col gap-4 w-fit">
-            <h2 className="font-bryantProBold text-xl text-center mb-2.5 leading-tight">
+            <h2 className="font-bryant font-bold  text-xl text-center mb-2.5 leading-tight">
               Mahdi abdulkareem user
               {true && (
                 <div className="text-sm text-neutral-500">

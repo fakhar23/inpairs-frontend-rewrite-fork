@@ -9,11 +9,11 @@ const About = () => {
     <>
       <GateNavbar />
       <div className="py-[4rem] px-[6rem] md:px-[2rem] bg-about space-y-[3rem]">
-        <section className=" space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-purple">
-            What is <span className="font-funky text-red-500">Inpairs?</span>
+        <section className=" space-y-10 p-[5rem] md:p-0 bg-white shadow-custom-shadow text-center rounded-xl">
+          <h2 className="font-bryant text-5xl font-bold text-title">
+            What is <span className="font-funky text-primary">Inpairs?</span>
           </h2>
-          <p className="font-bryantProMedium text-gray text-lg text-light-black">
+          <p className="font-bryantProMedium text-lg text-light-black">
             inpairs is a Muslim matchmaking service that aims to help you find
             your perfect match on the first try. Our innovative approach to
             matchmaking combines the best of technology and human expertise to
@@ -22,28 +22,28 @@ const About = () => {
             us in the search for your perfect match.
           </p>
         </section>
-        <section className="space-y-10 p-[5rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-purple">
+        <section className="space-y-10 p-[5rem] md:p-0 bg-white shadow-custom-shadow text-center rounded-xl">
+          <h2 className="font-bryant text-5xl font-bold text-title">
             The Problem
           </h2>
-          <p className="font-bryantProMedium text-gray text-lg text-light-black">
+          <p className="font-bryantProMedium text-lg text-light-black">
             Let’s be honest, it’s tough finding somebody. As a practicing Muslim
             and [most likely] first-generation immigrant, you have to filter
             through so many layers before you can even entertain the idea of
             somebody. You start yet another talking stage and then find out the
             two of you have wildly different personalities.
           </p>
-          <p className="font-bryantProMedium text-gray text-lg text-light-black">
+          <p className="font-bryantProMedium  text-lg text-light-black">
             The issue with the apps is that they are designed to keep you coming
             back. We’re not here to profit off of you, we’re here to help you
             find your person.
           </p>
         </section>
-        <section className="space-y-10 p-[3rem] bg-white shadow-custom-shadow text-center rounded-xl">
-          <h2 className="font-bryantProBold text-5xl font-bold text-purple">
+        <section className="space-y-10 p-[3rem] md:p-0 bg-white shadow-custom-shadow text-center rounded-xl">
+          <h2 className="font-bryant text-5xl font-bold text-title">
             Our Team
           </h2>
-          <div className="grid grid-cols-3 gap-[2rem] md:grid-cols-1">
+          <div className="grid grid-cols-3 md:grid-cols-1">
             <div className="text-center text-gray-gunmetal w-[100%] my-0 mx-auto flex flex-col items-center gap-5 p-5 shadow-xl rounded-xl ease-in-out col-start-2 col-end-3 ">
               <Image
                 className="mx-auto mb-4 w-[15rem] h-[15rem] rounded-full object-cover"
@@ -52,10 +52,12 @@ const About = () => {
                 width={365}
                 height={365}
               />
-              <h3 className="font-bryantProBold mb-1 text-2xl font-bold tracking-tight text-gray">
+              <h3 className="font-bryant  mb-1 text-2xl font-bold tracking-tight text-gray">
                 Zachariah Elkordy
               </h3>
-              <p className="font-bryantProMedium text-slate-600 ">Founder</p>
+              <p className="font-bryant font-medium  text-slate-600 ">
+                Founder
+              </p>
               <p className="text-gray">
                 Zachariah is a third-year medical student at Georgetown
                 University. Recognizing a lack of adequate solutions to Muslim

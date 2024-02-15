@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Inter } from "next/font/google";
 import Script from "next/script";
 
 import { ToastContainer } from "react-toastify";
@@ -9,8 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-phone-number-input/style.css";
 import { Providers } from "./providers";
 import { Next13NProgress } from "nextjs13-progress";
-
-const inter = Inter({ subsets: ["latin"] });
+import { bryant, funky, poppins } from "@/styles/Fonts";
 
 export const metadata: Metadata = {
   title: "InPairs",
@@ -23,7 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${bryant.variable} ${funky.variable} ${poppins.variable}`}
+    >
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-CMJ4D3DC2T"
@@ -36,7 +37,7 @@ export default function RootLayout({
           gtag('config', 'G-CMJ4D3DC2T');
          `}
       </Script>
-      <body className={inter.className}>
+      <body>
         <Providers>
           {children}
           <ToastContainer

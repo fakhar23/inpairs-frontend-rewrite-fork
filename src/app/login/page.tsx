@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 
-import { Poppins } from "next/font/google";
 import { Button, Link } from "@/components";
 
 import { useForm } from "react-hook-form";
@@ -17,19 +16,15 @@ import { handleSuccessfulLoginRoute } from "@/api/routeUser";
 import { useRouter } from "next/navigation";
 import { isAxiosError } from "axios";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400",
-});
-
 function LoginForm() {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("uid");
     localStorage.removeItem("expires_at");
+
     // when on login, start fresh and clear all previous queries caches
     // important so that if a user logs out and then logs in again as different user, the queries should be re-fetched for the current user
     queryClient.clear();
@@ -67,7 +62,7 @@ function LoginForm() {
           placeholder="Email"
           error={errors.email}
           {...register("email", {
-            required: "email is required",
+            required: "Email is required",
           })}
         />
         <div className="w-full relative">
@@ -77,7 +72,7 @@ function LoginForm() {
             placeholder="Password"
             error={errors.password}
             {...register("password", {
-              required: "password is required",
+              required: "Password is required",
             })}
           />
           {loginMutation.isError && (
@@ -105,33 +100,31 @@ function LoginForm() {
 
 export default function Login() {
   return (
-    <div className="relative flex flex-col justify-around">
-      <GateNavbar />
-      <div className="flex justify-center items-center">
+    <div className="relative flex flex-col justify-around h-[100dvh]">
+      <GateNavbar loginPage />
+      <div className="flex grow justify-center items-center">
         <FormsLayout>
           <div
-            className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full ${poppins.className}`}
+            className={`md:flex md:flex-col md:relative md:justify-center md:items-center md:p-0 md:m-0 md:w-full font-poppins`}
           >
             <LoginForm />
             <div className="flex flex-col justify-start text-nowrap">
               <p className="text-center text-xsmall">
                 Forgot your password?{" "}
                 <Link href="/account-management/reset-password">
-                  <span className=" text-red-500">Reset password</span>
+                  <span className=" text-primary">Reset password</span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Didn't receive verification email?{" "}
                 <Link href="/account-management/request-verification-email">
-                  <span className=" text-red-500">Request new email </span>
+                  <span className=" text-primary">Request new email </span>
                 </Link>
               </p>
               <p className="text-center text-xsmall">
                 Don't have an account?{" "}
                 <Link href="/register">
-                  <span className=" text-red-500 md:text-[12px]">
-                    Create an account
-                  </span>
+                  <span className=" text-primary  ">Create an account</span>
                 </Link>
               </p>
             </div>

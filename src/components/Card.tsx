@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import { LoaderIcon } from "@/Icons";
+import { twMerge } from "tailwind-merge";
 
 function Loading() {
   return (
@@ -19,6 +20,7 @@ interface ICard {
   onClick?: () => void;
   loading?: boolean;
   disabled?: boolean;
+  className?: string;
 }
 export const Card = ({
   title,
@@ -27,17 +29,21 @@ export const Card = ({
   onClick,
   loading,
   disabled,
+  className,
 }: ICard) => {
   return (
     <div
-      className="flex items-center justify-center w-[100%] py-[2rem] h-full md:mb-[2rem] rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out hover:shadow-xl cursor-pointer"
+      className={twMerge(
+        "flex items-center justify-center w-[100%] py-[2rem] h-full md:mb-[2rem] rounded-xl border-slate-200 shadow-md transition duration-200 ease-in-out hover:shadow-xl cursor-pointer",
+        className
+      )}
       onClick={disabled ? undefined : onClick}
     >
       <div className="flex flex-col items-center gap-[1rem]">
         {loading ? (
           <Loading />
         ) : isCompleted ? (
-          <div className="h-[5rem] w-[5rem] rounded-full text-white bg-red-500 text-3xl flex justify-center items-center mb-[1rem]">
+          <div className="h-[5rem] w-[5rem] rounded-full text-white bg-primary text-3xl flex justify-center items-center mb-[1rem]">
             &#x2713;
           </div>
         ) : (

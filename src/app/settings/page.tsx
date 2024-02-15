@@ -3,6 +3,8 @@
 import { SettingsLayout, UserProfileLayout } from "@/layouts";
 
 import EditProfile from "./editProfile";
+import { Toast } from "@/components";
+import { MdEmail } from "react-icons/md";
 
 const questionsAnswers = [
   {
@@ -158,7 +160,22 @@ const ProfileSettings = () => {
   return (
     <UserProfileLayout>
       <SettingsLayout>
-        <EditProfile answers={answersObject} />;
+        {/* <EditProfile answers={answersObject} />; */}
+        <section className="w-[100%] p-10 py-[3rem] my-0 mx-auto md:w-[100%]">
+          <h2 className="text-[2.5rem] text-title font-bold mb-[2rem]">
+            Profile Settings
+          </h2>
+
+          <Toast
+            type="warn"
+            message={
+              <p className="text-2xl">
+                We're preparing to launch this page soon. Please revisit in the
+                upcoming days for the latest updates!
+              </p>
+            }
+          />
+        </section>
       </SettingsLayout>
     </UserProfileLayout>
   );

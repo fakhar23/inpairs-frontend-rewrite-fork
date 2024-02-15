@@ -38,10 +38,10 @@ const HowStepCard = ({
         />
       </div>
       <div className="w-[60%] md:w-full md:mb-[3rem]">
-        <h3 className="font-bryantProBold text-[2rem] font-semibold text-purple mb-[1rem]">
-          <span className="text-red-500">{id}-</span> {title}
+        <h3 className="font-bryant font-bold text-[2rem] font-semibold text-title mb-[1rem]">
+          <span className="text-primary">{id}-</span> {title}
         </h3>
-        <p className="font-bryantProMedium text-gray-gunmetal text-[1.5rem] leading-8 mb-3">
+        <p className="font-bryant font-medium  text-gray-gunmetal text-[1.5rem] leading-8 mb-3">
           {primary}
         </p>
         {[secondary].flat().map((text) => (
@@ -56,7 +56,7 @@ const HowStepCard = ({
         ))}
 
         <Button
-          className="font-bryantProMedium "
+          className="font-bryant font-medium  "
           onClick={toggleExpanded}
           variant="outlined"
         >
@@ -117,11 +117,11 @@ const HowItWorks = () => {
   return (
     <div>
       <GateNavbar />
-      <div className="text-center w-[60%] mx-auto my-[4rem] md:w-[80%]">
-        <h2 className="font-bryantProBold text-[2rem] mb-[1rem] font-semibold text-purple">
+      <div className="text-center w-[60%] mx-auto my-[4rem] md:mt-[2rem] md:mb-0 md:w-[80%]">
+        <h2 className="font-bryant text-[2rem] mb-[1rem] font-semibold text-title">
           Is your thumb tired of swiping? Try something that works.{" "}
         </h2>
-        <p className="font-bryantProMedium text-[1.2rem] px-[5rem] text-gray-gunmetal md:px-[3rem]">
+        <p className="font-bryant font-medium  text-[1.2rem] px-[5rem] text-gray-gunmetal md:px-[3rem]">
           Our Muslim matchmakers are here to take the pressure off, get to know
           you on a deeper level, and find you your perfect match.
         </p>
