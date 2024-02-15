@@ -22,11 +22,11 @@ html {
   }
 
   .page-link {
-    @apply rounded-md px-4 py-2 cursor-pointer bg-purple text-white hover:bg-theme-red;
+    @apply rounded-md px-4 py-2 cursor-pointer bg-secondary text-white hover:bg-primary;
   }
 
   .active .page-link {
-    @apply bg-theme-red pointer-events-none;
+    @apply bg-primary pointer-events-none;
   }
 }
 
