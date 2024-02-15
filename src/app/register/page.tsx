@@ -69,10 +69,9 @@ export default function Register() {
                 {...register("password", {
                   required: "Password is required",
                   pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
                     message:
-                      "password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character from this list: @$!%*?&",
+                      "Valid passwords must be at least 6 characters long and include at least one lowercase letter, one uppercase letter, and one number",
                   },
                 })}
               />
