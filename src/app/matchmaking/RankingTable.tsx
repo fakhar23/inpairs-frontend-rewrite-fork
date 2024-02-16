@@ -22,11 +22,11 @@ import {
 import Select, { SingleValue } from "react-select";
 import UserLink from "@/components/UserLink";
 import { qsToQueryParams, queryParamsToQs } from "@/api/helpers";
-import { filterQuery, metaResponse, queryParams } from "@/api/types";
+import { QueryParams, MetaResponse, FilterQuery } from "@/api/types";
 import useVerifyPermission from "@/hooks/useVerifyPermission";
 import { ENDPOINTS, getMatchScoring } from "@/api";
 
-type rankOptionItem = { value: string; label: string };
+type RankOptionItem = { value: string; label: string };
 export type userScoring = {
   i: number;
   id: string;
@@ -37,7 +37,7 @@ export type userScoring = {
 
 type ScoringResult = {
   data: ScoringItemResult[];
-  meta: metaResponse;
+  meta: MetaResponse;
 };
 
 type ScoringItemResult = {
@@ -48,94 +48,104 @@ type ScoringItemResult = {
   potential_matches: number;
 };
 
-export const rankOptions: rankOptionItem[] = [
+export const rankOptions: RankOptionItem[] = [
   { value: "", label: "All" },
   { value: "true", label: "Ranked" },
   { value: "false", label: "Not Ranked" },
 ];
 
-export default function RankingTable() {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [page, setPage] = useState({ current: 1, take: 20 });
-  const [filter, setFilter] = useState<filterQuery>({});
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const qs = searchParams?.toString();
-  const urlQp: queryParams = qsToQueryParams(qs);
-
-  const { isLoading: checkPermission } = useVerifyPermission([
-    "ADMIN",
-    "MATCHMAKER",
-  ]);
-
-  const queryParams: queryParams = useMemo(() => {
-    const qp: queryParams = {
-      page: page.current,
-      take: page.take,
-    };
-    qp.filter = filter;
-
-    return qp;
-  }, [page, filter]);
-
-  useEffect(() => {
-    if (urlQp) {
-      if (urlQp?.filter) {
-        setFilter(urlQp.filter);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    const queryString = queryParamsToQs(queryParams);
-    router.push(`${pathname}${queryString}`);
-  }, [queryParams, pathname, router]);
-
-  const queryString = queryParamsToQs(queryParams);
-  const { data: scoringList, isLoading: fetchLoading } = useQuery({
+const useGetScoring = (queryString: string) => {
+  console.log(queryString);
+  return useQuery({
     queryKey: [ENDPOINTS.matchScoring, queryString],
     queryFn: async (): Promise<ScoringResult> => {
       return await getMatchScoring(queryString);
     },
-    // placeholderData: (previousData) => previousData,
-    refetchOnWindowFocus: false,
+    placeholderData: (previousData) => previousData,
   });
+};
+
+export default function RankingTable() {
+  const { isLoading: checkPermission } = useVerifyPermission([
+    "ADMIN",
+    "MATCHMAKER",
+  ]);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const qs = searchParams?.toString();
+  const urlQp: any = qsToQueryParams(qs);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [qp, setQp] = useState<QueryParams>({
+    page: 1,
+    take: 20,
+    filter: {},
+  });
+
+  useEffect(() => {
+    const initialQp: QueryParams = { ...qp };
+    if (urlQp.page) initialQp.page = parseInt(urlQp.page);
+    if (urlQp.take) initialQp.take = parseInt(urlQp.take);
+    if (urlQp.filter) initialQp.filter = urlQp.filter;
+    setQp(initialQp);
+  }, []);
+
+  const queryString = queryParamsToQs(qp);
+  const { data: scoringList, isLoading: fetchLoading } =
+    useGetScoring(queryString);
   const { data: userScoring, meta } = scoringList || {};
 
-  const handlePageChange = useCallback(
-    (key: string, value: number) => {
-      setPage({ ...page, [key]: value });
-    },
-    [page],
-  );
+  const handlePageChange = (selected: number) => {
+    const newQp = { ...qp };
+    newQp.page = selected + 1;
+    const newQs = queryParamsToQs(newQp);
+    router.push(`${pathname}${newQs}`);
+  };
 
   const handleFilterChange = useCallback(
-    (key: keyof filterQuery, value: string) => {
-      const newFilter = { ...filter };
+    (key: string, value: string) => {
+      const newQp: any = { ...qp };
       if (!!value) {
-        newFilter[key] = value;
+        newQp.filter[key] = value;
         if (key === "search") {
-          newFilter.search_keys = "first_name,last_name";
+          newQp.filter.search_keys = "first_name,last_name";
         }
       } else {
-        delete newFilter[key];
+        delete newQp.filter[key];
         if (key === "search") {
-          delete newFilter.search_keys;
+          delete newQp.filter.search_keys;
         }
       }
-      setFilter(newFilter);
+      const newQs = queryParamsToQs(newQp);
+      router.push(`${pathname}${newQs}`);
     },
-    [filter],
+    [qp],
   );
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
 
   const columns = useMemo<ColumnDef<userScoring, any>[]>(() => {
     const col = createColumnHelper<userScoring>();
     return [
       col.accessor("i", {
+        id: "NO",
+        header: "#",
+      }),
+      col.accessor("id", {
         id: "ID",
         header: "ID",
+        cell: ({ row }) => {
+          return (
+            <span
+              className="cursor-pointer active:text-primary"
+              onClick={() => copyToClipboard(row.original.id)}
+            >
+              {row.original.id.slice(-5)}
+            </span>
+          );
+        },
       }),
       col.accessor("name", {
         id: "NAME",
@@ -154,14 +164,13 @@ export default function RankingTable() {
               <Select
                 id="ranked"
                 value={
-                  filter.ranked
-                    ? rankOptions.find((v) => v.value == filter.ranked)
+                  qp.filter && qp.filter?.ranked
+                    ? rankOptions.find((v) => v.value == qp.filter?.ranked)
                     : rankOptions[0]
                 }
                 options={rankOptions}
-                onChange={(v: SingleValue<rankOptionItem>) => {
-                  const value: filterQuery["ranked"] = v?.value || "";
-                  handleFilterChange("ranked", value);
+                onChange={(v: SingleValue<RankOptionItem>) => {
+                  handleFilterChange("ranked", v?.value || "");
                 }}
               />
             </div>
@@ -192,7 +201,7 @@ export default function RankingTable() {
         ),
       }),
     ];
-  }, [handleFilterChange, filter.ranked]);
+  }, [handleFilterChange, qp]);
 
   const data = useMemo<userScoring[]>(
     () =>
@@ -207,6 +216,7 @@ export default function RankingTable() {
         : [],
     [userScoring],
   );
+  const initialPage = (qp.page || 1) - 1;
 
   return (
     <div className="w-full">
@@ -243,14 +253,15 @@ export default function RankingTable() {
           setSorting={setSorting}
         />
 
-        {!!meta?.count ? (
+        {!!meta?.pageCount ? (
           <ReactPaginate
+            initialPage={initialPage}
             previousLabel={"<"}
             nextLabel={">"}
-            pageCount={Math.ceil(meta?.count / page.take)}
-            onPageChange={({ selected }) =>
-              handlePageChange("current", selected + 1)
-            }
+            pageCount={meta.pageCount}
+            onClick={({ nextSelectedPage }) => {
+              handlePageChange(nextSelectedPage || 0);
+            }}
             containerClassName={"pagination"}
             pageClassName={"page-item"}
             pageLinkClassName={"page-link"}

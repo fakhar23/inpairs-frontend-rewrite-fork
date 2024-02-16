@@ -1,24 +1,23 @@
-export type metaResponse = {
+export type MetaResponse = {
   count: number;
   take: number;
   page: number;
   pageCount: number;
 };
 
-export type filterQuery = {
+export type FilterQuery = {
   search?: string;
   search_keys?: string;
   ranked?: boolean | "true" | "false" | "" | string;
 };
 
-export type queryParams = {
-  filter?: filterQuery;
+export type QueryParams = {
+  filter?: FilterQuery;
   take?: number;
   page?: number;
   sort?: string;
   select?: string;
 };
-
 
 export interface SignUpBody {
   email: string;
