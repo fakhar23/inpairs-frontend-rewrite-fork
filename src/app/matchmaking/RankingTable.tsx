@@ -9,6 +9,7 @@ import React, {
 import Link from "next/link";
 import ReactPaginate from "react-paginate";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Loading } from "@/components";
 import CustomInput from "@/components/CustomInput";
@@ -55,7 +56,6 @@ export const rankOptions: RankOptionItem[] = [
 ];
 
 const useGetScoring = (queryString: string) => {
-  console.log(queryString);
   return useQuery({
     queryKey: [ENDPOINTS.matchScoring, queryString],
     queryFn: async (): Promise<ScoringResult> => {
@@ -73,8 +73,6 @@ export default function RankingTable() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const qs = searchParams?.toString();
-  const urlQp: any = qsToQueryParams(qs);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [qp, setQp] = useState<QueryParams>({
     page: 1,
@@ -83,12 +81,14 @@ export default function RankingTable() {
   });
 
   useEffect(() => {
-    const initialQp: QueryParams = { ...qp };
-    if (urlQp.page) initialQp.page = parseInt(urlQp.page);
-    if (urlQp.take) initialQp.take = parseInt(urlQp.take);
-    if (urlQp.filter) initialQp.filter = urlQp.filter;
-    setQp(initialQp);
-  }, []);
+    const newQp: QueryParams = { ...qp };
+    const qs = searchParams?.toString();
+    const urlQp: any = qsToQueryParams(qs);
+    if (urlQp.page) newQp.page = parseInt(urlQp.page);
+    if (urlQp.take) newQp.take = parseInt(urlQp.take);
+    if (urlQp.filter) newQp.filter = urlQp.filter;
+    setQp(newQp);
+  }, [searchParams]);
 
   const queryString = queryParamsToQs(qp);
   const { data: scoringList, isLoading: fetchLoading } =
@@ -124,6 +124,7 @@ export default function RankingTable() {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
+    toast.info("User id copied");
   };
 
   const columns = useMemo<ColumnDef<userScoring, any>[]>(() => {
@@ -132,6 +133,10 @@ export default function RankingTable() {
       col.accessor("i", {
         id: "NO",
         header: "#",
+        cell: ({ row }) => {
+          const increment = ((qp?.page || 1) - 1) * (qp?.take || 20);
+          return <span>{row.index + increment + 1}</span>;
+        },
       }),
       col.accessor("id", {
         id: "ID",
@@ -201,7 +206,7 @@ export default function RankingTable() {
         ),
       }),
     ];
-  }, [handleFilterChange, qp]);
+  }, [qp]);
 
   const data = useMemo<userScoring[]>(
     () =>
