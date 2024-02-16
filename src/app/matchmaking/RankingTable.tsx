@@ -9,6 +9,7 @@ import React, {
 import Link from "next/link";
 import ReactPaginate from "react-paginate";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import { Button, Loading } from "@/components";
 import CustomInput from "@/components/CustomInput";
 import { debounce } from "lodash";
@@ -19,11 +20,11 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table";
 import Select, { SingleValue } from "react-select";
-import { useGetScoring } from "@/api/matchmaking";
 import UserLink from "@/components/UserLink";
 import { qsToQueryParams, queryParamsToQs } from "@/api/helpers";
-import { filterQuery, queryParams } from "@/api/types";
+import { filterQuery, metaResponse, queryParams } from "@/api/types";
 import useVerifyPermission from "@/hooks/useVerifyPermission";
+import { ENDPOINTS, getMatchScoring } from "@/api";
 
 type rankOptionItem = { value: string; label: string };
 export type userScoring = {
@@ -31,6 +32,19 @@ export type userScoring = {
   id: string;
   name: string;
   ranked: "Yes" | "No";
+  potential_matches: number;
+};
+
+type ScoringResult = {
+  data: ScoringItemResult[];
+  meta: metaResponse;
+};
+
+type ScoringItemResult = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  ranked: boolean | null;
   potential_matches: number;
 };
 
@@ -42,7 +56,7 @@ export const rankOptions: rankOptionItem[] = [
 
 export default function RankingTable() {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [page, setPage] = useState({ current: 1, take: 10 });
+  const [page, setPage] = useState({ current: 1, take: 20 });
   const [filter, setFilter] = useState<filterQuery>({});
 
   const router = useRouter();
@@ -79,8 +93,14 @@ export default function RankingTable() {
     router.push(`${pathname}${queryString}`);
   }, [queryParams, pathname, router]);
 
-  const { data: scoringList, ...restScoringList } = useGetScoring({
-    queryParams,
+  const queryString = queryParamsToQs(queryParams);
+  const { data: scoringList, isLoading: fetchLoading } = useQuery({
+    queryKey: [ENDPOINTS.matchScoring, queryString],
+    queryFn: async (): Promise<ScoringResult> => {
+      return await getMatchScoring(queryString);
+    },
+    // placeholderData: (previousData) => previousData,
+    refetchOnWindowFocus: false,
   });
   const { data: userScoring, meta } = scoringList || {};
 
@@ -182,16 +202,15 @@ export default function RankingTable() {
             i: i + 1,
             name: `${v.first_name} ${v.last_name}`,
             ranked: v.ranked ? "Yes" : "No",
-            potential_matches: v.UserPotentialMatches.length || 0,
+            potential_matches: v.potential_matches,
           }))
         : [],
     [userScoring],
   );
-  const loading = restScoringList.isLoading;
 
   return (
     <div className="w-full">
-      {(loading || checkPermission) && (
+      {(fetchLoading || checkPermission) && (
         <div className="absolute z-20 top-0 bottom-0 right-0 left-0 flex items-center justify-center bg-black/10">
           <Loading />
         </div>
@@ -202,7 +221,7 @@ export default function RankingTable() {
             Total: {meta?.count}
           </div>
           <Link href="/matchmaking/history">
-            <Button content="History" />
+            <Button>History</Button>
           </Link>
         </div>
         <CustomInput
