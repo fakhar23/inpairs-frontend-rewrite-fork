@@ -1,10 +1,11 @@
 import { twMerge } from "tailwind-merge";
 import { LoadingCircle } from ".";
+import React from "react";
 
 export interface IButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
-  onClick?: (e?: any) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isDisabled?: boolean;
   isLoading?: boolean;
   variant?: "outlined" | "filled";

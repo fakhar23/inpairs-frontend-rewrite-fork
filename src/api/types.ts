@@ -167,3 +167,16 @@ export type UpdateMatchRequest =
       matchQuality: number;
       rejectionReason: string;
     };
+
+export type ScoringResult = {
+  data: ScoringItemResult[];
+  meta: MetaResponse;
+};
+
+export type ScoringItemResult = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  ranked: boolean | null;
+  potential_matches: number;
+};

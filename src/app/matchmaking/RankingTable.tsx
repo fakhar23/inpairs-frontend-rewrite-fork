@@ -36,19 +36,6 @@ export type userScoring = {
   potential_matches: number;
 };
 
-type ScoringResult = {
-  data: ScoringItemResult[];
-  meta: MetaResponse;
-};
-
-type ScoringItemResult = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  ranked: boolean | null;
-  potential_matches: number;
-};
-
 export const rankOptions: RankOptionItem[] = [
   { value: "", label: "All" },
   { value: "true", label: "Ranked" },
@@ -58,7 +45,7 @@ export const rankOptions: RankOptionItem[] = [
 const useGetScoring = (queryString: string) => {
   return useQuery({
     queryKey: [ENDPOINTS.matchScoring, queryString],
-    queryFn: async (): Promise<ScoringResult> => {
+    queryFn: async () => {
       return await getMatchScoring(queryString);
     },
     placeholderData: (previousData) => previousData,
@@ -88,6 +75,7 @@ export default function RankingTable() {
     if (urlQp.take) newQp.take = parseInt(urlQp.take);
     if (urlQp.filter) newQp.filter = urlQp.filter;
     setQp(newQp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const queryString = queryParamsToQs(qp);
@@ -119,6 +107,7 @@ export default function RankingTable() {
       const newQs = queryParamsToQs(newQp);
       router.push(`${pathname}${newQs}`);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [qp],
   );
 
@@ -206,6 +195,7 @@ export default function RankingTable() {
         ),
       }),
     ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qp]);
 
   const data = useMemo<userScoring[]>(
