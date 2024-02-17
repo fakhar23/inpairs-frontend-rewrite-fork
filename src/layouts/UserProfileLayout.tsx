@@ -206,7 +206,7 @@ function UserProfileLayout({ children }: { children: ReactNode }) {
                           handleLogout();
                         }}
                       >
-                        log out
+                        Logout
                       </li>
                     </animated.ul>
                   ) : null

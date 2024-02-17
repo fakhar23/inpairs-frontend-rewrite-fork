@@ -1,3 +1,24 @@
+export type MetaResponse = {
+  count: number;
+  take: number;
+  page: number;
+  pageCount: number;
+};
+
+export type FilterQuery = {
+  search?: string;
+  search_keys?: string;
+  ranked?: boolean | "true" | "false" | "" | string;
+};
+
+export type QueryParams = {
+  filter?: FilterQuery;
+  take?: number;
+  page?: number;
+  sort?: string;
+  select?: string;
+};
+
 export interface SignUpBody {
   email: string;
   password: string;
@@ -146,3 +167,16 @@ export type UpdateMatchRequest =
       matchQuality: number;
       rejectionReason: string;
     };
+
+export type ScoringResult = {
+  data: ScoringItemResult[];
+  meta: MetaResponse;
+};
+
+export type ScoringItemResult = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  ranked: boolean | null;
+  potential_matches: number;
+};

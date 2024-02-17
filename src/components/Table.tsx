@@ -10,19 +10,18 @@ import {
   Updater,
 } from "@tanstack/react-table";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import type { ColumnDef } from "@tanstack/react-table";
 
 interface TableProps<D extends object> {
-  columns: {
-    header: string | (() => string);
-    accessorKey: string;
-    cell?: (cell: any) => any;
-  }[];
+  className?: string;
+  columns: ColumnDef<D>[];
   data: D[];
   sorting?: SortingState;
   setSorting?: (updater: Updater<SortingState>) => void;
 }
 
 export default function Table<D extends object>({
+  className,
   columns,
   data,
   sorting,
@@ -44,7 +43,7 @@ export default function Table<D extends object>({
   const table = useReactTable(options);
 
   return (
-    <div className="relative overflow-x-auto">
+    <div className={`relative overflow-x-auto ${className}`}>
       <table className="w-full text-left rtl:text-right text-neutral-500 ">
         <thead className="text-neutral-700 uppercase bg-neutral-100 ">
           {table.getHeaderGroups().map((headerGroup) => {

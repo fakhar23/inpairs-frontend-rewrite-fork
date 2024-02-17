@@ -1,7 +1,11 @@
 import { Link } from "@/components";
 
-const UserLink = ({ user }: any) => {
-  const href = `/profile/${user?.sharable_id}`;
+const UserLink = ({
+  user,
+}: {
+  user: { first_name?: string; last_name?: string; id?: string };
+}) => {
+  const href = `/ranking/${user?.id}`;
 
   return user ? (
     <Link

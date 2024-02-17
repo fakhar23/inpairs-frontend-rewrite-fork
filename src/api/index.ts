@@ -5,6 +5,7 @@ import {
   LoginBody,
   LoginResponse,
   ProfileDataResponse,
+  ScoringResult,
   SetPassword,
   SignUpBody,
   SupportEmailBody,
@@ -26,6 +27,7 @@ export const ENDPOINTS = {
   setPassword: "/auth/set-password",
   profileData: "/profile",
   supportEmail: "/email/support",
+  matchScoring: "/matchmaking/scoring",
   ingestTypeformResponse: "/answers/response",
   match: "/match",
 };
@@ -61,7 +63,7 @@ axiosInstance.interceptors.request.use(function onFulfilled(config) {
         localStorage.removeItem("expires_at");
         localStorage.removeItem("uid");
         toast.error(
-          "Your session has expired: Please log in again to continue"
+          "Your session has expired: Please log in again to continue",
         );
         setTimeout(() => {
           window.location.href = "/login";
@@ -88,11 +90,11 @@ export async function signUp({ confirmPassword, ...restPayload }: SignUpBody) {
 }
 
 export async function requestNewEmailVerification(
-  payload: EmailVerificationBody
+  payload: EmailVerificationBody,
 ) {
   const result = await axiosInstance.post<{ message: string }>(
     ENDPOINTS.emailVerification,
-    payload
+    payload,
   );
   return result.data;
 }
@@ -106,13 +108,13 @@ export async function verifyToken({ jwt }: { jwt: string }) {
 export async function login(payload: LoginBody) {
   const result = await axiosInstance.post<LoginResponse>(
     ENDPOINTS.login,
-    payload
+    payload,
   );
   if (result.data.token && result.data.uid) {
     localStorage.setItem("jwt", result.data.token.jwt);
     localStorage.setItem(
       "expires_at",
-      JSON.stringify(result.data.token.expirationDate)
+      JSON.stringify(result.data.token.expirationDate),
     );
     localStorage.setItem("uid", result.data.uid);
   }
@@ -121,14 +123,14 @@ export async function login(payload: LoginBody) {
 
 export async function getUserAuthContext() {
   const result = await axiosInstance.get<AuthContextResponse>(
-    ENDPOINTS.authContext
+    ENDPOINTS.authContext,
   );
   return result.data;
 }
 
 export async function createCheckoutSession() {
   const result = await axiosInstance.post<{ checkoutSession: string }>(
-    ENDPOINTS.paymentSession
+    ENDPOINTS.paymentSession,
   );
   return result.data;
 }
@@ -136,7 +138,7 @@ export async function createCheckoutSession() {
 export async function uploadImages(payload: { images: string[] }) {
   const result = await axiosInstance.post<{ message: string }>(
     ENDPOINTS.uploadImages,
-    payload
+    payload,
   );
   return result.data;
 }
@@ -144,7 +146,7 @@ export async function uploadImages(payload: { images: string[] }) {
 export async function resetPassword(payload: { email: string }) {
   const result = await axiosInstance.post<{ message: string }>(
     ENDPOINTS.resetPassword,
-    payload
+    payload,
   );
   return result.data;
 }
@@ -155,14 +157,14 @@ export async function setPassword(payload: SetPassword) {
     { password: payload.password },
     {
       headers: { Authorization: payload.token },
-    }
+    },
   );
   return result.data;
 }
 
 export async function getProfileData(userId: string) {
   const result = await axiosInstance.get<ProfileDataResponse>(
-    ENDPOINTS.profileData + "/" + userId
+    ENDPOINTS.profileData + "/" + userId,
   );
   return result.data;
 }
@@ -170,17 +172,17 @@ export async function getProfileData(userId: string) {
 export async function sendSupportEmail(payload: SupportEmailBody) {
   const result = await axiosInstance.post<{ message: string }>(
     ENDPOINTS.supportEmail,
-    payload
+    payload,
   );
   return result.data;
 }
 
 export async function ingestTypeformResponse(
-  payload: TypeformResponseIngestRequest
+  payload: TypeformResponseIngestRequest,
 ) {
   const result = await axiosInstance.post<{ message: string }>(
     ENDPOINTS.ingestTypeformResponse,
-    payload
+    payload,
   );
   return result.data;
 }
@@ -193,7 +195,14 @@ export async function getMatch() {
 export async function updateMatch(payload: UpdateMatchRequest) {
   const result = await axiosInstance.patch<{ message: string }>(
     ENDPOINTS.match,
-    payload
+    payload,
+  );
+  return result.data;
+}
+
+export async function getMatchScoring(queryString: string) {
+  const result = await axiosInstance.get<ScoringResult>(
+    ENDPOINTS.matchScoring + queryString,
   );
   return result.data;
 }

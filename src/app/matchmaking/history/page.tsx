@@ -14,8 +14,8 @@ import CalculationTable from "./CalculationTable";
 import { matchesData } from "./matchesData";
 import { Pencil } from "./pencil";
 import CustomModal from "@/components/CustomModal";
+import UserLink from "@/components/UserLink";
 import RejectionReasonsModal from "./RejectionReasonsModal";
-import UserLink from "./UserLink";
 import Note from "./Note";
 import { Button } from "@/components";
 

@@ -12,6 +12,24 @@ html {
   }
 }
 
+@layer components {
+  .pagination {
+    @apply flex list-none justify-center my-3;
+  }
+
+  .page-item {
+    @apply mx-2;
+  }
+
+  .page-link {
+    @apply rounded-md px-4 py-2 cursor-pointer bg-secondary text-white hover:bg-primary;
+  }
+
+  .active .page-link {
+    @apply bg-primary pointer-events-none;
+  }
+}
+
 /* @media (max-width: 1000px) {
   html {
     font-size: 14px;
@@ -36,6 +54,10 @@ html {
   100% {
     transform: scale(1);
   }
+}
+
+.wrapper {
+  @apply max-w-[1440px] w-full mx-auto px-4;
 }
 
 .zoom-scale-125 {

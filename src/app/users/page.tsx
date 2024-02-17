@@ -12,7 +12,6 @@ import CustomInput from "@/components/CustomInput";
 import Table from "@/components/Table";
 import { SortingState } from "@tanstack/react-table";
 import ReactPaginate from "react-paginate";
-import "../matchmaking/style.css";
 
 const User = () => {
   const [search, setSearch] = useState("");
