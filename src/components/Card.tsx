@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { LoaderIcon } from "@/Icons";
+import { LoaderIcon } from "@/icons";
 import { twMerge } from "tailwind-merge";
 
 function Loading() {

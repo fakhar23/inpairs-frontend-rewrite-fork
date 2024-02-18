@@ -8,7 +8,7 @@ export const CloudinaryImage = ({
   fallback,
   width,
   height,
-  alt,
+  alt = "",
   asLink = true,
 }: {
   url: string | undefined;
@@ -17,7 +17,7 @@ export const CloudinaryImage = ({
   loading?: "eager" | "lazy";
   width: number;
   height: number;
-  alt: string;
+  alt?: string;
   asLink?: boolean;
 }) => {
   return asLink ? (

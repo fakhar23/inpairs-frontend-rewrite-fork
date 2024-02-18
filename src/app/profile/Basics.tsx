@@ -1,27 +1,17 @@
 import { ProfileDataResponse } from "@/api/types";
 import { Skeleton } from "@/components";
+import { UserAnswer } from "@/types/ranking";
+import { getAnswer } from "@/helpers";
 
 export function Basics({
-  JobOrFieldOfStudy,
-  age,
-  currentLocation,
-  FinishedEducationLevel,
-  SpokenLanguages,
-  Origin,
-  MomOrigin,
-  DadOrigin,
-  Sect,
-  Height,
-  Married,
-  WillingToMove,
-  mostSpentLocation,
+  answers,
   isLoading = true,
 }: ProfileDataResponse & {
+  answers: UserAnswer[];
   isLoading?: boolean;
 }) {
   const SKELETON_WIDTH = "40%";
   const SKELETON_HEIGHT = 24;
-
   return (
     <section className="last:border-0">
       <div className="flex items-center !justify-start font-bryant font-bold text-secondary text-[1.25rem]">
@@ -39,7 +29,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{JobOrFieldOfStudy}</p>
+          <p>{getAnswer(answers,"JobOrFieldOfStudy")}</p>
         </Skeleton>
       </div>
       <div>
@@ -52,7 +42,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{age}</p>
+          <p>{getAnswer(answers,"Age")}</p>
         </Skeleton>
       </div>
       <div>
@@ -66,7 +56,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{currentLocation}</p>
+          <p>{getAnswer(answers,"ResidencyState")}</p>
         </Skeleton>
       </div>
       <div>
@@ -81,7 +71,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{mostSpentLocation}</p>
+          <p>{getAnswer(answers,"MainCity")}</p>
         </Skeleton>
       </div>
       <div>
@@ -94,7 +84,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{FinishedEducationLevel}</p>
+          <p>{getAnswer(answers,"FinishedEducationLevel")}</p>
         </Skeleton>
       </div>
       <div>
@@ -107,12 +97,11 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{SpokenLanguages}</p>
+          <p>{getAnswer(answers,"SpokenLanguages")}</p>
         </Skeleton>
       </div>
       <div>
         <h3 className="font-bryant font-medium  text-light-black">Origin</h3>
-
         <Skeleton
           variant="rounded"
           isLoading={isLoading}
@@ -120,7 +109,15 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{[Origin, DadOrigin, MomOrigin].filter(Boolean).join(", ")}</p>
+          <p>
+            {[
+              getAnswer(answers,"Origin"),
+              getAnswer(answers,"DadOrigin"),
+              getAnswer(answers,"MomOrigin"),
+            ]
+              .filter(Boolean)
+              .join(", ")}
+          </p>
         </Skeleton>
       </div>
       <div>
@@ -134,7 +131,10 @@ export function Basics({
           height={SKELETON_HEIGHT}
         >
           <p>
-            {Sect?.replaceAll("[", "").replaceAll("]", "").replaceAll('"', "")}
+            {getAnswer(answers,"Sect")
+              ?.replaceAll("[", "")
+              .replaceAll("]", "")
+              .replaceAll('"', "")}
           </p>
         </Skeleton>
       </div>
@@ -148,7 +148,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{Height}</p>
+          <p>{getAnswer(answers,"Height")}</p>
         </Skeleton>
       </div>
       <div>
@@ -162,7 +162,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{Married === "true" ? "Yes" : "No"}</p>
+          <p>{getAnswer(answers,"Married") === "true" ? "Yes" : "No"}</p>
         </Skeleton>
       </div>
 
@@ -185,7 +185,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{WillingToMove}</p>
+          <p>{getAnswer(answers,"WillingToMove")}</p>
         </Skeleton>
       </div>
     </section>

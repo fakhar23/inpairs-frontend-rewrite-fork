@@ -5,10 +5,9 @@ import { Button, Modal } from "@/components";
 import { ProfileQuestions } from ".";
 import { useRouter } from "next/navigation";
 
-export const UserOptions = () => {
+export const UserOptions = ({ answers }: any) => {
   const [downloadProfileLoading, setDownloadProfileLoading] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
-  const router = useRouter();
 
   const downloadUserData = () => undefined;
 
@@ -19,12 +18,12 @@ export const UserOptions = () => {
         isOpen={showQuestion}
         onClose={() => setShowQuestion(false)}
         titleClassName="!text-[2rem] text-secondary"
-        className="w-5/6 px-4"
+        className="w-5/6 px-4 max-h-screen"
       >
-        <ProfileQuestions />
+        <ProfileQuestions answers={answers} />
       </Modal>
 
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center justify-">
         <Button
           className="w-full"
           onClick={() => setShowQuestion(!showQuestion)}

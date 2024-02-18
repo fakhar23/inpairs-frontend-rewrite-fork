@@ -5,6 +5,7 @@ import {
   LoginBody,
   LoginResponse,
   ProfileDataResponse,
+  RankingResult,
   ScoringResult,
   SetPassword,
   SignUpBody,
@@ -28,6 +29,7 @@ export const ENDPOINTS = {
   profileData: "/profile",
   supportEmail: "/email/support",
   matchScoring: "/matchmaking/scoring",
+  matchRanking: "/matchmaking/ranking",
   ingestTypeformResponse: "/answers/response",
   match: "/match",
 };
@@ -203,6 +205,13 @@ export async function updateMatch(payload: UpdateMatchRequest) {
 export async function getMatchScoring(queryString: string) {
   const result = await axiosInstance.get<ScoringResult>(
     ENDPOINTS.matchScoring + queryString,
+  );
+  return result.data;
+}
+
+export async function getMatchRanking(userId: string) {
+  const result = await axiosInstance.get<RankingResult>(
+    `${ENDPOINTS.matchRanking}/${userId}`,
   );
   return result.data;
 }

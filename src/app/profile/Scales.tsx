@@ -2,15 +2,16 @@
 
 import { ProfileDataResponse } from "@/api/types";
 import { Skeleton } from "@/components";
+import { getAnswer } from "@/helpers";
+import { UserAnswer } from "@/types/ranking";
 
 export function Scales({
-  IslamImportance,
-  CareerOrFamilyOriented,
-  FinancialIndependence,
-  FitnessLevel,
-  ClosenessToFamily,
+  answers,
   isLoading = true,
-}: ProfileDataResponse & { isLoading?: boolean }) {
+}: ProfileDataResponse & {
+  answers: UserAnswer[];
+  isLoading?: boolean;
+}) {
   const SKELETON_WIDTH = "40%";
   const SKELETON_HEIGHT = 24;
 
@@ -30,7 +31,7 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{IslamImportance}</p>
+          <p>{getAnswer(answers, "IslamImportance")}</p>
         </Skeleton>
       </div>
       <div>
@@ -45,7 +46,7 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{CareerOrFamilyOriented}</p>
+          <p>{getAnswer(answers, "CareerOrFamilyOriented")}</p>
         </Skeleton>
       </div>
       <div>
@@ -60,7 +61,7 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{FinancialIndependence}</p>
+          <p>{getAnswer(answers, "FinancialIndependence")}</p>
         </Skeleton>
       </div>
       <div>
@@ -75,10 +76,10 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{FitnessLevel}</p>
+          <p>{getAnswer(answers, "FitnessLevel")}</p>
         </Skeleton>
       </div>
-      {ClosenessToFamily && (
+      {getAnswer(answers, "ClosenessToFamily") && (
         <div>
           <h3 className="font-bryant font-medium  text-light-black">
             Closeness to family
@@ -91,7 +92,7 @@ export function Scales({
             width={SKELETON_WIDTH}
             height={SKELETON_HEIGHT}
           >
-            <p>{ClosenessToFamily}</p>
+            <p>{getAnswer(answers, "ClosenessToFamily")}</p>
           </Skeleton>
         </div>
       )}

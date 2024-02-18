@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CloseIcon } from "@/Icons";
+import { CloseIcon } from "@/icons";
 
 interface IImageUpload {
   url?: string;

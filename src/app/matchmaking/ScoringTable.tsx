@@ -52,7 +52,7 @@ const useGetScoring = (queryString: string) => {
   });
 };
 
-export default function RankingTable() {
+export default function ScoringTable() {
   const { isLoading: checkPermission } = useVerifyPermission([
     "ADMIN",
     "MATCHMAKER",

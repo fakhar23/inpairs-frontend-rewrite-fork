@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
-import RankingTable from "./RankingTable";
+import ScoringTable from "./ScoringTable";
 
 const MatchMakingPage = () => {
   return (
     <UserProfileLayout>
       <div className="wrapper flex justify-center items-center">
         <Suspense>
-          <RankingTable />
+          <ScoringTable />
         </Suspense>
       </div>
     </UserProfileLayout>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UploadIcon } from "@/Icons";
+import { UploadIcon } from "@/icons";
 
 export const MAX_FILE_SIZE = 15000000;
 export const SUPPORTED_TYPES = ["image/png", "image/jpeg", "image/jpg"];

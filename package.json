@@ -30,6 +30,7 @@
     "@types/react-window-infinite-loader": "^1.0.9",
     "axios": "^1.6.5",
     "countries-list": "^3.0.6",
+    "dayjs": "^1.11.10",
     "eslint-plugin-import": "^2.29.1",
     "heic-convert": "^2.1.0",
     "lodash": "^4.17.21",
