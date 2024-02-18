@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { Button, Modal } from "@/components";
 import { ProfileQuestions } from ".";
-import { useRouter } from "next/navigation";
+import { UserAnswer } from "@/types/ranking";
 
-export const UserOptions = ({ answers }: any) => {
+export const UserOptions = ({ answers }: { answers: UserAnswer[] }) => {
   const [downloadProfileLoading, setDownloadProfileLoading] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
 

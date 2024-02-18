@@ -1,13 +1,35 @@
 import { ProfileDataResponse } from "@/api/types";
 import { Skeleton } from "@/components";
-import { UserAnswer } from "@/types/ranking";
-import { getAnswer } from "@/helpers";
 
 export function Basics({
-  answers,
+  JobOrFieldOfStudy,
+  Age,
+  ResidencyState,
+  MainCity,
+  FinishedEducationLevel,
+  SpokenLanguages,
+  Origin,
+  DadOrigin,
+  MomOrigin,
+  Sect,
+  Height,
+  Married,
+  WillingToMove,
   isLoading = true,
 }: ProfileDataResponse & {
-  answers: UserAnswer[];
+  JobOrFieldOfStudy?: string;
+  Age?: string;
+  ResidencyState?: string;
+  MainCity?: string;
+  FinishedEducationLevel?: string;
+  SpokenLanguages?: string;
+  Origin?: string;
+  DadOrigin?: string;
+  MomOrigin?: string;
+  Sect?: string;
+  Height?: string;
+  Married?: string;
+  WillingToMove?: string;
   isLoading?: boolean;
 }) {
   const SKELETON_WIDTH = "40%";
@@ -29,7 +51,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"JobOrFieldOfStudy")}</p>
+          <p>{JobOrFieldOfStudy}</p>
         </Skeleton>
       </div>
       <div>
@@ -42,7 +64,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"Age")}</p>
+          <p>{Age}</p>
         </Skeleton>
       </div>
       <div>
@@ -56,7 +78,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"ResidencyState")}</p>
+          <p>{ResidencyState}</p>
         </Skeleton>
       </div>
       <div>
@@ -71,7 +93,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"MainCity")}</p>
+          <p>{MainCity}</p>
         </Skeleton>
       </div>
       <div>
@@ -84,7 +106,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"FinishedEducationLevel")}</p>
+          <p>{FinishedEducationLevel}</p>
         </Skeleton>
       </div>
       <div>
@@ -97,7 +119,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"SpokenLanguages")}</p>
+          <p>{SpokenLanguages}</p>
         </Skeleton>
       </div>
       <div>
@@ -109,15 +131,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>
-            {[
-              getAnswer(answers,"Origin"),
-              getAnswer(answers,"DadOrigin"),
-              getAnswer(answers,"MomOrigin"),
-            ]
-              .filter(Boolean)
-              .join(", ")}
-          </p>
+          <p>{[Origin, DadOrigin, MomOrigin].filter(Boolean).join(", ")}</p>
         </Skeleton>
       </div>
       <div>
@@ -131,10 +145,7 @@ export function Basics({
           height={SKELETON_HEIGHT}
         >
           <p>
-            {getAnswer(answers,"Sect")
-              ?.replaceAll("[", "")
-              .replaceAll("]", "")
-              .replaceAll('"', "")}
+            {Sect?.replaceAll("[", "").replaceAll("]", "").replaceAll('"', "")}
           </p>
         </Skeleton>
       </div>
@@ -148,7 +159,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"Height")}</p>
+          <p>{Height}</p>
         </Skeleton>
       </div>
       <div>
@@ -162,7 +173,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"Married") === "true" ? "Yes" : "No"}</p>
+          <p>{Married === "true" ? "Yes" : "No"}</p>
         </Skeleton>
       </div>
 
@@ -185,7 +196,7 @@ export function Basics({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers,"WillingToMove")}</p>
+          <p>{WillingToMove}</p>
         </Skeleton>
       </div>
     </section>

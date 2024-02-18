@@ -180,14 +180,3 @@ export type ScoringItemResult = {
   ranked: boolean | null;
   potential_matches: number;
 };
-
-export type RankingResult = {
-  user: any;
-  ranking: RankingItemResult[];
-};
-
-export type RankingItemResult = {
-  id: string;
-  PotentialMatch: any;
-  MatchedUser: any;
-};

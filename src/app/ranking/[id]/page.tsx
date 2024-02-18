@@ -4,25 +4,23 @@ import dayjs from "dayjs";
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 import UserProfileLayout from "@/layouts/UserProfileLayout";
-import { Basics, GeneralInfo, Scales, UserInfo } from "../../profile";
+import { Basics, GeneralInfo, Scales } from "@/app/profile";
 import profileBg from "@/assets/profileBgC.png";
 import { RankingTable } from "./RankingTable";
 import { CloudinaryImage, Toast } from "@/components";
 import { UserOptions } from "@/app/profile/UserOptions";
-import { useQuery } from "@tanstack/react-query";
 import { ENDPOINTS, getMatchRanking } from "@/api";
-import { RankingResult } from "@/api/types";
-import { UserAnswer } from "../../../types/ranking";
-import QuestionIds from "@/helpers/questionIds";
 import { getAnswer } from "@/helpers";
+import { RankingResult } from "@/types/ranking";
 
 const FALLBACK_IMAGE_URL =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
 
 const useGetMatchRanking = (userId: string) => {
   return useQuery({
-    queryKey: [ENDPOINTS.matchScoring, userId],
+    queryKey: [ENDPOINTS.matchRanking, userId],
     queryFn: async () => {
       return await getMatchRanking(userId);
     },
@@ -48,6 +46,34 @@ const RankingUser = () => {
   }, [user]);
   const userAnswers = user?.UserAnswers || [];
 
+  const profileDesc = [
+    "AboutYourself",
+    "Passion",
+    "Interests",
+    "JobOrFieldOfStudy",
+    "Age",
+    "ResidencyState",
+    "MainCity",
+    "FinishedEducationLevel",
+    "SpokenLanguages",
+    "Origin",
+    "DadOrigin",
+    "MomOrigin",
+    "Sect",
+    "Height",
+    "Married",
+    "WillingToMove",
+    "IslamImportance",
+    "CareerOrFamilyOriented",
+    "FinancialIndependence",
+    "FitnessLevel",
+    "ClosenessToFamily",
+  ];
+  const profileData = profileDesc.reduce((x: any, desc: string) => {
+    x[desc] = getAnswer(userAnswers, desc);
+    return x;
+  }, {});
+
   return (
     <UserProfileLayout>
       <Image
@@ -56,7 +82,7 @@ const RankingUser = () => {
         className="absolute left-0 w-full h-full blur-3xl -z-10 top-[-7rem]"
       />
       <main className="flex flex-col p-10 gap-5">
-        {true && (
+        {user.ranked && (
           <Toast
             type="error"
             title="Note"
@@ -105,19 +131,19 @@ const RankingUser = () => {
             <GeneralInfo
               title="About me"
               isLoading={getLoading}
-              content={getAnswer(userAnswers, "AboutYourself")}
+              content={profileData.AboutYourself || ""}
               // editable
             />
             <GeneralInfo
               title="Passions"
               isLoading={getLoading}
-              content={getAnswer(userAnswers, "Passion")}
+              content={profileData.Passion || ""}
               // editable
             />
             <GeneralInfo
               title="Interests"
               isLoading={getLoading}
-              content={getAnswer(userAnswers, "Interests")}
+              content={profileData.Interests || ""}
               // editable
             />
           </div>
@@ -129,8 +155,8 @@ const RankingUser = () => {
           </div>
 
           <div className="w-full flex flex-col [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem]  [&>*]:shadow-md [&_div]:flex [&_div]:justify-around [&_div]:gap-[1.5rem] [&_div]:border-b [&_div]:border-rose-200 [&_div]:p-[0.5rem] [&_div>*]:w-[50%] md:w-full">
-            <Basics isLoading={getLoading} answers={userAnswers} />
-            <Scales isLoading={getLoading} answers={userAnswers} />
+            <Basics isLoading={getLoading} {...profileData} />
+            <Scales isLoading={getLoading} {...profileData} />
           </div>
         </div>
       </main>

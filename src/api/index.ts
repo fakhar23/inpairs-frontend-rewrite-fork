@@ -5,7 +5,6 @@ import {
   LoginBody,
   LoginResponse,
   ProfileDataResponse,
-  RankingResult,
   ScoringResult,
   SetPassword,
   SignUpBody,
@@ -15,6 +14,7 @@ import {
 } from "./types";
 import { toast } from "react-toastify";
 import { GetMatchResponse } from "./types";
+import { PotentialMatchInput, RankingResult } from "@/types/ranking";
 
 export const ENDPOINTS = {
   login: "/auth/login",
@@ -212,6 +212,17 @@ export async function getMatchScoring(queryString: string) {
 export async function getMatchRanking(userId: string) {
   const result = await axiosInstance.get<RankingResult>(
     `${ENDPOINTS.matchRanking}/${userId}`,
+  );
+  return result.data;
+}
+
+export async function updateRanking(
+  userId: string,
+  payload: PotentialMatchInput[],
+) {
+  const result = await axiosInstance.patch<RankingResult>(
+    `${ENDPOINTS.matchRanking}/${userId}`,
+    payload,
   );
   return result.data;
 }

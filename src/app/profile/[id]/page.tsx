@@ -44,42 +44,27 @@ export default function Profile() {
           <div className="flex flex-col gap-8 mr-[2rem] md:mr-0 md:mb-[3rem] w-[45%] [&>*]:bg-white [&>*]:rounded-xl [&>*]:p-[1rem] [&>*]:shadow-md md:w-full">
             <GeneralInfo
               title="About me"
-              content={{
-                descriptor: "AboutYourself",
-                answer: profileData.data?.AboutYourself || "",
-              }}
+              content={profileData.data?.AboutYourself || ""}
               isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Interests"
-              content={{
-                descriptor: "Interests",
-                answer: profileData.data?.Interests || "",
-              }}
+              content={profileData.data?.Interests || ""}
               isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Passions"
-              content={{
-                descriptor: "Passion",
-                answer: profileData.data?.Passion || "",
-              }}
+              content={profileData.data?.Passion || ""}
               isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Role of islam"
-              content={{
-                descriptor: "IslamRole",
-                answer: profileData.data?.IslamRole || "",
-              }}
+              content={profileData.data?.IslamRole || ""}
               isLoading={profileData.isLoading}
             />
             <GeneralInfo
               title="Most interesting thing about you"
-              content={{
-                descriptor: "FiveYearPlan",
-                answer: profileData.data?.mostInterestingThing || "",
-              }}
+              content={profileData.data?.mostInterestingThing || ""}
               isLoading={profileData.isLoading}
             />
           </div>

@@ -2,14 +2,20 @@
 
 import { ProfileDataResponse } from "@/api/types";
 import { Skeleton } from "@/components";
-import { getAnswer } from "@/helpers";
-import { UserAnswer } from "@/types/ranking";
 
 export function Scales({
-  answers,
+  IslamImportance,
+  CareerOrFamilyOriented,
+  FinancialIndependence,
+  FitnessLevel,
+  ClosenessToFamily,
   isLoading = true,
 }: ProfileDataResponse & {
-  answers: UserAnswer[];
+  IslamImportance?: string;
+  CareerOrFamilyOriented?: string;
+  FinancialIndependence?: string;
+  FitnessLevel?: string;
+  ClosenessToFamily?: string;
   isLoading?: boolean;
 }) {
   const SKELETON_WIDTH = "40%";
@@ -31,7 +37,7 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers, "IslamImportance")}</p>
+          <p>{IslamImportance}</p>
         </Skeleton>
       </div>
       <div>
@@ -46,7 +52,7 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers, "CareerOrFamilyOriented")}</p>
+          <p>{CareerOrFamilyOriented}</p>
         </Skeleton>
       </div>
       <div>
@@ -61,7 +67,7 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers, "FinancialIndependence")}</p>
+          <p>{FinancialIndependence}</p>
         </Skeleton>
       </div>
       <div>
@@ -76,10 +82,10 @@ export function Scales({
           width={SKELETON_WIDTH}
           height={SKELETON_HEIGHT}
         >
-          <p>{getAnswer(answers, "FitnessLevel")}</p>
+          <p>{FitnessLevel}</p>
         </Skeleton>
       </div>
-      {getAnswer(answers, "ClosenessToFamily") && (
+      {ClosenessToFamily && (
         <div>
           <h3 className="font-bryant font-medium  text-light-black">
             Closeness to family
@@ -92,7 +98,7 @@ export function Scales({
             width={SKELETON_WIDTH}
             height={SKELETON_HEIGHT}
           >
-            <p>{getAnswer(answers, "ClosenessToFamily")}</p>
+            <p>{ClosenessToFamily}</p>
           </Skeleton>
         </div>
       )}

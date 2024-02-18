@@ -48,6 +48,7 @@ export interface User {
     score: number;
     rank: number;
   }>;
+  created_at?: string;
 }
 
 export interface UpdatePercentageBody {

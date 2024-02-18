@@ -4,8 +4,9 @@ import React, { useMemo, useState } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { Input } from "@/components";
 import { IoChevronUpCircleOutline } from "react-icons/io5";
+import { UserAnswer } from "@/types/ranking";
 
-export function ProfileQuestions({ answers }: any) {
+export function ProfileQuestions({ answers }: { answers: UserAnswer[] }) {
   const [search, setsearch] = useState("");
   const onSearch = (e: any) => {
     setsearch(e.target.value);
@@ -47,7 +48,12 @@ export function ProfileQuestions({ answers }: any) {
         value={search}
       />
       <div className="h-[30rem] overflow-y-auto my-5">
-        <Accordion.Root className="space-y-4 mb-10" type="single" collapsible>
+        <Accordion.Root
+          className="space-y-4 mb-10"
+          type="single"
+          defaultValue="GeneralInformation"
+          collapsible
+        >
           {!!Object.keys(groupAnswers)?.length &&
             Object.keys(groupAnswers).map((name: any) => {
               const data = groupAnswers[name];
@@ -75,31 +81,36 @@ export function ProfileQuestions({ answers }: any) {
                     <Accordion.Root
                       className="w-full grid grid-cols-2"
                       type="multiple"
+                      defaultValue={
+                        data?.length
+                          ? data.map((x: any, i: number) => "item" + i)
+                          : []
+                      }
                     >
                       {data?.length &&
-                        data.map((ans: any, index: number) => {
+                        data.map((row: any, index: number) => {
                           return (
                             <Accordion.Item
                               key={index}
-                              value={`item` + index}
+                              value={"item" + index}
                               className="data-[state=open]:bg-gray-200 rounded-xl py-2 px-3"
                             >
                               <Accordion.Header>
                                 <Accordion.Trigger className="data-[state=open]:font-bold data-[state=open]:hidden w-full text-start flex justify-between items-center">
                                   <p className="max-w-[90%] lg:max-w-full">
-                                    {ans?.question}
+                                    {row?.question}
                                   </p>
                                   <IoChevronUpCircleOutline />
                                 </Accordion.Trigger>
                                 <Accordion.Trigger className="data-[state=open]:font-bold data-[state=closed]:hidden w-full text-start flex justify-between items-center">
                                   <p className="max-w-[90%] lg:max-w-full">
-                                    {ans?.question}
+                                    {row?.question}
                                   </p>
                                   <IoChevronUpCircleOutline className="rotate-180 transform" />
                                 </Accordion.Trigger>
                               </Accordion.Header>
                               <Accordion.Content className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp text-justify overflow-hidden">
-                                {ans?.answer?.trim()}
+                                {row?.answer?.trim()}
                               </Accordion.Content>
                             </Accordion.Item>
                           );

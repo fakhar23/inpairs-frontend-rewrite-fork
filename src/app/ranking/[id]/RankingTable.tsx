@@ -1,48 +1,92 @@
 "use client";
-
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { MdDragIndicator } from "react-icons/md";
+import { useListState } from "@mantine/hooks";
+import { twMerge } from "tailwind-merge";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 import { Button, CloudinaryImage, Input, Modal } from "@/components";
 import { MatchPairPopper } from "../../profile/MatchPairPopper";
 import DraggableList from "@/components/DraggableList/DraggableList";
 import DraggableListItem from "@/components/DraggableList/DraggableListItem";
-import { useListState } from "@mantine/hooks";
-import { twMerge } from "tailwind-merge";
+import {
+  PotentialMatchInput,
+  RankingItem,
+  UserPotentialMatch,
+  UserRank,
+} from "@/types/ranking";
+import { ENDPOINTS, updateRanking } from "@/api";
 
 const FALLBACK_IMAGE_URL =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMx1itTXTXLB8p4ALTTL8mUPa9TFN_m9h5VQ&usqp=CAU";
 
 type Props = {
-  ranking: any;
-  isRanked: boolean;
+  ranking: RankingItem[];
+  isRanked?: boolean;
 };
 
-export function RankingTable({ ranking }: Props, ref: any) {
+export function RankingTable({ ranking }: Props) {
+  const queryClient = useQueryClient();
+  const params = useParams<{ id: string }>();
   const [state, handlers] = useListState(ranking || []);
   const [editable, setEditable] = useState<boolean[]>(
     Array.from<boolean>({ length: state.length }).fill(false),
   );
 
+  const queryKey = [ENDPOINTS.matchRanking, params.id];
+  const { mutate: update, isPending: updateLoading } = useMutation({
+    mutationFn: async (payload: PotentialMatchInput[]) => {
+      return await updateRanking(params.id, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey });
+    },
+  });
+
   useEffect(() => {
     if (ranking?.length) handlers.setState(ranking);
-  }, [ranking, handlers]);
+  }, [ranking]);
 
   const getTableRows = () => {
     return (
       !!state?.length &&
-      state.map((potential: any, index: number) => {
-        const CurrentUserData = potential.MatchedUser || {};
+      state.map((potential: RankingItem, index: number) => {
+        const userLifetime = potential.PotentialMatch?.created_at
+          ? dayjs().diff(dayjs(potential.PotentialMatch?.created_at), "month")
+          : 0;
+        let matchCount = 0;
+        if (potential.PotentialMatch.gender === "MALE") {
+          matchCount = potential.PotentialMatch.UserMatchedMales?.length || 0;
+        }
+        if (potential.PotentialMatch.gender === "FEMALE") {
+          matchCount = potential.PotentialMatch.UserMatchedFemales?.length || 0;
+        }
+        const hasImages =
+          potential.PotentialMatch?.images?.length &&
+          potential.PotentialMatch?.images[0] !== "";
+        let currentRanks: any = [];
+        if (potential.PotentialMatch.gender === "FEMALE") {
+          currentRanks = potential.PotentialMatch?.UserPotentialMatches?.map(
+            (x: UserPotentialMatch) => x.PotentialMatch,
+          );
+        }
+        if (potential.PotentialMatch.gender === "MALE") {
+          currentRanks = potential.PotentialMatch?.UserPotentialMatches?.map(
+            (x: UserPotentialMatch) => x.MatchedUser,
+          );
+        }
         return (
           <DraggableListItem
-            id={potential.PotentialMatch.email}
+            key={index}
+            id={potential.id.toString()}
             index={index}
-            key={potential.PotentialMatch.auth_id}
             className={twMerge(
               "flex bg-white border-b",
-              !potential.PotentialMatch?.images.length
-                ? "bg-[#fee2e2]"
-                : potential.PotentialMatch?.less_fortunate
-                  ? "bg-[#fef9c3]"
+              !hasImages
+                ? "bg-primary-100"
+                : potential.less_fortunate
+                  ? "bg-yellow-100"
                   : "",
             )}
           >
@@ -107,14 +151,18 @@ export function RankingTable({ ranking }: Props, ref: any) {
                 popper={
                   <>
                     <div>
-                      {CurrentUserData.first_name} {CurrentUserData.last_name}{" "}
+                      {potential.MatchedUser.first_name}{" "}
+                      {potential.MatchedUser.last_name}{" "}
                       <span style={{ color: "rgb(88, 28, 135)" }}>
-                        (prefers: {CurrentUserData.UserAnswers[0]?.answer || ""}
+                        (prefers:{" "}
+                        {(!!potential.MatchedUser?.UserAnswers?.length &&
+                          potential.MatchedUser?.UserAnswers[0]?.answer) ||
+                          ""}
                         )
                       </span>
                     </div>
                     {/* <div className="flex gap-4 mt-3">
-                      {CurrentUserData.images?.map((url: string) => (
+                      {potential.MatchedUser.images?.map((url: string) => (
                         <CloudinaryImage
                           key={url}
                           fallback={FALLBACK_IMAGE_URL}
@@ -132,24 +180,28 @@ export function RankingTable({ ranking }: Props, ref: any) {
                       {potential.PotentialMatch.last_name}{" "}
                       <span style={{ color: "rgb(88, 28, 135)" }}>
                         (prefers:{" "}
-                        {potential.PotentialMatch.UserAnswers[0]?.answer || ""})
+                        {(!!potential.PotentialMatch?.UserAnswers?.length &&
+                          potential.PotentialMatch?.UserAnswers[0]?.answer) ||
+                          ""}
+                        )
                       </span>
                     </div>
                     <div className="flex gap-4 mt-3">
-                      {potential.PotentialMatch.images.map((url: string) => (
-                        <CloudinaryImage
-                          key={url}
-                          fallback={FALLBACK_IMAGE_URL}
-                          className="rounded-xl"
-                          height={200}
-                          width={200}
-                          url={url}
-                          loading="lazy"
-                        />
-                      ))}
+                      {!!potential.PotentialMatch?.images?.length &&
+                        potential.PotentialMatch?.images.map((url: string) => (
+                          <CloudinaryImage
+                            key={url}
+                            fallback={FALLBACK_IMAGE_URL}
+                            className="rounded-xl"
+                            height={200}
+                            width={200}
+                            url={url}
+                            loading="lazy"
+                          />
+                        ))}
                     </div>
                     <div className="mt-5">
-                      {potential.gptReason || "gpt reason here"}
+                      {/* {potential.gptReason || "gpt reason here"} */}
                     </div>
                   </>
                 }
@@ -158,88 +210,39 @@ export function RankingTable({ ranking }: Props, ref: any) {
               <div className="text-sm flex items-center">
                 <div>
                   Matched{" "}
-                  <span className="text-blue-500">
-                    {potential?.match_total || 0}
-                  </span>
+                  <span className="text-blue-500">{matchCount || 0}</span>
                 </div>
                 <div>
-                  &nbsp;time{potential?.match_total > 1 ? "s" : ""}&nbsp;in{" "}
-                  <span className="text-blue-500">
-                    {potential?.member_months}
-                  </span>{" "}
-                  months
+                  &nbsp;time{matchCount > 1 ? "s" : ""}&nbsp;in{" "}
+                  <span className="text-blue-500">{userLifetime}</span> months
                 </div>
               </div>
-              <div className="text-sm">
-                Potential Matches: {potential?.potentional_match}
-              </div>
+              <div className="text-sm">Potential Matches: {currentRanks?.length}</div>
             </div>
 
             <div className="w-[300px] px-1 flex items-center py-1">
-              {potential.gptScore || 0}
+              {/* {potential.gptScore || 0} */}
             </div>
 
             <div className="w-[300px] px-1 py-1">
-              {/* <div>
-                1st:{" "}
-                {potential.first.map(
-                  (u: {
-                    email: string;
-                    first_name: string | null;
-                    last_name: string | null;
-                    sharable_id: string;
-                  }) => (
-                    <a
-                      key={u.email}
-                      className="text-blue-500 underline underline-offset-2 mr-2"
-                      href={`/profile/${u.sharable_id}`}
-                      target="_blank"
-                    >
-                      {u.first_name} {u.last_name}{" "}
-                    </a>
-                  ),
+              {currentRanks?.length &&
+                currentRanks.slice(0, 3).map(
+                  (userRank: Partial<UserRank>, index: number) => {
+                    return (
+                      <div key={index}>
+                        {index + 1}:
+                        <a
+                          key={userRank.email}
+                          className="text-blue-500 underline underline-offset-2 mx-2"
+                          href={`/profile/${userRank.id}`}
+                          target="_blank"
+                        >
+                          {userRank.first_name} {userRank.last_name}
+                        </a>
+                      </div>
+                    );
+                  },
                 )}
-              </div>
-              <div>
-                2nd:{" "}
-                {potential.second.map(
-                  (u: {
-                    email: string;
-                    first_name: string | null;
-                    last_name: string | null;
-                    sharable_id: string;
-                  }) => (
-                    <a
-                      key={u.email}
-                      className="text-blue-500 underline underline-offset-2 mr-2"
-                      href={`/profile/${u.sharable_id}`}
-                      target="_blank"
-                    >
-                      {u.first_name} {u.last_name}{" "}
-                    </a>
-                  ),
-                )}
-              </div>
-              <div>
-                3rd:{" "}
-                {potential.third.map(
-                  (u: {
-                    email: string;
-                    first_name: string | null;
-                    last_name: string | null;
-                    sharable_id: string;
-                  }) => (
-                    <a
-                      key={u.email}
-                      className="text-blue-500 underline underline-offset-2 mr-2"
-                      href={`/profile/${u.sharable_id}`}
-                      target="_blank"
-                    >
-                      {u.first_name} {u.last_name}{" "}
-                    </a>
-                  ),
-                )}
-              </div> */}
             </div>
 
             <div className="flex justify-center items-center w-[100px] px-1 py-1 hover:text-rose-500 active:text-rose-700">
@@ -249,6 +252,14 @@ export function RankingTable({ ranking }: Props, ref: any) {
         );
       })
     );
+  };
+
+  const onSaveRanking = () => {
+    const payload = state.map((row, index: number) => ({
+      id: row.id,
+      rank: index + 1,
+    }));
+    update(payload);
   };
 
   return (
@@ -302,7 +313,7 @@ export function RankingTable({ ranking }: Props, ref: any) {
       </section>
 
       <div className="flex justify-end w-full">
-        <Button className="" onClick={() => undefined}>
+        <Button className="" onClick={onSaveRanking} isLoading={updateLoading}>
           Save
         </Button>
       </div>
