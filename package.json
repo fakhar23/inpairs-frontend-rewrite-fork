@@ -11,7 +11,7 @@
     "fetch": "git fetch origin",
     "all-sync": "bash all-sync.sh",
     "some-sync": "bash some-sync.sh",
-    "main-sync": "git checkout main && pull origin main && git push fork main"
+    "main-sync": "git checkout main && git pull origin main && git push fork main"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
